@@ -35,14 +35,14 @@ const apps: AppItem[] = [
     color: 'purple',
   },
   {
-    id: 'app3',
-    name: 'Application 3',
-    description: 'Prochainement disponible.',
-    url: '#',
-    emoji: '🔜',
-    category: '',
-    status: 'bientôt',
-    color: 'gray',
+    id: 'definifwb',
+    name: 'DéfiniFWB',
+    description: 'Séances interactives de vocabulaire pour TBI. Six modes de jeu, import CSV/PDF, pictogrammes ARASAAC, QR code élève.',
+    url: 'https://definifwb.vercel.app',
+    emoji: '📖',
+    category: 'Vocabulaire',
+    status: 'disponible',
+    color: 'green',
   },
   {
     id: 'app4',
@@ -59,6 +59,7 @@ const apps: AppItem[] = [
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string }> = {
   blue:   { bg: 'bg-blue-50',   border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',   btn: 'bg-blue-600 hover:bg-blue-700' },
   purple: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700' },
+  green:  { bg: 'bg-green-50',  border: 'border-green-200',  badge: 'bg-green-100 text-green-700',  btn: 'bg-green-600 hover:bg-green-700' },
   gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',   btn: 'bg-gray-400 cursor-not-allowed' },
 };
 
