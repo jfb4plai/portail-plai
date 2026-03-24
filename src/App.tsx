@@ -38,7 +38,7 @@ const apps: AppItem[] = [
         summary: "Flash FWB repose sur trois piliers validés par les sciences cognitives : le rappel actif, la répétition espacée et l'auto-évaluation immédiate.",
         references: [
           {
-            citation: 'Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage.',
+            citation: "Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage.",
             content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect).",
           },
           {
@@ -56,7 +56,7 @@ const apps: AppItem[] = [
           {
             title: 'Créer un deck',
             items: [
-              "Connectez-vous → "Nouveau deck"",
+              'Connectez-vous → "Nouveau deck"',
               "Donnez un nom (ex. : Tables de multiplication — 7×)",
               "Ajoutez vos cartes : recto (question/terme) + verso (réponse/définition)",
               "Possibilité d'ajouter une image au recto ou au verso",
@@ -96,7 +96,7 @@ const apps: AppItem[] = [
         summary: "Picto Lecture s'inscrit dans la tradition de la Communication Alternative et Augmentée (CAA) en rendant le texte accessible par le canal visuel, multipliant les entrées sensorielles pour un même contenu.",
         references: [
           {
-            citation: 'Chasseur, L. (2020). ÉvalCom : évaluation de l'acceptabilité des outils de CAA par tableaux de pictogrammes.',
+            citation: "Chasseur, L. (2020). ÉvalCom : évaluation de l'acceptabilité des outils de CAA par tableaux de pictogrammes.",
             content: "Les outils CAA par pictogrammes améliorent l'accès au sens pour les élèves à besoins spécifiques, à condition d'être intégrés dans une pratique régulière et contextualisée.",
           },
           {
@@ -162,7 +162,7 @@ const apps: AppItem[] = [
         summary: "DéfiniFWB transforme une leçon de vocabulaire traditionnelle (frontale, passive) en activité collective interactive, conforme aux recommandations sur l'usage pédagogique du TBI.",
         references: [
           {
-            citation: 'Redouani, A. (2022). L'impact de l'usage pédagogique du TBI sur l'engagement scolaire des élèves.',
+            citation: "Redouani, A. (2022). L'impact de l'usage pédagogique du TBI sur l'engagement scolaire des élèves.",
             content: "L'usage du TBI en classe augmente significativement l'engagement comportemental et cognitif des élèves, à condition que l'outil soit intégré dans une démarche participative.",
           },
           {
@@ -170,7 +170,7 @@ const apps: AppItem[] = [
             content: "Le TBI n'améliore les apprentissages que lorsqu'il génère de l'interaction entre élèves et entre élèves et contenu — pas en usage purement frontal.",
           },
           {
-            citation: 'Hesto, J. (2018). L'impact du TBI sur la motivation et la réussite scolaire.',
+            citation: "Hesto, J. (2018). L'impact du TBI sur la motivation et la réussite scolaire.",
             content: "La motivation intrinsèque est renforcée quand l'élève est acteur — ce que les modes de jeu de DéfiniFWB visent explicitement.",
           },
         ],
@@ -283,11 +283,11 @@ const apps: AppItem[] = [
         summary: "Dictée Interactive répond aux trois conditions scientifiquement validées : pratique active de l'orthographe + feedback immédiat + réduction de l'anxiété liée à l'erreur (le numérique dédramatise).",
         references: [
           {
-            citation: 'Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits.',
+            citation: "Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits.",
             content: "La dictée reste une des modalités les plus efficaces pour l'apprentissage de l'orthographe lexicale — à condition que l'erreur soit traitée, pas seulement sanctionnée.",
           },
           {
-            citation: 'Borchardt, G. (2012). L'influence des connaissances graphotactiques sur l'acquisition de l'orthographe lexicale.',
+            citation: "Borchardt, G. (2012). L'influence des connaissances graphotactiques sur l'acquisition de l'orthographe lexicale.",
             content: "Le feedback immédiat après chaque erreur améliore significativement les performances lors d'évaluations différées — sans feedback, l'erreur se consolide.",
           },
           {
