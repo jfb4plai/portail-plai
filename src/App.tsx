@@ -45,14 +45,14 @@ const apps: AppItem[] = [
     color: 'green',
   },
   {
-    id: 'app4',
-    name: 'Application 4',
-    description: 'Prochainement disponible.',
-    url: '#',
-    emoji: '🔜',
-    category: '',
-    status: 'bientôt',
-    color: 'gray',
+    id: 'droite-graduee',
+    name: 'Droite Graduée',
+    description: 'Activités interactives sur la droite graduée. Estimation, apprentissage multi-droites et mix. Configurations sauvegardées par l\'enseignant.',
+    url: 'https://droite-graduee.vercel.app',
+    emoji: '📏',
+    category: 'Numération',
+    status: 'disponible',
+    color: 'pink',
   },
 ];
 
@@ -61,6 +61,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; btn:
   purple: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700' },
   green:  { bg: 'bg-green-50',  border: 'border-green-200',  badge: 'bg-green-100 text-green-700',  btn: 'bg-green-600 hover:bg-green-700' },
   gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',   btn: 'bg-gray-400 cursor-not-allowed' },
+  pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',   btn: 'bg-pink-600 hover:bg-pink-700' },
 };
 
 function AppCard({ app }: { app: AppItem }) {
