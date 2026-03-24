@@ -1,6 +1,15 @@
+import { useState } from 'react';
 import './index.css';
 
 type AppStatus = 'disponible' | 'bientôt';
+
+type Reference = { citation: string; content: string };
+type StepGroup = { title: string; items: string[] };
+
+type GuideContent = {
+  scientific: { summary: string; references: Reference[] };
+  howto: { steps: StepGroup[]; tip?: string };
+};
 
 type AppItem = {
   id: string;
@@ -11,18 +20,67 @@ type AppItem = {
   category: string;
   status: AppStatus;
   color: string;
+  guide?: GuideContent;
 };
 
 const apps: AppItem[] = [
   {
     id: 'flashfwb',
     name: 'Flash FWB',
-    description: 'Flashcards interactives pour la mémorisation. Création de decks par l\'enseignant, apprentissage adaptatif pour l\'élève.',
+    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant, apprentissage adaptatif pour l'élève.",
     url: 'https://flashfwb.vercel.app',
     emoji: '🃏',
     category: 'Mémorisation',
     status: 'disponible',
     color: 'blue',
+    guide: {
+      scientific: {
+        summary: "Flash FWB repose sur trois piliers validés par les sciences cognitives : le rappel actif, la répétition espacée et l'auto-évaluation immédiate.",
+        references: [
+          {
+            citation: 'Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage.',
+            content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect).",
+          },
+          {
+            citation: 'Gayraud-Simon, N. (2022). Les apports des sciences cognitives à la mémorisation en classe de collège.',
+            content: "La relecture passive (stratégie préférée des élèves) est bien moins efficace que le rappel actif : se forcer à retrouver une information sans la relire consolide davantage la trace mnésique.",
+          },
+          {
+            citation: 'Lacombe, A. (2024). Utilisation de flashcard sous forme de schéma fonctionnel dans le processus de mémorisation à long terme.',
+            content: "L'approche combinée (flashcard + représentation schématique) optimise la rétention à long terme.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer un deck',
+            items: [
+              "Connectez-vous → "Nouveau deck"",
+              "Donnez un nom (ex. : Tables de multiplication — 7×)",
+              "Ajoutez vos cartes : recto (question/terme) + verso (réponse/définition)",
+              "Possibilité d'ajouter une image au recto ou au verso",
+            ],
+          },
+          {
+            title: 'Partager avec les élèves',
+            items: [
+              "Publiez le deck → un code de classe est généré",
+              "Les élèves entrent le code sur leur appareil — aucun compte nécessaire",
+              "Ils pratiquent en mode auto-évaluation (je sais / je ne sais pas)",
+            ],
+          },
+          {
+            title: 'Suivi',
+            items: [
+              "Le tableau de bord montre les cartes maîtrisées vs à retravailler par élève",
+              "Réactivez un deck en fin de séquence pour ancrer les apprentissages",
+            ],
+          },
+        ],
+        tip: "Privilégiez des sessions courtes et fréquentes (5 min / jour) plutôt qu'une longue session hebdomadaire.",
+      },
+    },
   },
   {
     id: 'picto-lecture',
@@ -33,6 +91,62 @@ const apps: AppItem[] = [
     category: 'Lecture',
     status: 'disponible',
     color: 'purple',
+    guide: {
+      scientific: {
+        summary: "Picto Lecture s'inscrit dans la tradition de la Communication Alternative et Augmentée (CAA) en rendant le texte accessible par le canal visuel, multipliant les entrées sensorielles pour un même contenu.",
+        references: [
+          {
+            citation: 'Chasseur, L. (2020). ÉvalCom : évaluation de l'acceptabilité des outils de CAA par tableaux de pictogrammes.',
+            content: "Les outils CAA par pictogrammes améliorent l'accès au sens pour les élèves à besoins spécifiques, à condition d'être intégrés dans une pratique régulière et contextualisée.",
+          },
+          {
+            citation: 'Ferreira, C. (2021). Un outil novateur au service des compétences en langage oral : les tableaux de langage assisté.',
+            content: "Le recours aux pictogrammes en lecture partagée développe les compétences langagières orales dès la maternelle, y compris pour des élèves sans troubles déclarés.",
+          },
+          {
+            citation: 'Fouré, L. (2023). Influence des Tableaux de Langage Assisté sur les compétences pronominales chez des enfants présentant un TSA.',
+            content: "L'image-symbole (pictogramme) constitue un pont cognitif entre le langage oral et le sens, particulièrement bénéfique pour les élèves présentant un TSA ou un retard de langage.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Préparer un texte',
+            items: [
+              'Connectez-vous → "Nouvelle histoire"',
+              'Donnez un titre au texte',
+              'Tapez ou collez votre texte — ou importez un fichier .docx / .txt',
+            ],
+          },
+          {
+            title: 'Configurer la conversion',
+            items: [
+              'Dans le panneau Paramètres (droite), choisissez la langue (français/anglais)',
+              'Cochez les catégories à pictogrammiser : Noms, Verbes, Adjectifs',
+              'Activez vos listes de mots personnalisés si créées',
+            ],
+          },
+          {
+            title: 'Valider le résultat',
+            items: [
+              'Cliquez "Générer les pictogrammes"',
+              'Les mots en orange sont ambigus → cliquez pour choisir un pictogramme alternatif',
+              'Cliquez sur n\'importe quel mot pour lui ajouter / modifier / retirer un pictogramme',
+            ],
+          },
+          {
+            title: 'Exporter',
+            items: [
+              'PDF → impression directe pour la classe',
+              'Word (.docx) → document éditable, images intégrées dans le texte, idéal pour travail élève',
+              'Sauvegarder → retrouver l\'histoire depuis n\'importe quel appareil',
+            ],
+          },
+        ],
+        tip: "Créez des listes de mots personnalisés pour le vocabulaire spécifique de vos élèves (prénoms, lieux familiers, vocabulaire de classe).",
+      },
+    },
   },
   {
     id: 'definifwb',
@@ -43,39 +157,297 @@ const apps: AppItem[] = [
     category: 'Vocabulaire',
     status: 'disponible',
     color: 'green',
+    guide: {
+      scientific: {
+        summary: "DéfiniFWB transforme une leçon de vocabulaire traditionnelle (frontale, passive) en activité collective interactive, conforme aux recommandations sur l'usage pédagogique du TBI.",
+        references: [
+          {
+            citation: 'Redouani, A. (2022). L'impact de l'usage pédagogique du TBI sur l'engagement scolaire des élèves.',
+            content: "L'usage du TBI en classe augmente significativement l'engagement comportemental et cognitif des élèves, à condition que l'outil soit intégré dans une démarche participative.",
+          },
+          {
+            citation: 'Grondin, O. (2019). Apprendre et enseigner autrement avec le tableau interactif.',
+            content: "Le TBI n'améliore les apprentissages que lorsqu'il génère de l'interaction entre élèves et entre élèves et contenu — pas en usage purement frontal.",
+          },
+          {
+            citation: 'Hesto, J. (2018). L'impact du TBI sur la motivation et la réussite scolaire.',
+            content: "La motivation intrinsèque est renforcée quand l'élève est acteur — ce que les modes de jeu de DéfiniFWB visent explicitement.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer une séance',
+            items: [
+              'Connectez-vous → "Nouvelle séance"',
+              'Entrez votre liste de mots : saisie manuelle, import CSV ou PDF',
+              'Pour chaque mot : définition, image optionnelle, pictogramme ARASAAC',
+            ],
+          },
+          {
+            title: 'Choisir le mode de jeu',
+            items: [
+              'Sélectionnez parmi les 6 modes disponibles (association, devinette, classement…)',
+              'Projetez l\'application sur le TBI',
+            ],
+          },
+          {
+            title: 'Lancer avec les élèves',
+            items: [
+              'Partagez le QR code ou le code d\'accès',
+              'Les élèves rejoignent depuis leur tablette / PC',
+              'Animez la séance depuis votre vue enseignant',
+            ],
+          },
+          {
+            title: 'Après la séance',
+            items: [
+              'Consultez les résultats par élève et par mot',
+              'Réutilisez la séance ou exportez les résultats',
+            ],
+          },
+        ],
+        tip: "Utilisez le mode TBI pour une activité collective, puis passez en mode individuel (QR code) pour une consolidation autonome.",
+      },
+    },
   },
   {
     id: 'droite-graduee',
     name: 'Droite Graduée',
-    description: 'Activités interactives sur la droite graduée. Estimation, apprentissage multi-droites et mix. Configurations sauvegardées par l\'enseignant.',
+    description: "Activités interactives sur la droite graduée. Estimation, apprentissage multi-droites et mix. Configurations sauvegardées par l'enseignant.",
     url: 'https://droite-graduee.vercel.app',
     emoji: '📏',
     category: 'Numération',
     status: 'disponible',
     color: 'pink',
+    guide: {
+      scientific: {
+        summary: "Droite Graduée traduit directement les recommandations de la recherche en neurosciences de l'éducation : faire manipuler la droite graduée de façon active et répétée, avec feedback immédiat.",
+        references: [
+          {
+            citation: 'Fanjat, J. & Roditi, E. (2025). Interrogations didactiques à propos de la ligne numérique mentale.',
+            content: "Les auteurs distinguent la ligne numérique mentale (représentation cognitive innée), la droite numérique (objet mathématique) et la droite graduée (outil didactique). C'est sur cette dernière que l'enseignant agit.",
+          },
+          {
+            citation: 'Hirsch, M. & Roditi, E. (2023). Quand les neurosciences analysent les apprentissages en mathématiques.',
+            content: "Le placement des nombres sur la droite numérique est fondamental et déterminant pour leur apprentissage — conclusion validée par le Conseil scientifique de l'Éducation nationale française (2022).",
+          },
+          {
+            citation: 'Vignali, J. (2022). Effets du jeu sur le développement de la ligne numérique mentale.',
+            content: "Les activités ludiques de placement et d'estimation sur droite graduée accélèrent le développement de la représentation spatiale des nombres, avec des effets mesurables.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Configurer une activité',
+            items: [
+              'Connectez-vous → "Nouvelle configuration"',
+              'Définissez la plage numérique (ex. : 0–100, 0–1000, nombres décimaux)',
+              'Choisissez le type d\'activité : estimation, placement précis, mix',
+            ],
+          },
+          {
+            title: 'Utiliser en classe',
+            items: [
+              'Projetez sur TBI ou partagez le lien avec les élèves',
+              'L\'élève place le nombre sur la droite → feedback visuel immédiat',
+              'Variez les plages pour travailler différentes compétences',
+            ],
+          },
+          {
+            title: 'Sauvegarder',
+            items: [
+              'Enregistrez vos configurations → réutilisables d\'une séance à l\'autre',
+              'Pas besoin de reconfigurer à chaque cours',
+            ],
+          },
+        ],
+        tip: "Commencez par des plages connues (0–10, 0–100) avant d'étendre. L'estimation est plus formatrice que le placement exact guidé.",
+      },
+    },
   },
   {
     id: 'dictation',
     name: 'Dictée Interactive',
-    description: 'Séances de dictée interactives avec code d\'accès élève. Mode clavier ou lettres mélangées, résultats en temps réel pour l\'enseignant.',
+    description: "Séances de dictée interactives avec code d'accès élève. Mode clavier ou lettres mélangées, résultats en temps réel pour l'enseignant.",
     url: 'https://plai-french-interactive-dictation.vercel.app',
     emoji: '✍️',
     category: 'Orthographe',
     status: 'disponible',
     color: 'orange',
+    guide: {
+      scientific: {
+        summary: "Dictée Interactive répond aux trois conditions scientifiquement validées : pratique active de l'orthographe + feedback immédiat + réduction de l'anxiété liée à l'erreur (le numérique dédramatise).",
+        references: [
+          {
+            citation: 'Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits.',
+            content: "La dictée reste une des modalités les plus efficaces pour l'apprentissage de l'orthographe lexicale — à condition que l'erreur soit traitée, pas seulement sanctionnée.",
+          },
+          {
+            citation: 'Borchardt, G. (2012). L'influence des connaissances graphotactiques sur l'acquisition de l'orthographe lexicale.',
+            content: "Le feedback immédiat après chaque erreur améliore significativement les performances lors d'évaluations différées — sans feedback, l'erreur se consolide.",
+          },
+          {
+            citation: 'Massé, J. (2019). Usage du numérique en classe et effets sur la mobilisation chez les élèves de SEGPA.',
+            content: "La dictée numérique avec correction immédiate augmente la mobilisation des élèves en difficulté — le numérique dédramatise l'erreur là où l'outil papier génère souvent blocage et démotivation.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer une séance',
+            items: [
+              'Connectez-vous → "Nouvelle séance"',
+              'Donnez un titre (ex. : Dictée semaine 12 — mots en -tion)',
+              'Entrez votre liste de mots',
+            ],
+          },
+          {
+            title: 'Configurer les options',
+            items: [
+              'Mode clavier : l\'élève tape le mot',
+              'Mode lettres mélangées : l\'élève remet les lettres dans l\'ordre (plus accessible)',
+              'Lettres parasites : des lettres supplémentaires s\'ajoutent pour corser l\'exercice',
+              'Mode prononciation : le mot est lu à voix haute (TTS)',
+            ],
+          },
+          {
+            title: 'Lancer la séance',
+            items: [
+              'Un code d\'accès est généré → écrivez-le au tableau ou partagez le lien',
+              'Les élèves accèdent sans compte depuis n\'importe quel appareil',
+              'Suivez les résultats en temps réel sur votre tableau de bord',
+            ],
+          },
+          {
+            title: 'Analyser les résultats',
+            items: [
+              'Résultats par élève et par mot après la séance',
+              'Identifiez les mots systématiquement ratés → reprise ciblée',
+            ],
+          },
+        ],
+        tip: "Le mode lettres mélangées est idéal en différenciation pour les élèves dyslexiques — même liste de mots, modalité adaptée.",
+      },
+    },
   },
 ];
 
-const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string }> = {
-  blue:   { bg: 'bg-blue-50',   border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',   btn: 'bg-blue-600 hover:bg-blue-700' },
-  purple: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700' },
-  green:  { bg: 'bg-green-50',  border: 'border-green-200',  badge: 'bg-green-100 text-green-700',  btn: 'bg-green-600 hover:bg-green-700' },
-  gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',   btn: 'bg-gray-400 cursor-not-allowed' },
-  pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',   btn: 'bg-pink-600 hover:bg-pink-700' },
-  orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700' },
+const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
+  blue:   { bg: 'bg-blue-50',   border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',    btn: 'bg-blue-600 hover:bg-blue-700',    light: 'bg-blue-100' },
+  purple: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700', btn: 'bg-purple-600 hover:bg-purple-700', light: 'bg-purple-100' },
+  green:  { bg: 'bg-green-50',  border: 'border-green-200',  badge: 'bg-green-100 text-green-700',   btn: 'bg-green-600 hover:bg-green-700',   light: 'bg-green-100' },
+  gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',    btn: 'bg-gray-400 cursor-not-allowed',   light: 'bg-gray-100' },
+  pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',    btn: 'bg-pink-600 hover:bg-pink-700',    light: 'bg-pink-100' },
+  orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700', light: 'bg-orange-100' },
 };
 
-function AppCard({ app }: { app: AppItem }) {
+function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
+  const [tab, setTab] = useState<'howto' | 'scientific'>('howto');
+  const c = colorMap[app.color];
+  const g = app.guide!;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40" onClick={onClose}>
+      <div
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className={`flex items-center justify-between px-6 py-4 rounded-t-2xl ${c.bg} border-b ${c.border}`}>
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">{app.emoji}</span>
+            <div>
+              <h2 className="text-lg font-bold text-gray-800">{app.name}</h2>
+              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${c.badge}`}>{app.category}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => window.print()}
+              className="text-xs px-3 py-1.5 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition"
+            >
+              🖨️ Imprimer
+            </button>
+            <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-2xl leading-none">×</button>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div className="flex border-b border-gray-200 px-6 pt-3 gap-4">
+          <button
+            onClick={() => setTab('howto')}
+            className={`pb-2 text-sm font-semibold border-b-2 transition ${tab === 'howto' ? `border-current ${c.badge.split(' ')[1]}` : 'border-transparent text-gray-400 hover:text-gray-600'}`}
+          >
+            📋 Mode d'emploi
+          </button>
+          <button
+            onClick={() => setTab('scientific')}
+            className={`pb-2 text-sm font-semibold border-b-2 transition ${tab === 'scientific' ? `border-current ${c.badge.split(' ')[1]}` : 'border-transparent text-gray-400 hover:text-gray-600'}`}
+          >
+            🔬 Ancrage scientifique
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="overflow-y-auto px-6 py-5 flex-1">
+          {tab === 'howto' && (
+            <div className="space-y-5">
+              {g.howto.steps.map((step, i) => (
+                <div key={i}>
+                  <h3 className="font-semibold text-gray-800 mb-2">{i + 1}. {step.title}</h3>
+                  <ul className="space-y-1">
+                    {step.items.map((item, j) => (
+                      <li key={j} className="flex gap-2 text-sm text-gray-600">
+                        <span className="text-gray-400 mt-0.5">→</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+              {g.howto.tip && (
+                <div className={`rounded-xl p-4 ${c.light} border ${c.border}`}>
+                  <p className="text-sm text-gray-700"><strong>💡 Conseil pédagogique :</strong> {g.howto.tip}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {tab === 'scientific' && (
+            <div className="space-y-5">
+              <p className="text-sm text-gray-700 italic border-l-4 border-gray-300 pl-4">{g.scientific.summary}</p>
+              {g.scientific.references.map((ref, i) => (
+                <div key={i} className={`rounded-xl p-4 ${c.light} border ${c.border}`}>
+                  <p className="text-xs font-semibold text-gray-500 mb-1">{ref.citation}</p>
+                  <p className="text-sm text-gray-700">« {ref.content} »</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
+          <a
+            href={app.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn}`}
+          >
+            Ouvrir {app.name} →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => void }) {
   const c = colorMap[app.color];
   const available = app.status === 'disponible';
 
@@ -91,24 +463,39 @@ function AppCard({ app }: { app: AppItem }) {
       </div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
       <p className="text-gray-600 text-sm flex-1 mb-5">{app.description}</p>
-      <a
-        href={available ? app.url : undefined}
-        target={available ? '_blank' : undefined}
-        rel="noopener noreferrer"
-        className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${!available ? 'pointer-events-none' : ''}`}
-      >
-        {available ? 'Ouvrir l\'application →' : 'Bientôt disponible'}
-      </a>
+      <div className="flex gap-2">
+        <a
+          href={available ? app.url : undefined}
+          target={available ? '_blank' : undefined}
+          rel="noopener noreferrer"
+          className={`flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${!available ? 'pointer-events-none' : ''}`}
+        >
+          {available ? "Ouvrir →" : 'Bientôt disponible'}
+        </a>
+        {app.guide && (
+          <button
+            onClick={() => onGuide(app)}
+            className="px-3 py-2 rounded-lg border-2 border-current text-sm font-semibold transition hover:opacity-80"
+            style={{ color: 'inherit' }}
+            title="Guide d'utilisation"
+          >
+            📖
+          </button>
+        )}
+      </div>
     </div>
   );
 }
 
 export default function App() {
+  const [guideApp, setGuideApp] = useState<AppItem | null>(null);
   const available = apps.filter(a => a.status === 'disponible');
   const coming = apps.filter(a => a.status === 'bientôt');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
+      {guideApp && <GuideModal app={guideApp} onClose={() => setGuideApp(null)} />}
+
       {/* Header */}
       <header className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center gap-5">
@@ -130,18 +517,16 @@ export default function App() {
 
       {/* Main */}
       <main className="max-w-6xl mx-auto px-6 py-10">
-        {/* Applications disponibles */}
         <section className="mb-12">
           <h2 className="text-lg font-semibold text-gray-700 mb-5 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
             Applications disponibles ({available.length})
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {available.map(app => <AppCard key={app.id} app={app} />)}
+            {available.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
           </div>
         </section>
 
-        {/* À venir */}
         {coming.length > 0 && (
           <section>
             <h2 className="text-lg font-semibold text-gray-400 mb-5 flex items-center gap-2">
@@ -149,7 +534,7 @@ export default function App() {
               Prochainement ({coming.length})
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {coming.map(app => <AppCard key={app.id} app={app} />)}
+              {coming.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
             </div>
           </section>
         )}
