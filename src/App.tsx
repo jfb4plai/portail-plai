@@ -54,6 +54,16 @@ const apps: AppItem[] = [
     status: 'disponible',
     color: 'pink',
   },
+  {
+    id: 'dictation',
+    name: 'Dictée Interactive',
+    description: 'Séances de dictée interactives avec code d\'accès élève. Mode clavier ou lettres mélangées, résultats en temps réel pour l\'enseignant.',
+    url: 'https://plai-french-interactive-dictation.vercel.app',
+    emoji: '✍️',
+    category: 'Orthographe',
+    status: 'disponible',
+    color: 'orange',
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string }> = {
@@ -62,6 +72,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; btn:
   green:  { bg: 'bg-green-50',  border: 'border-green-200',  badge: 'bg-green-100 text-green-700',  btn: 'bg-green-600 hover:bg-green-700' },
   gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',   btn: 'bg-gray-400 cursor-not-allowed' },
   pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',   btn: 'bg-pink-600 hover:bg-pink-700' },
+  orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700' },
 };
 
 function AppCard({ app }: { app: AppItem }) {
