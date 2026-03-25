@@ -465,6 +465,106 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'fractions-visuelles',
+    name: 'Fractions — Représentations',
+    description: "Visualisez une fraction sous 4 formes : disque, barre, droite numérique, collection. Idéal pour ancrer le sens de la fraction avant toute opération.",
+    url: 'https://fractions-visuelles-plai.vercel.app',
+    emoji: '🔵',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'purple',
+    guide: {
+      scientific: {
+        summary: "La compréhension des fractions nécessite de multiplier les registres de représentation : aucune représentation seule ne suffit à révéler toutes les caractéristiques de l'objet mathématique.",
+        references: [
+          {
+            citation: "Nguala, Guillon & Di Beta (2025). De la fraction partage à la fraction nombre. HAL.",
+            content: "Chaque changement de représentation est important : il permet à chaque registre de mettre en évidence une partie des caractéristiques de l'objet fraction. Plusieurs conversions sont nécessaires pour en espérer une connaissance totale.",
+          },
+          {
+            citation: "Fanet, H. (2021). Ritualiser la représentation des fractions au cycle 3. DUMAS.",
+            content: "Ritualiser plusieurs représentations (bande, disque, droite, ensemble) développe la capacité à identifier et produire différentes formes d'une même fraction, compétence clé pour les élèves en difficulté.",
+          },
+          {
+            citation: "Ledan, L. (2025). Conceptualisation des fractions dans La méthode de Singapour en CE1-CE2. HAL.",
+            content: "La méthode Singapour associe systématiquement l'écriture chiffrée à une représentation imagée et à la position sur une droite graduée — trois registres mobilisés simultanément pour ancrer le concept.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Explorer le sens de la fraction',
+            items: [
+              "Entrez une fraction simple (ex. 3/4) — observez les 4 représentations",
+              "Changez le dénominateur : comment la représentation en disque évolue-t-elle ?",
+              "Comparez 1/2, 2/4, 4/8 : sont-elles identiques sur la droite numérique ?",
+            ],
+          },
+          {
+            title: 'Travailler avec les élèves',
+            items: [
+              "Montrez la même fraction sous 2 représentations différentes : demandez aux élèves ce qui change",
+              "Activez 'Valeur décimale' pour relier fraction et écriture décimale",
+              "Utilisez la collection pour les fractions d'un groupe (ex. 3/5 des élèves)",
+            ],
+          },
+        ],
+        tip: "Pour les élèves dyscalculiques, la droite numérique ancre la fraction comme 'position' plutôt que comme 'partage' — changement de registre souvent libérateur.",
+      },
+    },
+  },
+  {
+    id: 'fractions-operations',
+    name: 'Fractions — Opérations',
+    description: "Calculs sur les fractions (+, −, ×, ÷) décomposés étape par étape avec représentations visuelles. Chaque étape est expliquée et illustrée.",
+    url: 'https://fractions-operations-plai.vercel.app',
+    emoji: '➗',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'purple',
+    guide: {
+      scientific: {
+        summary: "Rendre visibles les étapes intermédiaires d'une opération sur les fractions permet à l'élève d'identifier précisément l'obstacle et de construire un raisonnement procédural solide.",
+        references: [
+          {
+            citation: "Duveau, M. (2022). La place et le rôle de l'erreur dans l'apprentissage des fractions simples en CM1. DUMAS.",
+            content: "L'erreur dans l'apprentissage des fractions est une étape normale : rendre visible chaque étape de calcul permet à l'élève d'identifier précisément où se situe l'obstacle et de le corriger.",
+          },
+          {
+            citation: "Morisse, A. (2016). Validation d'épreuves d'évaluation de la numération au sein d'Examath. DUMAS.",
+            content: "La compréhension des fractions ordinaires précède celle des fractions décimales. Des représentations visuelles étape par étape réduisent la charge cognitive et rendent les procédures accessibles.",
+          },
+          {
+            citation: "Nguala, Guillon & Di Beta (2025). De la fraction partage à la fraction nombre. HAL.",
+            content: "Le passage de la fraction-partage à la fraction-nombre est une rupture conceptuelle majeure. Visualiser les opérations comme transformations de quantités (barres) soutient ce passage.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Découvrir les opérations',
+            items: [
+              "Entrez deux fractions et choisissez une opération (+, −, ×, ÷)",
+              "Cliquez sur = CALCULER et suivez les étapes visuelles",
+              "Identifiez l'étape clé : pour + et −, c'est la réduction au même dénominateur",
+            ],
+          },
+          {
+            title: 'Utiliser en remédiation',
+            items: [
+              "Montrez l'étape de simplification : l'élève voit pourquoi on peut réduire",
+              "Pour la division : l'étape 'on inverse !' est souvent celle qui bloque — la visualiser aide",
+              "Comparez addition et multiplication : pourquoi le résultat est-il plus petit avec ×?",
+            ],
+          },
+        ],
+        tip: "L'outil est particulièrement utile pour les élèves qui 'appliquent la règle sans comprendre' : les barres visuelles donnent du sens à chaque étape procédurale.",
+      },
+    },
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
