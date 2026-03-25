@@ -351,19 +351,19 @@ const apps: AppItem[] = [
     browserNote: 'Recommandé dans Microsoft Edge : voix neuronales (fr-BE) disponibles + surlignage mot par mot synchronisé avec la lecture audio.',
     guide: {
       scientific: {
-        summary: "L'Atelier Dyslexie exploite le mécanisme de l'empathie cognitive : en vivant eux-mêmes la désorganisation visuo-attentionnelle, les enseignants construisent une représentation incarnée de la difficulté — bien plus efficace qu'une formation frontale sur les troubles Dys.",
+        summary: "L'Atelier Dyslexie exploite l'expérience vécue comme levier de formation : en vivant eux-mêmes la désorganisation de la lecture dyslexique, les enseignants construisent une compréhension incarnée de la difficulté — et font émerger spontanément les aménagements pertinents.",
         references: [
           {
-            citation: "Valdois, S., Bosse, M.-L. & Tainturier, M.-J. (2004). The cognitive deficits responsible for developmental dyslexia: Review of evidence for a selective visual attentional disorder. Dyslexia, 10(4), 339–363.",
-            content: "La dyslexie de surface implique un déficit de l'empan visuo-attentionnel : l'élève ne peut pas traiter simultanément plusieurs lettres — d'où les inversions, omissions et confusions visuelles reproduites dans l'outil.",
+            citation: "Deleuze, C. (2023). Troubles spécifiques des apprentissages : création d'une action de sensibilisation à destination des enseignants en école élémentaire. DUMAS.",
+            content: "Les enseignants sont souvent peu sensibilisés aux troubles Dys, alors qu'ils en sont en demande. Une action de sensibilisation auprès de 53 enseignants montre « une nette amélioration des connaissances [...] et sur leur sentiment de compétence » pour accompagner les élèves concernés.",
           },
           {
-            citation: "Sprenger-Charolles, L. & Colé, P. (2013). Lecture et dyslexie : approche cognitive. Dunod.",
-            content: "Le déficit phonologique est au cœur de la dyslexie développementale : la conversion graphème-phonème est altérée, rendant la lecture à voix haute laborieuse et la compréhension secondarisée — d'où la pertinence d'un support audio.",
+            citation: "Adrian, S. (2021). Dimension psychoaffective des enfants présentant des troubles des apprentissages et effets de la sensibilisation par la simulation en classe en ergothérapie. DUMAS.",
+            content: "L'expérience scolaire des enfants avec troubles des apprentissages est décrite comme « plutôt traumatisante, provoquant des niveaux de détresse et de douleur psychique ». La simulation permet aux enseignants de comprendre cette réalité de l'intérieur — bien au-delà d'un exposé théorique.",
           },
           {
-            citation: "Zorman, M., Lequette, C. & Pouget, G. (2008). Conscience phonémique et apprentissage de la lecture. MÉDIAL.",
-            content: "La police de caractères, l'interlignage et l'espacement inter-lettres influencent significativement la vitesse et la précision de lecture chez les élèves dyslexiques — ce que l'outil permet de manipuler en temps réel.",
+            citation: "Coffin, M., Goulet, C. & Piquard-Kipffer, A. (2023). L'accessibilité numérique au service des étudiants dyslexiques. Les Cahiers Pédagogiques, 582, pp.10-11.",
+            content: "« La modification de la typographie permet d'accéder plus facilement au sens d'un texte (interligne, police sans empattement, espaces interlettres et intermots augmentés). L'outil de synthèse vocale [...] permet de gagner du temps et de la fatigue en lecture. »",
           },
         ],
       },
