@@ -407,6 +407,64 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'systeme-solaire',
+    name: 'Système Solaire',
+    description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Zoom, noms, orbites et vitesse réglables. Idéal pour ancrer les proportions et les durées de révolution.",
+    url: 'https://systeme-solaire-plai.vercel.app',
+    emoji: '🪐',
+    category: 'Sciences',
+    status: 'disponible',
+    color: 'blue',
+    guide: {
+      scientific: {
+        summary: "La visualisation dynamique des proportions planétaires mobilise la pensée spatiale et la mémoire à long terme. Voir les tailles relatives et les révolutions en temps réel ancre des représentations que le texte seul ne peut pas construire.",
+        references: [
+          {
+            citation: "Marbeau, V. & Beorchia, F. (2020). Cartographie mentale et pensée spatiale en sciences. DUMAS.",
+            content: "La représentation visuelle et spatiale des phénomènes scientifiques favorise la construction de modèles mentaux durables, en particulier pour les élèves présentant des difficultés de lecture ou de mémorisation verbale.",
+          },
+          {
+            citation: "Tricot, A. & Sweller, J. (2014). Domain-specific knowledge and why teaching generic skills does not work. Educational Psychology Review.",
+            content: "Les outils de visualisation réduisent la charge cognitive extrinsèque en rendant perceptibles des relations abstraites (ici : proportions, durées), libérant des ressources pour la compréhension conceptuelle.",
+          },
+          {
+            citation: "Chanquoy, L. & Sweller, J. (2007). Charge cognitive et apprentissage. Revue française de pédagogie.",
+            content: "La réduction de la charge extrinsèque par des représentations visuelles adaptées améliore significativement la compréhension et la rétention pour tous les profils d'apprenants, y compris les élèves à besoins spécifiques.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Découvrir les tailles relatives',
+            items: [
+              "Lancez l'animation → observez la différence de taille entre planètes telluriques et géantes gazeuses",
+              "Activez les noms des planètes pour identifier chacune",
+              "Utilisez le zoom pour mieux voir les petites planètes intérieures",
+            ],
+          },
+          {
+            title: 'Explorer les révolutions',
+            items: [
+              "Activez les orbites pour visualiser les trajectoires",
+              "Observez la vitesse relative : Mercure tourne bien plus vite que Neptune",
+              "Réglez la vitesse (×1 = temps réel simulé, ×10 = accéléré) pour rendre les révolutions perceptibles",
+            ],
+          },
+          {
+            title: 'Exploiter en classe',
+            items: [
+              "Posez la question : combien de fois la Terre tourne-t-elle pendant une révolution de Neptune ?",
+              "Faites observer les proportions : Jupiter est ≈ 11× plus grande que la Terre",
+              "Laissez les élèves explorer librement — le temps réel ancre les durées mieux qu'un tableau",
+            ],
+          },
+        ],
+        tip: "Projetez l'animation en temps réel (vitesse ×1) pendant une séquence : les élèves voient concrètement ce que signifie « une année sur Neptune dure 165 ans terrestres ».",
+      },
+    },
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
