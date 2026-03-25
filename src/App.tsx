@@ -421,15 +421,15 @@ const apps: AppItem[] = [
         summary: "La visualisation dynamique des proportions planétaires mobilise la pensée spatiale et la mémoire à long terme. Voir les tailles relatives et les révolutions en temps réel ancre des représentations que le texte seul ne peut pas construire.",
         references: [
           {
-            citation: "Marbeau, V. & Beorchia, F. (2020). Cartographie mentale et pensée spatiale en sciences. DUMAS.",
-            content: "La représentation visuelle et spatiale des phénomènes scientifiques favorise la construction de modèles mentaux durables, en particulier pour les élèves présentant des difficultés de lecture ou de mémorisation verbale.",
+            citation: "Rollinde, E. (2021). L'Astronomie pour l'éducation dans l'espace francophone. HAL.",
+            content: "L'enseignement du système solaire gagne à s'appuyer sur des activités visuelles et dynamiques : séances sur les planètes telluriques et gazeuses, leurs proportions et leurs positions relatives ancrent des représentations que le texte seul ne peut construire.",
           },
           {
-            citation: "Tricot, A. & Sweller, J. (2014). Domain-specific knowledge and why teaching generic skills does not work. Educational Psychology Review.",
-            content: "Les outils de visualisation réduisent la charge cognitive extrinsèque en rendant perceptibles des relations abstraites (ici : proportions, durées), libérant des ressources pour la compréhension conceptuelle.",
+            citation: "Kpodar, J.-L. (2017). Effets des instructions de pertinence spécifiques sur les apprentissages avec des animations. DUMAS.",
+            content: "Le guidage attentionnel dans une animation permet de réduire la charge cognitive extrinsèque (Sweller). Pour le système solaire, l'affichage progressif des noms, orbites et vitesses remplit ce rôle : chaque option libère des ressources pour la compréhension conceptuelle.",
           },
           {
-            citation: "Chanquoy, L. & Sweller, J. (2007). Charge cognitive et apprentissage. Revue française de pédagogie.",
+            citation: "Puma, S. (2016). Optimisation des apprentissages : modèles et mesures de la charge cognitive. Thèse de doctorat.",
             content: "La réduction de la charge extrinsèque par des représentations visuelles adaptées améliore significativement la compréhension et la rétention pour tous les profils d'apprenants, y compris les élèves à besoins spécifiques.",
           },
         ],
