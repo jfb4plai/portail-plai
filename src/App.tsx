@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './index.css';
 
-type AppStatus = 'disponible' | 'bientôt';
+type AppStatus  = 'disponible' | 'bientôt';
+type AppSection = 'applications' | 'sensibilisation';
 
 type Reference = { citation: string; content: string };
 type StepGroup = { title: string; items: string[] };
@@ -20,6 +21,8 @@ type AppItem = {
   category: string;
   status: AppStatus;
   color: string;
+  section?: AppSection;
+  browserNote?: string;
   guide?: GuideContent;
 };
 
@@ -335,6 +338,75 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'atelier-dyslexie',
+    name: 'Atelier Dyslexie',
+    description: "Simulation de lecture dyslexique. Plonge l'enseignant dans les chaussures d'un élève porteur de dyslexie pour faire émerger — de l'intérieur — les aménagements universels.",
+    url: 'https://atelier-dyslexie-plai.vercel.app',
+    emoji: '🧠',
+    category: 'Dyslexie',
+    status: 'disponible',
+    color: 'amber',
+    section: 'sensibilisation',
+    browserNote: 'Recommandé dans Microsoft Edge : voix neuronales (fr-BE) disponibles + surlignage mot par mot synchronisé avec la lecture audio.',
+    guide: {
+      scientific: {
+        summary: "L'Atelier Dyslexie exploite le mécanisme de l'empathie cognitive : en vivant eux-mêmes la désorganisation visuo-attentionnelle, les enseignants construisent une représentation incarnée de la difficulté — bien plus efficace qu'une formation frontale sur les troubles Dys.",
+        references: [
+          {
+            citation: "Valdois, S., Bosse, M.-L. & Tainturier, M.-J. (2004). The cognitive deficits responsible for developmental dyslexia: Review of evidence for a selective visual attentional disorder. Dyslexia, 10(4), 339–363.",
+            content: "La dyslexie de surface implique un déficit de l'empan visuo-attentionnel : l'élève ne peut pas traiter simultanément plusieurs lettres — d'où les inversions, omissions et confusions visuelles reproduites dans l'outil.",
+          },
+          {
+            citation: "Sprenger-Charolles, L. & Colé, P. (2013). Lecture et dyslexie : approche cognitive. Dunod.",
+            content: "Le déficit phonologique est au cœur de la dyslexie développementale : la conversion graphème-phonème est altérée, rendant la lecture à voix haute laborieuse et la compréhension secondarisée — d'où la pertinence d'un support audio.",
+          },
+          {
+            citation: "Zorman, M., Lequette, C. & Pouget, G. (2008). Conscience phonémique et apprentissage de la lecture. MÉDIAL.",
+            content: "La police de caractères, l'interlignage et l'espacement inter-lettres influencent significativement la vitesse et la précision de lecture chez les élèves dyslexiques — ce que l'outil permet de manipuler en temps réel.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Mise en situation',
+            items: [
+              "Collez ou importez un texte (supporte .txt et .docx)",
+              "Activez les effets Dyslexie : inversions, mélange de lettres, décalages verticaux",
+              "Essayez de lire — ressentez la charge cognitive et la fatigue visuelle",
+            ],
+          },
+          {
+            title: 'Explorer les aménagements',
+            items: [
+              "Modifiez la police (OpenDyslexic, Arial, Verdana…)",
+              "Augmentez la taille, l'interligne, l'espacement des lettres",
+              "Testez les fonds colorés (crème, bleu ciel, vert tableau…)",
+              "Activez la colorisation un mot sur deux (bicolor)",
+            ],
+          },
+          {
+            title: 'Utiliser la lecture audio',
+            items: [
+              "Lancez le TTS — le mot lu est surligné en temps réel dans le texte",
+              "Choisissez une voix naturelle (Edge recommandé pour voix neuronales fr-BE)",
+              "Faites le lien : si la compréhension est l'objectif, l'audio compense le décodage",
+            ],
+          },
+          {
+            title: 'Débat pédagogique',
+            items: [
+              "Échangez : quels aménagements avez-vous spontanément cherchés ?",
+              "Conclusion : ces aménagements sont universels — ils aident tous les élèves",
+              "Étape suivante : appliquer ces réglages aux documents de classe",
+            ],
+          },
+        ],
+        tip: "Utilisez cet atelier en formation ou en réunion d'équipe : 5 minutes de simulation génèrent plus de compréhension que 1h d'exposé sur la dyslexie.",
+      },
+    },
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
@@ -344,6 +416,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; btn:
   gray:   { bg: 'bg-gray-50',   border: 'border-gray-200',   badge: 'bg-gray-100 text-gray-500',    btn: 'bg-gray-400 cursor-not-allowed',   light: 'bg-gray-100' },
   pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',    btn: 'bg-pink-600 hover:bg-pink-700',    light: 'bg-pink-100' },
   orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700', light: 'bg-orange-100' },
+  amber:  { bg: 'bg-amber-50',  border: 'border-amber-300',  badge: 'bg-amber-100 text-amber-800',  btn: 'bg-amber-600 hover:bg-amber-700',  light: 'bg-amber-100' },
 };
 
 function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
@@ -462,7 +535,13 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
         )}
       </div>
       <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
-      <p className="text-gray-600 text-sm flex-1 mb-5">{app.description}</p>
+      <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
+      {app.browserNote && (
+        <div className="flex items-start gap-2 mb-4 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
+          <span className="text-base leading-none mt-0.5">🌐</span>
+          <p className="text-xs text-blue-700">{app.browserNote}</p>
+        </div>
+      )}
       <div className="flex gap-2">
         <a
           href={available ? app.url : undefined}
@@ -489,8 +568,11 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
 
 export default function App() {
   const [guideApp, setGuideApp] = useState<AppItem | null>(null);
-  const available = apps.filter(a => a.status === 'disponible');
-  const coming = apps.filter(a => a.status === 'bientôt');
+
+  const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
+  const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
+  const available   = appItems.filter(a => a.status === 'disponible');
+  const coming      = appItems.filter(a => a.status === 'bientôt');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50">
@@ -517,6 +599,24 @@ export default function App() {
 
       {/* Main */}
       <main className="max-w-6xl mx-auto px-6 py-10">
+
+        {/* ── Sensibilisation ── */}
+        {sensiItems.length > 0 && (
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
+              <h2 className="text-lg font-semibold text-gray-700">Sensibilisation ({sensiItems.length})</h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-5 pl-5">
+              Outils de mise en situation pour comprendre de l'intérieur les défis des élèves à besoins spécifiques.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sensiItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+            </div>
+          </section>
+        )}
+
+        {/* ── Applications disponibles ── */}
         <section className="mb-12">
           <h2 className="text-lg font-semibold text-gray-700 mb-5 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
