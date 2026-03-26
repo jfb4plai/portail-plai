@@ -592,25 +592,27 @@ const apps: AppItem[] = [
           },
         ],
       },
-      howto: [
-        {
-          title: 'Utiliser en classe (TBI)',
-          items: [
-            "Sélectionnez la puissance de 10 cible (10¹ à 10⁶) selon le niveau",
-            "L'abaque coloré décompose le nombre rang par rang avec l'addition posée",
-            "Les élèves tapent leur réponse sur le clavier TBI et valident",
-          ],
-        },
-        {
-          title: 'Mode Enseignant',
-          items: [
-            "Activez 'Exemple résolu' pour afficher un exemple complet à gauche",
-            "Ajustez la puissance, activez les décimales, fixez l'objectif d'exercices",
-            "Le score et la barre de progression suivent l'avancement en temps réel",
-          ],
-        },
-      ],
-      tip: "Commencez sans l'exemple résolu pour évaluer les acquis, puis activez-le en remédiation pour rendre le raisonnement positionnel explicite.",
+      howto: {
+        steps: [
+          {
+            title: 'Utiliser en classe (TBI)',
+            items: [
+              "Sélectionnez la puissance de 10 cible (10¹ à 10⁶) selon le niveau",
+              "L'abaque coloré décompose le nombre rang par rang avec l'addition posée",
+              "Les élèves tapent leur réponse sur le clavier TBI et valident",
+            ],
+          },
+          {
+            title: 'Mode Enseignant',
+            items: [
+              "Activez 'Exemple résolu' pour afficher un exemple complet à gauche",
+              "Ajustez la puissance, activez les décimales, fixez l'objectif d'exercices",
+              "Le score et la barre de progression suivent l'avancement en temps réel",
+            ],
+          },
+        ],
+        tip: "Commencez sans l'exemple résolu pour évaluer les acquis, puis activez-le en remédiation pour rendre le raisonnement positionnel explicite.",
+      },
     },
   },
 ];
