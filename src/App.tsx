@@ -565,6 +565,54 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'complements-puissances',
+    name: 'Compléments des Puissances de 10',
+    description: "Calcul mental des compléments à une puissance de 10. Abaque coloré par rang, addition posée rang par rang, clavier TBI. Exemple résolu optionnel pour l'enseignant.",
+    url: 'https://complements-puissances-plai.vercel.app',
+    emoji: '🔟',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'blue',
+    guide: {
+      scientific: {
+        summary: "L'ancrage visuel positionnel rang par rang réduit la charge cognitive et soutient l'automatisation des compléments — particulièrement efficace pour les élèves dyscalculiques.",
+        references: [
+          {
+            citation: "Quiterio, L. (2023). L'utilisation du boulier pour les élèves dyscalculiques. DUMAS.",
+            content: "Le boulier/abaque crée des automatismes de manipulation mentale en passant par la manipulation physique et visuelle. Recommandé comme outil de médiation pour les élèves dyscalculiques.",
+          },
+          {
+            citation: "Oesinger, F. (2020). Enseigner plus explicitement permet-il de lutter contre les malentendus scolaires ? DUMAS.",
+            content: "L'explicitation du raisonnement rang par rang réduit la charge cognitive extrinsèque et libère la mémoire de travail pour l'activité de calcul elle-même.",
+          },
+          {
+            citation: "Millon Faure, K. & Gombert, A. (2021). Analyse d'une situation en mathématiques pour une élève dyscalculique. HAL.",
+            content: "Pour les élèves dyscalculiques, visualiser l'algorithme positionnel colonne par colonne est un étayage essentiel avant l'automatisation des faits numériques.",
+          },
+        ],
+      },
+      howto: [
+        {
+          title: 'Utiliser en classe (TBI)',
+          items: [
+            "Sélectionnez la puissance de 10 cible (10¹ à 10⁶) selon le niveau",
+            "L'abaque coloré décompose le nombre rang par rang avec l'addition posée",
+            "Les élèves tapent leur réponse sur le clavier TBI et valident",
+          ],
+        },
+        {
+          title: 'Mode Enseignant',
+          items: [
+            "Activez 'Exemple résolu' pour afficher un exemple complet à gauche",
+            "Ajustez la puissance, activez les décimales, fixez l'objectif d'exercices",
+            "Le score et la barre de progression suivent l'avancement en temps réel",
+          ],
+        },
+      ],
+      tip: "Commencez sans l'exemple résolu pour évaluer les acquis, puis activez-le en remédiation pour rendre le raisonnement positionnel explicite.",
+    },
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
