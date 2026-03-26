@@ -566,6 +566,56 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'puissances',
+    name: 'Puissances — Règles de calcul',
+    description: "Règles des puissances (produit, quotient, puissance d'une puissance, exposant nul/négatif) avec logigramme aide-mémoire, exercices interactifs et clavier TBI.",
+    url: 'https://puissances-plai.vercel.app',
+    emoji: '🔢',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'indigo',
+    guide: {
+      scientific: {
+        summary: "Les erreurs sur les règles des puissances sont souvent liées à une incompréhension de la signification des exposants. Un support visuel procédural (logigramme) réduit la charge cognitive et ancre les règles avant leur automatisation.",
+        references: [
+          {
+            citation: "Loretan, C., Weiss, L. & Müller, A. (2018). Quelle est la place du raisonnement semi-quantitatif dans l'enseignement des sciences ? Revue de mathématiques.",
+            content: "Les puissances de 10 et la notation scientifique sont enseignées mais peu de séquences concrètes font appel au raisonnement semi-quantitatif. Un outillage visuel explicite est nécessaire.",
+          },
+          {
+            citation: "Croset, M.-C. (2005). Modélisation didactique et informatique des connaissances des élèves en algèbre. HAL.",
+            content: "La disparition du discours sur la nécessité de l'algèbre est à l'origine des difficultés rencontrées lors de l'introduction des règles du calcul littéral, dont les puissances.",
+          },
+          {
+            citation: "Varinot, A. (2012). La médiation pédagogique au service de la métacognition. DUMAS.",
+            content: "Le schéma visuel au tableau et l'explicitation de la procédure par l'élève anticipent la surcharge cognitive et renforcent la métacognition sur les règles de calcul.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Utiliser en classe (TBI)',
+            items: [
+              "Affichez le logigramme aide-mémoire pour guider le choix de la règle à appliquer",
+              "Sélectionnez le type de règle (produit, quotient, puissance…) pour cibler la difficulté",
+              "Les élèves saisissent leur réponse avec exposants via le clavier TBI",
+            ],
+          },
+          {
+            title: 'Mode Enseignant',
+            items: [
+              "Accédez aux justificatifs scientifiques RISS depuis le panneau enseignant",
+              "Ajustez le type d'exercice et le nombre de questions selon le niveau",
+              "Le score et la progression sont visibles en temps réel sur TBI",
+            ],
+          },
+        ],
+        tip: "Commencez par le logigramme avant les exercices : nommer la règle avant de l'appliquer réduit les erreurs de surcharge procédurale.",
+      },
+    },
+  },
+  {
     id: 'complements-puissances',
     name: 'Compléments des Puissances de 10',
     description: "Calcul mental des compléments à une puissance de 10. Abaque coloré par rang, addition posée rang par rang, clavier TBI. Exemple résolu optionnel pour l'enseignant.",
