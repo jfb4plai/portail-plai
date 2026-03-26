@@ -666,6 +666,64 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'grammaire-3d',
+    name: 'Grammaire 3D Interactive',
+    description: "Analyse de phrase en Grammaire 3D (FWB) : assiettes colorées (fonctions), formes géométriques (nature), pictogrammes ARASAAC (sémantique). Manipulations syntaxiques sur TBI. Images personnalisées.",
+    url: 'https://grammaire-3d-plai.vercel.app',
+    emoji: '🍽️',
+    category: 'Français',
+    status: 'disponible',
+    color: 'purple',
+    guide: {
+      scientific: {
+        summary: "L'approche manipulatoire de la Grammaire 3D (assiettes + formes géométriques) réduit la charge cognitive déclarative et favorise l'identification fonctionnelle des groupes syntaxiques — particulièrement efficace pour les élèves dyslexiques et TDAH.",
+        references: [
+          {
+            citation: "Lechat, L. (2020). L'enseignement des manipulations syntaxiques au cycle 4. DUMAS.",
+            content: "La progression déplacement→effacement→substitution→encadrement structure l'acquisition des fonctions syntaxiques. Le support visuel (assiettes) réduit la charge procédurale.",
+          },
+          {
+            citation: "Boulanger, C. (2018). Observer, manipuler, classer : faire de la grammaire autrement. DUMAS.",
+            content: "L'activité de manipulation sur les groupes fonctionnels est plus efficace qu'un enseignement déclaratif pour les élèves en difficulté (dyslexie, TDAH). Canal visuel + kinesthésique.",
+          },
+          {
+            citation: "Monneret, P. & Poli, F. (2022). La grammaire du français du CP à la 6e. HAL.",
+            content: "Les critères de manipulation (effacement, déplacement, remplacement) sont les seuls outils fiables d'identification des groupes syntaxiques, supérieurs à la définition sémantique traditionnelle.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Utiliser en classe (TBI)',
+            items: [
+              "Tapez une phrase complète → les mots apparaissent automatiquement avec leur pictogramme ARASAAC",
+              "Sélectionnez un ou plusieurs mots → assignez une assiette (fonction syntaxique)",
+              "Cliquez sur un mot → assignez sa nature (forme géométrique noire)",
+            ],
+          },
+          {
+            title: 'Manipulations 3D',
+            items: [
+              "🏄 Déplacement : identifie visuellement les compléments de phrase mobiles (assiette verte)",
+              "✂️ Effacement : montre qu'un groupe peut disparaître sans briser la phrase",
+              "🔄 Substitution : invite à remplacer un groupe par un pronom",
+            ],
+          },
+          {
+            title: 'Mode Enseignant',
+            items: [
+              "Activez/désactivez les pictogrammes ARASAAC, les symboles de nature, les manipulations",
+              "Glissez une image personnalisée sur un token pour remplacer le pictogramme ARASAAC",
+              "Double-cliquez sur un pictogramme pour choisir parmi les alternatives ARASAAC",
+            ],
+          },
+        ],
+        tip: "Commencez par les assiettes (syntaxe) avant les formes géométriques (nature) : identifier la fonction d'un groupe précède l'analyse morphologique de ses constituants.",
+      },
+    },
+  },
+  {
     id: 'abaque-unites',
     name: 'Abaque des Unités',
     description: "Conversions d'unités (longueur, masse, volume, surface) sur abaque interactif. Relation ×10 visible entre cases, flèches de direction, pont dm³=L. Exercices générés avec clavier TBI.",
