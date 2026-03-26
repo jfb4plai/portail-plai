@@ -665,6 +665,56 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'abaque-unites',
+    name: 'Abaque des Unités',
+    description: "Conversions d'unités (longueur, masse, volume, surface) sur abaque interactif. Relation ×10 visible entre cases, flèches de direction, pont dm³=L. Exercices générés avec clavier TBI.",
+    url: 'https://abaque-unites-plai.vercel.app',
+    emoji: '📏',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'teal',
+    guide: {
+      scientific: {
+        summary: "L'abaque des unités sans affichage explicite des relations multiplicatives crée des malentendus durables. La relation ×10 (ou ×1000 pour les volumes cubiques) doit être visible dans la structure même de l'outil.",
+        references: [
+          {
+            citation: "Renault, K. (2023). Rôle et place de l'abaque dans l'enseignement de la numération en cycle 2. DUMAS.",
+            content: "L'abaque sans affichage explicite des relations entre unités crée des malentendus. La relation multiplicative doit être rendue visible dans chaque cellule.",
+          },
+          {
+            citation: "Roditi, E. (2002). La multiplication des nombres décimaux. HAL.",
+            content: "Il importe de comprendre la règle du déplacement de la virgule — pas seulement l'appliquer mécaniquement. Distinguer ×10, ×100 et ×1000 selon les catégories d'unités.",
+          },
+          {
+            citation: "Andreucci, C. & Mercier, A. (2005). Le volume : une approche didactique d'un problème récurrent. HAL.",
+            content: "Le rapport litre/m³ est toujours de 1 à 1000 — erreur classique d'appliquer ×10 aux unités cubiques. Le pont dm³=L doit être enseigné comme équivalence fondamentale.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Utiliser en classe (TBI)',
+            items: [
+              "Sélectionnez la catégorie (longueur, masse, volume capacité, volume cubique)",
+              "Choisissez les unités de départ et d'arrivée — l'abaque colore le chemin",
+              "Les élèves saisissent leur réponse au clavier TBI et valident",
+            ],
+          },
+          {
+            title: 'Mode Enseignant',
+            items: [
+              "Activez 'Varier les unités' pour changer la paire à chaque exercice (consolidation)",
+              "Affichez ou masquez le pont dm³=L selon la phase d'apprentissage",
+              "Filtrez les catégories disponibles selon le niveau de la classe",
+            ],
+          },
+        ],
+        tip: "Commencez par Volume capacité (×10) puis Volume cubique (×1000) en montrant le pont dm³=L : le conflit cognitif entre les deux abaques ancre la distinction durablement.",
+      },
+    },
+  },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; badge: string; btn: string; light: string }> = {
@@ -676,6 +726,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; btn:
   orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700', light: 'bg-orange-100' },
   amber:  { bg: 'bg-amber-50',  border: 'border-amber-300',  badge: 'bg-amber-100 text-amber-800',  btn: 'bg-amber-600 hover:bg-amber-700',  light: 'bg-amber-100' },
   indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', badge: 'bg-indigo-100 text-indigo-700', btn: 'bg-indigo-600 hover:bg-indigo-700', light: 'bg-indigo-100' },
+  teal:   { bg: 'bg-teal-50',   border: 'border-teal-200',   badge: 'bg-teal-100 text-teal-700',    btn: 'bg-teal-600 hover:bg-teal-700',    light: 'bg-teal-100' },
 };
 
 function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
