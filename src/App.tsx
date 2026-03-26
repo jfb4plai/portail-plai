@@ -675,6 +675,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; btn:
   pink:   { bg: 'bg-pink-50',   border: 'border-pink-200',   badge: 'bg-pink-100 text-pink-700',    btn: 'bg-pink-600 hover:bg-pink-700',    light: 'bg-pink-100' },
   orange: { bg: 'bg-orange-50', border: 'border-orange-200', badge: 'bg-orange-100 text-orange-700', btn: 'bg-orange-600 hover:bg-orange-700', light: 'bg-orange-100' },
   amber:  { bg: 'bg-amber-50',  border: 'border-amber-300',  badge: 'bg-amber-100 text-amber-800',  btn: 'bg-amber-600 hover:bg-amber-700',  light: 'bg-amber-100' },
+  indigo: { bg: 'bg-indigo-50', border: 'border-indigo-200', badge: 'bg-indigo-100 text-indigo-700', btn: 'bg-indigo-600 hover:bg-indigo-700', light: 'bg-indigo-100' },
 };
 
 function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
