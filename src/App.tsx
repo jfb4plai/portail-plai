@@ -408,6 +408,74 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'glissement',
+    name: 'Glissement',
+    description: "Fiction interactive sur la délégation cognitive à l'IA. On confie ses tâches à Pl'ai — et on glisse. 15 mécanismes sourcés en psychologie cognitive. 3 actes, 3 fins. Mode facilitation pour formateurs.",
+    url: 'https://glissement-plai.vercel.app',
+    emoji: '🫧',
+    category: 'IA & cognition',
+    status: 'disponible',
+    color: 'amber',
+    section: 'sensibilisation',
+    guide: {
+      scientific: {
+        summary: "Glissement fait vivre la délégation cognitive : chaque tâche confiée à Pl'ai diminue les capacités humaines (agentivité, créativité, curiosité, effort). Les 15 projets du jeu sont adossés à des mécanismes documentés en psychologie cognitive — tous vérifiés dans le corpus RISS.",
+        references: [
+          {
+            citation: "Lakel, A. (2025). Ne dites plus LLM : Larges Discours Models (LDM) et Agent Discursif Artificiel (ADA) ? RISS : hal-05421232.",
+            content: "Introduit le concept de « dette cognitive » : le déficit cumulatif en capacités de raisonnement critique résultant de la délégation systématique des tâches cognitives à l'IA. C'est exactement le mécanisme que Glissement fait vivre.",
+          },
+          {
+            citation: "Romero, M. et al. (2023). Enseigner et apprendre à l'ère de l'intelligence artificielle. RISS : hal-04013223.",
+            content: "Ouvrage collectif avec contributeurs FWB (Patricia Corieri, Julie Henry). Cadre de référence pour penser l'agentivité face aux outils IA en contexte éducatif francophone.",
+          },
+          {
+            citation: "Tricot, A. (1998). Charge cognitive et apprentissage. Revue de Psychologie de l'Éducation, 3, 37–64. RISS : hal-04180240.",
+            content: "La répétition d'une tâche déléguée réduit l'activation cérébrale associée. Cet effet est réversible si la pratique reprend, mais le délai de récupération augmente avec la durée d'interruption.",
+          },
+          {
+            citation: "Sparrow, B., Liu, J. & Wegner, D. M. (2011). Google effects on memory. Science, 333(6043). RISS : cité dans le corpus.",
+            content: "Quand on sait qu'une information sera accessible numériquement, les taux de mémorisation diminuent — on retient l'emplacement plutôt que le contenu. Dans Glissement, c'est le projet « Mémoire augmentée ».",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Découvrir le jeu (20-30 min)',
+            items: [
+              "Ouvrez le jeu — vous êtes à la page 47 d'un carnet bleu",
+              "Pl'ai propose des tâches : acceptez (⟳ Pl'ai agit) ou écrivez vous-même (✎ J'écris)",
+              "Observez vos jauges : Agentivité, Créativité, Curiosité, Effort",
+              "Activez des projets permanents — chacun a un coût et une source scientifique",
+              "3 fins possibles selon vos choix : optimisation, reconquête ou équilibre",
+            ],
+          },
+          {
+            title: 'Utiliser en formation (mode facilitation)',
+            items: [
+              "Ouvrez jeu.html?fac=1 — panneau de contrôle en bas d'écran",
+              "Montrez les 3 actes (Assistance → Substitution → Obsolescence)",
+              "Déclenchez manuellement les seuils narratifs pour illustrer chaque étape",
+              "Utilisez le panneau Sources pour afficher les 15 notes pédagogiques",
+              "Terminez par une fin au choix et lancez le débat",
+            ],
+          },
+          {
+            title: 'Débat pédagogique',
+            items: [
+              "Quelles tâches avez-vous déléguées en premier ? Pourquoi ?",
+              "À quel moment avez-vous remarqué le glissement ?",
+              "Lien avec le quotidien : quelles tâches déléguez-vous déjà à l'IA ?",
+              "Référentiels FWB : compétences FMTTN 4.2, 5.3, 5.4",
+            ],
+          },
+        ],
+        tip: "En formation IFC/IFPC : projetez le mode facilitation et jouez collectivement. 20 minutes de jeu + 10 minutes de débat suffisent pour ancrer la réflexion sur la délégation cognitive.",
+      },
+    },
+  },
+  {
     id: 'systeme-solaire',
     name: 'Système Solaire',
     description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Zoom, noms, orbites et vitesse réglables. Idéal pour ancrer les proportions et les durées de révolution.",
