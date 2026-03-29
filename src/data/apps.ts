@@ -825,6 +825,61 @@ const apps: AppItem[] = [
     category: 'Évaluation formative',
     status: 'disponible',
     color: 'indigo',
+    guide: {
+      scientific: {
+        summary: "PLAI-Quiz s'appuie sur l'effet test (testing effect) : le fait de se rappeler activement une information consolide la trace mémorielle bien plus efficacement que la relecture passive. Combiné à un feedback immédiat et à des adaptations d'accessibilité, le quiz formatif devient un outil de différenciation à part entière.",
+        references: [
+          {
+            citation: "McMullin, S. & Masson, S. (2023). La récupération en mémoire et l'espacement. Neuroeducation.",
+            content: "La récupération active en mémoire (testing effect) renforce durablement les apprentissages. Chaque tentative de rappel, même infructueuse, contribue à consolider la trace mémorielle — ce qui justifie le recours régulier au quiz en classe.",
+          },
+          {
+            citation: "Keller, J. (2020). Évaluation d'une stratégie d'apprentissage par récupération chez des adolescents avec TDAH.",
+            content: "L'apprentissage par récupération (quiz, tests d'entraînement) produit de meilleurs résultats en mémorisation à long terme que l'apprentissage passif, y compris pour les élèves présentant un TDAH — ce qui en fait un outil inclusif particulièrement pertinent.",
+          },
+          {
+            citation: "Romeyer-Dherbey, E. (2025). L'impact des feedbacks sur la motivation des élèves.",
+            content: "Les rétroactions immédiates favorisent l'apprentissage, notamment chez les élèves débutants. Un feedback différé n'a pas d'effet notable comparable — ce qui justifie la correction instantanée proposée par PLAI-Quiz.",
+          },
+          {
+            citation: "Capel Malo, E. et al. (2020). Le numérique au service de l'école inclusive.",
+            content: "Le numérique peut être au cœur d'un enseignement différencié à condition que les outils soient conçus pour s'adapter aux besoins spécifiques des élèves. PLAI-Quiz intègre tiers-temps, lecture vocale (TTS) et polices accessibles (OpenDyslexic, Luciole) dans cette perspective.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer un quiz',
+            items: [
+              'Connectez-vous → "Nouveau quiz"',
+              'Donnez un titre et choisissez le profil : Fondamental ou Secondaire',
+              'Ajoutez vos questions manuellement ou importez un fichier CSV (format Live Quiz : Question;BonneRéponse;Fausse1;Fausse2;Fausse3;Durée)',
+              'Chaque question peut avoir une image, une durée personnalisée et un feedback explicatif',
+            ],
+          },
+          {
+            title: 'Lancer une session',
+            items: [
+              'Cliquez sur "▶ Lancer" depuis votre liste de quiz',
+              'Choisissez le mode : Digital (QR code + code à 6 chiffres) ou Papier (style Plickers)',
+              'Activez les options inclusives si besoin : tiers-temps (+33%), masquer le chrono, lecture vocale des questions',
+              'Projetez le QR code ou dictez le code à 6 chiffres aux élèves',
+            ],
+          },
+          {
+            title: 'Consulter les résultats',
+            items: [
+              'Tableau de bord → visualisez les résultats par élève et par question',
+              'Les questions avec moins de 50% de réussite sont signalées ⚠️',
+              'Les demandes de SOS (bouton ?) sont comptabilisées par élève pour cibler la rétroaction',
+              'Export imprimable disponible pour archivage ou communication aux parents',
+            ],
+          },
+        ],
+        tip: "Le bouton SOS (?) permet à l'élève de signaler discrètement qu'il est en difficulté sans interrompre la classe. Consultez ces signalements après la session pour cibler votre rétroaction.",
+      },
+    },
   },
 ];
 
