@@ -945,7 +945,7 @@ const apps: AppItem[] = [
     id: 'chaussures-de-maya',
     name: 'Dans les chaussures de Maya',
     description: "Activité de sensibilisation : placez des chiffres mayas sur une droite graduée. Les enseignants vivent l'expérience d'un élève dyscalculique privé de la représentation habituelle du nombre.",
-    url: 'https://chaussures-de-maya-plai.vercel.app',
+    url: 'https://atelier-maya.vercel.app',
     emoji: '🏺',
     category: 'Sensibilisation',
     status: 'disponible',
