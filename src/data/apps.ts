@@ -383,7 +383,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'chaussures-de-maya',
-    name: 'Dans les chaussures de Maya',
+    name: 'Atelier Maya',
     description: "Activité de sensibilisation : placez des chiffres mayas sur une droite graduée. Les enseignants vivent l'expérience d'un élève dyscalculique privé de la représentation habituelle du nombre.",
     url: 'https://atelier-maya.vercel.app',
     emoji: '🏺',
@@ -396,15 +396,15 @@ const apps: AppItem[] = [
         summary: "Cette activité place les enseignants dans la peau d'un élève dyscalculique en remplaçant les chiffres arabes par des glyphes mayas — une désorientation contrôlée qui révèle le rapport anxiogène au nombre. Le chronomètre visible amplifie la pression temporelle caractéristique des situations scolaires évaluées.",
         references: [
           {
-            citation: 'Favodon, A. & Wasielewski, B. (2025). Le jeu mathématique comme outil évaluatif pour réduire l'anxiété des élèves.',
+            citation: "Favodon, A. & Wasielewski, B. (2025). Le jeu mathématique comme outil évaluatif pour réduire l'anxiété des élèves.",
             content: "L'anxiété mathématique « envahit la mémoire de travail et laisse peu de place à l'activité cognitive réelle » — un cercle vicieux que cette activité permet aux enseignants de vivre de l'intérieur. [RISS : dumas-05241399]",
           },
           {
-            citation: 'Ginésy, M. (2023). Anxiété mathématique : apport de la sophrologie chez l'adolescent présentant un trouble des apprentissages mathématiques.',
+            citation: "Ginésy, M. (2023). Anxiété mathématique : apport de la sophrologie chez l'adolescent présentant un trouble des apprentissages mathématiques.",
             content: "La détérioration des processus cognitifs par l'anxiété mathématique — notamment de la mémoire de travail — majore les difficultés, particulièrement chez les élèves à besoins spécifiques. [RISS : dumas-04161650]",
           },
           {
-            citation: 'Sayegh, M. (2021). Intérêt d'un entraînement autour de la ligne numérique avec apport de stratégies explicites.',
+            citation: "Sayegh, M. (2021). Intérêt d'un entraînement autour de la ligne numérique avec apport de stratégies explicites.",
             content: "L'entraînement au placement sur droite numérique améliore le sens du nombre chez les élèves présentant des troubles de la cognition mathématique. [RISS : dumas-03285680]",
           },
         ],
@@ -412,7 +412,7 @@ const apps: AppItem[] = [
       howto: {
         steps: [
           {
-            title: 'Configurer l'activité',
+            title: "Configurer l'activité",
             items: [
               'Choisissez le nombre de cartes (2 à 8)',
               'Entrez les valeurs librement : nombres négatifs, positifs, ou expressions (4-8, 2*5…)',
@@ -421,9 +421,9 @@ const apps: AppItem[] = [
             ],
           },
           {
-            title: 'Lancer l'activité',
+            title: "Lancer l'activité",
             items: [
-              'Cliquez "Lancer l'activité" — la droite graduée s'adapte automatiquement aux valeurs',
+              "Cliquez \"Lancer l'activité\" — la droite graduée s'adapte automatiquement aux valeurs",
               'Faites glisser les cartes mayas sur la droite (souris ou tactile)',
               'Le triangle sous chaque carte indique la position précise',
               'Le chronomètre tourne — la pression temporelle est intentionnelle',
@@ -435,7 +435,7 @@ const apps: AppItem[] = [
               '"Vérifier" : les cartes correctes se verrouillent en vert, les incorrectes reviennent au pool',
               'La tâche se termine quand toutes les cartes sont vertes',
               'Le bouton "?" sur chaque carte révèle la valeur en chiffre arabe (3 sec) — usage tracé',
-              'Le bilan affiche : temps, nb de vérifications, nb d'aides demandées → matière à débat pédagogique',
+              "Le bilan affiche : temps, nb de vérifications, nb d'aides demandées → matière à débat pédagogique",
             ],
           },
         ],
