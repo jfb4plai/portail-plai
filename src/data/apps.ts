@@ -450,6 +450,66 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'laboucle',
+    name: 'La Boucle',
+    description: "Fiction interactive sur la littératie à la rétroaction. Alex reçoit une copie corrigée — et doit apprendre à fermer la boucle entre les remarques de l'enseignant et une vraie progression. 3 fins. Mode facilitation pour formateurs.",
+    url: 'https://laboucle-plai.vercel.app',
+    emoji: '🔄',
+    category: 'Rétroaction',
+    status: 'disponible',
+    color: 'amber',
+    section: 'sensibilisation',
+    guide: {
+      scientific: {
+        summary: "La Boucle fait vivre l'incapacité à utiliser la rétroaction — avant d'expliquer pourquoi. Elle repose sur le modèle en 4 dimensions de Carless & Boud (2018) : Dispositions, Conception, Littératie, Appropriation. Sans maîtrise de ces 4 dimensions, même la rétroaction la plus pertinente reste lettre morte.",
+        references: [
+          {
+            citation: "Calone, A. & Lafontaine, D. (2023). L'impact des différents types de feedbacks en contexte de classe. RISS : hal-04646895.",
+            content: "Le feedback n'opère que s'il est orienté vers la tâche et le processus — pas vers la note ou la personne. Cette distinction, que La Boucle fait vivre dans la Remarque 2, est centrale à la littératie à la rétroaction.",
+          },
+          {
+            citation: "Altinsoy, M. (2025). Les évaluations scolaires comme levier d'autorégulation et de développement des compétences métacognitives au cycle 3. RISS : dumas-05324645.",
+            content: "L'évaluation formative opère quand l'élève dispose de critères transparents et peut s'autoévaluer avant soumission. C'est exactement la compétence que construit Alex dans le chemin vers la Fin C.",
+          },
+          {
+            citation: "Brault Foisy, L.-M. (2022). Mieux comprendre les mécanismes cérébraux d'apprentissage pour faciliter la réussite scolaire. RISS : W4225545444.",
+            content: "La rétroaction n'a d'effet neurologique que si elle est activement traitée. L'évitement (Fin A) est rationnel à court terme — et dévastateur à long terme. La Boucle le fait ressentir plutôt qu'expliquer.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Mise en situation',
+            items: [
+              "Jouez seul(e) d'abord — sans le mode facilitation",
+              "Repérez à quel moment vos choix ressemblent à ceux de vos élèves",
+              "Notez quelle fin vous avez obtenue et pourquoi",
+            ],
+          },
+          {
+            title: 'En formation ou en réunion d\'équipe',
+            items: [
+              "Faites jouer le groupe en mode élève (URL sans ?fac=1)",
+              "Comparez les fins obtenues et les choix qui y ont mené",
+              "Basculez en mode facilitation (?fac=1) pour décoder les mécanismes",
+            ],
+          },
+          {
+            title: 'Débat pédagogique',
+            items: [
+              "Quels choix avez-vous faits instinctivement ? Pourquoi ?",
+              "À quel moment Alex aurait eu besoin d'un enseignement explicite ?",
+              "Quand enseignez-vous explicitement la littératie à la rétroaction ?",
+              "Lien FWB : compétences transversales, socles de compétences, APC",
+            ],
+          },
+        ],
+        tip: "Le mode facilitation (?fac=1 dans l'URL) révèle les mécanismes scientifiques à chaque moment clé — idéal pour un débriefing en formation d'enseignants.",
+      },
+    },
+  },
+  {
     id: 'systeme-solaire',
     name: 'Système Solaire',
     description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Zoom, noms, orbites et vitesse réglables. Idéal pour ancrer les proportions et les durées de révolution.",
