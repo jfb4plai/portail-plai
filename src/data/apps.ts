@@ -5,7 +5,7 @@ const apps: AppItem[] = [
     id: 'planbot',
     name: 'PlanBot',
     description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail. Pour logopèdes et enseignants FWB. 6 niveaux progressifs.",
-    url: '/planbot',
+    url: 'https://planbot-plai.vercel.app',
     emoji: '🤖',
     category: 'Fonctions exécutives',
     status: 'disponible',

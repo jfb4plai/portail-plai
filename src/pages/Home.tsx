@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import type { AppItem, ColorScheme } from '../types';
 
 const colorMap: Record<string, ColorScheme> = {
@@ -101,24 +100,14 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
         </div>
 
         <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
-          {app.url.startsWith('/') ? (
-            <Link
-              to={app.url}
-              onClick={onClose}
-              className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn}`}
-            >
-              Ouvrir {app.name} →
-            </Link>
-          ) : (
-            <a
-              href={app.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn}`}
-            >
-              Ouvrir {app.name} →
-            </a>
-          )}
+          <a
+            href={app.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-5 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn}`}
+          >
+            Ouvrir {app.name} →
+          </a>
         </div>
       </div>
     </div>
@@ -130,18 +119,15 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
   const available = app.status === 'disponible';
 
   const btnCls = `flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${!available ? 'pointer-events-none' : ''}`;
-  const isInternal = available && app.url.startsWith('/');
 
-  const openButton = isInternal ? (
-    <Link to={app.url} className={btnCls}>Ouvrir →</Link>
-  ) : (
+  const openButton = (
     <a
       href={available ? app.url : undefined}
       target={available ? '_blank' : undefined}
       rel="noopener noreferrer"
       className={btnCls}
     >
-      {available ? "Ouvrir →" : 'Bientôt disponible'}
+      {available ? 'Ouvrir →' : 'Bientôt disponible'}
     </a>
   );
 
