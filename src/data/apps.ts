@@ -10,6 +10,7 @@ const apps: AppItem[] = [
     category: 'Fonctions exécutives',
     status: 'disponible',
     color: 'indigo',
+    section: 'sensibilisation',
     guide: {
       scientific: {
         summary:
