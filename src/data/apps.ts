@@ -2,6 +2,87 @@ import type { AppItem } from '../types';
 
 const apps: AppItem[] = [
   {
+    id: 'planbot',
+    name: 'PlanBot',
+    description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail. Pour logopèdes et enseignants FWB. 6 niveaux progressifs.",
+    url: '/planbot',
+    emoji: '🤖',
+    category: 'Fonctions exécutives',
+    status: 'disponible',
+    color: 'indigo',
+    guide: {
+      scientific: {
+        summary:
+          "PlanBot repose sur les modèles neurocognitifs des fonctions exécutives (FE) : la planification, l'inhibition, la mémoire de travail et la flexibilité cognitive. Ces capacités, localisées dans le cortex préfrontal, sont au cœur des apprentissages scolaires et des interactions sociales. Le jeu combine deux paradigmes validés : la résolution de labyrinthe planifiée (FE de planification) et le paradigme Go/No-Go adapté au feu tricolore (FE d'inhibition).",
+        references: [
+          {
+            citation: 'Diamond, A. (2013). Executive Functions. Annual Review of Psychology, 64, 135–168.',
+            content:
+              "Les fonctions exécutives comprennent l'inhibition (contrôle inhibiteur et inhibition des interférences), la mémoire de travail et la flexibilité cognitive. Ces trois composantes de base, et celles qui en dérivent (raisonnement, planification, résolution de problèmes), sont toutes indispensables à la santé mentale et physique, à la réussite scolaire et professionnelle, et au développement personnel et social.",
+          },
+          {
+            citation:
+              'Abou Assi, K. (2022). Implication des fonctions exécutives dans les activités de codage et de robotique : un effet de réciprocité ? Thèse de doctorat, Université de Rouen Normandie. [RISS : tel-04717319]',
+            content:
+              "Les activités de codage et de robotique mobilisent de façon intensive les fonctions exécutives (planification séquentielle, inhibition des erreurs de déplacement, mise à jour en mémoire de travail). Les résultats suggèrent un effet de réciprocité : l'entraînement par ces activités améliore en retour les performances exécutives mesurées.",
+          },
+          {
+            citation:
+              "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience : une approche multi-niveaux et développementale. Thèse de doctorat, Université Paris Cité. [RISS : tel-04496182]",
+            content:
+              "Un entraînement ciblé du contrôle inhibiteur — composante centrale des fonctions exécutives — produit des effets mesurables sur les performances exécutives. Les paradigmes de réponse temporisée (type feu tricolore) constituent des outils d'entraînement valides pour la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent.",
+          },
+          {
+            citation:
+              "CTREQ (2018). Continuum du développement des fonctions exécutives de la petite enfance à l'âge adulte. Projet Savoir. Québec : Centre de transfert pour la réussite éducative du Québec.",
+            content:
+              "Les fonctions exécutives se développent de la naissance jusqu'à la mi-vingtaine et sont fortement influencées par l'environnement et les expériences. Des interventions ciblées, notamment par le jeu structuré et les activités de planification, peuvent soutenir et accélérer ce développement, en particulier chez les enfants présentant des difficultés d'apprentissage.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Configurer la session',
+            items: [
+              'Entrer le prénom du joueur.',
+              'Choisir le niveau de départ (1 = planification seule, 6 = toutes FE combinées).',
+              "Ouvrir « Réglages thérapeute » pour ajuster le feu tricolore et les répétitions autorisées.",
+            ],
+          },
+          {
+            title: 'Phase 1 — Planifier le chemin',
+            items: [
+              "Le robot 🤖 doit rejoindre l'étoile ⭐ en évitant les murs 🧱.",
+              'Construire une séquence de commandes (↑ ↓ ← →) en utilisant les boutons directionnels.',
+              "Aux niveaux 3–4 : ramasser la ou les clés 🔑 avant l'étoile.",
+              'Au niveau 5 : le modificateur 🔀 inverse gauche et droite après passage.',
+              "Cliquer « Valider » pour vérifier le chemin. En cas d'erreur, un indice oriente la révision.",
+            ],
+          },
+          {
+            title: 'Phase 2 — Exécuter au feu tricolore',
+            items: [
+              "La séquence validée s'exécute commande par commande.",
+              'Attendre le feu vert 🟢, puis appuyer sur le bouton pour avancer le robot.',
+              'Appuyer trop tôt (rouge/orange) ou trop tard (fenêtre expirée) coûte 1 point.',
+              "En mode « Désactivé », le feu est absent : appuyer librement pour avancer.",
+            ],
+          },
+          {
+            title: 'Tableau de bord',
+            items: [
+              "Accessible via le bouton 📊 depuis l'écran de profil.",
+              "Consulter l'historique par joueur : score, essais de planification, précision au feu.",
+              'Ajouter ou modifier une note clinique directement dans le tableau.',
+            ],
+          },
+        ],
+        tip: "Pour débuter, utiliser le niveau 1 sans feu tricolore. Introduire le feu (mode Fixe, 4–5 s) au niveau 2 lorsque la planification est stabilisée.",
+      },
+    },
+  },
+  {
     id: 'flashfwb',
     name: 'Flash FWB',
     description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant, apprentissage adaptatif pour l'élève.",
