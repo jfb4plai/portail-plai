@@ -1085,6 +1085,66 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'transcripteur-plai',
+    name: 'Transcripteur PLAI',
+    description: "Convertit audio et vidéo en texte (MP3, M4A, MP4…). 100 % local — aucune donnée envoyée. Export TXT, Word, PDF, SRT. Fonctionne sur clé USB ou installation locale.",
+    url: 'http://localhost:8000',
+    emoji: '🎙️',
+    category: 'Transcription',
+    status: 'disponible',
+    color: 'teal',
+    browserNote: "Outil local — lancez LANCER.bat avant d'ouvrir ce lien.",
+    guide: {
+      scientific: {
+        summary: "La transcription automatique locale réduit la charge cognitive liée à la prise de notes et rend accessibles les contenus oraux aux élèves ayant des troubles « dys » ou un TDAH. Traitement 100 % local : aucune donnée audio transmise à un tiers (RGPD).",
+        references: [
+          {
+            citation: "Fliti, A. & Avarello, V. (2025). Modèles génératifs et accès au savoir pour les personnes en situation de handicap. hal-05450529",
+            content: "Les modèles de reconnaissance vocale (dont Whisper) offrent un potentiel d'accessibilité majeur pour les personnes en situation de handicap — sous réserve d'un traitement local garantissant la confidentialité des données.",
+          },
+          {
+            citation: "Jean-Baptiste, P. (2025). L'IA en action : écouter comme une machine. hal-05249093",
+            content: "La transcription automatique de cours et de réunions permet une relecture différée et une mise en texte que les élèves ayant des difficultés grapho-motrices ou attentionnelles ne peuvent produire seuls.",
+          },
+          {
+            citation: "Fournier, M. (2024). Les adaptations pédagogiques de l'enseignant pour les élèves ayant des troubles « dys ». dumas-04562654",
+            content: "Fournir un support écrit issu d'un oral (cours, consigne, témoignage) est une adaptation reconnue pour les élèves avec TSLA ou TDAH — elle réduit la surcharge de la mémoire de travail.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "Démarrer l'application",
+            items: [
+              "Double-cliquez LANCER.bat sur la clé USB ou dans le dossier transcripteur-plai",
+              "Le navigateur s'ouvre automatiquement sur http://localhost:8000",
+              "Premier démarrage : le modèle Whisper se charge (~10 s)",
+            ],
+          },
+          {
+            title: "Transcrire un fichier",
+            items: [
+              "Glissez votre fichier audio/vidéo ou cliquez « Parcourir »",
+              "Formats acceptés : MP3, M4A, WAV, MP4, MKV, MOV… jusqu'à 500 MB",
+              "Sélectionnez la langue et cliquez « Transcrire »",
+              "Durée indicative : 20-40 min pour 60 min d'audio (CPU)",
+            ],
+          },
+          {
+            title: "Exporter le résultat",
+            items: [
+              "Choisissez le format : TXT, Word (.docx), PDF, SRT ou VTT",
+              "Cliquez « Télécharger »",
+              "Le fichier audio est supprimé immédiatement — aucune donnée conservée",
+            ],
+          },
+        ],
+        tip: "Idéal pour transcrire des cours magistraux, témoignages ou réunions, et rendre ces contenus accessibles aux élèves en difficulté de lecture ou de prise de notes.",
+      },
+    },
+  },
 ];
 
 export default apps;
