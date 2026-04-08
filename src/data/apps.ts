@@ -1094,7 +1094,7 @@ const apps: AppItem[] = [
     category: 'Transcription',
     status: 'disponible',
     color: 'teal',
-    browserNote: "Outil local — lancez LANCER.bat avant d'ouvrir ce lien.",
+    browserNote: "Avant d'utiliser : branchez la clé USB PLAI (ou ouvrez le dossier Transcripteur PLAI sur votre PC) → double-cliquez LANCER.bat → une fenêtre noire s'ouvre → revenez ici et cliquez Ouvrir. À refaire à chaque utilisation.",
     guide: {
       scientific: {
         summary: "La transcription automatique locale réduit la charge cognitive liée à la prise de notes et rend accessibles les contenus oraux aux élèves ayant des troubles « dys » ou un TDAH. Traitement 100 % local : aucune donnée audio transmise à un tiers (RGPD).",
@@ -1116,32 +1116,43 @@ const apps: AppItem[] = [
       howto: {
         steps: [
           {
-            title: "Démarrer l'application",
+            title: "① Démarrer l'application (à faire à chaque utilisation)",
             items: [
-              "Double-cliquez LANCER.bat sur la clé USB ou dans le dossier transcripteur-plai",
-              "Le navigateur s'ouvre automatiquement sur http://localhost:8000",
-              "Premier démarrage : le modèle Whisper se charge (~10 s)",
+              "Branchez la clé USB PLAI sur votre PC — ou ouvrez le dossier Transcripteur PLAI",
+              "Double-cliquez sur le fichier LANCER.bat (icône d'engrenage ou fichier .bat)",
+              "Une fenêtre noire s'ouvre : c'est normal, ne la fermez pas — elle fait tourner l'app",
+              "Votre navigateur s'ouvre automatiquement. Sinon, tapez : localhost:8000",
+              "Premier démarrage uniquement : attendre ~10 s le temps que le modèle se charge",
             ],
           },
           {
-            title: "Transcrire un fichier",
+            title: "② Transcrire un fichier audio ou vidéo",
             items: [
-              "Glissez votre fichier audio/vidéo ou cliquez « Parcourir »",
+              "Glissez votre fichier dans la zone pointillée, ou cliquez « Parcourir »",
               "Formats acceptés : MP3, M4A, WAV, MP4, MKV, MOV… jusqu'à 500 MB",
-              "Sélectionnez la langue et cliquez « Transcrire »",
-              "Durée indicative : 20-40 min pour 60 min d'audio (CPU)",
+              "Choisissez la langue (Français par défaut) et cliquez « Transcrire »",
+              "Patience : comptez ~20-40 min pour 60 min d'audio selon votre PC",
             ],
           },
           {
-            title: "Exporter le résultat",
+            title: "③ Récupérer la transcription",
             items: [
-              "Choisissez le format : TXT, Word (.docx), PDF, SRT ou VTT",
-              "Cliquez « Télécharger »",
-              "Le fichier audio est supprimé immédiatement — aucune donnée conservée",
+              "Le texte apparaît à l'écran dès la fin",
+              "Choisissez le format : Word (.docx) pour modifier, PDF pour imprimer, TXT pour copier",
+              "Cliquez « Télécharger » — le fichier se retrouve dans votre dossier Téléchargements",
+              "Vos données audio sont supprimées immédiatement — rien n'est conservé",
+            ],
+          },
+          {
+            title: "④ Quitter l'application",
+            items: [
+              "Fermez l'onglet du navigateur",
+              "Fermez la fenêtre noire (ou appuyez Ctrl+C dedans)",
+              "Retirez la clé USB si utilisée",
             ],
           },
         ],
-        tip: "Idéal pour transcrire des cours magistraux, témoignages ou réunions, et rendre ces contenus accessibles aux élèves en difficulté de lecture ou de prise de notes.",
+        tip: "Idéal pour transcrire des cours magistraux, conseils de classe, témoignages ou réunions d'équipe — et rendre ces contenus accessibles aux élèves en difficulté de lecture ou de prise de notes.",
       },
     },
   },
