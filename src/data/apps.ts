@@ -1160,10 +1160,10 @@ const apps: AppItem[] = [
     id: 'mathipulatifs',
     name: 'Mathipulatifs PLAI',
     description:
-      "Manipulables mathématiques virtuels interactifs : blocs de base 10, droite numérique, barres de fractions. Espace enseignant avec exercices paramétrables et lien élève sans compte. Barre d'accessibilité intégrée (police dyslexie, grand texte, focus, audio TTS).",
+      "6 manipulables mathématiques interactifs pour la classe inclusive : blocs base 10, droite numérique, fractions, réglettes Cuisenaire, cadres à 10, grille des 100. Profils élèves adaptatifs (dyscalculie, TDAH, dyslexie). Galerie FWB partagée entre enseignants.",
     url: 'https://mathipulatifs-plai.vercel.app',
     emoji: '🧮',
-    category: 'Mathématiques',
+    category: 'Manipulables mathématiques',
     status: 'disponible',
     color: 'blue',
     section: 'applications',
@@ -1211,9 +1211,7 @@ const apps: AppItem[] = [
             items: [
               "Sur la page d'accueil, cliquer « Essayer » sous le manipulable choisi.",
               "Aucune inscription requise — accès immédiat pour tester en classe.",
-              "Blocs base 10 : cliquer sur Centaine / Dizaine / Unité pour ajouter des blocs à l'espace de travail.",
-              "Droite numérique : glisser le jeton pour se déplacer sur la droite graduée (0–20 par défaut).",
-              "Barres de fractions : cliquer les parties des barres pour les colorier et découvrir les équivalences.",
+              "Activer le profil élève adapté (dyscalculie / TDAH / dyslexie) via la barre d'accessibilité.",
             ],
           },
           {
@@ -1225,28 +1223,28 @@ const apps: AppItem[] = [
             ],
           },
           {
-            title: "Créer un exercice",
+            title: "Créer et modifier un exercice",
             items: [
-              "Tableau de bord → « Créer un exercice ».",
+              "Tableau de bord → « + Créer un exercice ».",
               "Donner un titre et une consigne (lue à voix haute si l'élève active l'audio).",
-              "Choisir le manipulable et paramétrer : nombre cible (base 10), min/max/pas (droite), dénominateurs (fractions).",
-              "Valider → un lien unique (token) est généré pour les élèves.",
+              "Choisir parmi les 6 manipulables et paramétrer : cible, cadres, couleurs, multiples…",
+              "Valider → un lien unique (token) est généré. Modifiable à tout moment — le lien reste inchangé.",
             ],
           },
           {
-            title: "Partager avec les élèves",
+            title: "Partager dans la Galerie FWB",
             items: [
-              "Copier le lien élève depuis le tableau de bord.",
-              "Les élèves accèdent via ce lien — aucun compte requis, juste leur prénom.",
-              "Projeter le lien ou l'afficher via QR code pour les tablettes.",
-              "La barre d'accessibilité est disponible pour chaque élève (dyslexie, grand texte, focus, audio).",
+              "Tableau de bord → « 🏫 Partager » sur un exercice.",
+              "Indiquer le niveau (P1–P6, S1–S7) et une courte description pédagogique.",
+              "L'exercice devient visible dans la galerie /galerie — les collègues peuvent le copier et l'adapter.",
             ],
           },
           {
             title: "Consulter les résultats",
             items: [
-              "Tableau de bord → chaque exercice affiche le nombre de sessions complétées.",
-              "Détail par élève : prénom, réponse soumise, résultat correct/incorrect, durée.",
+              "Tableau de bord → « 📊 Résultats » sur chaque exercice.",
+              "Détail par élève : prénom, résultat correct/incorrect, durée.",
+              "Exporter en PDF pour une trace imprimable.",
             ],
           },
         ],
