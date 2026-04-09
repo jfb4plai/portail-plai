@@ -1156,6 +1156,104 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'mathipulatifs',
+    name: 'Mathipulatifs PLAI',
+    description:
+      "Manipulables mathématiques virtuels interactifs : blocs de base 10, droite numérique, barres de fractions. Espace enseignant avec exercices paramétrables et lien élève sans compte. Barre d'accessibilité intégrée (police dyslexie, grand texte, focus, audio TTS).",
+    url: 'https://mathipulatifs-plai.vercel.app',
+    emoji: '🧮',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'blue',
+    section: 'applications',
+    guide: {
+      scientific: {
+        summary:
+          "Mathipulatifs PLAI repose sur le triptyque manipulation–verbalisation–abstraction, socle de l'enseignement explicite en mathématiques (Jolivel, 2023). Les manipulables virtuels permettent d'externaliser le raisonnement — l'élève agit sur des représentations concrètes avant de progresser vers l'abstraction symbolique. Cette progression est particulièrement bénéfique pour les élèves présentant une dyscalculie, un TDAH ou une dyslexie, pour qui la charge cognitive de l'écriture mathématique classique constitue un frein majeur (Bergeron & Barallobres, 2021). L'usage des TICE dans ce contexte améliore l'autonomie et l'estime de soi des élèves dys (Najjar, 2015), tandis que l'enseignement explicite structuré réduit l'anxiété mathématique (Ochsenbein, 2024). La barre d'accessibilité (police OpenDyslexic, grand texte, mode focus, audio TTS) réduit la charge cognitive extrinsèque pour maximiser la ressource cognitive disponible pour l'apprentissage mathématique.",
+        references: [
+          {
+            citation:
+              'Jolivel, P. (2023). La manipulation en mathématiques. DUMAS. [RISS : dumas-04324162]',
+            content:
+              "Le triptyque manipulation–verbalisation–abstraction constitue l'une des 21 mesures de Villani & Torossian (2018) pour réussir en mathématiques. La manipulation doit être placée au bon moment du processus d'apprentissage (phase d'acquisition) et s'inscrire dans un cadre d'enseignement explicite : modelage, pratique guidée, pratique autonome. Elle libère l'élève de la tâche graphique et lui permet d'utiliser un canal sensoriel privilégié.",
+          },
+          {
+            citation:
+              'Bergeron, L. & Barallobres, G. (2021). Processus d'abstraction et difficultés d'apprentissage en mathématiques : quelques repères théoriques. [RISS : W4410891703]',
+            content:
+              "Rester dans le concret matériel sans remonter vers l'abstrait structurant éloigne paradoxalement l'élève de l'activité mathématique. Les manipulables doivent accompagner la montée vers l'abstraction symbolique, pas s'y substituer. Le passage explicite concret → semi-concret → abstrait est indispensable, notamment pour les élèves en difficulté.",
+          },
+          {
+            citation:
+              'Dubar, H. (2022). La manipulation en grandeurs et mesures au cycle 3. DUMAS. [RISS : dumas-03790385]',
+            content:
+              "Il est important de séparer les temps d'apprentissage et de marquer explicitement les moments de passage du concret à l'abstrait, laissant les élèves s'éloigner peu à peu du matériel. La manipulation seule ne suffit pas : c'est le va-et-vient guidé entre les représentations qui construit la compréhension.",
+          },
+          {
+            citation:
+              'Najjar, N. (2015). L'impact de l'usage des TICE sur l'apprentissage des enfants et jeunes dyslexiques, dysorthographiques et dyscalculiques : l'autonomie et l'estime de soi. Thèse de doctorat. [RISS : tel-01358006]',
+            content:
+              "Les outils numériques interactifs améliorent significativement l'autonomie et l'estime de soi des élèves dys. L'appropriation progressive de l'outil, disponible à tout moment, permet un travail dans l'univers de travail habituel de l'élève, réduisant l'écart ressenti avec les pairs.",
+          },
+          {
+            citation:
+              'Ochsenbein, J. (2024). Favoriser la motivation et réduire l'anxiété en mathématiques dans les réseaux d'éducation prioritaires : l'enseignement explicite peut-il être une solution ? DUMAS. [RISS : dumas-04794253]',
+            content:
+              "L'enseignement explicite réduit l'anxiété mathématique en rendant transparents les objectifs, les critères de réussite et les étapes de résolution. Une étude au primaire (Baker et al., 2002) montre son efficacité centrée sur l'enseignant. En REP, cette approche structure l'environnement cognitif et affectif.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "Explorer sans compte (mode démo)",
+            items: [
+              "Sur la page d'accueil, cliquer « Essayer » sous le manipulable choisi.",
+              "Aucune inscription requise — accès immédiat pour tester en classe.",
+              "Blocs base 10 : cliquer sur Centaine / Dizaine / Unité pour ajouter des blocs à l'espace de travail.",
+              "Droite numérique : glisser le jeton pour se déplacer sur la droite graduée (0–20 par défaut).",
+              "Barres de fractions : cliquer les parties des barres pour les colorier et découvrir les équivalences.",
+            ],
+          },
+          {
+            title: "Créer un compte enseignant",
+            items: [
+              "Cliquer « Accéder à l'espace enseignant » → « Créer un compte ».",
+              "Renseigner nom, école (optionnel), niveau (primaire / secondaire / les deux).",
+              "Connexion sécurisée via Supabase Auth — aucune donnée élève nominative stockée.",
+            ],
+          },
+          {
+            title: "Créer un exercice",
+            items: [
+              "Tableau de bord → « Créer un exercice ».",
+              "Donner un titre et une consigne (lue à voix haute si l'élève active l'audio).",
+              "Choisir le manipulable et paramétrer : nombre cible (base 10), min/max/pas (droite), dénominateurs (fractions).",
+              "Valider → un lien unique (token) est généré pour les élèves.",
+            ],
+          },
+          {
+            title: "Partager avec les élèves",
+            items: [
+              "Copier le lien élève depuis le tableau de bord.",
+              "Les élèves accèdent via ce lien — aucun compte requis, juste leur prénom.",
+              "Projeter le lien ou l'afficher via QR code pour les tablettes.",
+              "La barre d'accessibilité est disponible pour chaque élève (dyslexie, grand texte, focus, audio).",
+            ],
+          },
+          {
+            title: "Consulter les résultats",
+            items: [
+              "Tableau de bord → chaque exercice affiche le nombre de sessions complétées.",
+              "Détail par élève : prénom, réponse soumise, résultat correct/incorrect, durée.",
+            ],
+          },
+        ],
+        tip: "Privilégier la progression CPA : d'abord manipulation libre (Concret), puis demander à l'élève de dessiner ce qu'il a construit (Pictural), enfin écrire la notation mathématique (Abstrait). Cette progression est particulièrement efficace pour les élèves dyscalculiques.",
+      },
+    },
+  },
 ];
 
 export default apps;
