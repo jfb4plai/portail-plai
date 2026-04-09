@@ -1180,7 +1180,7 @@ const apps: AppItem[] = [
           },
           {
             citation:
-              'Bergeron, L. & Barallobres, G. (2021). Processus d'abstraction et difficultés d'apprentissage en mathématiques : quelques repères théoriques. [RISS : W4410891703]',
+              "Bergeron, L. & Barallobres, G. (2021). Processus d'abstraction et difficultés d'apprentissage en mathématiques : quelques repères théoriques. [RISS : W4410891703]",
             content:
               "Rester dans le concret matériel sans remonter vers l'abstrait structurant éloigne paradoxalement l'élève de l'activité mathématique. Les manipulables doivent accompagner la montée vers l'abstraction symbolique, pas s'y substituer. Le passage explicite concret → semi-concret → abstrait est indispensable, notamment pour les élèves en difficulté.",
           },
@@ -1192,13 +1192,13 @@ const apps: AppItem[] = [
           },
           {
             citation:
-              'Najjar, N. (2015). L'impact de l'usage des TICE sur l'apprentissage des enfants et jeunes dyslexiques, dysorthographiques et dyscalculiques : l'autonomie et l'estime de soi. Thèse de doctorat. [RISS : tel-01358006]',
+              "Najjar, N. (2015). L'impact de l'usage des TICE sur l'apprentissage des enfants et jeunes dyslexiques, dysorthographiques et dyscalculiques : l'autonomie et l'estime de soi. Thèse de doctorat. [RISS : tel-01358006]",
             content:
               "Les outils numériques interactifs améliorent significativement l'autonomie et l'estime de soi des élèves dys. L'appropriation progressive de l'outil, disponible à tout moment, permet un travail dans l'univers de travail habituel de l'élève, réduisant l'écart ressenti avec les pairs.",
           },
           {
             citation:
-              'Ochsenbein, J. (2024). Favoriser la motivation et réduire l'anxiété en mathématiques dans les réseaux d'éducation prioritaires : l'enseignement explicite peut-il être une solution ? DUMAS. [RISS : dumas-04794253]',
+              "Ochsenbein, J. (2024). Favoriser la motivation et réduire l'anxiété en mathématiques dans les réseaux d'éducation prioritaires : l'enseignement explicite peut-il être une solution ? DUMAS. [RISS : dumas-04794253]",
             content:
               "L'enseignement explicite réduit l'anxiété mathématique en rendant transparents les objectifs, les critères de réussite et les étapes de résolution. Une étude au primaire (Baker et al., 2002) montre son efficacité centrée sur l'enseignant. En REP, cette approche structure l'environnement cognitif et affectif.",
           },
