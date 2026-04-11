@@ -1323,6 +1323,91 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'adaptateur-aus',
+    name: 'Adaptateur AUs',
+    description: "Convertit automatiquement un document de cours (DOCX, PDF) selon les Aménagements Universels FWB : typographie, consignes, pictogrammes Arasaac, adaptations DYS/TDAH/FALC/FLE.",
+    url: 'https://adaptateur-aus.vercel.app',
+    emoji: '♿',
+    category: 'Aménagements Universels',
+    status: 'disponible',
+    color: 'pink',
+    guide: {
+      scientific: {
+        summary:
+          "L'Adaptateur AUs s'appuie sur le cadre de la Conception Universelle de l'Apprentissage (CUA/UDL, CAST 2018) : adapter la forme des documents en amont, pour tous les élèves, sans stigmatisation. Les 26 aménagements proposés couvrent la typographie (lisibilité), la reformulation des consignes (charge cognitive), l'ajout de pictogrammes Arasaac (double codage) et les adaptations textuelles ciblées (DYS, TDAH, FALC, FLE). Chaque AU est ancré dans des recherches francophones identifiées dans le corpus RISS.",
+        references: [
+          {
+            citation: "Poirier, N. & Tendeng, M. (2025). Vers des pratiques pédagogiques inclusives. [RISS : 1121571ar]",
+            content:
+              "Le cadre CUA/CAST (2018) préconise une inclusion pédagogique en amont, dès la conception des activités — principe fondateur des Aménagements Universels.",
+          },
+          {
+            citation: "Klein, V. (2010). Influence de la typographie sur l'aisance de lecture d'une population d'enfants dyslexiques. [RISS : dumas-01302521]",
+            content:
+              "Un interligne légèrement supérieur à la hauteur de la police est recommandé pour améliorer la lisibilité chez les enfants dyslexiques. Les polices sans empattement (Arial, OpenDyslexic) sont préférables.",
+          },
+          {
+            citation: "Vela, & Lentini (2022). La compréhension de la consigne écrite chez les élèves turcophones. [RISS : dumas-04041687]",
+            content:
+              "La reformulation et l'exemplification des consignes sont les stratégies les plus favorables à leur compréhension par les élèves. Un verbe d'action explicite en début de consigne réduit significativement les erreurs de compréhension.",
+          },
+          {
+            citation: "Balssa, F. (2024). Facile à Lire et à Comprendre (FALC) et école inclusive. Thèse. [RISS : tel-04807443]",
+            content:
+              "L'association pictogrammes Arasaac + texte simplifié FALC améliore la compréhension des consignes pour tous les profils d'apprenants en difficulté, y compris les élèves DYS, TDAH et allophones.",
+          },
+          {
+            citation: "Bourgeois, C. (2024). École inclusive et TDAH. [RISS : dumas-04903104]",
+            content:
+              "La structuration du temps, la persistance à l'effort et l'auto-contrôle sont les axes centraux des aménagements pédagogiques pour élèves TDAH. Le séquençage renforcé et les relances visuelles sont les leviers les plus efficaces.",
+          },
+          {
+            citation: "Schneider-Mizony, O. (2022). Langues faciles à comprendre (FALC) : assises linguistiques et promesses sociales. [RISS : W4311612447]",
+            content:
+              "Le FALC part d'un texte difficile pour le rendre accessible : réduction syntaxique (≤12 mots/phrase), une idée par phrase, vocabulaire courant, pas de métaphores.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Créer un profil AU",
+            items: [
+              "Connectez-vous avec votre email et mot de passe (compte partagé avec les autres apps PLAI).",
+              "Allez dans 'Mes profils' et cliquez '+ Nouveau profil'.",
+              "Nommez le profil selon votre usage : 'Classe 3B', 'Évaluation Maths', 'Établissement'...",
+              "Sélectionnez les AUs souhaités parmi les 26 disponibles, groupés par catégorie (Typographie, Structure, Consignes, Pédagogie, Évaluation).",
+              "Activez les pictogrammes Arasaac si souhaité et configurez la densité (noms, verbes, ou les deux).",
+              "Choisissez l'adaptation textuelle si nécessaire : DYS, TDAH, FALC, FLE ou HP.",
+              "Sauvegardez le profil.",
+            ],
+          },
+          {
+            title: "2. Convertir un document",
+            items: [
+              "Allez sur l'écran 'Convertir'.",
+              "Sélectionnez votre profil AU dans le menu déroulant.",
+              "Déposez votre fichier DOCX, PDF ou image (max 10 MB).",
+              "Cliquez 'Convertir' — le traitement prend 10 à 30 secondes selon la longueur.",
+              "Les étapes s'affichent en temps réel : styles, analyse Claude, pictogrammes, génération DOCX.",
+            ],
+          },
+          {
+            title: "3. Récupérer le résultat",
+            items: [
+              "Prévisualisez le document adapté directement dans l'app (avec audio si activé).",
+              "Téléchargez le fichier DOCX final.",
+              "Consultez le rapport : AUs appliqués, mots sans pictogramme, avertissements.",
+              "Le rapport inclut les références scientifiques (RISS) justifiant chaque aménagement — utile pour la direction ou les parents.",
+              "Pour exporter en PDF : ouvrez le DOCX dans Word ou LibreOffice et imprimez en PDF.",
+            ],
+          },
+        ],
+        tip: "Créez un profil 'Établissement' avec les AUs de base validés en équipe — tous les enseignants partagent alors les mêmes standards d'accessibilité documentaire.",
+      },
+    },
+  },
 ];
 
 export default apps;
