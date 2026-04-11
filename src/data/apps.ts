@@ -1252,6 +1252,77 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'feed-back-adapt',
+    name: 'FEED-BACK ADAPT',
+    description: "Classifie les erreurs mathématiques en 4 types d'obstacles cognitifs et génère un feedback pédagogique adapté via IA. Fondamental & secondaire, FR/NL/EN.",
+    url: 'https://feed-back-adapt.vercel.app',
+    emoji: '🎯',
+    category: 'Différenciation',
+    status: 'disponible',
+    color: 'blue',
+    section: 'sensibilisation',
+    guide: {
+      scientific: {
+        summary: "FEED-BACK ADAPT repose sur la distinction entre erreurs symptomatiques et obstacles d'appropriation (Fouchet-Isambard & Millon Faure, 2025) et sur l'efficacité documentée du feedback élaboré en contexte scolaire. L'IA générative permet une différenciation immédiate sans surcharge pour l'enseignant.",
+        references: [
+          {
+            citation: "Fouchet-Isambard, K. & Millon Faure, K. (2025). Élaboration d'une typologie des erreurs en mathématiques pour concevoir des feedbacks adaptatifs. HAL hal-05361521.",
+            content: "Article fondateur de l'app : classification des erreurs mathématiques (épistémologiques, didactiques, ontogéniques) comme base de feedbacks adaptatifs différenciés.",
+          },
+          {
+            citation: "Brousseau, G. (1998). Les obstacles épistémologiques, problèmes et ingénierie didactique. HAL hal-00516595.",
+            content: "Cadre théorique fondateur : les obstacles épistémologiques comme source d'erreurs récurrentes — base de la classification utilisée dans FEED-BACK ADAPT.",
+          },
+          {
+            citation: "Mahi Haddad & Beaud (2025). L'IA au service de la différenciation pédagogique en mathématiques : expérimentation de ChatGPT en CE1 en REP. DUMAS dumas-05106961.",
+            content: "Expérimentation de l'IA générative pour la différenciation en maths — résultats documentés proches du contexte FWB.",
+          },
+          {
+            citation: "Venant & Bonnat (2022). Personnalisation et explicabilité des feedbacks automatiques. Actes RJC-EIAH 2022. HAL hal-05137693.",
+            content: "Travaux sur la personnalisation des feedbacks automatiques pour améliorer leur efficacité perçue par les apprenants.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "Créer un compte enseignant",
+            items: [
+              "Aller sur feed-back-adapt.vercel.app → Créer un compte.",
+              "Renseigner prénom, nom et école.",
+              "Connexion immédiate — aucune confirmation email requise.",
+            ],
+          },
+          {
+            title: "Créer un profil élève",
+            items: [
+              "Dashboard → + Nouvel élève.",
+              "Choisir le niveau : Fondamental (6–12 ans) ou Secondaire.",
+              "Choisir la langue d'enseignement : FR, NL ou EN (CLIL).",
+            ],
+          },
+          {
+            title: "Lancer une session",
+            items: [
+              "Cliquer « Nouvelle session » → un code 4 lettres est généré.",
+              "Donner le code ou montrer le QR code à l'élève sur sa tablette.",
+              "L'élève ouvre l'app et entre le code — aucun compte requis.",
+            ],
+          },
+          {
+            title: "Lire les résultats",
+            items: [
+              "Le tableau de bord se met à jour en temps réel pendant la session.",
+              "Chaque erreur est colorée selon son type d'obstacle cognitif.",
+              "Une alerte apparaît si une même erreur se répète 3 fois ou plus.",
+            ],
+          },
+        ],
+        tip: "En mode fondamental, l'élève peut écouter chaque question à voix haute (bouton 🔊) — idéal pour les élèves dyslexiques ou en difficulté de lecture.",
+      },
+    },
+  },
 ];
 
 export default apps;
