@@ -1404,7 +1404,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Créez un profil 'Établissement' avec les AUs de base validés en équipe — tous les enseignants partagent alors les mêmes standards d'accessibilité documentaire.",
+        tip: "Avant de créer votre profil établissement, contactez le PLAI pour co-construire la liste des AUs adaptée à votre contexte : profil de vos apprenants, pratiques de votre équipe éducative et réalités de votre école. Un profil co-élaboré avec le PLAI garantit une cohérence pédagogique durable et un ancrage dans les recherches les plus récentes.",
       },
     },
   },
