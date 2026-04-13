@@ -132,7 +132,13 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
   );
 
   return (
-    <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} p-6 shadow-sm transition hover:shadow-md`}>
+    <div className={`relative flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} p-6 shadow-sm transition hover:shadow-md overflow-hidden`}>
+      {/* Bandeau "En développement" */}
+      {app.devBanner && (
+        <div className="absolute top-4 -right-8 rotate-45 bg-amber-400 text-amber-900 text-[10px] font-bold px-10 py-0.5 shadow-sm tracking-wide">
+          EN DÉVELOPPEMENT
+        </div>
+      )}
       <div className="flex items-start justify-between mb-3">
         <span className="text-4xl">{app.emoji}</span>
         {app.category && (

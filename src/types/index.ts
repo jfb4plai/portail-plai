@@ -22,6 +22,7 @@ export type AppItem = {
   color: string;
   section?: AppSection;
   browserNote?: string;
+  devBanner?: boolean;   // affiche le bandeau "En développement" sur la vignette
   guide?: GuideContent;
 };
 

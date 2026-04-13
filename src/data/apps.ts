@@ -1332,6 +1332,7 @@ const apps: AppItem[] = [
     category: 'Aménagements Universels',
     status: 'disponible',
     color: 'pink',
+    devBanner: true,
     guide: {
       scientific: {
         summary:
