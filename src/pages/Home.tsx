@@ -132,10 +132,24 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
   );
 
   return (
-    <div className={`relative flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} p-6 shadow-sm transition hover:shadow-md overflow-hidden`}>
-      {/* Bandeau "En développement" */}
+    <div
+      className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} p-6 shadow-sm transition hover:shadow-md`}
+      style={{ position: 'relative', overflow: 'hidden' }}
+    >
+      {/* Bandeau "En développement" — styles inline pour fiabilité cross-build */}
       {app.devBanner && (
-        <div className="absolute top-4 -right-8 rotate-45 bg-amber-400 text-amber-900 text-[10px] font-bold px-10 py-0.5 shadow-sm tracking-wide">
+        <div
+          className="bg-amber-400 text-amber-900 font-bold tracking-wide shadow-sm"
+          style={{
+            position: 'absolute',
+            top: '14px',
+            right: '-28px',
+            transform: 'rotate(45deg)',
+            fontSize: '9px',
+            padding: '2px 36px',
+            pointerEvents: 'none',
+          }}
+        >
           EN DÉVELOPPEMENT
         </div>
       )}
