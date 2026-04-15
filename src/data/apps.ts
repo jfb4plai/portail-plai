@@ -1324,6 +1324,91 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'accessdoc-plai',
+    name: 'AccessDoc PLAI',
+    description: "Scanne ou importe un document scolaire (PDF, image, scan smartphone) et génère automatiquement une version accessible selon les Aménagements Universels FWB sélectionnés. Moteur Claude Vision pour les scans manuscrits ou cursifs.",
+    url: 'https://accessdoc-plai.vercel.app',
+    emoji: '📄',
+    category: 'Aménagements Universels',
+    status: 'disponible',
+    color: 'indigo',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary:
+          "AccessDoc PLAI applique les principes de la Conception Universelle de l'Apprentissage (CUA/UDL, CAST 2018) directement sur les documents existants de l'enseignant. Plutôt que de modifier les pratiques a posteriori via un PAP individuel, l'outil adapte le document en amont pour tous les élèves, sans stigmatisation. L'IA générative (Claude Vision) rend accessible ce qui était inaccessible par l'OCR classique — notamment les polices cursives et les scans de mauvaise qualité — ouvrant la voie à une accessibilité documentaire systématique en FWB.",
+        references: [
+          {
+            citation: "Aubert Michel, M. (2024). Le Plan d'Accompagnement Personnalisé (PAP), un dispositif pensé au détriment de l'accessibilité universelle à l'École ? [RISS : dumas-04841652]",
+            content:
+              "Les aménagements individuels (PAP) répondent aux besoins de certains élèves mais restent stigmatisants et fragmentaires. Une accessibilité universelle des documents dès leur conception bénéficie à tous les apprenants, y compris ceux non diagnostiqués.",
+          },
+          {
+            citation: "Fliti, A. & Avarello, V. (2025). Modèles génératifs et accès au savoir pour les personnes en situation de handicap. [RISS : hal-05450529]",
+            content:
+              "Les modèles d'IA générative offrent des perspectives inédites pour lever les trois strates d'accessibilité documentaire : disponibilité, lisibilité et compréhensibilité. Ils permettent de transformer automatiquement des documents inaccessibles en supports adaptés.",
+          },
+          {
+            citation: "Basset, T. (2025). Quel impact a la formulation de la consigne sur la perception, la compréhension et la réussite des élèves ? [RISS : dumas-05441966]",
+            content:
+              "Les élèves confrontés à des consignes écrites sans reformulation ni explicitation se retrouvent en grande difficulté. Un verbe d'action explicite et une consigne courte réduisent significativement les erreurs de compréhension.",
+          },
+          {
+            citation: "Coffin, M., Goulet, C. & Piquard-Kipffer, A. (2023). L'accessibilité numérique au service des étudiants dyslexiques. [RISS : hal-03962468]",
+            content:
+              "L'accessibilité numérique des documents (structure sémantique, typographie adaptée, contrastes) est un levier majeur pour les apprenants dyslexiques. Les outils automatisés permettent une mise en conformité rapide sans surcharge pour l'enseignant.",
+          },
+          {
+            citation: "Fenoglio, P. (2024). L'éducation inclusive et numérique : quelles convergences ? [RISS : ensl-05383435]",
+            content:
+              "La Conception Universelle de l'Apprentissage constitue un pont entre différenciation pédagogique et évaluation humaniste. Le numérique est un levier de convergence entre inclusion et accessibilité des contenus.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Se connecter et choisir un profil AU",
+            items: [
+              "Connectez-vous avec votre email et mot de passe (compte partagé avec les autres apps PLAI).",
+              "Allez dans 'Mes profils' et sélectionnez un profil existant, ou créez-en un nouveau.",
+              "Dans un profil, cochez les Aménagements Universels à appliquer : verbe d'action en gras, reformulation des consignes, numérotation des exercices, pictogrammes Arasaac, etc.",
+              "Sauvegardez le profil — il sera réutilisable pour tous vos documents.",
+            ],
+          },
+          {
+            title: "2. Importer un document",
+            items: [
+              "Depuis l'écran principal, cliquez sur 'Nouveau document'.",
+              "Déposez votre fichier : PDF natif (cours Word/LibreOffice exporté), PDF scanné (Microsoft Lens, scanner), ou image JPG/PNG.",
+              "L'application détecte automatiquement le type : PDF natif → extraction de texte directe ; PDF scanné ou image → analyse par intelligence artificielle (Claude Vision).",
+              "Pour les scans : Claude Vision lit les polices cursives et manuscrites que les OCR classiques ne peuvent pas déchiffrer.",
+            ],
+          },
+          {
+            title: "3. Lancer l'adaptation",
+            items: [
+              "Sélectionnez votre profil AU dans le menu déroulant.",
+              "Cliquez 'Analyser et adapter' — le traitement prend 15 à 45 secondes selon la longueur du document.",
+              "Les étapes s'affichent en temps réel : détection du type, transcription, analyse Claude, application des AUs.",
+              "En cas de mots douteux (police difficile), Claude signale automatiquement les ambiguïtés dans les alertes pédagogiques.",
+            ],
+          },
+          {
+            title: "4. Récupérer le document adapté",
+            items: [
+              "Prévisualisez le résultat structuré : blocs consignes, listes, exercices, espaces de réponse.",
+              "Téléchargez le fichier DOCX — prêt à imprimer ou à partager avec les élèves.",
+              "Consultez les alertes pédagogiques : AUs appliqués, mots-clés pour pictogrammes Arasaac, cohérence phonologique vérifiée.",
+              "Pour exporter en PDF : ouvrez le DOCX dans Word ou LibreOffice et imprimez en PDF.",
+            ],
+          },
+        ],
+        tip: "AccessDoc PLAI est particulièrement efficace pour les fiches d'exercices en polices cursives (Cursive Standard, Comfortaa Script) que les autres OCR ne lisent pas. Si la qualité du scan est insuffisante (image floue, éclairage mauvais), prenez la photo en lumière naturelle, document bien à plat.",
+      },
+    },
+  },
+  {
     id: 'adaptateur-aus',
     name: 'Adaptateur AUs',
     description: "Convertit automatiquement un document de cours (DOCX, PDF) selon les Aménagements Universels FWB : typographie, consignes, pictogrammes Arasaac, adaptations DYS/TDAH/FALC/FLE.",
