@@ -1497,7 +1497,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix à partir d'un script texte. Idéal pour les cours de langues (NL, FR, DE) — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix à partir d'un script texte. Idéal pour les cours de langues (NL, FR, DE, EN) — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
@@ -1535,7 +1535,7 @@ const apps: AppItem[] = [
           {
             title: "1. Paramétrer le dialogue",
             items: [
-              "Sélectionnez la langue cible (néerlandais NL/BE, français, allemand, néerlandais NL).",
+              "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, allemand, anglais (UK).",
               "Configurez 2 à 4 locuteurs et assignez une voix à chacun (voix masculines et féminines disponibles).",
               "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
             ],
