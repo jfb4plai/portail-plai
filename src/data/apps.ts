@@ -1506,19 +1506,27 @@ const apps: AppItem[] = [
     devBanner: true,
     guide: {
       scientific: {
-        summary: "Les supports audio authentiques et la répétition de dialogues oraux améliorent la compréhension en langue étrangère. La synthèse vocale de qualité facilite l'accès aux contenus pour les élèves DYS. L'écoute active avec stratégies métacognitives explicites renforce durablement la compréhension orale.",
+        summary: "L'exposition répétée à des dialogues audio authentiques est un levier central de l'acquisition en langue vivante étrangère : familiarisation phonologique, ancrage lexical, réduction des obstacles prosodiques. Cinq axes documentés dans le corpus RISS (522 627 articles scientifiques francophones).",
         references: [
           {
-            citation: "Surcouf & Ausoni (2021) — corpus RISS hal-04784872",
-            content: "Retrace l'évolution des supports audio pour la compréhension du français oral en FLE, du phonographe aux corpus numériques — légitime l'usage de dialogues synthétiques pédagogiques.",
+            citation: "Évrard, J. (2017) — corpus RISS dumas-01760327",
+            content: "L'écoute orientée vers la production (listening-as-acquisition) favorise l'ancrage lexical et phonologique, distinctement de la simple écoute-compréhension — fonde l'usage de dialogues audio à réécouter.",
           },
           {
-            citation: "Allen, Lafontaine & Plessis-Bélair (2016) — corpus RISS W2524754577",
-            content: "Identifie les stratégies métacognitives mobilisées en compréhension orale — fonde l'importance d'enseigner explicitement l'écoute active autour de dialogues structurés.",
+            citation: "Bazelaire, E. (2012) — corpus RISS dumas-00765301",
+            content: "Exposer l'oreille à des sonorités et rythmes nouveaux est une priorité de l'enseignement des LVE, notamment au primaire — légitime la répétition de dialogues audio à voix distinctes.",
           },
           {
-            citation: "Cheynet (2017) — corpus RISS dumas-01804837",
-            content: "Montre que la synthèse vocale développe les compétences phonologiques et l'engagement — pertinent pour l'usage du TTS multi-voix, notamment pour les élèves DYS.",
+            citation: "Forest, D. & Gruson, B. (2011) — corpus RISS hal-04050423",
+            content: "Les activités de pré-écoute et post-écoute autour d'un document sonore structurent les transactions didactiques en classe de langue — cadre directement applicable aux dialogues générés.",
+          },
+          {
+            citation: "Bidenti, G. (2024) — corpus RISS dumas-04828505",
+            content: "Les obstacles prosodiques (rythme, intonation) freinent la compréhension orale en L2 ; l'entraînement répété à l'écoute de dialogues structurés permet de les réduire progressivement.",
+          },
+          {
+            citation: "Jouannaud, M.-P. (2021) — corpus RISS tel-03235381",
+            content: "Une exposition sonore structurée et répétée améliore l'acquisition du lexique en L2 — valide l'usage de dialogues audio différenciés par niveau et par locuteur.",
           },
         ],
       },
