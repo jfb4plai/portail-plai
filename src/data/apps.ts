@@ -1543,7 +1543,7 @@ const apps: AppItem[] = [
           {
             title: "2. Écrire le script",
             items: [
-              'Rédigez le dialogue en utilisant le format : "A: texte" puis "B: texte" (une réplique par ligne).',
+              'Chaque ligne DOIT commencer par une lettre majuscule et deux-points : "A: texte", "B: texte". Les lignes sans ce préfixe sont ignorées. Pour un monologue, utilisez uniquement "A:" sur chaque ligne.',
               "Le prévisualiseur coloré affiche le texte par locuteur en temps réel.",
               "Un estimateur indique la durée approximative du dialogue généré.",
             ],
