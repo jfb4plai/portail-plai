@@ -1494,6 +1494,66 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'dialogue-audio',
+    name: 'Dialogue Audio',
+    description: "Génère des dialogues audio multivoix à partir d'un script texte. Idéal pour les cours de langues (NL, FR, DE) — QR code imprimable intégré.",
+    url: 'https://dialogue-audio-plai.vercel.app',
+    emoji: '🎙️',
+    category: 'Langues',
+    status: 'disponible',
+    color: 'teal',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary: "Les supports audio authentiques et la répétition de dialogues oraux améliorent la compréhension en langue étrangère. La synthèse vocale de qualité facilite l'accès aux contenus pour les élèves DYS. L'écoute active avec stratégies métacognitives explicites renforce durablement la compréhension orale.",
+        references: [
+          {
+            citation: "Surcouf & Ausoni (2021) — corpus RISS hal-04784872",
+            content: "Retrace l'évolution des supports audio pour la compréhension du français oral en FLE, du phonographe aux corpus numériques — légitime l'usage de dialogues synthétiques pédagogiques.",
+          },
+          {
+            citation: "Allen, Lafontaine & Plessis-Bélair (2016) — corpus RISS W2524754577",
+            content: "Identifie les stratégies métacognitives mobilisées en compréhension orale — fonde l'importance d'enseigner explicitement l'écoute active autour de dialogues structurés.",
+          },
+          {
+            citation: "Cheynet (2017) — corpus RISS dumas-01804837",
+            content: "Montre que la synthèse vocale développe les compétences phonologiques et l'engagement — pertinent pour l'usage du TTS multi-voix, notamment pour les élèves DYS.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Paramétrer le dialogue",
+            items: [
+              "Sélectionnez la langue cible (néerlandais NL/BE, français, allemand, néerlandais NL).",
+              "Configurez 2 à 4 locuteurs et assignez une voix à chacun (voix masculines et féminines disponibles).",
+              "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
+            ],
+          },
+          {
+            title: "2. Écrire le script",
+            items: [
+              'Rédigez le dialogue en utilisant le format : "A: texte" puis "B: texte" (une réplique par ligne).',
+              "Le prévisualiseur coloré affiche le texte par locuteur en temps réel.",
+              "Un estimateur indique la durée approximative du dialogue généré.",
+            ],
+          },
+          {
+            title: "3. Générer et distribuer",
+            items: [
+              "Cliquez \"Générer le dialogue audio\" (30–60 secondes au premier lancement, modèles à charger).",
+              "Écoutez le dialogue via le lecteur intégré et téléchargez le MP3 si nécessaire.",
+              "Imprimez ou intégrez le QR code (600×600 px, haute correction d'erreur) sur vos fiches papier.",
+              "Les élèves scannent le QR code avec leur smartphone pour écouter le dialogue directement.",
+            ],
+          },
+        ],
+        tip: "Réserve d'usage : l'outil est en développement actif. Les voix Piper TTS sont open source (licence MIT) et hébergées sur Hugging Face — le premier chargement peut prendre jusqu'à 2 minutes. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
+      },
+    },
+  },
 ];
 
 export default apps;
