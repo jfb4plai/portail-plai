@@ -1,6 +1,6 @@
 // ===== Portail =====
 
-export type AppStatus = 'disponible' | 'bientôt';
+export type AppStatus = 'disponible' | 'bientôt' | 'en-développement';
 export type AppSection = 'applications' | 'sensibilisation';
 
 export type Reference = { citation: string; content: string };

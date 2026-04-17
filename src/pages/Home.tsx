@@ -117,42 +117,29 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
 function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => void }) {
   const c = colorMap[app.color];
   const available = app.status === 'disponible';
+  const inDev = app.status === 'en-développement';
 
-  const btnCls = `flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${!available ? 'pointer-events-none' : ''}`;
+  const btnCls = `flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${(!available && !inDev) ? 'pointer-events-none' : ''}`;
 
   const openButton = (
     <a
-      href={available ? app.url : undefined}
-      target={available ? '_blank' : undefined}
+      href={(available || inDev) ? app.url : undefined}
+      target={(available || inDev) ? '_blank' : undefined}
       rel="noopener noreferrer"
       className={btnCls}
     >
-      {available ? 'Ouvrir →' : 'Bientôt disponible'}
+      {available || inDev ? 'Ouvrir →' : 'Bientôt disponible'}
     </a>
   );
 
   return (
-    <div
-      className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} p-6 shadow-sm transition hover:shadow-md`}
-      style={{ position: 'relative', overflow: 'hidden' }}
-    >
-      {/* Bandeau "En développement" — styles inline pour fiabilité cross-build */}
+    <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden`}>
       {app.devBanner && (
-        <div
-          className="bg-amber-400 text-amber-900 font-bold tracking-wide shadow-sm"
-          style={{
-            position: 'absolute',
-            top: '14px',
-            right: '-28px',
-            transform: 'rotate(45deg)',
-            fontSize: '9px',
-            padding: '2px 36px',
-            pointerEvents: 'none',
-          }}
-        >
-          EN DÉVELOPPEMENT
+        <div className="w-full bg-amber-400 text-amber-900 text-xs font-bold text-center py-1 tracking-wide">
+          🚧 En développement
         </div>
       )}
+      <div className="flex flex-col flex-1 p-6">
       <div className="flex items-start justify-between mb-3">
         <span className="text-4xl">{app.emoji}</span>
         {app.category && (
@@ -182,6 +169,7 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
           </button>
         )}
       </div>
+      </div>
     </div>
   );
 }
@@ -191,7 +179,7 @@ export default function Home() {
 
   const appItems   = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems = apps.filter(a => a.section === 'sensibilisation');
-  const available  = appItems.filter(a => a.status === 'disponible');
+  const available  = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
   const coming     = appItems.filter(a => a.status === 'bientôt');
 
   return (

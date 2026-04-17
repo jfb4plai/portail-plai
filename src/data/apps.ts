@@ -1165,6 +1165,7 @@ const apps: AppItem[] = [
     emoji: '🧮',
     category: 'Manipulables mathématiques',
     status: 'disponible',
+    devBanner: true,
     color: 'blue',
     section: 'applications',
     guide: {
