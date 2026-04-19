@@ -1498,7 +1498,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix à partir d'un script texte. Idéal pour les cours de langues (NL, FR, DE, EN) — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix à partir d'un script ou via l'assistant IA contextuel. Idéal pour les cours de langues (NL, FR, DE, EN) — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
