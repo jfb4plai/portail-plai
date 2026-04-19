@@ -1507,7 +1507,7 @@ const apps: AppItem[] = [
     devBanner: true,
     guide: {
       scientific: {
-        summary: "L'exposition répétée à des dialogues audio authentiques est un levier central de l'acquisition en langue vivante étrangère : familiarisation phonologique, ancrage lexical, réduction des obstacles prosodiques. Cinq axes documentés dans le corpus RISS (522 627 articles scientifiques francophones).",
+        summary: "Deux axes scientifiques fondent l'usage de cet outil : l'efficacité des dialogues audio pour l'acquisition en langue vivante étrangère, et l'importance de contextualiser l'apprentissage dans le domaine professionnel de l'élève pour lui donner du sens et renforcer sa motivation. Dix références vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
         references: [
           {
             citation: "Évrard, J. (2017) — corpus RISS dumas-01760327",
@@ -1515,7 +1515,7 @@ const apps: AppItem[] = [
           },
           {
             citation: "Bazelaire, E. (2012) — corpus RISS dumas-00765301",
-            content: "Exposer l'oreille à des sonorités et rythmes nouveaux est une priorité de l'enseignement des LVE, notamment au primaire — légitime la répétition de dialogues audio à voix distinctes.",
+            content: "Exposer l'oreille à des sonorités et rythmes nouveaux est une priorité de l'enseignement des LVE — légitime la répétition de dialogues audio à voix distinctes.",
           },
           {
             citation: "Forest, D. & Gruson, B. (2011) — corpus RISS hal-04050423",
@@ -1528,6 +1528,26 @@ const apps: AppItem[] = [
           {
             citation: "Jouannaud, M.-P. (2021) — corpus RISS tel-03235381",
             content: "Une exposition sonore structurée et répétée améliore l'acquisition du lexique en L2 — valide l'usage de dialogues audio différenciés par niveau et par locuteur.",
+          },
+          {
+            citation: "Payet, A. (2022) — corpus RISS dumas-03984644",
+            content: "Utiliser la contextualisation couplée à la perspective actionnelle en lycée professionnel est un moyen efficient de mobiliser les apprenants — valide l'ancrage des dialogues dans la filière métier (cuisine, coiffure, service…).",
+          },
+          {
+            citation: "Sowa, M. (2022) — corpus RISS W4225401879",
+            content: "L'ancrage dans le domaine professionnel réel rend le curriculum plus opérationnel et l'apprentissage plus signifiant pour l'élève de l'enseignement secondaire professionnel.",
+          },
+          {
+            citation: "Desaivres, T. & Davoli, G. (2025) — corpus RISS dumas-05216415",
+            content: "L'intérêt attribué par l'élève à une tâche et son ancrage situationnel sont des leviers directs de motivation intrinsèque en langue étrangère — justifie les dialogues situés dans un contexte professionnel familier.",
+          },
+          {
+            citation: "Eucat, L., Khadraoui, S. & Dahman, K. (2023) — corpus RISS dumas-04676095",
+            content: "La dimension concrète et contextualisée des productions est un levier de motivation spécifique aux élèves de lycée professionnel — renforce l'effet du dialogue ancré dans le métier de l'élève.",
+          },
+          {
+            citation: "Leglinel Conti, G. (2021) — corpus RISS dumas-03699714",
+            content: "Intégrer la dimension professionnelle dans un cours de langue étrangère a un effet positif sur l'engagement et la valorisation des compétences — fonde l'usage du générateur de scripts par filière et par métier.",
           },
         ],
       },
