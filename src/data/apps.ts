@@ -4,7 +4,7 @@ const apps: AppItem[] = [
   {
     id: 'planbot',
     name: 'PlanBot',
-    description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail. Pour logopèdes et enseignants FWB. 6 niveaux progressifs.",
+    description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail, métacognition. Pour logopèdes et enseignants FWB. 6 niveaux progressifs, 9 paramètres cliniques.",
     url: 'https://planbot-plai.vercel.app',
     emoji: '🤖',
     category: 'Fonctions exécutives',
@@ -14,30 +14,54 @@ const apps: AppItem[] = [
     guide: {
       scientific: {
         summary:
-          "PlanBot repose sur les modèles neurocognitifs des fonctions exécutives (FE) : la planification, l'inhibition, la mémoire de travail et la flexibilité cognitive. Ces capacités, localisées dans le cortex préfrontal, sont au cœur des apprentissages scolaires et des interactions sociales. Le jeu combine deux paradigmes validés : la résolution de labyrinthe planifiée (FE de planification) et le paradigme Go/No-Go adapté au feu tricolore (FE d'inhibition).",
+          "PlanBot repose sur les modèles neurocognitifs des fonctions exécutives (FE) : planification, inhibition, mémoire de travail et flexibilité cognitive. Le jeu combine deux paradigmes validés — résolution de labyrinthe planifiée (FE de planification) et paradigme Go/No-Go adapté au feu tricolore (FE d'inhibition) — et intègre des outils de suivi clinique : détection des persévérations, estimation de confiance (métacognition), verbalisation de séquence et mode exécution directe (impulsivité motrice).",
         references: [
           {
-            citation: 'Diamond, A. (2013). Executive Functions. Annual Review of Psychology, 64, 135–168.',
+            citation: 'Diamond, A. (2013). Executive Functions. Annual Review of Psychology, 64, 135–168. [réel, hors corpus RISS]',
             content:
-              "Les fonctions exécutives comprennent l'inhibition (contrôle inhibiteur et inhibition des interférences), la mémoire de travail et la flexibilité cognitive. Ces trois composantes de base, et celles qui en dérivent (raisonnement, planification, résolution de problèmes), sont toutes indispensables à la santé mentale et physique, à la réussite scolaire et professionnelle, et au développement personnel et social.",
+              "Les fonctions exécutives comprennent l'inhibition, la mémoire de travail et la flexibilité cognitive. Ces trois composantes, et celles qui en dérivent (planification, résolution de problèmes), sont indispensables à la réussite scolaire et au développement personnel.",
           },
           {
             citation:
-              'Abou Assi, K. (2022). Implication des fonctions exécutives dans les activités de codage et de robotique : un effet de réciprocité ? Thèse de doctorat, Université de Rouen Normandie. [RISS : tel-04717319]',
+              'Abou Assi, K. (2022). Implication des fonctions exécutives dans les activités de codage et de robotique : un effet de réciprocité ? Thèse, Université de Rouen Normandie. [RISS : tel-04717319]',
             content:
-              "Les activités de codage et de robotique mobilisent de façon intensive les fonctions exécutives (planification séquentielle, inhibition des erreurs de déplacement, mise à jour en mémoire de travail). Les résultats suggèrent un effet de réciprocité : l'entraînement par ces activités améliore en retour les performances exécutives mesurées.",
+              "Les activités de codage et de robotique mobilisent intensément les FE (planification séquentielle, inhibition des erreurs, mise à jour en MDT). L'entraînement par ces activités améliore en retour les performances exécutives mesurées.",
           },
           {
             citation:
-              "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience : une approche multi-niveaux et développementale. Thèse de doctorat, Université Paris Cité. [RISS : tel-04496182]",
+              "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience. Thèse, Université Paris Cité. [RISS : tel-04496182]",
             content:
-              "Un entraînement ciblé du contrôle inhibiteur — composante centrale des fonctions exécutives — produit des effets mesurables sur les performances exécutives. Les paradigmes de réponse temporisée (type feu tricolore) constituent des outils d'entraînement valides pour la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent.",
+              "Les paradigmes de réponse temporisée (type feu tricolore) constituent des outils valides pour la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent.",
           },
           {
             citation:
-              "CTREQ (2018). Continuum du développement des fonctions exécutives de la petite enfance à l'âge adulte. Projet Savoir. Québec : Centre de transfert pour la réussite éducative du Québec.",
+              "Moreno Torres, M. (2014). La relation gestes-parole dans la planification de la résolution du problème de la Tour de Hanoï. Thèse, Université de Grenoble. [RISS : tel-01259986]",
             content:
-              "Les fonctions exécutives se développent de la naissance jusqu'à la mi-vingtaine et sont fortement influencées par l'environnement et les expériences. Des interventions ciblées, notamment par le jeu structuré et les activités de planification, peuvent soutenir et accélérer ce développement, en particulier chez les enfants présentant des difficultés d'apprentissage.",
+              "La Tour de Hanoï est le paradigme classique de planification optimale par séquences — même structure cognitive que PlanBot (trouver le chemin le plus court). L'indicateur de chemin optimal (+2 pts bonus) s'ancre dans ce paradigme.",
+          },
+          {
+            citation:
+              "de Lepineau, J. (2018). Étude de l'hypothèse d'une fatigabilité cognitive excessive comme substrat de l'impulsivité chez les adultes avec TDAH. Mémoire, Université de Bordeaux. [RISS : dumas-02180844]",
+            content:
+              "La persévération — persistance dans un schéma cognitif erroné — est associée au déficit d'inhibition dans le TDAH. PlanBot détecte automatiquement les séquences en échec répétées et les signale au thérapeute via un compteur.",
+          },
+          {
+            citation:
+              "Allix, P., Lubin, A., Lanoë, C., & Rossi, S. (2023). Connais-toi toi-même : une perspective globale de la métacognition. Psychologie Française. [RISS : hal-04457436]",
+            content:
+              "Les jugements d'estimation de confiance ('est-ce que je suis sûr de ma réponse ?') constituent un indicateur fiable du monitoring métacognitif. PlanBot sollicite ce jugement après chaque planification, avant l'exécution.",
+          },
+          {
+            citation:
+              "Carre, E., & de Casas, C. (2013). La verbalisation des procédures favorise-t-elle l'autorégulation des élèves ? Mémoire ESPE. [RISS : dumas-00905984]",
+            content:
+              "Verbaliser une procédure améliore l'autorégulation — ce qui est exactement la logique du mode verbalisation dans PlanBot : nommer à voix haute le chemin planifié avant de valider.",
+          },
+          {
+            citation:
+              "Brouilliard Rouseau, L. (2017). Joindre le geste… Intérêt de la psychomotricité dans la prise en charge des troubles des fonctions exécutives. Mémoire, Université de Bordeaux. [RISS : dumas-01592161]",
+            content:
+              "Faire verbaliser avant de se lancer réduit l'impulsivité motrice et cognitive. PlanBot distingue un mode planification préalable d'un mode exécution directe (⚡) permettant d'observer et de travailler l'impulsivité chez l'enfant.",
           },
         ],
       },
@@ -46,19 +70,36 @@ const apps: AppItem[] = [
           {
             title: 'Configurer la session',
             items: [
-              'Entrer le prénom du joueur.',
+              "Entrer le prénom du joueur et choisir le groupe d'âge (6 ans / 7–10 ans / 11–13 ans).",
               'Choisir le niveau de départ (1 = planification seule, 6 = toutes FE combinées).',
-              "Ouvrir « Réglages thérapeute » pour ajuster le feu tricolore et les répétitions autorisées.",
+              "Ouvrir « Réglages thérapeute » pour personnaliser :",
+              "→ Feu tricolore : mode (off / fixe / aléatoire), tempo (lent/moyen/rapide), durée orange.",
+              "→ Timer de planification : pression temporelle fixe ou aléatoire pour travailler l'impulsivité.",
+              "→ Masquage temporel : la grille se cache après X secondes (entraînement de la MDT).",
+              "→ Direction désactivée : une flèche inaccessible (contrainte de flexibilité).",
+              "→ Verbalisation : bannière rappelant de lire le chemin à voix haute avant de valider.",
+              "→ Mode exécution directe ⚡ : le robot se déplace case par case sans planification préalable.",
             ],
           },
           {
             title: 'Phase 1 — Planifier le chemin',
             items: [
               "Le robot 🤖 doit rejoindre l'étoile ⭐ en évitant les murs 🧱.",
-              'Construire une séquence de commandes (↑ ↓ ← →) en utilisant les boutons directionnels.',
-              "Aux niveaux 3–4 : ramasser la ou les clés 🔑 avant l'étoile.",
-              'Au niveau 5 : le modificateur 🔀 inverse gauche et droite après passage.',
-              "Cliquer « Valider » pour vérifier le chemin. En cas d'erreur, un indice oriente la révision.",
+              'Construire une séquence de commandes (↑ ↓ ← →) avec les boutons directionnels.',
+              "Aux niveaux 3–4 : ramasser la ou les clés 🔑 dans l'ordre avant l'étoile.",
+              'Au niveau 5+ : le modificateur 🔀 inverse gauche et droite après passage.',
+              "Cliquer « Valider » pour vérifier le chemin. Un indice oriente la révision en cas d'erreur.",
+              "Badge ⭐ Optimal visible : si la séquence atteint l'étoile avec le minimum de commandes → +2 pts bonus.",
+              "Badge 🔁 Persévération : PlanBot détecte et compte les séquences en échec identiques soumises plusieurs fois.",
+              "En mode exécution directe ⚡ : chaque bouton déplace immédiatement le robot — pas de séquence à construire.",
+            ],
+          },
+          {
+            title: 'Estimation de confiance (métacognition)',
+            items: [
+              "Après validation réussie, l'enfant évalue sa confiance : 😟 / 😐 / 🙂 / 💪.",
+              "Cette étape sollicite le monitoring métacognitif : 'Est-ce que je suis sûr que mon chemin va fonctionner ?'",
+              "Le rating est sauvegardé et consultable dans le tableau de bord.",
             ],
           },
           {
@@ -67,19 +108,20 @@ const apps: AppItem[] = [
               "La séquence validée s'exécute commande par commande.",
               'Attendre le feu vert 🟢, puis appuyer sur le bouton pour avancer le robot.',
               'Appuyer trop tôt (rouge/orange) ou trop tard (fenêtre expirée) coûte 1 point.',
-              "En mode « Désactivé », le feu est absent : appuyer librement pour avancer.",
+              "Tempo configurable : lent (3–5 s de vert), moyen (2–3 s), rapide (1–2 s) — durées aléatoires dans chaque plage pour rendre le rythme imprévisible.",
+              "En mode « Désactivé », le feu est absent : appuyer librement.",
             ],
           },
           {
             title: 'Tableau de bord',
             items: [
               "Accessible via le bouton 📊 depuis l'écran de profil.",
-              "Consulter l'historique par joueur : score, essais de planification, précision au feu.",
+              "Historique par joueur : score, essais de planification, persévérations, confiance, précision au feu tricolore.",
               'Ajouter ou modifier une note clinique directement dans le tableau.',
             ],
           },
         ],
-        tip: "Pour débuter, utiliser le niveau 1 sans feu tricolore. Introduire le feu (mode Fixe, 4–5 s) au niveau 2 lorsque la planification est stabilisée.",
+        tip: "Débuter niveau 1, feu désactivé, aucune contrainte. Introduire le timer de planification (30 s fixe) au niveau 2 pour observer l'impulsivité. Activer la verbalisation dès qu'une persévération est détectée. Utiliser le mode exécution directe ⚡ en séance initiale pour évaluer le profil spontané de l'enfant.",
       },
     },
   },
