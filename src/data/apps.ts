@@ -108,7 +108,7 @@ const apps: AppItem[] = [
               "La séquence validée s'exécute commande par commande.",
               'Attendre le feu vert 🟢, puis appuyer sur le bouton pour avancer le robot.',
               'Appuyer trop tôt (rouge/orange) ou trop tard (fenêtre expirée) coûte 1 point.',
-              "Tempo configurable : lent (3–5 s de vert), moyen (2–3 s), rapide (1–2 s) — durées aléatoires dans chaque plage pour rendre le rythme imprévisible.",
+              "Tempo configurable : lent (3–5 s de vert), moyen (2–3 s), rapide (1–2 s) — durées tirées aléatoirement pour chaque déplacement afin de rendre le rythme imprévisible.",
               "En mode « Désactivé », le feu est absent : appuyer librement.",
             ],
           },
