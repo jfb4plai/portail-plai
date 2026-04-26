@@ -1608,7 +1608,7 @@ const apps: AppItem[] = [
             items: [
               "💬 Mode Dialogue : échange entre 2 à 4 locuteurs (A, B, C, D) ou monologue (A seul). Idéal pour exercices de compréhension orale en classe.",
               "🎙️ Mode Podcast : conversation entre une animateur/trice (A) et un·e expert·e (B) — script jusqu'à 80 répliques (~9 min audio). Vous pouvez fournir un article ou texte source comme base de contenu.",
-              "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, allemand, anglais (UK).",
+              "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol.",
               "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
             ],
           },
