@@ -1540,7 +1540,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix ou des podcasts (animateur/trice + expert·e) via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) ou monologues via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
@@ -1549,7 +1549,7 @@ const apps: AppItem[] = [
     devBanner: true,
     guide: {
       scientific: {
-        summary: "Trois axes scientifiques fondent l'usage de cet outil : l'efficacité des dialogues audio pour l'acquisition en LVE, l'apport du podcast comme support d'écoute authentique et motivant, et l'importance de contextualiser l'apprentissage dans le domaine professionnel de l'élève. Douze références vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
+        summary: "Deux axes scientifiques fondent l'usage de cet outil : l'efficacité des dialogues audio pour l'acquisition en LVE, et l'importance de contextualiser l'apprentissage dans le domaine professionnel de l'élève. Dix références vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
         references: [
           {
             citation: "Évrard, J. (2017) — corpus RISS dumas-01760327",
@@ -1591,24 +1591,15 @@ const apps: AppItem[] = [
             citation: "Leglinel Conti, G. (2021) — corpus RISS dumas-03699714",
             content: "Intégrer la dimension professionnelle dans un cours de langue étrangère a un effet positif sur l'engagement et la valorisation des compétences — fonde l'usage du générateur de scripts par filière et par métier.",
           },
-          {
-            citation: "Yessad, S. (2024) — corpus RISS dumas-04849605",
-            content: "Le podcast constitue un support culturel authentique qui développe les compétences de communication orale en FLE — valide l'usage du mode Podcast pour exposer les élèves à des échanges naturels dans la langue cible.",
-          },
-          {
-            citation: "Arent, M.-C. (2017) — corpus RISS dumas-01804306",
-            content: "La baladodiffusion audio (podcast) couplée à des stratégies métacognitives d'écoute améliore significativement les compétences orales en L2 — fonde l'usage de podcasts générés comme support d'écoute structurée.",
-          },
         ],
       },
       howto: {
         steps: [
           {
-            title: "1. Choisir le mode",
+            title: "1. Choisir la langue et les locuteurs",
             items: [
-              "💬 Mode Dialogue : échange entre 2 à 4 locuteurs (A, B, C, D) ou monologue (A seul). Idéal pour exercices de compréhension orale en classe.",
-              "🎙️ Mode Podcast : conversation entre une animateur/trice (A) et un·e expert·e (B) — script jusqu'à 80 répliques (~9 min audio). Vous pouvez fournir un article ou texte source comme base de contenu.",
               "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol.",
+              "Choisissez 2 à 4 locuteurs (A, B, C, D) pour un dialogue, ou A seul pour un monologue.",
               "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
             ],
           },
@@ -1624,8 +1615,7 @@ const apps: AppItem[] = [
           {
             title: "3. Générer et distribuer",
             items: [
-              "Mode Dialogue : cliquez \"Générer le dialogue audio\" (30–60 secondes au premier lancement). ⚠ Max ~60 répliques via ce mode.",
-              "Mode Podcast : cliquez \"Générer le podcast audio\" — connexion directe au serveur TTS, pas de limite de temps Vercel. Comptez 1 à 3 minutes pour un podcast de 8-12 min.",
+              "Cliquez \"Générer le dialogue audio\" (30–60 secondes au premier lancement). ⚠ Max ~60 répliques par génération.",
               "Écoutez via le lecteur intégré, téléchargez le MP3, copiez le lien.",
               "Imprimez ou intégrez le QR code (600×600 px) sur vos fiches papier. L'audio est disponible ~10 minutes après génération (délai Internet Archive).",
               "Les élèves scannent le QR code avec leur smartphone pour écouter directement.",
