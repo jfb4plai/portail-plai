@@ -1648,6 +1648,17 @@ const apps: AppItem[] = [
     color: 'orange',
     section: 'claude',
   },
+  {
+    id: 'claude-skills',
+    name: 'Claude Skills',
+    description: 'Mode d\'emploi pour activer et utiliser les Skills Claude : des commandes pédagogiques contextualisées pour le terrain PLAI (simplification, évaluation adaptée, FALC, quiz iPad...).',
+    url: '/guide-skills-claude-plai.html',
+    emoji: '⚡',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'claude',
+  },
 ];
 
 export default apps;

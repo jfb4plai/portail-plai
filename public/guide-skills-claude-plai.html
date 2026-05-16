@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Claude — Guide PLAI · Pôle Liégeois d'Accompagnement vers une École Inclusive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 12px; font-weight: 500; padding: 5px 10px;
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--text2); transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); border: 1px solid var(--border2);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.1;
+    letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub {
+    font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* ── LEITMOTIV ── */
+  .leitmotiv {
+    background: var(--text);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .leitmotiv p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #e8e5de;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .leitmotiv p strong { color: #ffffff; }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── SECTION TITLES ── */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem;
+  }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUTS ── */
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* ── EXEMPLES / PROMPTS ── */
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+  .ptag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  .pt-blue { background: var(--blue-bg); color: var(--blue); }
+  .pt-green { background: var(--green-bg); color: var(--green); }
+  .pt-amber { background: var(--amber-bg); color: var(--amber); }
+  .pt-purple { background: var(--purple-bg); color: var(--purple); }
+
+  /* ── CARDS GRID ── */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── SKILL BLOCKS ── */
+  .skill-block { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .skill-head { background: var(--surface2); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .skill-cmd { font-family: monospace; font-size: 14px; font-weight: 600; color: var(--purple); background: var(--purple-bg); padding: 2px 8px; border-radius: 4px; }
+  .skill-name { font-size: 14px; font-weight: 500; }
+  .skill-body { padding: 1rem 1.1rem; }
+  .skill-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 0.75rem; }
+  .skill-example { font-size: 13px; font-family: 'DM Serif Display', serif; color: var(--text); line-height: 1.6; background: var(--surface2); padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); }
+
+  /* ── COMPARE ── */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  /* ── ACCORDÉON ── */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head {
+    background: var(--surface); padding: 0.85rem 1rem;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+  .acc-body .section-h { font-size: 13px; margin-top: 0; }
+
+  /* ── PARTAGE ── */
+  .pole-block {
+    background: linear-gradient(135deg, var(--purple-bg) 0%, var(--blue-bg) 100%);
+    border: 1px solid var(--purple-mid);
+    border-radius: var(--radius);
+    padding: 1.5rem; margin: 1.5rem 0;
+  }
+  .pole-eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple); margin-bottom: 0.5rem; }
+  .pole-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 0.5rem; color: var(--text); }
+  .pole-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 1rem; }
+  .pole-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+  .pole-service { background: rgba(255,255,255,0.6); border-radius: var(--radius-sm); padding: 0.75rem; }
+  .pole-service-t { font-size: 12px; font-weight: 500; margin-bottom: 3px; }
+  .pole-service-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .pole-note { font-size: 12px; color: var(--text3); font-style: italic; }
+
+  /* ── RECAP ── */
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .recap-row { display: flex; align-items: flex-start; gap: 12px; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-pill { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 10px; white-space: nowrap; margin-top: 2px; }
+  .recap-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .recap-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── CHECKLIST ── */
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 34px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/"><img src="https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">Skills Claude · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#intro">Comprendre</a>
+    <a class="nav-link" href="#inventaire">Inventaire</a>
+    <a class="nav-link" href="#fondamental">Fondamental</a>
+    <a class="nav-link" href="#secondaire">Secondaire</a>
+    <a class="nav-link" href="#singularite">Singularité</a>
+    <a class="nav-link" href="#partage">Partage</a>
+    <a class="nav-link" href="#recap">Récap</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🎓 Guide enseignants · Écoles coopérantes du PLAI · Liège</div>
+    <h1>Claude qui te<br><em>ressemble vraiment</em></h1>
+    <p class="hero-sub">Les Skills : comment passer d'un assistant générique à un outil qui connaît ton école, tes élèves, ton style.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">Exemples</span><span class="stat-label">parmi les Skills</span></div>
+      <div><span class="stat-num">PLAI</span><span class="stat-label">Pôle Liégeois</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">ligne de code</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Si n'importe quel enseignant peut utiliser ta production IA telle quelle, c'est qu'elle ne te ressemble pas. Un outil qui produit la même chose pour tout le monde n'est pas un outil — c'est <strong>une moyenne</strong>. Et tu n'es pas la moyenne. »</p>
+  </div>
+
+  <div class="eyebrow">Avant de commencer</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">&#9889;</div><div class="card-t">Un skill, c'est quoi ?</div><div class="card-d">Un fichier d'instructions que tu actives en tapant <code>/son-nom</code>. Claude change de registre : il sait qui tu es, où tu enseignes, comment tu travailles.</div></div>
+    <div class="card"><div class="card-icon">&#127981;</div><div class="card-t">Prérequis</div><div class="card-d">Avoir un compte Claude (gratuit ou Pro). Les Skills sont disponibles dans l'app bureau ou sur claude.ai selon ta version.</div></div>
+    <div class="card"><div class="card-icon">&#128274;</div><div class="card-t">RGPD toujours</div><div class="card-d">Jamais de noms d'élèves, de matricules ou de résultats nominatifs dans Claude, même avec un Skill actif. Initiales ou cas anonymisés uniquement.</div></div>
+    <div class="card"><div class="card-icon">&#128260;</div><div class="card-t">Chat classique d'abord</div><div class="card-d">Les Skills s'utilisent dans une conversation normale. Tu tapes le nom du skill, tu décris ta tâche, Claude exécute avec le bon cadre.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── INTRO ── -->
+<section id="intro">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">&#128161; Comprendre</div>
+    <div class="guide-title">Ce que les Skills changent</div>
+    <div class="guide-subtitle">La différence entre Claude sans skill et Claude avec skill n'est pas une question de puissance. C'est une question de contexte.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 5 minutes à lire</span>
+      <span class="gmeta">&#128100; Tous niveaux</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Pourquoi Claude sans skill est décevant</div>
+    <div class="prose">
+      <p>Claude, sans configuration, répond à une instit de Molenbeek exactement comme à un prof de terminale à Paris. Il parle de « l'Éducation Nationale » quand tu travailles avec les socles de compétences FWB. Il te pond des séquences applicables dans n'importe quelle école francophone du monde — et donc vraiment adaptées à aucune.</p>
+      <p>Ce n'est pas un défaut de Claude. C'est sa nature : il est entraîné sur des millions de textes et répond avec la réponse la plus probable, la plus centrale. La moyenne statistique. Utile comme point de départ, insuffisant comme livrable final.</p>
+    </div>
+
+    <div class="compare">
+      <div class="c-bad">
+        <div class="c-label">Sans skill</div>
+        <div class="c-text">Plan de cours sur les sauces mères. Objectif : maîtriser les techniques de base. Séance 1 : Béchamel. Séance 2 : Velouté. Évaluation : QCM en fin de séquence.</div>
+      </div>
+      <div class="c-good">
+        <div class="c-label">Avec /procedure + contexte S4 IPES Tournai</div>
+        <div class="c-text">⚠️ 1. Vérifier que la plaque est froide avant de poser le beurre — risque de brûlure. 2. Faire fondre à feu moyen (pas vif). 3. Ajouter la farine d'un coup → mélanger 2 min sans arrêter. 4. Incorporer le lait froid en 3 fois — fouetter entre chaque ajout…</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Le test de la chaise vide</div>
+      <p>Avant d'utiliser une production IA, demande-toi : si je déposais ce document sur la chaise d'un collègue d'une autre école, en effaçant mon nom, pourrait-il l'utiliser tel quel ? Si oui, retourne dans Claude et active <code>/singularite-irreductible</code>.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comment activer un skill</div>
+    <div class="prose"><p>Une seule règle : tu tapes le nom du skill <strong>avant</strong> ta demande. Pas après, pas dans une deuxième message.</p></div>
+    <div class="ex-box">
+      <div class="ex-label">Syntaxe de base</div>
+      <div class="prompt"><span class="ptag pt-purple">Commande</span><br>/simplif-ecrit ce texte de cours sur la digestion pour une P5 avec deux élèves allophones</div>
+      <div class="prompt"><span class="ptag pt-purple">Commande</span><br>/bloom-socratique sur la notion de fractions, P4, élèves forts à l'oral mais faibles en inférence</div>
+      <div class="prompt"><span class="ptag pt-purple">Commande</span><br>/singularite-irreductible [colle le texte que Claude t'a généré]</div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">Erreur fréquente</div>
+      <p>Ne pas activer le skill puis corriger après coup. Le skill change la façon dont Claude interprète ta demande dès le départ — il ne peut pas réécrire une réponse déjà produite sans skill en la relisant avec le skill.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── INVENTAIRE ── -->
+<section id="inventaire">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">&#128218; Inventaire</div>
+    <div class="guide-title">Exemples de Skills en contexte PLAI</div>
+    <div class="guide-subtitle">Ces exemples illustrent ce que les Skills rendent possible. Leur déploiement progressif est en cours.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 5 minutes</span>
+      <span class="gmeta">&#127963; Contexte FWB intégré</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Skills pédagogiques quotidiens</div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/simplif-ecrit</span><span class="skill-name">Simplification de texte</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Réécrit un texte de cours technique en langage accessible pour des élèves en difficulté de lecture : dyslexie, allophones, faible niveau. Phrases courtes, une idée par phrase, mots techniques expliqués juste après. Calibré sur les métiers du secondaire FWB (boucherie, coiffure, cuisine, esthétique, soins à la personne) S3 à S7, mais fonctionne aussi en fondamental.</div>
+        <div class="skill-example">Usage : /simplif-ecrit [colle ton texte de cours]. Précise le niveau et le profil des élèves concernés pour un résultat ancré.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/eval-adaptee</span><span class="skill-name">Évaluation accessible</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme une évaluation existante en version accessible sans réduire les exigences du programme FWB. Adapte la forme — QCM, vrai/faux, associations, remise en ordre, amorces de réponse — sans alléger le fond. Respecte les compétences visées par les référentiels.</div>
+        <div class="skill-example">Usage : /eval-adaptee [colle ton évaluation]. Indique pour quel profil d'élève (dyslexique, TDAH, allophone…) et quel niveau.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/procedure</span><span class="skill-name">Fiche de procédure atelier</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme un cours ou un texte en fiche étapes numérotée : 1 action = 1 ligne. Ajoute automatiquement des marqueurs de sécurité ⚠️ pour chaque geste à risque. Format opérationnel pour l'atelier — lisible en 30 secondes debout devant un plan de travail.</div>
+        <div class="skill-example">Usage : /procedure [décris la technique ou colle le texte du cours]. Mentionne la section (cuisine, coiffure, boucherie…).</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/quiz-ipad</span><span class="skill-name">Quiz interactif iPad</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme n'importe quelle feuille d'exercices en webapp HTML interactive pour tablette. Glisser-déposer, QCM, textes à trous, vrai/faux, associations image-mot. Inclut un récapitulatif enseignant imprimable en fin de quiz : prénom, score, erreurs avec bonnes réponses.</div>
+        <div class="skill-example">Usage : /quiz-ipad [uploade la photo ou le PDF de ta feuille d'exercices]. Aucun code à écrire.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/bloom-socratique</span><span class="skill-name">So Bloom — Questions pédagogiques</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Conçoit des questions et activités pédagogiques qui combinent la taxonomie de Bloom révisée (6 niveaux cognitifs) et le questionnement socratique. Claude aide sans faire à la place des élèves. Évite que l'IA court-circuite le processus d'apprentissage en donnant les réponses directement.</div>
+        <div class="skill-example">Usage : /bloom-socratique sur [thème ou texte] pour [niveau et classe]. Précise les points forts et faibles de tes élèves.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/aristotle-inclusif</span><span class="skill-name">Aristo — Regard inclusif</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Déconstruit les hypothèses capacitistes sur les élèves en difficulté (TDAH, dyslexie, TSA, troubles DYS, décrochage). Part de ce que l'élève peut faire — ses capacités observables — pour reconstruire une approche pédagogique. Ne diagnostique pas ; propose des hypothèses à tester dans ton contexte.</div>
+        <div class="skill-example">Usage : /aristotle-inclusif [décris la situation de l'élève avec ses difficultés ET ce qu'il réussit]. Anonymise toujours.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/traduction-falc</span><span class="skill-name">FALC — Facile à lire</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Convertit des documents complexes en version FALC (Facile À Lire et à Comprendre) selon les normes officielles. Applique 31 règles et s'auto-évalue sur 47 critères. Pour élèves en situation de handicap cognitif, élèves en intégration, ou toute communication qui doit atteindre tous les publics.</div>
+        <div class="skill-example">Usage : /traduction-falc [colle le texte]. Précise le public cible.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Skills de style et de réflexion</div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/singularite-irreductible</span><span class="skill-name">Test de singularité</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Analyse un texte généré par IA sur 7 dimensions d'homogénéisation (lexicale, syntaxique, narrative, sémantique, culturelle, émotionnelle, métacognitive). Attribue un score de singularité 0-10 et identifie les passages qui « sonnent IA ». Propose des reformulations ancrées dans ton contexte réel.</div>
+        <div class="skill-example">Usage : /singularite-irreductible [colle le texte à analyser]. C'est le skill à activer quand quelque chose « sonne faux » dans une production Claude.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/style-jf</span><span class="skill-name">Style JF — Écriture directe</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Reproduit un style d'écriture professionnel FWB : économie syntaxique maximale, structuration visuelle forte, précision terminologique (PIA, réseaux, décret Missions, socles), impératif direct, zéro formule de politesse inutile. Pour emails à la direction, rapports, communications courtes.</div>
+        <div class="skill-example">Usage : /style-jf [décris ce que tu veux écrire]. Claude produit quelque chose de court, direct et reconnaissable.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/generation-ia</span><span class="skill-name">Élévation cognitive</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme une analyse IA standard en réponse de qualité supérieure : vocabulaire précis, penseurs de référence, modes d'interrogation inhabituels. Invoque-le quand tu veux aller au-delà du baratin IA ordinaire — pour une analyse de texte, un document pédagogique ambitieux, une réflexion conceptuelle.</div>
+        <div class="skill-example">Usage : /generation-ia [colle le texte ou décris le sujet]. Fonctionne bien en combinaison avec /singularite-irreductible.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/autre-regard</span><span class="skill-name">Perspective non-majoritaire</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Génère des perspectives non-conventionnelles sur n'importe quel sujet, opinion ou débat. Déconstruit le consensus discursif. Pour débloquer une discussion convenue, challenger des présupposés, préparer une argumentation originale, ou voir ses propres angles morts.</div>
+        <div class="skill-example">Usage : /autre-regard [décris le sujet ou colle le texte]. Utile en cours de philo, d'histoire, d'éducation aux médias.</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/prisme-pedago-critique</span><span class="skill-name">Jef — Analyse pédagogique critique</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Analyse des ressources sur l'IA et l'éducation avec le regard du « Colombo pédagogique wallon-bruxellois » : contextualise pour la FWB, synthèse actionnable, questionnement latéral avec les angles que personne ne formule en salle des profs.</div>
+        <div class="skill-example">Usage : /prisme-pedago-critique [colle l'article ou le rapport à analyser]. Déclenche quand un document sur l'IA et l'éducation mérite un regard critique ancré dans le terrain belge.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── FONDAMENTAL ── -->
+<section id="fondamental">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">&#127807; Fondamental</div>
+    <div class="guide-title">Skills en action<br>dans l'enseignement fondamental</div>
+    <div class="guide-subtitle">Des exemples ancrés dans des classes réelles — pas dans une école générique.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 15 minutes</span>
+      <span class="gmeta">&#127963; P1 à P6</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">P2 Liège — Questions de compréhension avec /bloom-socratique</div>
+    <div class="prose"><p>Tu viens de lire <em>Lili ne veut pas aller à l'école</em> avec ta P2. Tu veux des questions — mais pas celles que Claude invente en mode générique. Tu veux des questions calibrées sur le niveau cognitif réel de tes élèves, qui les poussent à construire leur réponse.</p></div>
+    <div class="ex-box">
+      <div class="ex-label">Ce que tu tapes dans Claude</div>
+      <div class="prompt"><span class="ptag pt-green">P2 — Liège</span><br>/bloom-socratique sur le livre "Lili ne veut pas aller à l'école" pour une P2 à Liège. Mes élèves ont du mal avec l'inférence mais sont forts à l'oral. Je veux 3 questions par niveau Bloom (mémoriser → créer), chaque question doit permettre une réponse développée, pas un oui/non.</div>
+    </div>
+    <div class="compare">
+      <div class="c-bad">
+        <div class="c-label">Sans skill</div>
+        <div class="c-text">Comment s'appelle la petite fille ? Pourquoi Lili ne veut-elle pas aller à l'école ? Qu'est-ce que tu ferais à la place de Lili ?</div>
+      </div>
+      <div class="c-good">
+        <div class="c-label">Avec skill — Niveau Analyser (Bloom 4)</div>
+        <div class="c-text">Lili dit qu'elle a mal au ventre le matin. Est-ce que tu penses que c'est vrai ? Comment le sais-tu ? Qu'est-ce qui te fait penser ça dans l'histoire ?</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">P4 — Feuille d'exercices en quiz iPad avec /quiz-ipad</div>
+    <div class="prose"><p>Tu as une feuille d'exercices photocopiée depuis 10 ans sur les accords sujet-verbe. Tes élèves la font sur papier, tu corriges à la main. Tu veux la même chose sur les iPads — sans rien programmer.</p></div>
+    <div class="ex-box">
+      <div class="ex-label">Ce que tu tapes dans Claude</div>
+      <div class="prompt"><span class="ptag pt-green">P4</span><br>/quiz-ipad [tu uploades la photo de ta feuille d'exercices sur les accords sujet-verbe]</div>
+    </div>
+    <div class="ok">
+      <div class="ok-label">Ce que tu obtiens</div>
+      <p>Une webapp HTML complète avec les exercices en glisser-déposer et vrai/faux, optimisée tactile. À la fin : fiche récapitulative avec le prénom de l'élève, son score, et les erreurs avec les bonnes réponses. Tu partages via AirDrop ou un lien Drive.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">P5 — Texte simplifié pour élève allophone avec /simplif-ecrit</div>
+    <div class="prose"><p>Tu as un élève arrivé du Maroc en novembre. Niveau de lecture équivalent P2 mais il est en P5. Tu veux le même contenu de cours sur le cycle de l'eau, en langage accessible — sans lui donner des fiches de maternelle.</p></div>
+    <div class="ex-box">
+      <div class="ex-label">Ce que tu tapes dans Claude</div>
+      <div class="prompt"><span class="ptag pt-green">P5 — allophone</span><br>/simplif-ecrit ce texte sur le cycle de l'eau [tu colles ton texte]. Pour un élève de P5 allophone, niveau de lecture P2. Garde les mots scientifiques — évaporation, précipitation — mais explique-les simplement juste après entre parenthèses.</div>
+    </div>
+    <div class="leitmotiv">
+      <p>Un texte simplifié <strong>pour tout allophone du monde francophone</strong> n'est pas le même qu'un texte simplifié pour un élève de Molenbeek qui comprend le néerlandais oral et a un vocabulaire de base en darija. Le skill te permet d'indiquer ce contexte précis.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">P3 Charleroi — Élève TDAH vu autrement avec /aristotle-inclusif</div>
+    <div class="prose"><p>Tu as un élève de P3 qui « ne peut pas rester assis plus de 3 minutes », « ne finit jamais rien » et « dérange tout le monde ». Tu as l'impression d'avoir tout essayé. Le skill repart des capacités observables — pas des déficits.</p></div>
+    <div class="ex-box">
+      <div class="ex-label">Ce que tu tapes dans Claude</div>
+      <div class="prompt"><span class="ptag pt-green">P3 — Charleroi</span><br>/aristotle-inclusif J'ai un élève de P3 à Charleroi, 8 ans, diagnostiqué TDAH sans médication. Il ne peut pas rester assis plus de 3 minutes, dérange ses voisins en cherchant un contact physique. Mais quand il bricole il se concentre 45 minutes d'affilée. J'ai l'impression d'avoir tout essayé.</div>
+    </div>
+    <div class="callout">
+      <div class="callout-label">Ce que le skill fait</div>
+      <p>Il repart des 45 minutes de concentration en bricolage pour reconstruire des hypothèses pédagogiques testables. Il ne diagnostique pas. Il ne donne pas une liste de recettes. Il te pose des questions pour ancrer la réponse dans ton contexte précis.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── SECONDAIRE ── -->
+<section id="secondaire">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">&#127963; Secondaire</div>
+    <div class="guide-title">Skills en action<br>dans l'enseignement secondaire</div>
+    <div class="guide-subtitle">Des exemples qui parlent des métiers FWB réels — cuisine, coiffure, français, sciences.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 15 minutes</span>
+      <span class="gmeta">&#127963; S1 à S7</span>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">&#127829;</div>
+      <div class="acc-info">
+        <div class="acc-title">S4 Cuisine Tournai — Fiche procédure brunoise</div>
+        <div class="acc-meta">/procedure · 5 min · Impression atelier</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose"><p>Tes élèves ont le texte théorique sur la brunoise. En atelier, ils ne savent pas quoi faire dans quel ordre. Tu veux une fiche lisible en 30 secondes debout.</p></div>
+      <div class="ex-box">
+        <div class="ex-label">Ce que tu tapes dans Claude</div>
+        <div class="prompt"><span class="ptag pt-amber">S4 Cuisine — IPES Tournai</span><br>/procedure Transforme ce texte sur la brunoise [tu colles] en fiche atelier pour S4 cuisine. Maximum 1 action par ligne. Ajoute un marqueur ⚠️ pour chaque geste avec couteau. Langage direct, pas de rédaction.</div>
+      </div>
+      <div class="ok">
+        <div class="ok-label">Résultat type</div>
+        <p>⚠️ 1. Lave-toi les mains — 30 sec eau+savon · 2. Prends planche + couteau éminceur · ⚠️ 3. Partie plate du légume vers le bas · 4. Tranches de 3 mm — régularité = qualité · ⚠️ 5. Bâtonnets de 3 mm en tenant fermement · 6. Tourne à 90° → dés 3×3×3 mm · 7. Vérifie l'homogénéité.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">&#9986;</div>
+      <div class="acc-info">
+        <div class="acc-title">S5 Coiffure — Évaluation adaptée pour élève dyslexique</div>
+        <div class="acc-meta">/eval-adaptee · 8 min · Aménagement raisonnable</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose"><p>Tu as une évaluation de 20 questions ouvertes sur la chimie des colorations. Une élève dyslexique peine avec les longues consignes. Tu veux la même éval, mêmes exigences, en format accessible.</p></div>
+      <div class="ex-box">
+        <div class="ex-label">Ce que tu tapes dans Claude</div>
+        <div class="prompt"><span class="ptag pt-blue">S5 Coiffure</span><br>/eval-adaptee Voici mon évaluation sur la chimie des colorations pour S5 coiffure [tu colles]. Adapte pour une élève dyslexique : questions courtes, amorces de réponse pour les questions complexes, transforme Q5, Q8 et Q14 en QCM. Garde le même niveau d'exigence que le référentiel FWB.</div>
+      </div>
+      <div class="callout">
+        <div class="callout-label">Aménagement raisonnable, pas simplification</div>
+        <p>Le skill connaît la nuance FWB : adapter la forme sans réduire le fond. Il ne transforme pas tes questions en questions de maternelle. Il change la structure, pas l'exigence.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">&#128218;</div>
+      <div class="acc-info">
+        <div class="acc-title">S6 Français Saint-Gilles — Intro de séquence qui sonne comme toi</div>
+        <div class="acc-meta">/singularite-irreductible · 5 min · Relecture critique</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose"><p>Tu as demandé à Claude de t'aider à rédiger l'intro de ta séquence sur Camus. Le résultat est correct. Mais ça ne sonne pas comme toi. Tu ne saurais pas dire pourquoi.</p></div>
+      <div class="ex-box">
+        <div class="ex-label">Ce que tu tapes dans Claude</div>
+        <div class="prompt"><span class="ptag pt-purple">S6 Français</span><br>/singularite-irreductible [tu colles le texte généré par Claude sur Camus]</div>
+      </div>
+      <div class="prose"><p>Claude analyse ton texte sur 7 dimensions et te donne un score. Il identifie les passages trop « IA » — formules passe-partout, structure prévisible, absence d'ancrage local — et propose des reformulations qui sonnent comme un prof de français bruxellois qui a vraiment lu Camus, pas comme « l'IA en général ».</p></div>
+      <div class="leitmotiv">
+        <p>Si ton introduction sur Camus pourrait être utilisée dans n'importe quel lycée francophone du monde, <strong>quelque chose ne va pas</strong>. Tes élèves de S6 à Saint-Gilles ont une réalité que le modèle statistique ne connaît pas.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">&#127757;</div>
+      <div class="acc-info">
+        <div class="acc-title">S3 — Document FALC pour élève en intégration</div>
+        <div class="acc-meta">/traduction-falc · 10 min · Norme officielle</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose"><p>Tu as un élève de S3 en intégration avec une déficience intellectuelle légère. Il doit participer au cours sur les droits de l'enfant. Tu veux une version accessible selon les normes officielles — pas un résumé approximatif.</p></div>
+      <div class="ex-box">
+        <div class="ex-label">Ce que tu tapes dans Claude</div>
+        <div class="prompt"><span class="ptag pt-blue">S3 — intégration</span><br>/traduction-falc [tu colles le texte sur les droits de l'enfant]. Pour un élève de S3 en situation de handicap cognitif léger, intégration partielle. Applique les normes FALC officielles et indique ton score d'auto-évaluation sur 47 critères.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">&#128140;</div>
+      <div class="acc-info">
+        <div class="acc-title">Tous niveaux — Email à la direction qui te ressemble</div>
+        <div class="acc-meta">/style-jf · 3 min · Communication directe</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose"><p>Tu dois écrire à ta direction pour demander un aménagement. Claude te génère un email poli, complet — et qui ressemble à n'importe quel email professionnel. Trop formel. Trop long.</p></div>
+      <div class="ex-box">
+        <div class="ex-label">Ce que tu tapes dans Claude</div>
+        <div class="prompt"><span class="ptag pt-purple">Tous niveaux</span><br>/style-jf Rédige un email à ma direction pour demander la grande salle de réunion les mercredis de 10h à 12h pour mon projet CLIL avec la 5GT. Mention : la coordinatrice pédagogique soutient le projet. Court, direct, sans formules de politesse inutiles.</div>
+      </div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">Sans skill</div>
+          <div class="c-text">Madame, Monsieur, Je me permets de vous contacter afin de soumettre à votre bienveillante attention une demande concernant la réservation d'une salle…</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">Avec /style-jf</div>
+          <div class="c-text">Objet : Réservation salle réunion — mercredis 10h-12h<br><br>Projet CLIL en cours avec la 5GT. Coordinatrice pédagogique au courant et favorable.<br><br>Besoin : grande salle, mercredis 10h-12h, dès le 12 novembre.<br><br>Possible ?<br><br>JF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── SINGULARITÉ ── -->
+<section id="singularite">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">&#9889; Le cœur du sujet</div>
+    <div class="guide-title">Pourquoi la singularité<br>est une question pédagogique</div>
+    <div class="guide-subtitle">Ce n'est pas une question d'ego. C'est une question d'efficacité pour tes élèves.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 5 minutes</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">La moyenne ne suffit pas</div>
+    <div class="prose">
+      <p>Claude est entraîné sur des centaines de millions de textes. Quand tu lui demandes quelque chose sans préciser ton contexte, il produit la réponse la plus probable pour quelqu'un comme toi. C'est-à-dire : la moyenne statistique d'un enseignant francophone.</p>
+      <p>La moyenne statistique d'un enseignant francophone, c'est utile. Ce n'est pas toi. Toi, tu enseignes à des élèves précis, dans une école précise, dans un contexte socio-économique précis, avec ta façon de construire la relation pédagogique. La moyenne ne sait pas ça.</p>
+    </div>
+
+    <div class="leitmotiv">
+      <p>Un outil qui produit la même chose pour tout le monde n'est pas un outil au service de l'enseignant — c'est un outil au service de la <strong>moyenne</strong>. Les Skills sont ta façon de sortir de la moyenne.</p>
+    </div>
+
+    <div class="section-h" style="margin-top:2rem">Le test pratique — 7 dimensions à vérifier</div>
+    <div class="prose"><p>Le skill <code>/singularite-irreductible</code> analyse tes productions sur 7 dimensions. Tu peux les vérifier toi-même à l'œil avant de l'activer :</p></div>
+
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div><div class="step-t">Lexical — Le vocabulaire est-il FWB ?</div><div class="step-d">Est-ce que le texte dit « l'Éducation Nationale » ou « la Fédération Wallonie-Bruxelles » ? Les « CAP » ou les « CQ » ? Les « collèges » ou les « lycées » ? Si le texte parle France, il n'est pas à toi.</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-t">Géographique — Est-ce qu'il y a une ville réelle ?</div><div class="step-d">Un texte qui parle de « une grande ville belge » au lieu de « Liège » ou « Molenbeek » est générique. La singularité passe par le particulier.</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-t">Élèves réels — Tes élèves sont-ils là ?</div><div class="step-d">Si le texte décrit « des élèves » sans profil, il ne parle pas à tes élèves. Tes 22 P3 dont 4 allophones et un TDAH sont différents de toutes les autres P3.</div></div></div>
+      <div class="step"><div class="step-n">4</div><div><div class="step-t">Ton — Est-ce que tu reconnais ta façon de parler ?</div><div class="step-d">Tu tutoies tes élèves ou tu les vouvoyez ? Tu es direct ou tu enveloppes ? Claude imite ton style si tu lui donnes des exemples — sans ça, il prend le registre moyen.</div></div></div>
+      <div class="step"><div class="step-n">5</div><div><div class="step-t">Structure — Est-ce que c'est prévisible ?</div><div class="step-d">Introduction-3 parties-conclusion. C'est la structure de 80% des textes IA. Si c'est la tienne aussi, c'est peut-être par hasard — pas parce que Claude a respecté ta façon d'organiser les idées.</div></div></div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-label">Le seuil à viser</div>
+      <p>Le skill /singularite-irreductible attribue un score de 0 à 10. En dessous de 7, le texte est trop générique pour être vraiment utile. Entre 7 et 9, il te ressemble. Au-dessus de 9, il est authentiquement singulier.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── PARTAGE ── -->
+<section id="partage">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">&#128101; Collaboration</div>
+    <div class="guide-title">Partager un skill<br>avec des collègues</div>
+    <div class="guide-subtitle">Un enseignant qui utilise Claude seul, c'est bien. Une section qui partage ses Skills, c'est dix fois plus puissant.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 5 minutes</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comment partager un skill</div>
+    <div class="prose"><p>Un skill est un fichier texte (extension <code>.md</code>). Le partager, c'est aussi simple qu'envoyer un document Word.</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div><div class="step-t">Exporte le fichier .md</div><div class="step-d">Dans ta configuration Claude → Skills → clique sur le skill → « Export ». Tu récupères un fichier texte sur ton ordinateur.</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-t">Partage-le comme n'importe quel fichier</div><div class="step-d">Email, Drive partagé, Smartschool, clé USB. Le fichier est lisible dans n'importe quel éditeur de texte — tu peux l'ouvrir et vérifier avant d'envoyer.</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-t">Le collègue l'importe dans sa configuration</div><div class="step-d">Claude → Personnalisation → « Importer un skill » → il sélectionne le fichier. Actif immédiatement.</div></div></div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">Avant de partager — vérifier le contenu</div>
+      <p>Si ton skill contient des éléments liés à des élèves (situations anonymisées mais reconnaissables, contexte d'établissement confidentiel), retire-les avant de partager. Partage la logique, pas les données. RGPD toujours.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">L'idée des Skills d'équipe</div>
+    <div class="prose">
+      <p>Dans un département ou une équipe pédagogique, il est possible de construire des Skills communs — par exemple un skill <code>/cours-sciences-S4</code> qui connaît la progression annuelle de l'équipe, les références communes, le vocabulaire de la section. Chaque prof l'active, mais reste libre d'y ajouter ses propres instructions.</p>
+    </div>
+
+    <div class="pole-block">
+      <div class="pole-eyebrow">👥 Ton Pôle — PLAI Liège</div>
+      <div class="pole-title">Collaborer avec le PLAI</div>
+      <div class="pole-desc">Avant de construire tes Skills depuis zéro, contacte le PLAI. Des conseillers pédagogiques liégeois ont déjà créé et testé des Skills pour les écoles coopérantes du Pôle. Tu n'es pas seul·e à défricher ce terrain.</div>
+      <div class="pole-services">
+        <div class="pole-service"><div class="pole-service-t">Skills partagés testés</div><div class="pole-service-d">Des Skills déjà validés sur le terrain belge, à récupérer directement.</div></div>
+        <div class="pole-service"><div class="pole-service-t">Formation en équipe</div><div class="pole-service-d">Une session pour toute une section vaut dix fois mieux qu'une découverte solitaire.</div></div>
+        <div class="pole-service"><div class="pole-service-t">Accompagnement</div><div class="pole-service-d">Des conseillers qui connaissent les contraintes réelles du terrain FWB.</div></div>
+      </div>
+      <div class="pole-note">Conseil : un Skill d'équipe partagé à l'échelle de l'école garantit des communications cohérentes (parents, direction, site web) sans uniformiser les pratiques pédagogiques de chaque enseignant.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── RECAP ── -->
+<section id="recap">
+<div class="container">
+  <div class="eyebrow">Récapitulatif</div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Les 12 Skills en un coup d'œil</div>
+    <div class="recap-card">
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/simplif-ecrit</span><div class="recap-text"><strong>Simplification.</strong> Texte de cours → version accessible pour élèves en difficulté. Calibré FWB.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/eval-adaptee</span><div class="recap-text"><strong>Évaluation.</strong> Même exigence, forme accessible. Aménagement raisonnable selon profil.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/procedure</span><div class="recap-text"><strong>Atelier.</strong> 1 action = 1 ligne. Marqueurs sécurité ⚠️. Lisible debout en 30 secondes.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/quiz-ipad</span><div class="recap-text"><strong>iPad.</strong> Feuille d'exercices → webapp interactive. Récap enseignant inclus. Zéro code.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/bloom-socratique</span><div class="recap-text"><strong>Questions.</strong> Bloom + socratique. Claude aide sans faire à la place des élèves.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/aristotle-inclusif</span><div class="recap-text"><strong>Inclusion.</strong> Regard capacitiste déconstruit. Repart des forces, pas des déficits.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/traduction-falc</span><div class="recap-text"><strong>FALC.</strong> 31 règles + auto-évaluation 47 critères. Norme officielle, pas un résumé.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/singularite-irreductible</span><div class="recap-text"><strong>Test.</strong> Score de singularité 0-10 sur 7 dimensions. Pour savoir si ça te ressemble vraiment.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/style-jf</span><div class="recap-text"><strong>Style.</strong> Économie syntaxique, précision FWB, impératif direct. Pour emails et rapports.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/generation-ia</span><div class="recap-text"><strong>Élévation.</strong> Au-delà du baratin IA. Penseurs de référence, vocabulaire précis.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/autre-regard</span><div class="recap-text"><strong>Perspective.</strong> Angles non-majoritaires. Pour philo, histoire, éducation aux médias.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">/prisme-pedago-critique</span><div class="recap-text"><strong>Analyse.</strong> Regard critique FWB sur les ressources IA-éducation. Le Colombo pédagogique wallon.</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Ta checklist de départ</div>
+    <div class="checklist" id="cl">
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">J'ai identifié le skill qui correspond à ma tâche (voir inventaire)</div></div>
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Je tape <code>/nom-du-skill</code> avant ma demande, pas après</div></div>
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">J'ai précisé mon contexte réel : niveau, école, profil des élèves, ville</div></div>
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">J'ai fait le test de la chaise vide sur ma production</div></div>
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Si la production est trop générique, j'active <code>/singularite-irreductible</code></div></div>
+      <div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">J'ai partagé au moins un skill utile avec un collègue de mon équipe</div></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>L'IA sans skill produit la moyenne statistique. L'IA avec tes skills produit quelque chose qui ne peut fonctionner <strong>que dans ta classe, avec tes élèves, dans ton école</strong>. C'est cette différence qui a de la valeur pédagogique. <strong>Ce n'est plus la même IA — c'est la tienne.</strong></p>
+  </div>
+
+</div>
+</section>
+
+<div class="container">
+  <div class="footer">
+    <p><img src="https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Skills Claude — Guide pour les enseignants des écoles coopérantes du PLAI</strong></p>
+    <p>Pôle Liégeois d'Accompagnement vers une École Inclusive · Référence officielle : <a href="https://enseignement.be">enseignement.be</a></p>
+  </div>
+</div>
+
+<script>
+  /* Nav active state */
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+
+  /* Accordéon */
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  /* Checklist */
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>
