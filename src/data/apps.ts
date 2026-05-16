@@ -1626,6 +1626,28 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'claude101',
+    name: 'Claude l\'assistant pédagogique',
+    description: 'Guide progressif en 5 niveaux : des premières conversations à l\'automatisation. Exemples ancrés dans le quotidien des enseignants FWB, zéro jargon technique.',
+    url: '/claude101-fwb.html',
+    emoji: '📚',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'purple',
+    section: 'claude',
+  },
+  {
+    id: 'claude-design',
+    name: 'Claude Design',
+    description: 'Mode d\'emploi pour créer des visuels professionnels (affiches, decks, pages web) sans toucher à du code. Scénarios concrets pour le fondamental et le secondaire FWB.',
+    url: '/guide-claude-design-enseignants-fwb.html',
+    emoji: '🎨',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'orange',
+    section: 'claude',
+  },
 ];
 
 export default apps;

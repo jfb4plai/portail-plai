@@ -177,10 +177,11 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
 export default function Home() {
   const [guideApp, setGuideApp] = useState<AppItem | null>(null);
 
-  const appItems   = apps.filter(a => (a.section ?? 'applications') === 'applications');
-  const sensiItems = apps.filter(a => a.section === 'sensibilisation');
-  const available  = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
-  const coming     = appItems.filter(a => a.status === 'bientôt');
+  const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
+  const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
+  const claudeItems = apps.filter(a => a.section === 'claude');
+  const available   = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
+  const coming      = appItems.filter(a => a.status === 'bientôt');
 
   return (
     <>
@@ -213,13 +214,28 @@ export default function Home() {
         </section>
 
         {coming.length > 0 && (
-          <section>
+          <section className="mb-12">
             <h2 className="text-lg font-semibold text-gray-400 mb-5 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>
               Prochainement ({coming.length})
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {coming.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+            </div>
+          </section>
+        )}
+
+        {claudeItems.length > 0 && (
+          <section>
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-2 h-2 rounded-full bg-purple-500 inline-block"></span>
+              <h2 className="text-lg font-semibold text-gray-700">Claude ({claudeItems.length})</h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-5 pl-5">
+              Modes d'emploi pour maîtriser Claude dans votre pratique enseignante en Fédération Wallonie-Bruxelles.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {claudeItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
             </div>
           </section>
         )}

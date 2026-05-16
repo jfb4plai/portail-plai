@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude 101 — Guide pour enseignants FWB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 12px; font-weight: 500; padding: 5px 10px;
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--text2); transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); border: 1px solid var(--border2);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.1;
+    letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub {
+    font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* ── SECTION TITLES ── */
+  .eyebrow {
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── LEVEL CARDS (accueil) ── */
+  .level-cards { display: flex; flex-direction: column; gap: 10px; }
+  .level-card {
+    display: flex; align-items: stretch;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    text-decoration: none; color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .level-card:hover { border-color: var(--border2); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .level-stripe { width: 4px; flex-shrink: 0; }
+  .s1 { background: var(--green-mid); }
+  .s2 { background: var(--blue-mid); }
+  .s3 { background: var(--amber-mid); }
+  .s4 { background: var(--red-mid); }
+  .sb { background: var(--purple-mid); }
+  .level-inner { display: flex; align-items: center; gap: 14px; padding: 1rem 1.1rem; flex: 1; }
+  .level-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .i1 { background: var(--green-bg); }
+  .i2 { background: var(--blue-bg); }
+  .i3 { background: var(--amber-bg); }
+  .i4 { background: var(--red-bg); }
+  .ib { background: var(--purple-bg); }
+  .level-body { flex: 1; }
+  .level-top { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .level-title { font-size: 15px; font-weight: 500; }
+  .badge {
+    font-size: 10px; font-weight: 500; padding: 2px 8px;
+    border-radius: 10px; text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .b1 { background: var(--green-bg); color: var(--green); }
+  .b2 { background: var(--blue-bg); color: var(--blue); }
+  .b3 { background: var(--amber-bg); color: var(--amber); }
+  .b4 { background: var(--red-bg); color: var(--red); }
+  .bb { background: var(--purple-bg); color: var(--purple); }
+  .level-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .level-meta { font-size: 11px; color: var(--text3); margin-top: 4px; }
+  .level-arrow { font-size: 18px; color: var(--border2); margin-right: 4px; }
+
+  /* ── PARCOURS ── */
+  .parcours {
+    background: var(--surface2); border-radius: var(--radius);
+    padding: 1.25rem 1.5rem; margin: 1.5rem 0;
+  }
+  .parcours-title { font-size: 13px; font-weight: 500; margin-bottom: 0.75rem; }
+  .parcours-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .p-step { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text2); }
+  .p-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .p-sep { color: var(--border2); font-size: 14px; }
+  .parcours-note { font-size: 12px; color: var(--text3); font-style: italic; margin-top: 8px; }
+
+  /* ── INFO GRID ── */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 1.5rem 0; }
+  .info-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1rem;
+  }
+  .info-icon { font-size: 20px; margin-bottom: 6px; }
+  .info-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .info-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── GUIDE SECTIONS ── */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem;
+  }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--red-bg); color: var(--red); }
+  .tagb { background: var(--purple-bg); color: var(--purple); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+  .ptag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  .pt-blue { background: var(--blue-bg); color: var(--blue); }
+  .pt-green { background: var(--green-bg); color: var(--green); }
+  .pt-amber { background: var(--amber-bg); color: var(--amber); }
+  .pt-purple { background: var(--purple-bg); color: var(--purple); }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .skill-block { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .skill-head { background: var(--surface2); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .skill-cmd { font-family: monospace; font-size: 14px; font-weight: 600; color: var(--purple); background: var(--purple-bg); padding: 2px 8px; border-radius: 4px; }
+  .skill-name { font-size: 14px; font-weight: 500; }
+  .skill-body { padding: 1rem 1.1rem; }
+  .skill-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 0.75rem; }
+  .skill-example { font-size: 13px; font-family: 'DM Serif Display', serif; color: var(--text); line-height: 1.6; background: var(--surface2); padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  .pole-block {
+    background: linear-gradient(135deg, var(--purple-bg) 0%, var(--blue-bg) 100%);
+    border: 1px solid var(--purple-mid);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .pole-eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple); margin-bottom: 0.5rem; }
+  .pole-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 0.5rem; color: var(--text); }
+  .pole-desc { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 1rem; }
+  .pole-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-bottom: 1rem; }
+  .pole-service { background: rgba(255,255,255,0.7); border-radius: var(--radius-sm); padding: 0.7rem 0.9rem; }
+  .pole-service-t { font-size: 13px; font-weight: 500; color: var(--purple); margin-bottom: 2px; }
+  .pole-service-d { font-size: 12px; color: var(--text2); line-height: 1.4; }
+  .pole-note { font-size: 12px; color: var(--purple); font-style: italic; }
+
+  .voice-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 13px; }
+  .voice-table th { text-align: left; padding: 8px 10px; font-weight: 500; font-size: 11px; color: var(--text3); border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.4px; }
+  .voice-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; color: var(--text2); }
+  .voice-table tr:last-child td { border-bottom: none; }
+  .voice-table td:first-child { color: var(--text); font-weight: 500; width: 38%; }
+
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .recap-row { display: flex; align-items: flex-start; gap: 12px; padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-pill { font-size: 10px; font-weight: 500; padding: 2px 10px; border-radius: 10px; flex-shrink: 0; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .recap-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .recap-text strong { color: var(--text); font-weight: 500; }
+
+  .footer {
+    text-align: center; padding: 3rem 0 2rem;
+    font-size: 13px; color: var(--text3);
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .footer a { color: var(--text3); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 2px; }
+    .nav-link { padding: 4px 7px; font-size: 11px; }
+    .compare { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#accueil">Claude 101 FWB</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#accueil">Accueil</a>
+    <a class="nav-link" href="#n1">N1</a>
+    <a class="nav-link" href="#n2">N2</a>
+    <a class="nav-link" href="#n3">N3</a>
+    <a class="nav-link" href="#n4">N4</a>
+    <a class="nav-link" href="#bonus">Bonus</a>
+  </div>
+</nav>
+
+<!-- ══ ACCUEIL ══ -->
+<section id="accueil">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">&#127963; Fédération Wallonie-Bruxelles</div>
+    <h1>Claude 101<br><em>pour les enseignants FWB</em></h1>
+    <p class="hero-sub">De la première conversation à l'automatisation complète — sans jargon, avec des exemples de votre quotidien.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">5</span><span class="stat-label">guides progressifs</span></div>
+      <div><span class="stat-num">~2h30</span><span class="stat-label">au total</span></div>
+      <div><span class="stat-num">100%</span><span class="stat-label">exemples FWB</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">prérequis technique</span></div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Les 5 guides</div>
+  <div class="level-cards">
+    <a class="level-card" href="#n1">
+      <div class="level-stripe s1"></div>
+      <div class="level-inner">
+        <div class="level-icon i1">&#127807;</div>
+        <div class="level-body">
+          <div class="level-top"><span class="level-title">Niveau 1 — Les bases</span><span class="badge b1">Débutant</span></div>
+          <div class="level-desc">De "je n'ai jamais ouvert Claude" à "je l'utilise en classe". Premières tâches : cours, évals, emails aux parents.</div>
+          <div class="level-meta">20 min · Aucun prérequis</div>
+        </div>
+        <div class="level-arrow">→</div>
+      </div>
+    </a>
+    <a class="level-card" href="#n2">
+      <div class="level-stripe s2"></div>
+      <div class="level-inner">
+        <div class="level-icon i2">&#9881;</div>
+        <div class="level-body">
+          <div class="level-top"><span class="level-title">Niveau 2 — Projets & workflows</span><span class="badge b2">Intermédiaire</span></div>
+          <div class="level-desc">Claude se souvient de vous. Un espace par cours, vos fichiers de référence, vos instructions permanentes.</div>
+          <div class="level-meta">30 min · Niveau 1 requis</div>
+        </div>
+        <div class="level-arrow">→</div>
+      </div>
+    </a>
+    <a class="level-card" href="#n3">
+      <div class="level-stripe s3"></div>
+      <div class="level-inner">
+        <div class="level-icon i3">&#128293;</div>
+        <div class="level-body">
+          <div class="level-top"><span class="level-title">Niveau 3 — Moves avancés</span><span class="badge b3">Avancé</span></div>
+          <div class="level-desc">Tuer la complaisance, donner votre voix à Claude, ne plus tomber à court de tokens.</div>
+          <div class="level-meta">35 min · Niveaux 1 et 2 requis</div>
+        </div>
+        <div class="level-arrow">→</div>
+      </div>
+    </a>
+    <a class="level-card" href="#n4">
+      <div class="level-stripe s4"></div>
+      <div class="level-inner">
+        <div class="level-icon i4">&#128640;</div>
+        <div class="level-body">
+          <div class="level-top"><span class="level-title">Niveau 4 — Expert</span><span class="badge b4">Expert</span></div>
+          <div class="level-desc">Claude qui travaille en autonomie sur vos dossiers. Cowork agent et Claude Code pour non-développeurs.</div>
+          <div class="level-meta">40 min · Tous les niveaux requis</div>
+        </div>
+        <div class="level-arrow">→</div>
+      </div>
+    </a>
+    <a class="level-card" href="#bonus">
+      <div class="level-stripe sb"></div>
+      <div class="level-inner">
+        <div class="level-icon ib">&#10024;</div>
+        <div class="level-body">
+          <div class="level-top"><span class="level-title">Bonus — Skills FWB</span><span class="badge bb">Spécial FWB</span></div>
+          <div class="level-desc">Vos commandes personnalisées : /simplif-ecrit, /eval-adaptee, /procedure et plus. Claude qui s'adapte à votre métier.</div>
+          <div class="level-meta">20 min · Niveau 2 minimum requis</div>
+        </div>
+        <div class="level-arrow">→</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="parcours">
+    <div class="parcours-title">Parcours recommandé</div>
+    <div class="parcours-steps">
+      <div class="p-step"><div class="p-dot" style="background:var(--green-mid)"></div><span>N1 ce soir</span></div>
+      <span class="p-sep">→</span>
+      <div class="p-step"><div class="p-dot" style="background:var(--blue-mid)"></div><span>N2 cette semaine</span></div>
+      <span class="p-sep">→</span>
+      <div class="p-step"><div class="p-dot" style="background:var(--amber-mid)"></div><span>N3 dans 2 semaines</span></div>
+      <span class="p-sep">→</span>
+      <div class="p-step"><div class="p-dot" style="background:var(--red-mid)"></div><span>N4 si besoin</span></div>
+      <span class="p-sep">→</span>
+      <div class="p-step"><div class="p-dot" style="background:var(--purple-mid)"></div><span>Bonus en parallèle</span></div>
+    </div>
+    <div class="parcours-note">Ne bingez pas les 5 guides d'un coup. Appliquez chaque niveau avant de passer au suivant.</div>
+  </div>
+
+  <div class="eyebrow">À savoir avant de commencer</div>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-icon">&#128274;</div><div class="info-title">RGPD & données élèves</div><div class="info-text">Jamais de noms, matricules ou résultats nominatifs dans Claude. Initiaux ou situations anonymisées uniquement. Règle valable dans tous les niveaux.</div></div>
+    <div class="info-card"><div class="info-icon">&#128179;</div><div class="info-title">Gratuit ou payant ?</div><div class="info-text">Plan gratuit suffisant pour les N1 et N2. Plan Pro (~18€/mois) recommandé à partir du N3. Le N4 nécessite un plan payant.</div></div>
+    <div class="info-card"><div class="info-icon">&#9888;</div><div class="info-title">Claude se trompe</div><div class="info-text">Pour les programmes officiels FWB, vérifiez toujours sur enseignement.be ou adm.cfwb.be. Vous êtes le professionnel.</div></div>
+    <div class="info-card"><div class="info-icon">&#127988;</div><div class="info-title">En français, ça marche</div><div class="info-text">Claude comprend et produit du français de qualité. Écrivez comme vous parlez — Claude s'adapte à votre registre.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ══ NIVEAU 1 ══ -->
+<section id="n1">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">&#127807; Niveau 1 — Débutant</div>
+    <div class="guide-title">Claude pour les enseignants FWB<br>qui n'ont jamais essayé</div>
+    <div class="guide-subtitle">De "je n'ai jamais ouvert Claude" à "je l'utilise en classe" — en 20 minutes.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 20 minutes</span>
+      <span class="gmeta">&#128100; Aucun prérequis</span>
+      <span class="gmeta">&#127963; Exemples FWB</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">C'est quoi, Claude ?</div>
+    <div class="prose">
+      <p>Claude est une intelligence artificielle avec qui vous pouvez avoir une vraie conversation. Pas un moteur de recherche. Pas une calculatrice. Un interlocuteur : vous lui posez une question ou lui confiez une tâche, il vous répond en langage naturel, comme un collègue compétent qui aurait lu beaucoup de livres.</p>
+      <p>La différence avec Google : Google vous renvoie des liens. Claude produit directement un texte, un plan, une correction, une explication — adapté à ce que vous lui avez demandé.</p>
+      <p>La différence avec ChatGPT : Claude est réputé pour être plus précis, plus nuancé, et moins enclin à inventer des informations. Il est conçu par Anthropic, une entreprise fondée en 2021 avec un focus fort sur la sécurité de l'IA.</p>
+    </div>
+    <div class="callout">
+      <div class="callout-label">En bref</div>
+      <p>Claude ne remplace pas votre jugement d'enseignant. Il accélère les tâches répétitives — rédiger, reformuler, adapter, expliquer — pour que vous puissiez vous concentrer sur ce qui compte : la relation avec vos élèves.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Ouvrir Claude pour la première fois</div>
+    <div class="grid2">
+      <div class="card"><div class="card-icon">&#128196;</div><div class="card-t">Via le navigateur</div><div class="card-d">Allez sur claude.ai. Créez un compte gratuit. Fonctionne sur n'importe quel ordinateur de l'école.</div></div>
+      <div class="card"><div class="card-icon">&#128187;</div><div class="card-t">Application de bureau</div><div class="card-d">À installer sur votre ordi personnel. Claude peut lire vos fichiers locaux. Idéal pour travailler sur vos cours.</div></div>
+      <div class="card"><div class="card-icon">&#128241;</div><div class="card-t">Application mobile</div><div class="card-d">Disponible sur iOS et Android. Pratique pour une idée rapide entre deux cours.</div></div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">Attention — données personnelles</div>
+      <p>Ne collez jamais dans Claude des données identifiables d'élèves (noms, numéros de dossier, résultats nominatifs). Utilisez des initiales ou des cas anonymisés. C'est une règle de base RGPD.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">5 premières tâches à tester ce soir</div>
+    <div class="ex-box">
+      <div class="ex-label">Préparer une leçon</div>
+      <div class="prompt"><span class="ptag pt-blue">À coller dans Claude</span><br>Je suis enseignant en cuisine en S4 en Fédération Wallonie-Bruxelles. Prépare-moi un plan de leçon de 50 minutes sur les sauces mères. Inclus un objectif d'apprentissage clair, une activité pratique et 3 questions de vérification des acquis.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Communication aux parents</div>
+      <div class="prompt"><span class="ptag pt-blue">À coller dans Claude</span><br>Rédige un email professionnel à envoyer aux parents pour les informer d'une sortie pédagogique au marché de Namur le 15 juin. Ton poli et rassurant. Maximum 200 mots.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Simplifier un texte pour élèves en difficulté</div>
+      <div class="prompt"><span class="ptag pt-blue">À coller dans Claude</span><br>Voici un extrait de mon cours sur la fermentation : [colle ton texte]. Réécris-le de façon simple pour des élèves de S3 qui ont des difficultés de lecture. Phrases courtes, vocabulaire accessible, garde les mots techniques mais explique-les.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Créer une évaluation rapide</div>
+      <div class="prompt"><span class="ptag pt-blue">À coller dans Claude</span><br>Crée une évaluation formative de 10 minutes sur l'hygiène en cuisine pour des élèves de S3. Format : 5 questions vrai/faux + 3 questions à choix multiple. Niveau accessible.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Préparer un entretien avec un élève</div>
+      <div class="prompt"><span class="ptag pt-blue">À coller dans Claude</span><br>Je dois avoir un entretien avec un élève de 16 ans qui décroche et perturbe la classe. Donne-moi 5 questions ouvertes bienveillantes pour comprendre sa situation, sans le mettre sur la défensive.</div>
+    </div>
+    <div class="callout">
+      <div class="callout-label">Règle d'or</div>
+      <p>Traitez Claude comme un assistant stagiaire très compétent : capable de produire un premier jet solide, mais qui a besoin de votre regard professionnel avant que le document parte.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ NIVEAU 2 ══ -->
+<section id="n2">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">&#9881; Niveau 2 — Intermédiaire</div>
+    <div class="guide-title">Projets & workflows<br>Claude se souvient de vous</div>
+    <div class="guide-subtitle">Organisez Claude par cours et par section — pour ne plus jamais tout réexpliquer à chaque conversation.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 30 minutes</span>
+      <span class="gmeta">&#10003; Niveau 1 requis</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Le problème du niveau 1</div>
+    <div class="prose">
+      <p>Au niveau 1, vous avez découvert que Claude peut vous aider à préparer un cours, rédiger une communication, créer une évaluation. Mais à chaque nouvelle conversation, Claude repart de zéro. Vous devez re-expliquer que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme. Encore et encore.</p>
+      <p>Avec les <strong>Projets</strong>, Claude se souvient de votre contexte d'une conversation à l'autre.</p>
+    </div>
+    <div class="callout">
+      <div class="callout-label">L'analogie qui aide</div>
+      <p>Chat basique = nouveau collègue à qui vous vous présentez chaque matin. Projet = collaborateur qui a lu votre dossier et connaît vos élèves, votre section, vos contraintes.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Créer votre premier projet en 5 minutes</div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div><div class="step-t">Allez sur claude.ai → "Projects" → "New project"</div><div class="step-d">Donnez-lui un nom concret : "Cuisine S4", "Boucherie S3-S5", "Cours théoriques SEGEC".</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-t">Rédigez les instructions du projet</div><div class="step-d">Le "mode d'emploi" que Claude lira avant chaque réponse. Utilisez le modèle ci-dessous.</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-t">Déposez vos fichiers de référence</div><div class="step-d">Programme du cours, grilles d'évaluation, exemples de travaux anonymisés. Formats : Word, PDF, texte.</div></div></div>
+      <div class="step"><div class="step-n">4</div><div><div class="step-t">Lancez une conversation dans le projet</div><div class="step-d">Claude lit automatiquement vos fichiers et instructions avant de répondre.</div></div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Modèle d'instructions — à copier et adapter</div>
+    <div class="ex-box">
+      <div class="ex-label">À coller dans "Instructions du projet"</div>
+      <div class="prompt">Tu es mon assistant pédagogique pour mon cours de [MATIÈRE] en [SECTION/NIVEAU] à [NOM DE L'ÉTABLISSEMENT], en Fédération Wallonie-Bruxelles.<br><br><strong>Mes élèves :</strong> [Section : ex. Technique de qualification / Professionnel]. Niveau [S3/S4/S5]. [Décris brièvement : "Beaucoup ont des difficultés de lecture", "Classe motivée mais hétérogène", "Plusieurs élèves allophones".]<br><br><strong>Mon style pédagogique :</strong> [Ex. "Je privilégie l'alternance théorie/pratique", "J'utilise beaucoup de supports visuels".]<br><br><strong>Contraintes importantes :</strong> Nous suivons le programme officiel de la FWB. Ne mentionne jamais des référentiels français (CAP, BEP, etc.). Les évaluations doivent respecter la logique des CEB/CE1D/CESS selon le niveau.<br><br><strong>Quand tu produis un document :</strong> Propose toujours une version courte que je peux ajuster. Si tu as besoin de précisions, pose une seule question avant de commencer.</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">3 workflows concrets à tester maintenant</div>
+    <div class="ex-box">
+      <div class="ex-label">Planifier une séquence de cours</div>
+      <div class="prompt"><span class="ptag pt-green">Dans votre projet</span><br>Je dois couvrir "les découpes de viande bovine" en 3 séances de 50 minutes. Les élèves ont déjà vu les outils de base. Propose-moi une progression logique avec les objectifs de chaque séance.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Évaluation alignée sur votre programme</div>
+      <div class="prompt"><span class="ptag pt-green">Dans votre projet</span><br>Crée une évaluation sommative sur "l'hygiène et la chaîne du froid". Format mixte : questions courtes + une mise en situation pratique décrite. Durée : 45 minutes.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Différencier pour un élève en difficulté</div>
+      <div class="prompt"><span class="ptag pt-green">Dans votre projet</span><br>J'ai un élève en S4 avec une dyslexie diagnostiquée. Adapte cette fiche de procédure [colle ta fiche] : phrases courtes, une action par ligne, mots clés en évidence, pas de blocs de texte.</div>
+    </div>
+    <div class="ok">
+      <div class="ok-label">Pourquoi c'est différent du N1</div>
+      <p>Ces prompts sont courts parce que Claude sait déjà que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme. Plus besoin de tout réexpliquer. C'est ça, la puissance d'un projet bien configuré.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ NIVEAU 3 ══ -->
+<section id="n3">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">&#128293; Niveau 3 — Avancé</div>
+    <div class="guide-title">Moves avancés<br>Claude qui vous ressemble vraiment</div>
+    <div class="guide-subtitle">Trois problèmes que tous les enseignants rencontrent à ce stade — et comment les résoudre pour de bon.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 35 minutes</span>
+      <span class="gmeta">&#10003; Niveaux 1 et 2 requis</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Move 1 — Tuer la complaisance</div>
+    <div class="prose">
+      <p>Claude est entraîné pour être agréable. Par défaut, il valide, encourage, nuance en votre faveur. Ce biais s'appelle la "sycophantie" : l'IA dit ce que vous voulez entendre plutôt que ce qui est vrai. Si vous lui soumettez un plan de cours mal structuré, il vous dira "c'est une bonne base" plutôt que "la progression est incohérente".</p>
+    </div>
+    <div class="danger">
+      <div class="danger-label">Signal d'alarme</div>
+      <p>Si Claude commence par "Excellente question !" ou "C'est une approche tout à fait pertinente !" — il est en mode complaisant. Ce qu'il dit ensuite est biaisé en votre faveur.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">À coller dans les instructions de chaque projet</div>
+      <div class="prompt">Tu n'es pas là pour me flatter. Si mon idée est mauvaise, dis-le directement. Si mon plan de cours a des failles, identifie-les. Si ma question est mal posée, reformule-la avant de répondre. Je préfère une réponse inconfortable et utile à une réponse rassurante et creuse. Ne commence jamais une réponse par un compliment sur ma question ou mon idée.</div>
+    </div>
+    <div class="compare">
+      <div class="c-bad"><div class="c-label">&#10008; Claude complaisant</div><div class="c-text">"C'est une excellente approche qui montre votre engagement. Quelques points à affiner, mais la base est solide..."</div></div>
+      <div class="c-good"><div class="c-label">&#10003; Claude honnête</div><div class="c-text">"Trois problèmes dans ce plan : la progression S3→S4 n'est pas cohérente, l'objectif de la séance 2 est trop vague pour être évaluable..."</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Move 2 — Donner votre voix à Claude</div>
+    <div class="prose">
+      <p>Par défaut, Claude écrit avec un style reconnaissable : phrases longues, structure en trois points, transitions lisses, ton neutre. C'est le style "assistant IA moyen". Quand vous envoyez un email à des parents ou une circulaire à vos élèves, ce style trahit immédiatement que ce n'est pas vous.</p>
+      <p>La solution : construire un fichier "voix" que vous déposez dans vos projets.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Prompt pour générer votre fichier de style — à utiliser hors projet</div>
+      <div class="prompt">Tu vas m'aider à créer un fichier de style pour que tu écrives comme moi. Pose-moi 10 questions, une par une, sur ma façon d'écrire et de communiquer. Questions sur : mes expressions préférées, les mots que je déteste, si je tutoie ou vouvoie, si j'utilise l'humour, comment je structure mes emails. À la fin, compile mes réponses en un fichier court (max 400 mots) que je pourrai déposer dans mes projets Claude comme référence de style.</div>
+    </div>
+    <table class="voice-table">
+      <thead><tr><th>Dimension</th><th>Ce que vous précisez</th></tr></thead>
+      <tbody>
+        <tr><td>Registre</td><td>Vous tutoyez vos élèves ? Vous vouvoyez les parents ? Formel en réunion, décontracté par email ?</td></tr>
+        <tr><td>Longueur</td><td>Phrases courtes et directes ? Paragraphes développés ? Listes ou prose ?</td></tr>
+        <tr><td>Mots interdits</td><td>"Il est crucial de noter que", "Dans un premier temps", "N'hésitez pas à"... les expressions IA à bannir.</td></tr>
+        <tr><td>Ton FWB</td><td>Abréviations que vous utilisez (PO, CPMS, PIA, TQ, P), formules belges typiques.</td></tr>
+        <tr><td>Un exemple réel</td><td>Un email ou texte que vous avez vraiment écrit. C'est la référence la plus puissante.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Move 3 — Ne plus tomber à court de tokens</div>
+    <div class="prose">
+      <p>Les tokens sont la "monnaie" que Claude dépense pour traiter et générer du texte. Sur le plan gratuit, les limites sont basses. Sur le plan Pro, elles sont plus généreuses mais finies. Voici comment éviter les frustrations.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Structure d'un prompt économique</div>
+      <div class="prompt"><span class="ptag pt-amber">Format efficace</span><br>Tâche : [ce que vous voulez exactement]<br>Contraintes : [niveau, durée, format, longueur max]<br>Ce que je ne veux pas : [ce qu'il produit souvent et qui ne convient pas]<br>Livrable attendu : [un tableau / une liste / un texte de 200 mots max]</div>
+      <div class="prompt"><span class="ptag pt-amber">Exemple concret FWB</span><br>Tâche : créer une évaluation formative sur la découpe du poulet.<br>Contraintes : S4 TQ, 20 minutes, sans question ouverte longue.<br>Ce que je ne veux pas : pas de QCM avec 4 choix.<br>Livrable : 8 questions vrai/faux + 2 mises en situation courtes. Maximum une page A4.</div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">Le piège à éviter</div>
+      <p>Ne copiez pas des dizaines de pages de cours dans Claude pour "lui faire ingérer votre matière". C'est la façon la plus rapide d'épuiser votre quota. Déposez plutôt les documents dans les fichiers de votre Projet.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ NIVEAU 4 ══ -->
+<section id="n4">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">&#128640; Niveau 4 — Expert</div>
+    <div class="guide-title">Claude Code & Claude<br>sur votre ordinateur</div>
+    <div class="guide-subtitle">Claude qui travaille pendant que vous faites autre chose. Pour les enseignants qui veulent pousser l'outil à son maximum.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 40 minutes</span>
+      <span class="gmeta">&#10003; Tous les niveaux requis</span>
+      <span class="gmeta">&#128187; Application bureau obligatoire</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Ce niveau n'est pas pour tout le monde</div>
+    <p>Les niveaux 1 à 3 suffisent pour 95% des enseignants FWB. Le niveau 4 est pour ceux qui produisent des volumes importants de matériel ou qui veulent automatiser des tâches répétitives sur des fichiers.</p>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Claude Cowork en mode agent</div>
+    <div class="prose">
+      <p>En mode agent, vous donnez un objectif à Claude et il avance seul jusqu'au bout — en lisant vos fichiers, en en produisant de nouveaux, en vous signalant quand il a besoin d'une décision.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Scénario — Générer un dossier de cours complet</div>
+      <div class="prompt"><span class="ptag pt-blue">Instruction à donner à Cowork</span><br>Je veux [OBJECTIF FINAL] à partir de [FICHIERS SOURCE].<br><br>Lis d'abord tous les fichiers sans rien produire. Pose-moi 2 ou 3 questions de clarification si tu en as. Une fois qu'on est alignés, commence à travailler et produis [FORMAT DE LIVRABLE] dans [NOM DU DOSSIER]. Signale-moi quand tu as terminé chaque étape.</div>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Scénario — Adapter tout un corpus pour élèves DYS</div>
+      <div class="prompt"><span class="ptag pt-blue">Exemple concret</span><br>J'ai 12 fiches de cours dans ce dossier. Pour chacune, produis une version adaptée DYS : phrases courtes, une idée par ligne, mots techniques expliqués entre parenthèses. Enregistre dans un sous-dossier "version-DYS".</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Claude Code — pour les non-développeurs aussi</div>
+    <div class="prose">
+      <p>Vous décrivez la tâche en français. Claude Code écrit et exécute le code. Vous validez le résultat. Utile pour les tâches répétitives sur des fichiers : renommer, extraire, générer en série.</p>
+    </div>
+    <div class="danger">
+      <div class="danger-label">Précaution importante</div>
+      <p>Claude Code travaille directement sur vos fichiers. Faites toujours une copie de sauvegarde de votre dossier avant de lancer une tâche sur des documents importants.</p>
+    </div>
+    <div class="ex-box">
+      <div class="ex-label">Tâches concrètes FWB pour Claude Code</div>
+      <div class="prompt"><span class="ptag pt-amber">Publipostage pédagogique</span><br>J'ai un fichier Excel avec les noms de mes 24 élèves, leur section et leur note finale. Génère un document Word individuel pour chacun à partir du modèle "attestation-modele.docx" en remplaçant les champs [NOM], [SECTION] et [NOTE].</div>
+      <div class="prompt"><span class="ptag pt-amber">Extraction et synthèse</span><br>J'ai 15 rapports de stage en PDF. Pour chacun, extrais le nom de l'élève, le nom de l'entreprise et la note finale. Compile le tout dans un tableau Excel.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══ BONUS ══ -->
+<section id="bonus">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagb">&#10024; Bonus — Spécial FWB</div>
+    <div class="guide-title">Skills FWB<br>Vos commandes personnalisées</div>
+    <div class="guide-subtitle">Des raccourcis pédagogiques que vous créez une fois et utilisez toute l'année. Claude qui s'adapte à votre métier, pas l'inverse.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">&#8987; 20 minutes</span>
+      <span class="gmeta">&#10003; Niveau 2 minimum</span>
+      <span class="gmeta">&#127963; Conçu pour la FWB</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">C'est quoi, un Skill ?</div>
+    <div class="prose">
+      <p>Un Skill, c'est une commande personnalisée que vous créez dans Claude. Vous lui donnez un nom — par exemple <code>/simplif-ecrit</code> — et lui décrivez exactement ce qu'il doit faire quand vous tapez cette commande. Ensuite, en une ligne, vous déclenchez un comportement complexe et cohérent.</p>
+      <p>Sans Skill : vous ré-expliquez à chaque fois "simplifie ce texte pour mes élèves S3 DYS, phrases courtes, un mot technique expliqué à chaque fois, pas plus de 150 mots par paragraphe...".</p>
+      <p>Avec Skill : vous tapez <code>/simplif-ecrit</code> et collez votre texte. Claude sait exactement ce que ça veut dire pour vous.</p>
+    </div>
+    <div class="callout">
+      <div class="callout-label">La différence avec les instructions de projet</div>
+      <p>Les instructions de projet s'appliquent à toutes vos conversations dans ce projet. Un Skill s'applique uniquement quand vous l'invoquez explicitement. C'est plus précis, plus chirurgical.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">6 Skills à créer pour la FWB</div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/simplif-ecrit</span><span class="skill-name">Simplification de texte</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme n'importe quel texte de cours en version accessible pour des élèves en difficulté de lecture (dyslexie, allophones, faible niveau). Phrases courtes, une idée par phrase, mots techniques expliqués entre parenthèses, paragraphes courts.</div>
+        <div class="skill-example">Usage : /simplif-ecrit [colle ton texte de cours]</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/eval-adaptee</span><span class="skill-name">Évaluation accessible</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme une évaluation existante en version accessible sans réduire les exigences du programme FWB. Adapte la forme (QCM, vrai/faux, associations, remise en ordre) sans alléger le fond. Conserve les compétences visées.</div>
+        <div class="skill-example">Usage : /eval-adaptee [colle ton évaluation existante]</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/procedure</span><span class="skill-name">Fiche de procédure</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Transforme tout contenu de cours en fiche de procédure numérotée, étape par étape, une action par ligne, avec marqueurs de sécurité pour les gestes à risque. Format opérationnel pour atelier ou cuisine.</div>
+        <div class="skill-example">Usage : /procedure [décris la technique ou colle le texte du cours]</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/commentaire-bulletin</span><span class="skill-name">Commentaire de bulletin</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Rédige un commentaire de bulletin professionnel, bienveillant et factuel à partir de vos observations brutes. Ton FWB, 2-3 lignes, pas de généralités, pas de formules toutes faites, jamais de jugement sur la personne.</div>
+        <div class="skill-example">Usage : /commentaire-bulletin [tes observations brutes sur l'élève, anonymisées]</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/email-parent</span><span class="skill-name">Communication aux parents</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Génère un email aux parents selon le type de situation : information, convocation, réussite, signalement de difficulté. Ton adapté à chaque contexte, vouvoyement systématique, formule de politesse belge en fin de message.</div>
+        <div class="skill-example">Usage : /email-parent [décris la situation en quelques mots]</div>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-head"><span class="skill-cmd">/sequence</span><span class="skill-name">Séquence de cours</span></div>
+      <div class="skill-body">
+        <div class="skill-desc">Crée une progression pédagogique complète sur un thème donné. Respecte la logique des référentiels FWB, propose des objectifs d'apprentissage mesurables, une activité par séance, et une évaluation de fin de séquence cohérente.</div>
+        <div class="skill-example">Usage : /sequence [thème] [niveau S_] [nombre de séances]</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comment créer un Skill</div>
+    <div class="steps">
+      <div class="step"><div class="step-n">1</div><div><div class="step-t">Ouvrez l'application Claude de bureau</div><div class="step-d">Les Skills ne sont disponibles que dans l'app bureau, pas dans le navigateur. Menu "Customize" → "Skills" ou "Personal plugins".</div></div></div>
+      <div class="step"><div class="step-n">2</div><div><div class="step-t">Cliquez "Create a skill" ou utilisez le skill creator</div><div class="step-d">Claude vous interviewe sur la tâche que vous voulez automatiser. Répondez avec vos exemples FWB concrets — plus vous êtes précis, meilleur est le Skill.</div></div></div>
+      <div class="step"><div class="step-n">3</div><div><div class="step-t">Donnez-lui un nom court et logique</div><div class="step-d">Précédé d'un slash : /simplif-ecrit, /eval-adaptee, /procedure. Ce nom est votre commande d'activation.</div></div></div>
+      <div class="step"><div class="step-n">4</div><div><div class="step-t">Testez et ajustez la description</div><div class="step-d">Si le Skill se déclenche trop souvent ou pas assez, ajoutez des frontières négatives : "Ne pas utiliser pour des créations depuis zéro" ou "Uniquement pour du texte de cours, pas pour des évaluations".</div></div></div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">Si votre Skill ne fonctionne pas comme prévu</div>
+      <p>Tapez dans Claude : "Quand utiliserais-tu le skill /simplif-ecrit ?" — Claude cite sa description mot pour mot. Vous voyez immédiatement ce qui est flou ou trop large.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2.5rem">
+    <div class="section-h">Collaborer avec le Pôle et ses experts numériques</div>
+    <div class="pole-block">
+      <div class="pole-eyebrow">&#128101; Ressource FWB</div>
+      <div class="pole-title">Le Pôle numérique — votre allié pour aller plus loin</div>
+      <div class="pole-desc">Vous n'avez pas à tout découvrir seul. Le Pôle numérique de la FWB rassemble des experts, des conseillers pédagogiques et des enseignants-référents dont c'est le métier d'accompagner l'intégration des outils numériques dans les pratiques de classe. Ils connaissent les contraintes réelles du terrain belge francophone — les horaires, les infrastructures, les programmes officiels, les réalités SEGEC et réseau officiel.</div>
+      <div class="pole-services">
+        <div class="pole-service">
+          <div class="pole-service-t">Accompagnement personnalisé</div>
+          <div class="pole-service-d">Des conseillers qui viennent dans votre établissement, à votre rythme, avec vos contraintes réelles.</div>
+        </div>
+        <div class="pole-service">
+          <div class="pole-service-t">Formation en équipe</div>
+          <div class="pole-service-d">Organiser une session pour toute une section ou tout un établissement — bien plus efficace qu'une découverte solitaire.</div>
+        </div>
+        <div class="pole-service">
+          <div class="pole-service-t">Skills & ressources partagées</div>
+          <div class="pole-service-d">Des Skills déjà créés et testés pour les métiers FWB, à récupérer directement plutôt que de tout construire soi-même.</div>
+        </div>
+        <div class="pole-service">
+          <div class="pole-service-t">Veille et mises à jour</div>
+          <div class="pole-service-d">Claude évolue vite. Le Pôle suit les nouveautés et vous signale ce qui change vraiment pour votre pratique.</div>
+        </div>
+      </div>
+      <div class="pole-note">Conseil : avant de passer du temps à construire vos Skills depuis zéro, demandez au Pôle s'il en existe déjà pour votre discipline. La communauté FWB est plus avancée que vous ne le pensez.</div>
+    </div>
+    <div class="prose">
+      <p>Les guides Claude 101 FWB que vous venez de lire sont un point de départ. Le Pôle numérique peut vous aider à les transformer en pratique durable, ancrée dans votre établissement, partagée avec vos collègues, et adaptée à vos élèves réels.</p>
+      <p>Un enseignant qui utilise Claude seul dans son coin, c'est bien. Une section qui partage ses Skills et ses projets, c'est dix fois plus puissant.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Récapitulatif des 5 niveaux</div>
+    <div class="recap-card">
+      <div class="recap-row"><span class="recap-pill" style="background:var(--green-bg);color:var(--green)">N1</span><div class="recap-text"><strong>Les bases.</strong> Ouvrir Claude, lui poser une vraie question, 5 tâches quotidiennes de l'enseignant FWB.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--blue-bg);color:var(--blue)">N2</span><div class="recap-text"><strong>Les projets.</strong> Claude connaît votre contexte. Un projet par cours, avec fichiers de référence et instructions permanentes.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--amber-bg);color:var(--amber)">N3</span><div class="recap-text"><strong>Les moves avancés.</strong> Claude ne vous flatte plus, il écrit avec votre voix, vous ne tombez plus à court de tokens.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--red-bg);color:var(--red)">N4</span><div class="recap-text"><strong>L'autonomie.</strong> Claude travaille en séquence sur vos dossiers, produit des corpus entiers, exécute des tâches répétitives.</div></div>
+      <div class="recap-row"><span class="recap-pill" style="background:var(--purple-bg);color:var(--purple)">+</span><div class="recap-text"><strong>Skills FWB.</strong> Vos commandes personnalisées. Claude adapté à votre métier, à vos élèves, à votre voix.</div></div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="container">
+  <div class="footer">
+    <p>Claude 101 FWB — Guides pour enseignants de la Fédération Wallonie-Bruxelles</p>
+    <p style="margin-top:6px">Partagez librement avec vos collègues &middot; Vérifiez toujours les informations officielles sur <a href="https://enseignement.be">enseignement.be</a></p>
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
