@@ -121,7 +121,20 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
 
   const btnCls = `flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-white text-sm font-semibold transition ${c.btn} ${(!available && !inDev) ? 'pointer-events-none' : ''}`;
 
-  const openButton = (
+  const isLocal = app.url.startsWith('http://localhost') || app.url.startsWith('http://127.');
+
+  const openButton = isLocal && (available || inDev) ? (
+    <button
+      className={btnCls}
+      onClick={() => {
+        if (window.confirm(`Application locale — vérification requise :\n\n${app.browserNote ?? 'Lancez l\'application avant de continuer.'}\n\nL'application est-elle démarrée ?`)) {
+          window.open(app.url, '_blank');
+        }
+      }}
+    >
+      Ouvrir (local) →
+    </button>
+  ) : (
     <a
       href={(available || inDev) ? app.url : undefined}
       target={(available || inDev) ? '_blank' : undefined}
