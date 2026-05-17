@@ -1286,32 +1286,37 @@ const apps: AppItem[] = [
           "Mathipulatifs PLAI repose sur le triptyque manipulation–verbalisation–abstraction, socle de l'enseignement explicite en mathématiques (Jolivel, 2023). Les manipulables virtuels permettent d'externaliser le raisonnement — l'élève agit sur des représentations concrètes avant de progresser vers l'abstraction symbolique. Cette progression est particulièrement bénéfique pour les élèves présentant une dyscalculie, un TDAH ou une dyslexie, pour qui la charge cognitive de l'écriture mathématique classique constitue un frein majeur (Bergeron & Barallobres, 2021). L'usage des TICE dans ce contexte améliore l'autonomie et l'estime de soi des élèves dys (Najjar, 2015), tandis que l'enseignement explicite structuré réduit l'anxiété mathématique (Ochsenbein, 2024). La barre d'accessibilité (police OpenDyslexic, grand texte, mode focus, audio TTS) réduit la charge cognitive extrinsèque pour maximiser la ressource cognitive disponible pour l'apprentissage mathématique.",
         references: [
           {
+            id: 'dumas-04324162',
             citation:
-              'Jolivel, P. (2023). La manipulation en mathématiques. DUMAS. [RISS : dumas-04324162]',
+              'Jolivel, P. (2023). La manipulation en mathématiques.',
             content:
               "Le triptyque manipulation–verbalisation–abstraction constitue l'une des 21 mesures de Villani & Torossian (2018) pour réussir en mathématiques. La manipulation doit être placée au bon moment du processus d'apprentissage (phase d'acquisition) et s'inscrire dans un cadre d'enseignement explicite : modelage, pratique guidée, pratique autonome. Elle libère l'élève de la tâche graphique et lui permet d'utiliser un canal sensoriel privilégié.",
           },
           {
+            id: 'W4410891703',
             citation:
-              "Bergeron, L. & Barallobres, G. (2021). Processus d'abstraction et difficultés d'apprentissage en mathématiques : quelques repères théoriques. [RISS : W4410891703]",
+              "Bergeron, L. & Barallobres, G. (2021). Processus d'abstraction et difficultés d'apprentissage en mathématiques : quelques repères théoriques.",
             content:
               "Rester dans le concret matériel sans remonter vers l'abstrait structurant éloigne paradoxalement l'élève de l'activité mathématique. Les manipulables doivent accompagner la montée vers l'abstraction symbolique, pas s'y substituer. Le passage explicite concret → semi-concret → abstrait est indispensable, notamment pour les élèves en difficulté.",
           },
           {
+            id: 'dumas-03790385',
             citation:
-              'Dubar, H. (2022). La manipulation en grandeurs et mesures au cycle 3. DUMAS. [RISS : dumas-03790385]',
+              'Dubar, H. (2022). La manipulation en grandeurs et mesures au cycle 3.',
             content:
               "Il est important de séparer les temps d'apprentissage et de marquer explicitement les moments de passage du concret à l'abstrait, laissant les élèves s'éloigner peu à peu du matériel. La manipulation seule ne suffit pas : c'est le va-et-vient guidé entre les représentations qui construit la compréhension.",
           },
           {
+            id: 'tel-01358006',
             citation:
-              "Najjar, N. (2015). L'impact de l'usage des TICE sur l'apprentissage des enfants et jeunes dyslexiques, dysorthographiques et dyscalculiques : l'autonomie et l'estime de soi. Thèse de doctorat. [RISS : tel-01358006]",
+              "Najjar, N. (2015). L'impact de l'usage des TICE sur l'apprentissage des enfants et jeunes dyslexiques, dysorthographiques et dyscalculiques : l'autonomie et l'estime de soi. Thèse de doctorat.",
             content:
               "Les outils numériques interactifs améliorent significativement l'autonomie et l'estime de soi des élèves dys. L'appropriation progressive de l'outil, disponible à tout moment, permet un travail dans l'univers de travail habituel de l'élève, réduisant l'écart ressenti avec les pairs.",
           },
           {
+            id: 'dumas-04794253',
             citation:
-              "Ochsenbein, J. (2024). Favoriser la motivation et réduire l'anxiété en mathématiques dans les réseaux d'éducation prioritaires : l'enseignement explicite peut-il être une solution ? DUMAS. [RISS : dumas-04794253]",
+              "Ochsenbein, J. (2024). Favoriser la motivation et réduire l'anxiété en mathématiques dans les réseaux d'éducation prioritaires : l'enseignement explicite peut-il être une solution ?",
             content:
               "L'enseignement explicite réduit l'anxiété mathématique en rendant transparents les objectifs, les critères de réussite et les étapes de résolution. Une étude au primaire (Baker et al., 2002) montre son efficacité centrée sur l'enseignant. En REP, cette approche structure l'environnement cognitif et affectif.",
           },
