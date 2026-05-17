@@ -754,16 +754,19 @@ const apps: AppItem[] = [
         summary: "La visualisation dynamique des proportions planétaires mobilise la pensée spatiale et la mémoire à long terme. Voir les tailles relatives et les révolutions en temps réel ancre des représentations que le texte seul ne peut pas construire.",
         references: [
           {
-            citation: "Rollinde, E. (2021). L'Astronomie pour l'éducation dans l'espace francophone. HAL.",
+            id: 'hal-03481844',
+            citation: "Rollinde, E. (2021). L'Astronomie pour l'éducation dans l'espace francophone.",
             content: "L'enseignement du système solaire gagne à s'appuyer sur des activités visuelles et dynamiques : séances sur les planètes telluriques et gazeuses, leurs proportions et leurs positions relatives ancrent des représentations que le texte seul ne peut construire.",
           },
           {
-            citation: "Kpodar, J.-L. (2017). Effets des instructions de pertinence spécifiques sur les apprentissages avec des animations. DUMAS.",
+            id: 'dumas-01804357',
+            citation: "Kpodar, J.-L. (2017). Effets des instructions de pertinence spécifiques et des attitudes environnementales sur les apprentissages avec des animations dans le cadre de l'éducation au développement durable.",
             content: "Le guidage attentionnel dans une animation permet de réduire la charge cognitive extrinsèque (Sweller). Pour le système solaire, l'affichage progressif des noms, orbites et vitesses remplit ce rôle : chaque option libère des ressources pour la compréhension conceptuelle.",
           },
           {
-            citation: "Puma, S. (2016). Optimisation des apprentissages : modèles et mesures de la charge cognitive. Thèse de doctorat.",
-            content: "La réduction de la charge extrinsèque par des représentations visuelles adaptées améliore significativement la compréhension et la rétention pour tous les profils d'apprenants, y compris les élèves à besoins spécifiques.",
+            id: 'hal-04180240',
+            citation: "Puma, S. & Tricot, A. (2021). Prendre en compte la mémoire de travail lors de la conception de situations d'apprentissage scolaire. A.N.A.E., 171, 217–225.",
+            content: "La théorie de la charge cognitive identifie trois charges à gérer : intrinsèque (la matière), extrinsèque (conception non optimale du support) et utile (transfert vers la mémoire à long terme). L'affichage progressif des options dans le Système Solaire réduit la charge extrinsèque et libère des ressources pour la compréhension.",
           },
         ],
       },
