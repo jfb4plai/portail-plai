@@ -608,7 +608,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'glissement',
-    name: 'Glissement',
+    name: "Glissement à l'IA",
     description: "Fiction interactive sur la délégation cognitive à l'IA. On confie ses tâches à Pl'ai — et on glisse. 15 mécanismes sourcés en psychologie cognitive. 3 actes, 3 fins. Mode facilitation pour formateurs.",
     url: 'https://glissement-plai.vercel.app',
     emoji: '🫧',
@@ -621,19 +621,22 @@ const apps: AppItem[] = [
         summary: "Glissement fait vivre la délégation cognitive : chaque tâche confiée à Pl'ai diminue les capacités humaines (agentivité, créativité, curiosité, effort). Les 15 projets du jeu sont adossés à des mécanismes documentés en psychologie cognitive — tous vérifiés dans le corpus RISS.",
         references: [
           {
-            citation: "Lakel, A. (2025). Ne dites plus LLM : Larges Discours Models (LDM) et Agent Discursif Artificiel (ADA) ? RISS : hal-05421232.",
+            id: 'hal-05421232',
+            citation: "Lakel, A. (2025). Ne dites plus LLM : Larges Discours Models (LDM) et Agent Discursif Artificiel (ADA) ?",
             content: "Introduit le concept de « dette cognitive » : le déficit cumulatif en capacités de raisonnement critique résultant de la délégation systématique des tâches cognitives à l'IA. C'est exactement le mécanisme que Glissement fait vivre.",
           },
           {
-            citation: "Romero, M. et al. (2023). Enseigner et apprendre à l'ère de l'intelligence artificielle. RISS : hal-04013223.",
+            id: 'hal-04013223',
+            citation: "Romero, M. et al. (2023). Enseigner et apprendre à l'ère de l'intelligence artificielle.",
             content: "Ouvrage collectif avec contributeurs FWB (Patricia Corieri, Julie Henry). Cadre de référence pour penser l'agentivité face aux outils IA en contexte éducatif francophone.",
           },
           {
-            citation: "Tricot, A. (1998). Charge cognitive et apprentissage. Revue de Psychologie de l'Éducation, 3, 37–64. RISS : hal-04180240.",
+            id: 'edutice-00000081',
+            citation: "Tricot, A. (1998). Charge cognitive et apprentissage. Revue de Psychologie de l'Éducation, 3, 37–64.",
             content: "La répétition d'une tâche déléguée réduit l'activation cérébrale associée. Cet effet est réversible si la pratique reprend, mais le délai de récupération augmente avec la durée d'interruption.",
           },
           {
-            citation: "Sparrow, B., Liu, J. & Wegner, D. M. (2011). Google effects on memory. Science, 333(6043). RISS : cité dans le corpus.",
+            citation: "Sparrow, B., Liu, J. & Wegner, D. M. (2011). Google effects on memory. Science, 333(6043). Réel, hors corpus RISS.",
             content: "Quand on sait qu'une information sera accessible numériquement, les taux de mémorisation diminuent — on retient l'emplacement plutôt que le contenu. Dans Glissement, c'est le projet « Mémoire augmentée ».",
           },
         ],
