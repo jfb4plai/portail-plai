@@ -815,15 +815,18 @@ const apps: AppItem[] = [
         summary: "La compréhension des fractions nécessite de multiplier les registres de représentation : aucune représentation seule ne suffit à révéler toutes les caractéristiques de l'objet mathématique.",
         references: [
           {
-            citation: "Nguala, Guillon & Di Beta (2025). De la fraction partage à la fraction nombre. HAL.",
+            id: 'hal-05166265',
+            citation: "Nguala, J.-B., Guillon, C. & Di Beta, M. (2025). De la fraction partage à la fraction nombre : étude des conditions de transfert et des effets d'un dispositif de formation à Mayotte.",
             content: "Chaque changement de représentation est important : il permet à chaque registre de mettre en évidence une partie des caractéristiques de l'objet fraction. Plusieurs conversions sont nécessaires pour en espérer une connaissance totale.",
           },
           {
-            citation: "Fanet, H. (2021). Ritualiser la représentation des fractions au cycle 3. DUMAS.",
+            id: 'dumas-03695946',
+            citation: "Fanet, H. (2021). Ritualiser la représentation des fractions au cycle 3.",
             content: "Ritualiser plusieurs représentations (bande, disque, droite, ensemble) développe la capacité à identifier et produire différentes formes d'une même fraction, compétence clé pour les élèves en difficulté.",
           },
           {
-            citation: "Ledan, L. (2025). Conceptualisation des fractions dans La méthode de Singapour en CE1-CE2. HAL.",
+            id: 'hal-05123050',
+            citation: "Ledan, L. (2025). Quelles conditions pour une conceptualisation des fractions dans le manuel français « La méthode de Singapour » en CE1-CE2 ?",
             content: "La méthode Singapour associe systématiquement l'écriture chiffrée à une représentation imagée et à la position sur une droite graduée — trois registres mobilisés simultanément pour ancrer le concept.",
           },
         ],
@@ -865,15 +868,18 @@ const apps: AppItem[] = [
         summary: "Rendre visibles les étapes intermédiaires d'une opération sur les fractions permet à l'élève d'identifier précisément l'obstacle et de construire un raisonnement procédural solide.",
         references: [
           {
-            citation: "Duveau, M. (2022). La place et le rôle de l'erreur dans l'apprentissage des fractions simples en CM1. DUMAS.",
+            id: 'dumas-03948596',
+            citation: "Duveau, M. (2022). La place et le rôle de l'erreur dans l'enseignement et l'apprentissage des fractions simples en CM1.",
             content: "L'erreur dans l'apprentissage des fractions est une étape normale : rendre visible chaque étape de calcul permet à l'élève d'identifier précisément où se situe l'obstacle et de le corriger.",
           },
           {
-            citation: "Morisse, A. (2016). Validation d'épreuves d'évaluation de la numération au sein d'Examath. DUMAS.",
-            content: "La compréhension des fractions ordinaires précède celle des fractions décimales. Des représentations visuelles étape par étape réduisent la charge cognitive et rendent les procédures accessibles.",
+            id: 'dumas-01373176',
+            citation: "Morisse, A. (2016). Validation d'épreuves d'évaluation de la numération au sein d'une batterie informatisée (Examath) visant à évaluer les troubles de la cognition mathématique.",
+            content: "La batterie Examath identifie les profils de difficultés dans la cognition mathématique, dont la numération et la compréhension des fractions. La maîtrise de la fraction ordinaire y figure comme étape diagnostique préalable à celle des fractions décimales.",
           },
           {
-            citation: "Nguala, Guillon & Di Beta (2025). De la fraction partage à la fraction nombre. HAL.",
+            id: 'hal-05166265',
+            citation: "Nguala, J.-B., Guillon, C. & Di Beta, M. (2025). De la fraction partage à la fraction nombre : étude des conditions de transfert et des effets d'un dispositif de formation à Mayotte.",
             content: "Le passage de la fraction-partage à la fraction-nombre est une rupture conceptuelle majeure. Visualiser les opérations comme transformations de quantités (barres) soutient ce passage.",
           },
         ],
