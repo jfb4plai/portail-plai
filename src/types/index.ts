@@ -3,7 +3,7 @@
 export type AppStatus = 'disponible' | 'bientôt' | 'en-développement';
 export type AppSection = 'applications' | 'sensibilisation' | 'claude';
 
-export type Reference = { citation: string; content: string };
+export type Reference = { id?: string; citation: string; content: string };
 export type StepGroup = { title: string; items: string[] };
 
 export type GuideContent = {
