@@ -480,18 +480,21 @@ const apps: AppItem[] = [
     browserNote: 'Recommandé dans Microsoft Edge : voix neuronales (fr-BE) disponibles + surlignage mot par mot synchronisé avec la lecture audio.',
     guide: {
       scientific: {
-        summary: "L'Atelier Dyslexie exploite l'expérience vécue comme levier de formation : en vivant eux-mêmes la désorganisation de la lecture dyslexique, les enseignants construisent une compréhension incarnée de la difficulté — et font émerger spontanément les aménagements pertinents.",
+        summary: "L'Atelier Dyslexie exploite l'expérience vécue comme levier de formation : en vivant eux-mêmes la désorganisation de la lecture dyslexique, les enseignants construisent une compréhension incarnée de la difficulté — et font émerger spontanément les aménagements pertinents. Note : les confusions b/d/p/q simulées sont d'origine phonologique, non visuelle (difficulté d'association graphème-phonème) — la simulation reste pédagogiquement valide pour développer l'empathie.",
         references: [
           {
-            citation: "Deleuze, C. (2023). Troubles spécifiques des apprentissages : création d'une action de sensibilisation à destination des enseignants en école élémentaire. DUMAS.",
+            id: 'dumas-04304754',
+            citation: "Deleuze, C. (2023). Troubles spécifiques des apprentissages : création d'une action de sensibilisation à destination des enseignants en école élémentaire.",
             content: "Les enseignants sont souvent peu sensibilisés aux troubles Dys, alors qu'ils en sont en demande. Une action de sensibilisation auprès de 53 enseignants montre « une nette amélioration des connaissances [...] et sur leur sentiment de compétence » pour accompagner les élèves concernés.",
           },
           {
-            citation: "Adrian, S. (2021). Dimension psychoaffective des enfants présentant des troubles des apprentissages et effets de la sensibilisation par la simulation en classe en ergothérapie. DUMAS.",
+            id: 'dumas-03279190',
+            citation: "Adrian, S. (2021). Dimension psychoaffective des enfants présentant des troubles des apprentissages et effets de la sensibilisation par la simulation en classe en ergothérapie.",
             content: "L'expérience scolaire des enfants avec troubles des apprentissages est décrite comme « plutôt traumatisante, provoquant des niveaux de détresse et de douleur psychique ». La simulation permet aux enseignants de comprendre cette réalité de l'intérieur — bien au-delà d'un exposé théorique.",
           },
           {
-            citation: "Coffin, M., Goulet, C. & Piquard-Kipffer, A. (2023). L'accessibilité numérique au service des étudiants dyslexiques. Les Cahiers Pédagogiques, 582, pp.10-11.",
+            id: 'hal-03962468',
+            citation: "Coffin, M., Goulet, C. & Piquard-Kipffer, A. (2023). L'accessibilité numérique au service des étudiants dyslexiques.",
             content: "« La modification de la typographie permet d'accéder plus facilement au sens d'un texte (interligne, police sans empattement, espaces interlettres et intermots augmentés). L'outil de synthèse vocale [...] permet de gagner du temps et de la fatigue en lecture. »",
           },
         ],
@@ -501,18 +504,20 @@ const apps: AppItem[] = [
           {
             title: 'Mise en situation',
             items: [
-              "Collez ou importez un texte (supporte .txt et .docx)",
-              "Activez les effets Dyslexie : inversions, mélange de lettres, décalages verticaux",
+              "Collez ou importez un texte (.txt ou .docx)",
+              "Activez les effets dyslexie : mélange de lettres, décalages verticaux, confusions b/d/p/q (symétrie)",
               "Essayez de lire — ressentez la charge cognitive et la fatigue visuelle",
+              "Utilisez 'Afficher l'original' pour comparer avec et sans effets",
             ],
           },
           {
             title: 'Explorer les aménagements',
             items: [
-              "Modifiez la police (OpenDyslexic, Arial, Verdana…)",
-              "Augmentez la taille, l'interligne, l'espacement des lettres",
+              "Modifiez la police (Arial recommandée, Comic Sans, French Script MT pour simuler l'illisibilité, Times New Roman avec empattement)",
+              "Ajustez taille, interligne, espacement des lettres et espacement des mots",
               "Testez les fonds colorés (crème, bleu ciel, vert tableau…)",
-              "Activez la colorisation un mot sur deux (bicolor)",
+              "Activez la colorisation un mot sur deux (bicolor) — personnalisez les deux couleurs",
+              "Associez une image au texte comme indice visuel de compréhension",
             ],
           },
           {
