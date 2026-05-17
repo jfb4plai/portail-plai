@@ -4,7 +4,7 @@ const apps: AppItem[] = [
   {
     id: 'planbot',
     name: 'PlanBot',
-    description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail, métacognition. Pour logopèdes et enseignants FWB. 6 niveaux progressifs, 9 paramètres cliniques.",
+    description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail, métacognition. Pour logopèdes, psychomotriciens et enseignants spécialisés FWB. 6 niveaux progressifs, 11 paramètres cliniques configurables.",
     url: 'https://planbot-plai.vercel.app',
     emoji: '🤖',
     category: 'Fonctions exécutives',
@@ -31,7 +31,7 @@ const apps: AppItem[] = [
             citation:
               "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience. Thèse, Université Paris Cité. [RISS : tel-04496182]",
             content:
-              "Les paradigmes de réponse temporisée (type feu tricolore) constituent des outils valides pour la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent.",
+              "Les paradigmes de réponse temporisée (Stop Signal, Go/No-Go) constituent des outils valides pour l'entraînement et la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent. Le feu tricolore de PlanBot s'inscrit dans cette famille de paradigmes.",
           },
           {
             citation:
@@ -68,6 +68,14 @@ const apps: AppItem[] = [
       howto: {
         steps: [
           {
+            title: 'Se connecter',
+            items: [
+              "Un compte est requis pour accéder à PlanBot et sauvegarder les séances.",
+              "Créer un compte ou se connecter sur la page d'accueil de l'application.",
+              "Le tableau de bord et l'historique des séances sont liés au compte connecté.",
+            ],
+          },
+          {
             title: 'Configurer la session',
             items: [
               "Entrer le prénom du joueur et choisir le groupe d'âge (6 ans / 7–10 ans / 11–13 ans).",
@@ -87,7 +95,7 @@ const apps: AppItem[] = [
               "Le robot 🤖 doit rejoindre l'étoile ⭐ en évitant les murs 🧱.",
               'Construire une séquence de commandes (↑ ↓ ← →) avec les boutons directionnels.',
               "Aux niveaux 3–4 : ramasser la ou les clés 🔑 dans l'ordre avant l'étoile.",
-              'Au niveau 5+ : le modificateur 🔀 inverse gauche et droite après passage.',
+              'Groupe 11-13 ans, niveaux 5–6 uniquement : le modificateur 🔀 inverse gauche et droite après passage.',
               "Cliquer « Valider » pour vérifier le chemin. Un indice oriente la révision en cas d'erreur.",
               "Badge ⭐ Optimal visible : si la séquence atteint l'étoile avec le minimum de commandes → +2 pts bonus.",
               "Badge 🔁 Persévération : PlanBot détecte et compte les séquences en échec identiques soumises plusieurs fois.",
