@@ -1745,6 +1745,101 @@ const apps: AppItem[] = [
     color: 'indigo',
     section: 'claude',
   },
+  {
+    id: 'ytdl-plai',
+    name: 'YT-DL PLAI',
+    emoji: '📥',
+    category: 'Outil local',
+    description: 'Télécharge des vidéos YouTube en MP4 et extrait les transcripts — sans publicité, sans connexion en classe. S\'installe sur l\'ordinateur, s\'ouvre dans le navigateur. Windows uniquement.',
+    url: 'http://localhost:7890',
+    status: 'disponible',
+    color: 'teal',
+    section: 'utilitaires',
+    browserNote: 'Application locale à installer sur chaque ordinateur. Consulter le guide 📖 pour l\'installation pas à pas.',
+    guide: {
+      howto: {
+        steps: [
+          {
+            title: 'Télécharger et installer (une seule fois, ~2 minutes)',
+            items: [
+              'Télécharger le fichier d\'installation : https://github.com/jfb4plai/ytdl-plai/releases/latest/download/YT-DL-PLAI-Setup.exe',
+              'Double-cliquer sur le fichier téléchargé.',
+              'Windows affiche un avertissement bleu : "Windows a protégé votre ordinateur" — c\'est normal pour tout logiciel non commercial.',
+              'Cliquer sur "Informations complémentaires" (lien gris, en bas du message).',
+              'Cliquer sur "Exécuter quand même".',
+              'L\'installateur s\'ouvre : cliquer 3 fois sur "Suivant" puis "Installer".',
+              'Un raccourci "YT-DL PLAI" apparaît sur le Bureau.',
+            ],
+          },
+          {
+            title: 'Lancer l\'application',
+            items: [
+              'Double-cliquer sur l\'icône "YT-DL PLAI" sur le Bureau.',
+              'Une petite fenêtre noire s\'ouvre — c\'est normal, ne pas la fermer, c\'est le moteur de l\'app.',
+              'Le navigateur (Chrome, Firefox…) s\'ouvre automatiquement sur la page de l\'outil.',
+              'Si le navigateur ne s\'ouvre pas : taper manuellement "localhost:7890" dans la barre d\'adresse.',
+            ],
+          },
+          {
+            title: 'Télécharger une vidéo YouTube en MP4',
+            items: [
+              'Aller sur YouTube et copier l\'adresse de la vidéo (la barre en haut du navigateur).',
+              'Coller l\'adresse dans le champ "URL YouTube" de l\'application.',
+              'Cliquer sur "Télécharger MP4 1080p".',
+              'Une barre de progression apparaît avec la vitesse et le temps restant.',
+              'Quand c\'est terminé, un message vert confirme : la vidéo est dans le dossier "Téléchargements" de l\'ordinateur.',
+            ],
+          },
+          {
+            title: 'Extraire le texte d\'une vidéo (transcript)',
+            items: [
+              'Cliquer sur l\'onglet "Transcript" (en haut de la carte).',
+              'Coller l\'URL YouTube dans le champ.',
+              'Cliquer "Extraire le transcript".',
+              'Le texte de la vidéo s\'affiche — uniquement si la vidéo possède des sous-titres (automatiques ou manuels).',
+              'Cliquer "Copier" pour l\'utiliser dans un document, ou "Télécharger .txt" pour le sauvegarder.',
+            ],
+          },
+          {
+            title: 'Fermer l\'application',
+            items: [
+              'En bas de la page de l\'outil, cliquer sur "Arrêter l\'application".',
+              'Confirmer. La fenêtre noire se ferme automatiquement.',
+              'Alternative : fermer la petite fenêtre noire directement.',
+            ],
+          },
+        ],
+        tip: 'Téléchargez les vidéos la veille au soir depuis chez vous : elles seront disponibles le lendemain en classe, même sans connexion internet. Idéal pour les écoles avec réseau instable.',
+      },
+      scientific: {
+        summary:
+          'L\'accès asynchrone et hors-ligne aux ressources vidéo soutient l\'autonomie des apprenants, réduit la charge cognitive liée aux interruptions techniques et s\'inscrit dans les principes de la classe inversée. Éliminer les publicités supprime une source de distraction extrinsèque documentée comme nuisible à la concentration des élèves à besoins spécifiques.',
+        references: [
+          {
+            id: 'halshs-03762352',
+            citation:
+              'Carminatti, N., Charalampopoulou, C., & Carnus, M.-F. (2021). Quelle présence pour accompagner l\'apprentissage à distance ? Questions Vives. DOI: 10.4000/questionsvives.6083',
+            content:
+              'En mode asynchrone formel, l\'enseignant propose des ressources pouvant être consultées à tout moment (en temps différé), laissant à chacun la capacité d\'organiser son apprentissage en autonomie, librement et à son propre rythme.',
+          },
+          {
+            id: 'dumas-04355318',
+            citation:
+              'Grover, D. (2023). La classe inversée et l\'enseignement-apprentissage de la grammaire à l\'Alliance Française de Delhi. Mémoire, Sciences humaines et sociales.',
+            content:
+              'La capsule vidéo constitue un support pédagogique central de la pédagogie inversée : consultée hors classe, elle libère le temps présentiel pour les activités d\'interaction, de pratique et de remédiation.',
+          },
+          {
+            id: 'dumas-01867157',
+            citation:
+              'Martin, W. (2018). Création de supports audiovisuels en odontologie pédiatrique. Mémoire, Sciences du Vivant.',
+            content:
+              'La ressource vidéo a pour but d\'amorcer une discussion accompagnée d\'une réflexion en classe. Cette méthode d\'enseignement découle du constructivisme pédagogique : l\'apprenant construit son savoir à partir d\'une expérience médiatisée avant la mise en commun.',
+          },
+        ],
+      },
+    },
+  },
 ];
 
 export default apps;

@@ -193,6 +193,7 @@ export default function Home() {
   const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
   const claudeItems = apps.filter(a => a.section === 'claude');
+  const utilItems   = apps.filter(a => a.section === 'utilitaires');
   const available   = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
   const coming      = appItems.filter(a => a.status === 'bientôt');
 
@@ -234,6 +235,21 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {coming.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+            </div>
+          </section>
+        )}
+
+        {utilItems.length > 0 && (
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-2 h-2 rounded-full bg-teal-500 inline-block"></span>
+              <h2 className="text-lg font-semibold text-gray-700">Utilitaires ({utilItems.length})</h2>
+            </div>
+            <p className="text-sm text-gray-500 mb-5 pl-5">
+              Outils à installer sur l'ordinateur pour un usage hors ligne ou indépendant des plateformes externes.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {utilItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
             </div>
           </section>
         )}
