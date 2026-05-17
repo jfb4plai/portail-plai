@@ -921,15 +921,18 @@ const apps: AppItem[] = [
         summary: "Les erreurs sur les règles des puissances sont souvent liées à une incompréhension de la signification des exposants. Un support visuel procédural (logigramme) réduit la charge cognitive et ancre les règles avant leur automatisation.",
         references: [
           {
-            citation: "Loretan, C., Weiss, L. & Müller, A. (2018). Quelle est la place du raisonnement semi-quantitatif dans l'enseignement des sciences ? Revue de mathématiques.",
+            id: 'W4313042527',
+            citation: "Loretan, C., Weiss, L. & Müller, A. (2018). Quelle est la place du raisonnement semi-quantitatif (RSQ) dans l'enseignement des sciences. Revue de Mathématiques pour l'école, 229, 15–21.",
             content: "Les puissances de 10 et la notation scientifique sont enseignées mais peu de séquences concrètes font appel au raisonnement semi-quantitatif. Un outillage visuel explicite est nécessaire.",
           },
           {
-            citation: "Croset, M.-C. (2005). Modélisation didactique et informatique des connaissances des élèves en algèbre. HAL.",
-            content: "La disparition du discours sur la nécessité de l'algèbre est à l'origine des difficultés rencontrées lors de l'introduction des règles du calcul littéral, dont les puissances.",
+            id: 'hal-00190165',
+            citation: "Croset, M.-C. (2006). Vers une modélisation épistémique de l'apprenant. Cas du développement et réduction d'expressions algébriques.",
+            content: "L'analyse des erreurs stables des élèves en algèbre révèle des connaissances implicites qui résistent à l'enseignement. Identifier ces obstacles avant d'introduire les règles de calcul sur les puissances permet de cibler précisément ce qui bloque.",
           },
           {
-            citation: "Varinot, A. (2012). La médiation pédagogique au service de la métacognition. DUMAS.",
+            id: 'dumas-00760968',
+            citation: "Varinot, A. (2012). La médiation pédagogique au service de la métacognition.",
             content: "Le schéma visuel au tableau et l'explicitation de la procédure par l'élève anticipent la surcharge cognitive et renforcent la métacognition sur les règles de calcul.",
           },
         ],
