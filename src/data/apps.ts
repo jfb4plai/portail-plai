@@ -1139,18 +1139,22 @@ const apps: AppItem[] = [
         summary: "PLAI-Quiz s'appuie sur l'effet test (testing effect) : le fait de se rappeler activement une information consolide la trace mémorielle bien plus efficacement que la relecture passive. Combiné à un feedback immédiat et à des adaptations d'accessibilité, le quiz formatif devient un outil de différenciation à part entière.",
         references: [
           {
+            id: 'W4389335350',
             citation: "McMullin, S. & Masson, S. (2023). La récupération en mémoire et l'espacement. Neuroeducation.",
             content: "La récupération active en mémoire (testing effect) renforce durablement les apprentissages. Chaque tentative de rappel, même infructueuse, contribue à consolider la trace mémorielle — ce qui justifie le recours régulier au quiz en classe.",
           },
           {
-            citation: "Keller, J. (2020). Évaluation d'une stratégie d'apprentissage par récupération chez des adolescents avec TDAH.",
+            id: 'dumas-03052674',
+            citation: "Keller, J. (2020). Évaluation d'une stratégie d'apprentissage par récupération chez des adolescents avec TDAH : une étude observationnelle.",
             content: "L'apprentissage par récupération (quiz, tests d'entraînement) produit de meilleurs résultats en mémorisation à long terme que l'apprentissage passif, y compris pour les élèves présentant un TDAH — ce qui en fait un outil inclusif particulièrement pertinent.",
           },
           {
-            citation: "Romeyer-Dherbey, E. (2025). L'impact des feedbacks sur la motivation des élèves.",
-            content: "Les rétroactions immédiates favorisent l'apprentissage, notamment chez les élèves débutants. Un feedback différé n'a pas d'effet notable comparable — ce qui justifie la correction instantanée proposée par PLAI-Quiz.",
+            id: 'dumas-05327442',
+            citation: "Romeyer-Dherbey, E. (2025). L'impact des feedbacks sur la motivation des élèves en Éducation Physique et Sportive.",
+            content: "Dans le contexte de l'EPS, les rétroactions immédiates favorisent l'apprentissage, notamment chez les élèves débutants. Ce principe de feedback immédiat, documenté en EPS, est transposé ici à la correction instantanée proposée par PLAI-Quiz.",
           },
           {
+            id: 'dumas-04032213',
             citation: "Capel Malo, E. et al. (2020). Le numérique au service de l'école inclusive.",
             content: "Le numérique peut être au cœur d'un enseignement différencié à condition que les outils soient conçus pour s'adapter aux besoins spécifiques des élèves. PLAI-Quiz intègre tiers-temps, lecture vocale (TTS) et polices accessibles (OpenDyslexic, Luciole) dans cette perspective.",
           },
