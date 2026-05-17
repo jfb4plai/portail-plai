@@ -403,19 +403,23 @@ const apps: AppItem[] = [
     category: 'Orthographe',
     status: 'disponible',
     color: 'orange',
+    section: 'applications',
     guide: {
       scientific: {
         summary: "Dictée Interactive répond aux trois conditions scientifiquement validées : pratique active de l'orthographe + feedback immédiat + réduction de l'anxiété liée à l'erreur (le numérique dédramatise).",
         references: [
           {
-            citation: "Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits.",
+            id: 'tel-00979303',
+            citation: "Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits : effets des tâches et processus sous-jacents.",
             content: "La dictée reste une des modalités les plus efficaces pour l'apprentissage de l'orthographe lexicale — à condition que l'erreur soit traitée, pas seulement sanctionnée.",
           },
           {
+            id: 'tel-00801214',
             citation: "Borchardt, G. (2012). L'influence des connaissances graphotactiques sur l'acquisition de l'orthographe lexicale.",
             content: "Le feedback immédiat après chaque erreur améliore significativement les performances lors d'évaluations différées — sans feedback, l'erreur se consolide.",
           },
           {
+            id: 'dumas-02430370',
             citation: 'Massé, J. (2019). Usage du numérique en classe et effets sur la mobilisation chez les élèves de SEGPA.',
             content: "La dictée numérique avec correction immédiate augmente la mobilisation des élèves en difficulté — le numérique dédramatise l'erreur là où l'outil papier génère souvent blocage et démotivation.",
           },
@@ -428,16 +432,18 @@ const apps: AppItem[] = [
             items: [
               'Connectez-vous → "Nouvelle séance"',
               'Donnez un titre (ex. : Dictée semaine 12 — mots en -tion)',
-              'Entrez votre liste de mots',
+              'Entrez votre liste de mots (une par ligne)',
             ],
           },
           {
             title: 'Configurer les options',
             items: [
-              'Mode clavier : l\'élève tape le mot',
-              'Mode lettres mélangées : l\'élève remet les lettres dans l\'ordre (plus accessible)',
+              'Mode clavier : l\'élève tape le mot librement',
+              'Mode lettres mélangées (par défaut) : l\'élève remet les lettres dans l\'ordre (plus accessible)',
               'Lettres parasites : des lettres supplémentaires s\'ajoutent pour corser l\'exercice',
-              'Mode prononciation : le mot est lu à voix haute (TTS)',
+              'Lettres pré-remplies : certaines lettres sont déjà placées (aide pour les élèves en difficulté)',
+              'Image par mot : associez une illustration à chaque mot (indice visuel)',
+              'Mode prononciation : le mot est lu à voix haute (synthèse vocale)',
             ],
           },
           {
@@ -453,10 +459,11 @@ const apps: AppItem[] = [
             items: [
               'Résultats par élève et par mot après la séance',
               'Identifiez les mots systématiquement ratés → reprise ciblée',
+              'Dupliquez la séance pour créer une version différenciée (options différentes, même liste)',
             ],
           },
         ],
-        tip: "Le mode lettres mélangées est idéal en différenciation pour les élèves dyslexiques — même liste de mots, modalité adaptée.",
+        tip: "Combinez les options pour différencier : mode lettres mélangées + lettres pré-remplies + image pour les élèves dyslexiques, mode clavier + lettres parasites pour les plus avancés — même liste de mots, modalités adaptées.",
       },
     },
   },
