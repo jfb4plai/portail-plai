@@ -1020,8 +1020,9 @@ const apps: AppItem[] = [
     url: 'https://grammaire-3d-plai.vercel.app',
     emoji: '🍽️',
     category: 'Français',
-    status: 'disponible',
+    status: 'en-développement',
     color: 'purple',
+    devBanner: true,
     guide: {
       scientific: {
         summary: "L'approche manipulatoire de la Grammaire 3D (assiettes + formes géométriques) réduit la charge cognitive déclarative et favorise l'identification fonctionnelle des groupes syntaxiques — particulièrement efficace pour les élèves dyslexiques et TDAH.",
