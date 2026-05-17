@@ -17,49 +17,56 @@ const apps: AppItem[] = [
           "PlanBot repose sur les modèles neurocognitifs des fonctions exécutives (FE) : planification, inhibition, mémoire de travail et flexibilité cognitive. Le jeu combine deux paradigmes validés — résolution de labyrinthe planifiée (FE de planification) et paradigme Go/No-Go adapté au feu tricolore (FE d'inhibition) — et intègre des outils de suivi clinique : détection des persévérations, estimation de confiance (métacognition), verbalisation de séquence et mode exécution directe (impulsivité motrice).",
         references: [
           {
-            citation: 'Diamond, A. (2013). Executive Functions. Annual Review of Psychology, 64, 135–168. [réel, hors corpus RISS]',
+            citation: 'Diamond, A. (2013). Executive Functions. Annual Review of Psychology, 64, 135–168. Réel, hors corpus RISS.',
             content:
               "Les fonctions exécutives comprennent l'inhibition, la mémoire de travail et la flexibilité cognitive. Ces trois composantes, et celles qui en dérivent (planification, résolution de problèmes), sont indispensables à la réussite scolaire et au développement personnel.",
           },
           {
+            id: 'tel-04717319',
             citation:
-              'Abou Assi, K. (2022). Implication des fonctions exécutives dans les activités de codage et de robotique : un effet de réciprocité ? Thèse, Université de Rouen Normandie. [RISS : tel-04717319]',
+              'Abou Assi, K. (2022). Implication des fonctions exécutives dans les activités de codage et de robotique : un effet de réciprocité ? Thèse, Université de Rouen Normandie.',
             content:
               "Les activités de codage et de robotique mobilisent intensément les FE (planification séquentielle, inhibition des erreurs, mise à jour en MDT). L'entraînement par ces activités améliore en retour les performances exécutives mesurées.",
           },
           {
+            id: 'tel-04496182',
             citation:
-              "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience. Thèse, Université Paris Cité. [RISS : tel-04496182]",
+              "Rezende, G. (2022). Entraînement au contrôle inhibiteur et méditation de pleine conscience : une approche multi-niveaux et développementale. Thèse, Université Paris Cité.",
             content:
               "Les paradigmes de réponse temporisée (Stop Signal, Go/No-Go) constituent des outils valides pour l'entraînement et la rééducation du contrôle inhibiteur chez l'enfant et l'adolescent. Le feu tricolore de PlanBot s'inscrit dans cette famille de paradigmes.",
           },
           {
+            id: 'tel-01259986',
             citation:
-              "Moreno Torres, M. (2014). La relation gestes-parole dans la planification de la résolution du problème de la Tour de Hanoï. Thèse, Université de Grenoble. [RISS : tel-01259986]",
+              "Moreno Torres, M. (2014). La relation gestes-parole dans la planification de la résolution du problème de la Tour de Hanoï chez des enfants, adolescents et adultes colombiens. Thèse, Université de Toulouse.",
             content:
               "La Tour de Hanoï est le paradigme classique de planification optimale par séquences — même structure cognitive que PlanBot (trouver le chemin le plus court). L'indicateur de chemin optimal (+2 pts bonus) s'ancre dans ce paradigme.",
           },
           {
+            id: 'dumas-02180844',
             citation:
-              "de Lepineau, J. (2018). Étude de l'hypothèse d'une fatigabilité cognitive excessive comme substrat de l'impulsivité chez les adultes avec TDAH. Mémoire, Université de Bordeaux. [RISS : dumas-02180844]",
+              "de Lepineau, J. (2018). Étude de l'hypothèse d'une fatigabilité cognitive excessive comme substrat de l'impulsivité chez les adultes avec TDAH. Mémoire, Université de Bordeaux.",
             content:
               "La persévération — persistance dans un schéma cognitif erroné — est associée au déficit d'inhibition dans le TDAH. PlanBot détecte automatiquement les séquences en échec répétées et les signale au thérapeute via un compteur.",
           },
           {
+            id: 'hal-04457436',
             citation:
-              "Allix, P., Lubin, A., Lanoë, C., & Rossi, S. (2023). Connais-toi toi-même : une perspective globale de la métacognition. Psychologie Française. [RISS : hal-04457436]",
+              "Allix, P., Lubin, A., Lanoë, C., & Rossi, S. (2023). Connais-toi toi-même : une perspective globale de la métacognition. Psychologie Française, 68(3), 451–469.",
             content:
               "Les jugements d'estimation de confiance ('est-ce que je suis sûr de ma réponse ?') constituent un indicateur fiable du monitoring métacognitif. PlanBot sollicite ce jugement après chaque planification, avant l'exécution.",
           },
           {
+            id: 'dumas-00905984',
             citation:
-              "Carre, E., & de Casas, C. (2013). La verbalisation des procédures favorise-t-elle l'autorégulation des élèves ? Mémoire ESPE. [RISS : dumas-00905984]",
+              "Carre, E. & de Casas, C. (2013). La verbalisation des procédures favorise-t-elle l'autorégulation des élèves ? Mémoire ESPE.",
             content:
               "Verbaliser une procédure améliore l'autorégulation — ce qui est exactement la logique du mode verbalisation dans PlanBot : nommer à voix haute le chemin planifié avant de valider.",
           },
           {
+            id: 'dumas-01592161',
             citation:
-              "Brouilliard Rouseau, L. (2017). Joindre le geste… Intérêt de la psychomotricité dans la prise en charge des troubles des fonctions exécutives. Mémoire, Université de Bordeaux. [RISS : dumas-01592161]",
+              "Brouilliard Rouseau, L. (2017). Joindre le geste… Intérêt de la psychomotricité dans la prise en charge des troubles des fonctions exécutives : tentative d'élaboration d'un test psychomoteur évaluant les capacités d'inhibition chez l'enfant. Mémoire, Université de Bordeaux.",
             content:
               "Faire verbaliser avant de se lancer réduit l'impulsivité motrice et cognitive. PlanBot distingue un mode planification préalable d'un mode exécution directe (⚡) permettant d'observer et de travailler l'impulsivité chez l'enfant.",
           },
