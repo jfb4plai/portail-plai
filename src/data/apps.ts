@@ -1209,15 +1209,18 @@ const apps: AppItem[] = [
         summary: "La transcription automatique locale réduit la charge cognitive liée à la prise de notes et rend accessibles les contenus oraux aux élèves ayant des troubles « dys » ou un TDAH. Traitement 100 % local : aucune donnée audio transmise à un tiers (RGPD).",
         references: [
           {
-            citation: "Fliti, A. & Avarello, V. (2025). Modèles génératifs et accès au savoir pour les personnes en situation de handicap. hal-05450529",
+            id: 'hal-05450529',
+            citation: "Fliti, A. & Avarello, V. (2025). Modèles Génératifs et Accès au Savoir pour les Personnes en Situation de Handicap : défis, opportunités et implications.",
             content: "Les modèles de reconnaissance vocale (dont Whisper) offrent un potentiel d'accessibilité majeur pour les personnes en situation de handicap — sous réserve d'un traitement local garantissant la confidentialité des données.",
           },
           {
-            citation: "Jean-Baptiste, P. (2025). L'IA en action : écouter comme une machine. hal-05249093",
+            id: 'hal-05249093',
+            citation: "Jean-Baptiste, P. (2025). L'IA en action : écouter comme une machine.",
             content: "La transcription automatique de cours et de réunions permet une relecture différée et une mise en texte que les élèves ayant des difficultés grapho-motrices ou attentionnelles ne peuvent produire seuls.",
           },
           {
-            citation: "Fournier, M. (2024). Les adaptations pédagogiques de l'enseignant pour les élèves ayant des troubles « dys ». dumas-04562654",
+            id: 'dumas-04562654',
+            citation: "Fournier, M. (2024). Les adaptations pédagogiques de l'enseignant pour les élèves ayant des troubles « dys ».",
             content: "Fournir un support écrit issu d'un oral (cours, consigne, témoignage) est une adaptation reconnue pour les élèves avec TSLA ou TDAH — elle réduit la surcharge de la mémoire de travail.",
           },
         ],
