@@ -275,19 +275,23 @@ const apps: AppItem[] = [
     category: 'Vocabulaire',
     status: 'disponible',
     color: 'green',
+    section: 'applications',
     guide: {
       scientific: {
-        summary: "DéfiniFWB transforme une leçon de vocabulaire traditionnelle (frontale, passive) en activité collective interactive, conforme aux recommandations sur l'usage pédagogique du TBI.",
+        summary: "DéfiniFWB transforme une leçon de vocabulaire traditionnelle (frontale, passive) en activité collective interactive, conforme aux recommandations sur l'usage pédagogique du TBI. L'efficacité du TBI dépend du mode d'usage : un usage partagé et participatif, où les élèves sont acteurs, produit des gains d'apprentissage que l'usage frontal ne génère pas.",
         references: [
           {
-            citation: "Redouani, A. (2022). L'impact de l'usage pédagogique du TBI sur l'engagement scolaire des élèves.",
+            id: 'tel-04137370',
+            citation: "Redouani, A. (2022). L'impact de l'usage pédagogique du Tableau Blanc Interactif (TBI) sur l'engagement scolaire des élèves.",
             content: "L'usage du TBI en classe augmente significativement l'engagement comportemental et cognitif des élèves, à condition que l'outil soit intégré dans une démarche participative.",
           },
           {
+            id: 'dumas-03933008',
             citation: 'Grondin, O. (2019). Apprendre et enseigner autrement avec le tableau interactif.',
             content: "Le TBI n'améliore les apprentissages que lorsqu'il génère de l'interaction entre élèves et entre élèves et contenu — pas en usage purement frontal.",
           },
           {
+            id: 'dumas-01938967',
             citation: "Hesto, J. (2018). L'impact du TBI sur la motivation et la réussite scolaire.",
             content: "La motivation intrinsèque est renforcée quand l'élève est acteur — ce que les modes de jeu de DéfiniFWB visent explicitement.",
           },
@@ -306,27 +310,26 @@ const apps: AppItem[] = [
           {
             title: 'Choisir le mode de jeu',
             items: [
-              'Sélectionnez parmi les 6 modes disponibles (association, devinette, classement…)',
-              'Projetez l\'application sur le TBI',
+              '6 modes disponibles : Mot cliquable, Clavier guidé, Relier, Retrouver le mot, Quiz flash, Indice progressif',
+              'Projetez l\'application sur le TBI ou partagez l\'URL via QR code',
             ],
           },
           {
             title: 'Lancer avec les élèves',
             items: [
-              'Partagez le QR code ou le code d\'accès',
-              'Les élèves rejoignent depuis leur tablette / PC',
-              'Animez la séance depuis votre vue enseignant',
+              'Mode TBI : activité collective projetée, l\'enseignant anime',
+              'Mode élève : les élèves accèdent à la séance depuis leur tablette via QR code ou URL',
             ],
           },
           {
             title: 'Après la séance',
             items: [
-              'Consultez les résultats par élève et par mot',
-              'Réutilisez la séance ou exportez les résultats',
+              'Consultez les statistiques de consultation par mot (nombre de fois qu\'un mot a été cliqué/consulté)',
+              'Réutilisez la séance lors d\'une prochaine séquence',
             ],
           },
         ],
-        tip: "Utilisez le mode TBI pour une activité collective, puis passez en mode individuel (QR code) pour une consolidation autonome.",
+        tip: "Utilisez le mode TBI pour une activité collective, puis activez le mode élève (QR code) pour une consolidation autonome sur tablette.",
       },
     },
   },
