@@ -692,15 +692,18 @@ const apps: AppItem[] = [
         summary: "La Boucle fait vivre l'incapacité à utiliser la rétroaction — avant d'expliquer pourquoi. Elle repose sur le modèle en 4 dimensions de Carless & Boud (2018) : Dispositions, Conception, Littératie, Appropriation. Sans maîtrise de ces 4 dimensions, même la rétroaction la plus pertinente reste lettre morte.",
         references: [
           {
-            citation: "Calone, A. & Lafontaine, D. (2023). L'impact des différents types de feedbacks en contexte de classe. RISS : hal-04646895.",
+            id: 'hal-04646895',
+            citation: "Calone, A. & Lafontaine, D. (2023). L'impact des différents types de feedbacks en contexte de classe.",
             content: "Le feedback n'opère que s'il est orienté vers la tâche et le processus — pas vers la note ou la personne. Cette distinction, que La Boucle fait vivre dans la Remarque 2, est centrale à la littératie à la rétroaction.",
           },
           {
-            citation: "Altinsoy, M. (2025). Les évaluations scolaires comme levier d'autorégulation et de développement des compétences métacognitives au cycle 3. RISS : dumas-05324645.",
+            id: 'dumas-05324645',
+            citation: "Altinsoy, M. (2025). Les évaluations scolaires comme levier d'autorégulation et de développement des compétences métacognitives au cycle 3.",
             content: "L'évaluation formative opère quand l'élève dispose de critères transparents et peut s'autoévaluer avant soumission. C'est exactement la compétence que construit Alex dans le chemin vers la Fin C.",
           },
           {
-            citation: "Brault Foisy, L.-M. (2022). Mieux comprendre les mécanismes cérébraux d'apprentissage pour faciliter la réussite scolaire. RISS : W4225545444.",
+            id: 'W4225545444',
+            citation: "Brault Foisy, L.-M. (2022). Mieux comprendre les mécanismes cérébraux d'apprentissage pour faciliter la réussite scolaire des élèves.",
             content: "La rétroaction n'a d'effet neurologique que si elle est activement traitée. L'évitement (Fin A) est rationnel à court terme — et dévastateur à long terme. La Boucle le fait ressentir plutôt qu'expliquer.",
           },
         ],
