@@ -204,19 +204,23 @@ const apps: AppItem[] = [
     category: 'Lecture',
     status: 'disponible',
     color: 'purple',
+    section: 'applications',
     guide: {
       scientific: {
-        summary: "Picto Lecture s'inscrit dans la tradition de la Communication Alternative et Augmentée (CAA) en rendant le texte accessible par le canal visuel, multipliant les entrées sensorielles pour un même contenu.",
+        summary: "Picto Lecture s'inscrit dans la tradition de la Communication Alternative et Augmentée (CAA) en rendant le texte accessible par le canal visuel. L'association texte + pictogramme active un double encodage (verbal et visuel) qui renforce la compréhension et la mémorisation — bénéfice validé pour les élèves avec TSA, retard de langage ou difficultés de lecture.",
         references: [
           {
-            citation: "Chasseur, L. (2020). ÉvalCom : évaluation de l'acceptabilité des outils de CAA par tableaux de pictogrammes.",
+            id: 'dumas-02972128',
+            citation: "Chasseur, L. (2020). ÉvalCom : évaluation de l'acceptabilité et l'utilisabilité des outils de CAA par tableaux de pictogrammes.",
             content: "Les outils CAA par pictogrammes améliorent l'accès au sens pour les élèves à besoins spécifiques, à condition d'être intégrés dans une pratique régulière et contextualisée.",
           },
           {
-            citation: 'Ferreira, C. (2021). Un outil novateur au service des compétences en langage oral : les tableaux de langage assisté.',
+            id: 'dumas-03695978',
+            citation: 'Ferreira, C. (2021). Un outil novateur au service des compétences en langage oral chez les plus jeunes élèves : les tableaux de langage assisté.',
             content: "Le recours aux pictogrammes en lecture partagée développe les compétences langagières orales dès la maternelle, y compris pour des élèves sans troubles déclarés.",
           },
           {
+            id: 'dumas-04390420',
             citation: 'Fouré, L. (2023). Influence des Tableaux de Langage Assisté sur les compétences pronominales chez des enfants présentant un TSA.',
             content: "L'image-symbole (pictogramme) constitue un pont cognitif entre le langage oral et le sens, particulièrement bénéfique pour les élèves présentant un TSA ou un retard de langage.",
           },
@@ -235,9 +239,10 @@ const apps: AppItem[] = [
           {
             title: 'Configurer la conversion',
             items: [
-              'Dans le panneau Paramètres (droite), choisissez la langue (français/anglais)',
+              'Dans le panneau Paramètres, choisissez la langue (français/anglais)',
               'Cochez les catégories à pictogrammiser : Noms, Verbes, Adjectifs',
-              'Activez vos listes de mots personnalisés si créées',
+              'Ajoutez des listes de mots personnalisés (expressions multi-mots supportées : ex. "Père Noël")',
+              'Activez "Masquer le texte sous les pictogrammes" pour les exercices oraux ou dictées',
             ],
           },
           {
@@ -257,7 +262,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Créez des listes de mots personnalisés pour le vocabulaire spécifique de vos élèves (prénoms, lieux familiers, vocabulaire de classe).",
+        tip: "Créez des listes de mots personnalisés pour le vocabulaire spécifique de vos élèves (prénoms, lieux familiers, vocabulaire de classe). Le mode 'masquer le texte' transforme l'activité en exercice d'expression orale guidée par les images.",
       },
     },
   },
