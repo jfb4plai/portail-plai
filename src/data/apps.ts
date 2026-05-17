@@ -556,16 +556,19 @@ const apps: AppItem[] = [
         summary: "Cette activité place les enseignants dans la peau d'un élève dyscalculique en remplaçant les chiffres arabes par des glyphes mayas — une désorientation contrôlée qui révèle le rapport anxiogène au nombre. Le chronomètre visible amplifie la pression temporelle caractéristique des situations scolaires évaluées.",
         references: [
           {
+            id: 'dumas-05241399',
             citation: "Favodon, A. & Wasielewski, B. (2025). Le jeu mathématique comme outil évaluatif pour réduire l'anxiété des élèves.",
-            content: "L'anxiété mathématique « envahit la mémoire de travail et laisse peu de place à l'activité cognitive réelle » — un cercle vicieux que cette activité permet aux enseignants de vivre de l'intérieur. [RISS : dumas-05241399]",
+            content: "L'anxiété mathématique « envahit la mémoire de travail et laisse peu de place à l'activité cognitive réelle » — un cercle vicieux que cette activité permet aux enseignants de vivre de l'intérieur.",
           },
           {
-            citation: "Ginésy, M. (2023). Anxiété mathématique : apport de la sophrologie chez l'adolescent présentant un trouble des apprentissages mathématiques.",
-            content: "La détérioration des processus cognitifs par l'anxiété mathématique — notamment de la mémoire de travail — majore les difficultés, particulièrement chez les élèves à besoins spécifiques. [RISS : dumas-04161650]",
+            id: 'dumas-04161650',
+            citation: "Ginésy, M. (2023). Anxiété mathématique : apport de la sophrologie chez l'adolescent présentant un trouble des apprentissages mathématiques. Étude d'un cas clinique.",
+            content: "La détérioration des processus cognitifs par l'anxiété mathématique — notamment de la mémoire de travail — majore les difficultés, particulièrement chez les élèves à besoins spécifiques.",
           },
           {
-            citation: "Sayegh, M. (2021). Intérêt d'un entraînement autour de la ligne numérique avec apport de stratégies explicites.",
-            content: "L'entraînement au placement sur droite numérique améliore le sens du nombre chez les élèves présentant des troubles de la cognition mathématique. [RISS : dumas-03285680]",
+            id: 'dumas-03285680',
+            citation: "Sayegh, M. (2021). Intérêt d'un entraînement autour de la ligne numérique avec apport de stratégies explicites chez des sujets présentant un trouble des apprentissages mathématiques.",
+            content: "L'entraînement au placement sur droite numérique améliore le sens du nombre chez les élèves présentant des troubles de la cognition mathématique.",
           },
         ],
       },
