@@ -1086,15 +1086,17 @@ const apps: AppItem[] = [
         summary: "L'abaque des unités sans affichage explicite des relations multiplicatives crée des malentendus durables. La relation ×10 (ou ×1000 pour les volumes cubiques) doit être visible dans la structure même de l'outil.",
         references: [
           {
-            citation: "Renault, K. (2023). Rôle et place de l'abaque dans l'enseignement de la numération en cycle 2. DUMAS.",
+            id: 'dumas-04582690',
+            citation: "Renault, K. (2023). Rôle et place de l'abaque dans l'enseignement de la numération en cycle 2.",
             content: "L'abaque sans affichage explicite des relations entre unités crée des malentendus. La relation multiplicative doit être rendue visible dans chaque cellule.",
           },
           {
-            citation: "Roditi, E. (2002). La multiplication des nombres décimaux. HAL.",
+            citation: "Roditi, E. (2002). La multiplication des nombres décimaux en sixième. Recherche en Didactique des Mathématiques, 23(2), 183–216. Réel, hors corpus RISS.",
             content: "Il importe de comprendre la règle du déplacement de la virgule — pas seulement l'appliquer mécaniquement. Distinguer ×10, ×100 et ×1000 selon les catégories d'unités.",
           },
           {
-            citation: "Andreucci, C. & Mercier, A. (2005). Le volume : une approche didactique d'un problème récurrent. HAL.",
+            id: 'hal-01995387',
+            citation: "Andreucci, C. & Mercier, A. (2005). Le volume : un exemple d'approche didactique d'un problème récurrent.",
             content: "Le rapport litre/m³ est toujours de 1 à 1000 — erreur classique d'appliquer ×10 aux unités cubiques. Le pont dm³=L doit être enseigné comme équivalence fondamentale.",
           },
         ],
