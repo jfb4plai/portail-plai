@@ -342,19 +342,23 @@ const apps: AppItem[] = [
     category: 'Numération',
     status: 'disponible',
     color: 'pink',
+    section: 'applications',
     guide: {
       scientific: {
         summary: "Droite Graduée traduit directement les recommandations de la recherche en neurosciences de l'éducation : faire manipuler la droite graduée de façon active et répétée, avec feedback immédiat.",
         references: [
           {
+            id: 'hal-05519479',
             citation: 'Fanjat, J. & Roditi, E. (2025). Interrogations didactiques à propos de la ligne numérique mentale.',
             content: "Les auteurs distinguent la ligne numérique mentale (représentation cognitive innée), la droite numérique (objet mathématique) et la droite graduée (outil didactique). C'est sur cette dernière que l'enseignant agit.",
           },
           {
-            citation: 'Hirsch, M. & Roditi, E. (2023). Quand les neurosciences analysent les apprentissages en mathématiques.',
+            id: 'hal-05188689',
+            citation: 'Hirsch, M. & Roditi, E. (2023). Quand les neurosciences analysent les apprentissages et en tirent des conséquences pour l\'enseignement.',
             content: "Le placement des nombres sur la droite numérique est fondamental et déterminant pour leur apprentissage — conclusion validée par le Conseil scientifique de l'Éducation nationale française (2022).",
           },
           {
+            id: 'dumas-04098715',
             citation: 'Vignali, J. (2022). Effets du jeu sur le développement de la ligne numérique mentale.',
             content: "Les activités ludiques de placement et d'estimation sur droite graduée accélèrent le développement de la représentation spatiale des nombres, avec des effets mesurables.",
           },
@@ -365,24 +369,24 @@ const apps: AppItem[] = [
           {
             title: 'Configurer une activité',
             items: [
-              'Connectez-vous → "Nouvelle configuration"',
+              'Connectez-vous → configurez vos paramètres (plage numérique, graduation, affichage)',
               'Définissez la plage numérique (ex. : 0–100, 0–1000, nombres décimaux)',
-              'Choisissez le type d\'activité : estimation, placement précis, mix',
+              'Choisissez le type d\'activité : ① Estimation, ② Apprentissage multi-droites, ③ Mix',
             ],
           },
           {
             title: 'Utiliser en classe',
             items: [
-              'Projetez sur TBI ou partagez le lien avec les élèves',
+              'Basculez en Mode élève → projetez sur TBI ou partagez l\'URL',
               'L\'élève place le nombre sur la droite → feedback visuel immédiat',
               'Variez les plages pour travailler différentes compétences',
             ],
           },
           {
-            title: 'Sauvegarder',
+            title: 'Sauvegarder et partager',
             items: [
-              'Enregistrez vos configurations → réutilisables d\'une séance à l\'autre',
-              'Pas besoin de reconfigurer à chaque cours',
+              'Nommez et sauvegardez vos configurations → réutilisables d\'une séance à l\'autre',
+              'Exportez vos configs en JSON pour les partager avec des collègues ou les importer sur un autre appareil',
             ],
           },
         ],
