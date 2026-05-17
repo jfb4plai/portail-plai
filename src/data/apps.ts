@@ -974,15 +974,18 @@ const apps: AppItem[] = [
         summary: "L'ancrage visuel positionnel rang par rang réduit la charge cognitive et soutient l'automatisation des compléments — particulièrement efficace pour les élèves dyscalculiques.",
         references: [
           {
-            citation: "Quiterio, L. (2023). L'utilisation du boulier pour les élèves dyscalculiques. DUMAS.",
+            id: 'dumas-04485606',
+            citation: "Quiterio, L. (2023). L'utilisation du boulier pour les élèves dyscalculiques.",
             content: "Le boulier/abaque crée des automatismes de manipulation mentale en passant par la manipulation physique et visuelle. Recommandé comme outil de médiation pour les élèves dyscalculiques.",
           },
           {
-            citation: "Oesinger, F. (2020). Enseigner plus explicitement permet-il de lutter contre les malentendus scolaires ? DUMAS.",
+            id: 'dumas-02939068',
+            citation: "Oesinger, F. (2020). Enseigner plus explicitement permet-il de lutter contre les malentendus scolaires ?",
             content: "L'explicitation du raisonnement rang par rang réduit la charge cognitive extrinsèque et libère la mémoire de travail pour l'activité de calcul elle-même.",
           },
           {
-            citation: "Millon Faure, K. & Gombert, A. (2021). Analyse d'une situation en mathématiques pour une élève dyscalculique. HAL.",
+            id: 'hal-03186638',
+            citation: "Millon Faure, K. & Gombert, A. (2021). Analyse d'une situation en mathématiques pour une élève dyscalculique. Méthodologie pour la conception d'adaptations pédagogiques et didactiques.",
             content: "Pour les élèves dyscalculiques, visualiser l'algorithme positionnel colonne par colonne est un étayage essentiel avant l'automatisation des faits numériques.",
           },
         ],
