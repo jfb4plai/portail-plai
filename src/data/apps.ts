@@ -1385,19 +1385,23 @@ const apps: AppItem[] = [
         summary: "FEED-BACK ADAPT repose sur la distinction entre erreurs symptomatiques et obstacles d'appropriation (Fouchet-Isambard & Millon Faure, 2025) et sur l'efficacité documentée du feedback élaboré en contexte scolaire. L'IA générative permet une différenciation immédiate sans surcharge pour l'enseignant.",
         references: [
           {
-            citation: "Fouchet-Isambard, K. & Millon Faure, K. (2025). Élaboration d'une typologie des erreurs en mathématiques pour concevoir des feedbacks adaptatifs. HAL hal-05361521.",
+            id: 'hal-05361521',
+            citation: "Fouchet-Isambard, K. & Millon Faure, K. (2025). Élaboration d'une typologie des erreurs en mathématiques pour concevoir des feedbacks adaptatifs.",
             content: "Article fondateur de l'app : classification des erreurs mathématiques (épistémologiques, didactiques, ontogéniques) comme base de feedbacks adaptatifs différenciés.",
           },
           {
-            citation: "Brousseau, G. (1998). Les obstacles épistémologiques, problèmes et ingénierie didactique. HAL hal-00516595.",
+            id: 'hal-00516595',
+            citation: "Brousseau, G. (1998). Les obstacles épistémologiques, problèmes et ingénierie didactique.",
             content: "Cadre théorique fondateur : les obstacles épistémologiques comme source d'erreurs récurrentes — base de la classification utilisée dans FEED-BACK ADAPT.",
           },
           {
-            citation: "Mahi Haddad & Beaud (2025). L'IA au service de la différenciation pédagogique en mathématiques : expérimentation de ChatGPT en CE1 en REP. DUMAS dumas-05106961.",
+            id: 'dumas-05106961',
+            citation: "Mahi Haddad, N. & Beaud, A. (2025). L'IA au service de la différenciation pédagogique en mathématiques : expérimentation de ChatGPT en CE1 en REP.",
             content: "Expérimentation de l'IA générative pour la différenciation en maths — résultats documentés proches du contexte FWB.",
           },
           {
-            citation: "Venant & Bonnat (2022). Personnalisation et explicabilité des feedbacks automatiques. Actes RJC-EIAH 2022. HAL hal-05137693.",
+            id: 'hal-04652880',
+            citation: "Félix, E. (2023). Introduction à l'explicabilité dans les feedback automatisés fournis aux apprenants.",
             content: "Travaux sur la personnalisation des feedbacks automatiques pour améliorer leur efficacité perçue par les apprenants.",
           },
         ],
