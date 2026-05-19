@@ -1725,6 +1725,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'claude-parametrer',
+    name: 'Paramétrer Claude',
+    description: 'Mode d\'emploi pour configurer Claude : choisir le bon modèle, rédiger ses instructions système, gérer les projets et la mémoire. Pour un usage professionnel ancré dans ton contexte d\'enseignant.',
+    url: '/guide-parametrer-claude-plai.html',
+    emoji: '⚙️',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'teal',
+    section: 'claude',
+  },
+  {
     id: 'claude-design',
     name: 'Claude Design',
     description: 'Mode d\'emploi pour créer des visuels professionnels (affiches, decks, pages web) sans toucher à du code. Scénarios concrets pour le fondamental et le secondaire FWB.',

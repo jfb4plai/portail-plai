@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramétrer Claude — Guide PLAI · Pôle Liégeois d'Accompagnement vers une École Inclusive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 12px; font-weight: 500; padding: 5px 10px;
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--text2); transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); border: 1px solid var(--border2);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.1;
+    letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub {
+    font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* ── LEITMOTIV ── */
+  .leitmotiv {
+    background: var(--text);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .leitmotiv p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #e8e5de;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .leitmotiv p strong { color: #ffffff; }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── SECTION TITLES ── */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem;
+  }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUTS ── */
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* ── EXEMPLES / PROMPTS ── */
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+  .ptag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  .pt-blue { background: var(--blue-bg); color: var(--blue); }
+  .pt-green { background: var(--green-bg); color: var(--green); }
+  .pt-amber { background: var(--amber-bg); color: var(--amber); }
+  .pt-purple { background: var(--purple-bg); color: var(--purple); }
+  .pt-red { background: var(--red-bg); color: var(--red); }
+
+  /* ── CARDS GRID ── */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── MODEL CARDS ── */
+  .model-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .model-head { padding: 0.85rem 1rem; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
+  .model-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .badge-haiku { background: var(--green-bg); color: var(--green); }
+  .badge-sonnet { background: var(--blue-bg); color: var(--blue); }
+  .badge-opus { background: var(--purple-bg); color: var(--purple); }
+  .model-name { font-size: 14px; font-weight: 500; }
+  .model-body { padding: 0.9rem 1rem; }
+  .model-desc { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 0.75rem; }
+  .model-use { font-size: 12px; font-family: 'DM Serif Display', serif; font-style: italic; color: var(--text); }
+  .model-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 0.5rem; }
+  .mtag { font-size: 10px; padding: 2px 8px; border-radius: 8px; background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+
+  /* ── COMPARE ── */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  /* ── ACCORDÉON ── */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head {
+    background: var(--surface); padding: 0.85rem 1rem;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  /* ── BLOC TEMPLATE INSTRUCTIONS ── */
+  .template-block { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .template-head { background: var(--surface2); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .template-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; }
+  .template-persona { font-size: 13px; font-weight: 500; color: var(--text2); }
+  .template-body { padding: 1rem 1.1rem; }
+  .template-code {
+    background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius-sm);
+    padding: 0.85rem 1rem; font-size: 12.5px; color: var(--text); line-height: 1.75;
+    font-family: 'DM Serif Display', serif; white-space: pre-wrap; margin-bottom: 8px;
+  }
+  .template-note { font-size: 12px; color: var(--text3); font-style: italic; margin-top: 6px; }
+
+  /* ── BLOCS 5 PILIERS ── */
+  .bloc5 { border-left: 3px solid var(--border2); padding: 0.75rem 1rem; margin: 0.75rem 0; background: var(--surface); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .bloc5-n { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 2px; }
+  .bloc5-t { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+  .bloc5-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* ── RECAP ── */
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .recap-row { display: flex; align-items: flex-start; gap: 12px; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-pill { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 10px; white-space: nowrap; margin-top: 2px; }
+  .recap-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .recap-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── CHECKLIST ── */
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 34px; }
+    .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/"><img src="https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg" alt="PLAI" style="height:32px;width:auto;margin-right:8px;">Paramétrer Claude · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#comprendre">Comprendre</a>
+    <a class="nav-link" href="#modeles">Modèles</a>
+    <a class="nav-link" href="#instructions">Instructions</a>
+    <a class="nav-link" href="#personnalisation">Personnalisation</a>
+    <a class="nav-link" href="#projets">Projets</a>
+    <a class="nav-link" href="#recap">Récap</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">⚙️ Guide enseignants · Écoles coopérantes du Pôle Territorial de la Ville de Liège</div>
+    <h1>Ce que tu règles<br><em>change tout ce qu'il produit</em></h1>
+    <p class="hero-sub">Paramétrer Claude, c'est passer d'un assistant générique à un outil qui connaît ta réalité.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">3</span><span class="stat-label">modèles à choisir</span></div>
+      <div><span class="stat-num">5</span><span class="stat-label">blocs d'instructions</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">ligne de code</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Un Claude sans paramètres répond à un enseignant de Molenbeek exactement comme à un prof de terminale à Paris. Ce n'est pas un défaut — c'est sa nature. Il produit <strong>la réponse la plus probable</strong>. La moyenne. Et tu n'es pas la moyenne. »</p>
+  </div>
+
+  <div class="eyebrow">Avant de commencer</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">⚙️</div><div class="card-t">Paramétrer, c'est quoi ?</div><div class="card-d">Régler Claude une fois — dans les Settings — pour qu'il te connaisse dans chaque conversation, sans que tu doives te répéter à chaque fois.</div></div>
+    <div class="card"><div class="card-icon">🏫</div><div class="card-t">Prérequis</div><div class="card-d">Un compte Claude (gratuit ou Pro). Les réglages sont dans <code>Settings</code> en haut à droite de l'interface claude.ai.</div></div>
+    <div class="card"><div class="card-icon">🔒</div><div class="card-t">RGPD toujours</div><div class="card-d">Jamais de noms d'élèves, de matricules ou de résultats nominatifs dans Claude. Initiales ou cas anonymisés uniquement.</div></div>
+    <div class="card"><div class="card-icon">🔁</div><div class="card-t">Ordre logique</div><div class="card-d">Commence par les Instructions pour Claude — c'est le réglage le plus puissant. Les autres viendront affiner.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── COMPRENDRE ── -->
+<section id="comprendre">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 Comprendre</div>
+    <div class="guide-title">Pourquoi paramétrer change tout</div>
+    <div class="guide-subtitle">La différence entre Claude vague et Claude ancré n'est pas une question de puissance. C'est une question de contexte.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes à lire</span>
+      <span class="gmeta">👤 Tous niveaux</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Les 3 niveaux de paramétrage</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Choisir le bon modèle</div>
+          <div class="step-d">Haiku pour les tâches rapides, Sonnet pour le quotidien, Opus pour les tâches complexes. Un mauvais choix ralentit ou sous-utilise Claude.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Rédiger tes Instructions pour Claude</div>
+          <div class="step-d">Le réglage permanent le plus puissant. Tu te présentes une fois — école, niveau, public, style souhaité — et Claude l'intègre à chaque conversation.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Affiner via Personnalisation et Projets</div>
+          <div class="step-d">Ton style d'écriture, tes préférences de format, tes dossiers par classe. Des réglages plus fins pour les usagers réguliers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Le test de la chaise vide (version paramétrage)</div>
+    <div class="prose">
+      <p>Avant d'utiliser une production Claude, demande-toi : si je déposais cette réponse sur la chaise d'un collègue d'une autre école, en effaçant mon nom, pourrait-il l'utiliser telle quelle ? Si oui, tes Instructions pour Claude ne font pas assez leur travail — ou tu n'as pas activé un skill.</p>
+    </div>
+    <div class="compare">
+      <div class="c-bad">
+        <div class="c-label">Sans Instructions</div>
+        <div class="c-text">Claude répond comme si tu étais n'importe quel francophone dans n'importe quelle école. Il cite l'Éducation nationale. Il parle de compétences génériques. Utile nulle part.</div>
+      </div>
+      <div class="c-good">
+        <div class="c-label">Avec Instructions FWB</div>
+        <div class="c-text">Claude sait que tu enseignes en S4 cuisine à l'IPES Tournai, que tes élèves ont un niveau de lecture faible, et qu'il doit citer les référentiels FWB — pas les programmes EN.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── MODÈLES ── -->
+<section id="modeles">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🤖 Modèles</div>
+    <div class="guide-title">Quel Claude pour quelle tâche</div>
+    <div class="guide-subtitle">Trois modèles disponibles — chacun a sa raison d'être. Choisir le mauvais, c'est payer (en temps ou en tokens) pour rien.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes</span>
+      <span class="gmeta">🎯 Choix stratégique</span>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ Note de fiabilité</div>
+    <p>Les noms et capacités des modèles Claude évoluent régulièrement. Ce guide a été rédigé en 2025. Vérifie toujours la page <strong>claude.ai/model</strong> pour les versions en cours. L'essentiel ici : le principe de choix reste stable.</p>
+  </div>
+
+  <div class="model-card">
+    <div class="model-head">
+      <span class="model-badge badge-haiku">Haiku · Rapide</span>
+      <span class="model-name">Pour les tâches simples et répétitives</span>
+    </div>
+    <div class="model-body">
+      <div class="model-desc">Le plus rapide, le moins coûteux en tokens. Pas le plus puissant — mais largement suffisant pour reformuler, corriger une orthographe, répondre à une question factuelle courte, ou générer une liste simple.</div>
+      <div class="model-use">Quand l'utiliser en contexte FWB :</div>
+      <div class="model-tags">
+        <span class="mtag">Reformuler une consigne</span>
+        <span class="mtag">Corriger un texte court</span>
+        <span class="mtag">Générer 5 synonymes</span>
+        <span class="mtag">Répondre à une question factuelle</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="model-card">
+    <div class="model-head">
+      <span class="model-badge badge-sonnet">Sonnet · Équilibré</span>
+      <span class="model-name">90 % de tes usages quotidiens</span>
+    </div>
+    <div class="model-body">
+      <div class="model-desc">Le modèle de référence pour les enseignants. Rapide, très capable, adapté aux tâches pédagogiques complexes sans être excessif. C'est le modèle par défaut — et dans la plupart des cas, le bon choix.</div>
+      <div class="model-use">Quand l'utiliser en contexte FWB :</div>
+      <div class="model-tags">
+        <span class="mtag">Créer une séquence de cours</span>
+        <span class="mtag">Adapter un exercice</span>
+        <span class="mtag">Rédiger un email pro</span>
+        <span class="mtag">Analyser un texte</span>
+        <span class="mtag">Skill /quiz-ipad</span>
+        <span class="mtag">Skill /procedure</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="model-card">
+    <div class="model-head">
+      <span class="model-badge badge-opus">Opus · Puissant</span>
+      <span class="model-name">Pour les tâches de raisonnement complexe</span>
+    </div>
+    <div class="model-body">
+      <div class="model-desc">Le plus puissant, le plus lent, le plus coûteux en tokens. Réservé aux tâches qui nécessitent un raisonnement fin, des nuances multiples, ou une analyse approfondie. Inutile pour reformuler une consigne.</div>
+      <div class="model-use">Quand l'utiliser en contexte FWB :</div>
+      <div class="model-tags">
+        <span class="mtag">Rédiger un PIA complexe</span>
+        <span class="mtag">Analyser un rapport officiel</span>
+        <span class="mtag">Construire une séquence didactique longue</span>
+        <span class="mtag">Skill /generation-ia</span>
+        <span class="mtag">Skill /prisme-pedago-critique</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Règle pratique</div>
+    <p>Commence toujours par Sonnet. Si la réponse manque de profondeur ou de nuance, passe à Opus. Si tu veux juste une réponse rapide sans enjeu, essaie Haiku. Le bon modèle n'est pas le plus puissant — c'est le plus adapté à la tâche.</p>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comment changer de modèle</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Ouvre une nouvelle conversation</div>
+          <div class="step-d">Dans claude.ai, clique sur "New chat" en haut à gauche.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Cherche le sélecteur de modèle</div>
+          <div class="step-d">En bas de la zone de saisie, un menu déroulant indique le modèle actif (ex. "Claude Sonnet"). Clique dessus.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Sélectionne le modèle souhaité</div>
+          <div class="step-d">Haiku, Sonnet ou Opus. Le choix s'applique à cette conversation uniquement — il ne se souvient pas de ta préférence d'une session à l'autre (sauf réglage dans Personnalisation).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── INSTRUCTIONS ── -->
+<section id="instructions">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">📝 Instructions pour Claude</div>
+    <div class="guide-title">Le réglage le plus puissant</div>
+    <div class="guide-subtitle">Tu te présentes une fois. Claude s'en souvient dans chaque conversation. C'est ici que tout se joue.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 15 minutes</span>
+      <span class="gmeta">🎯 Impact maximum</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Où trouver ce réglage</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Ouvre Settings</div>
+          <div class="step-d">Clique sur ton icône de profil en haut à droite → <strong>Settings</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Va dans "Instructions for Claude"</div>
+          <div class="step-d">Dans le menu de gauche, cherche <strong>Instructions for Claude</strong> (ou "Instructions personnalisées" selon la version).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Écris ton texte et sauvegarde</div>
+          <div class="step-d">Colle ou rédige ton texte dans le champ. Claude l'intégrera automatiquement dans chaque conversation — sans que tu le réécrives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">La structure en 5 blocs</div>
+    <div class="prose"><p>Tes Instructions pour Claude doivent répondre à 5 questions. Plus tu es précis, plus Claude est ancré dans ta réalité — et moins tu produis de la moyenne.</p></div>
+
+    <div class="bloc5">
+      <div class="bloc5-n">Bloc 1</div>
+      <div class="bloc5-t">Qui je suis</div>
+      <div class="bloc5-d">Ton rôle exact, ton école, ta ville, le réseau (libre, officiel, communal). Ce contexte permet à Claude de ne plus généraliser entre systèmes éducatifs.</div>
+    </div>
+    <div class="bloc5">
+      <div class="bloc5-n">Bloc 2</div>
+      <div class="bloc5-t">Mon contexte d'enseignement</div>
+      <div class="bloc5-d">Les niveaux que tu enseignes, la matière ou le métier, le profil de tes élèves (inclusion, allophonie, effectif de classe, problématiques récurrentes).</div>
+    </div>
+    <div class="bloc5">
+      <div class="bloc5-n">Bloc 3</div>
+      <div class="bloc5-t">Comment je veux que tu répondes</div>
+      <div class="bloc5-d">Longueur (court / développé), format (listes ou prose), niveau de langue, ton (formel / direct). Si tu ne précises rien, Claude choisit pour toi — souvent trop verbeux.</div>
+    </div>
+    <div class="bloc5">
+      <div class="bloc5-n">Bloc 4</div>
+      <div class="bloc5-t">Ce que tu ne fais jamais</div>
+      <div class="bloc5-d">Exemples : ne jamais citer l'Éducation nationale, ne jamais utiliser « objectifs » à la place de « compétences », ne jamais produire une réponse applicable à n'importe quelle école.</div>
+    </div>
+    <div class="bloc5">
+      <div class="bloc5-n">Bloc 5 (optionnel)</div>
+      <div class="bloc5-t">Instruction anti-généricité</div>
+      <div class="bloc5-d">Le bloc le plus puissant : demande à Claude de vérifier que sa réponse ne pourrait pas servir à un enseignant d'une autre école avant de répondre.</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">L'instruction anti-généricité — pourquoi elle change tout</div>
+    <div class="prose">
+      <p>La plupart des Instructions pour Claude décrivent <em>qui</em> tu es. Elles ne bloquent pas la généricité — elles l'encadrent. L'instruction ci-dessous fait quelque chose de différent : elle force Claude à <strong>vérifier</strong> sa réponse avant de la produire.</p>
+    </div>
+
+    <div class="ex-box">
+      <div class="ex-label">Instruction anti-généricité recommandée (à ajouter en fin de bloc 4 ou 5)</div>
+      <div class="prompt">Avant de répondre, vérifie : cette réponse pourrait-elle servir à un enseignant d'une autre école, d'une autre ville, d'un autre pays ? Si oui, pose-moi une question pour ancrer la réponse dans mon contexte réel avant de produire quoi que ce soit.</div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-label">⚠️ Ce que tu dois éviter</div>
+      <p>Demander à Claude de <em>signaler</em> son incertitude à chaque réponse (listes de "faits établis / à vérifier / limites") produit un formatage systématique qui alourdit tout — y compris les demandes simples. Ce type d'instruction est utile pour le formateur, pas pour l'enseignant en action quotidienne.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">3 templates — copier-coller</div>
+    <div class="prose"><p>Choisis celui qui correspond à ton profil. Modifie les éléments entre <strong>[crochets]</strong>. Ces templates sont des points de départ — personnalise-les jusqu'à ce que Claude sonne comme s'il te connaissait vraiment.</p></div>
+
+    <div class="template-block">
+      <div class="template-head">
+        <span class="ptag pt-amber">Profil 1</span>
+        <span class="template-persona">Enseignant·e du secondaire professionnel FWB</span>
+      </div>
+      <div class="template-body">
+        <div class="template-code">Je suis [ton prénom], enseignant·e en [matière / métier : ex. cuisine, coiffure, mathématiques] dans un établissement d'enseignement secondaire [réseau : libre / officiel / communal] à [ville]. Mes élèves sont en [niveaux : ex. S3 et S4], [profil : ex. majorité en difficulté de lecture, plusieurs allophones, une intégration TSA].
+
+Je travaille dans le cadre des référentiels FWB et du décret Missions. Je ne veux jamais de références à l'Éducation nationale française, aux programmes suisses ou québécois, ni à des pratiques non applicables en Belgique.
+
+Réponds-moi en français, de façon directe et concise. Préfère les listes numérotées aux longs paragraphes pour les tâches pratiques. Quand je te demande un document professionnel, sois formel ; quand je réfléchis à voix haute, tu peux être plus conversationnel.
+
+Avant de répondre, vérifie : cette réponse pourrait-elle servir à un enseignant d'une autre école ou d'un autre pays ? Si oui, pose-moi une question pour l'ancrer dans mon contexte.</div>
+        <div class="template-note">⟶ Modifie : ton prénom, la matière, le réseau, la ville, les niveaux, le profil d'élèves.</div>
+      </div>
+    </div>
+
+    <div class="template-block">
+      <div class="template-head">
+        <span class="ptag pt-green">Profil 2</span>
+        <span class="template-persona">Instituteur·trice primaire FWB</span>
+      </div>
+      <div class="template-body">
+        <div class="template-code">Je suis [ton prénom], instituteur·trice en [P1/P2/.../P6] dans une école [réseau] à [ville / commune]. Ma classe compte [effectif] élèves, dont [caractéristiques : ex. 3 élèves allophones, un élève avec PIA dyslexie, une intégration TDI].
+
+Je travaille avec les Socles de Compétences et les référentiels FWB. Je ne veux pas de références aux programmes français ou à toute autre réforme hors Belgique.
+
+Mes productions doivent être immédiatement utilisables en classe — langage adapté à l'âge [X-Y ans], consignes courtes, pas de jargon pédagogique inutile. Préfère des exemples concrets aux théories abstraites.
+
+Avant de répondre, vérifie : cette réponse convient-elle spécifiquement à ma classe ? Si elle est applicable à n'importe quelle classe P[X] du monde francophone, demande-moi un détail pour l'ancrer.</div>
+        <div class="template-note">⟶ Modifie : prénom, niveau, réseau, ville, effectif, profil d'élèves, tranche d'âge.</div>
+      </div>
+    </div>
+
+    <div class="template-block">
+      <div class="template-head">
+        <span class="ptag pt-blue">Profil 3</span>
+        <span class="template-persona">CPMS / Coordinateur·trice pédagogique FWB</span>
+      </div>
+      <div class="template-body">
+        <div class="template-code">Je suis [ton prénom], [PMS / coordinateur pédagogique / directeur·trice] dans [un centre PMS / une école / un réseau] à [ville]. Mon travail consiste à [soutenir les élèves en difficulté / accompagner les équipes enseignantes / coordonner les inclusions].
+
+Je travaille dans le cadre juridique belge francophone : décret Missions, aménagements raisonnables, PIA, AESI. Ne confonds jamais avec le droit français (MDPH, ULIS, AVS) ou d'autres systèmes.
+
+J'ai besoin de réponses nuancées, sourcées quand possible, et adaptables à des contextes variés. Format : synthèse courte d'abord, développement si nécessaire. Signale-moi si une information est incertaine ou susceptible d'avoir évolué.
+
+Avant de répondre, vérifie si ta réponse est vraiment ancrée dans le droit et la pratique FWB — et non dans une pratique importée.</div>
+        <div class="template-note">⟶ Modifie : prénom, rôle, lieu, nature des missions. Le bloc sur le droit FWB est particulièrement important pour ce profil.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Erreurs classiques à éviter</div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Instructions trop longues (+ de 500 mots)</div>
+          <div class="acc-meta">Claude ne lit pas tout — il pondère</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Claude lit tes instructions, mais plus elles sont longues, plus il pondère — certaines parties pèsent moins. Un texte de 800 mots très détaillé est souvent moins efficace qu'un texte de 150 mots très ciblé. Vise la précision, pas l'exhaustivité.</p></div>
+        <div class="ok">
+          <div class="ok-label">Règle pratique</div>
+          <p>Si tu dépasses 250 mots, relis et supprime tout ce que Claude pourrait deviner seul. Reste sur ce qu'il ne saurait jamais sans toi : ton école, ton niveau, ton profil d'élèves, ton style.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Instructions trop vagues</div>
+          <div class="acc-meta">"Sois pédagogique" ne veut rien dire</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>« Sois professionnel », « adapte ton langage », « sois bienveillant » — Claude interprète ces formules dans le sens le plus probable. C'est-à-dire : comme il l'aurait fait sans instruction. Ces formules ne changent rien.</p></div>
+        <div class="compare">
+          <div class="c-bad">
+            <div class="c-label">Vague</div>
+            <div class="c-text">Adapte ton langage à mes élèves.</div>
+          </div>
+          <div class="c-good">
+            <div class="c-label">Précis</div>
+            <div class="c-text">Mes élèves ont un niveau de lecture équivalent à P4. Utilise des phrases courtes (max 15 mots), un mot technique à la fois, et explique-le immédiatement entre parenthèses.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Instructions contradictoires</div>
+          <div class="acc-meta">Claude ne sait plus quoi faire</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Si tu demandes « sois concis » et plus bas « donne toujours des exemples développés », Claude fait la moyenne — et produit quelque chose qui n'est ni concis ni vraiment développé. Relecture indispensable avant de sauvegarder.</p></div>
+        <div class="danger">
+          <div class="danger-label">Test de cohérence</div>
+          <p>Lis tes instructions à voix haute. Si deux phrases se contredisent, Claude choisira l'une des deux — pas nécessairement celle que tu voulais.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ── PERSONNALISATION ── -->
+<section id="personnalisation">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">🎨 Personnalisation</div>
+    <div class="guide-title">Style, préférences, mémoire</div>
+    <div class="guide-subtitle">Des réglages complémentaires pour affiner la relation — une fois les Instructions en place.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10 minutes</span>
+      <span class="gmeta">⚙️ Réglages fins</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Préférences utilisateur (User Preferences)</div>
+    <div class="prose"><p>Dans Settings → Profile, tu peux renseigner des préférences de base que Claude prend en compte dans toutes tes conversations. C'est un complément aux Instructions — plus court, plus factuel.</p></div>
+    <div class="grid2">
+      <div class="card"><div class="card-icon">📐</div><div class="card-t">Format de réponse</div><div class="card-d">Tu préfères les listes numérotées ? Les tableaux ? Les réponses courtes d'abord, développées à la demande ? Note-le ici.</div></div>
+      <div class="card"><div class="card-icon">🌍</div><div class="card-t">Langue et registre</div><div class="card-d">Français de Belgique, tutoiement ou vouvoiement, niveau de formalité. Évite les ambiguïtés France / Belgique dans le vocabulaire.</div></div>
+      <div class="card"><div class="card-icon">📏</div><div class="card-t">Longueur attendue</div><div class="card-d">"Réponses concises sauf demande contraire" ou "Développe systématiquement avec exemples". Un choix clair évite que Claude improvise.</div></div>
+      <div class="card"><div class="card-icon">🔔</div><div class="card-t">Alertes souhaitées</div><div class="card-d">Veux-tu que Claude signale quand une information est incertaine ? Ou préfères-tu une réponse directe et tu questionnes toi-même ?</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Style d'écriture (Style feature)</div>
+    <div class="prose"><p>Claude peut apprendre ton style d'écriture à partir de textes que tu lui fournis. Utile si tu rédiges souvent des documents professionnels et veux que Claude les écrive "comme toi".</p></div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Accède à Settings → Style</div>
+          <div class="step-d">Dans certaines versions de Claude (plan Pro ou Team), tu trouveras un onglet Style ou Writing Style.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Fournis des exemples de tes écrits</div>
+          <div class="step-d">Colle 2-3 textes que tu as rédigés toi-même — emails professionnels, rapports, messages aux parents. Claude analyse ton style.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Nomme le style et active-le</div>
+          <div class="step-d">Donne un nom à ce style (ex. "Mon style pro"). Tu pourras l'activer dans une conversation quand tu veux que Claude écrive comme toi.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Astuce FWB</div>
+      <p>Si tu utilises déjà le skill <code>/style-jf</code>, ce réglage fait la même chose mais de façon personnalisée à <em>ton</em> style spécifique — pas celui de JF. Les deux sont complémentaires.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Mémoire — ce que Claude retient (et ce qu'il n'est pas obligé de retenir)</div>
+    <div class="prose"><p>Par défaut, Claude n'a pas de mémoire entre les conversations. Chaque nouveau chat repart de zéro. La mémoire persistante est une fonctionnalité activable — mais elle mérite une attention particulière en contexte éducatif.</p></div>
+
+    <div class="grid3">
+      <div class="card"><div class="card-icon">✅</div><div class="card-t">Ce que tu peux activer</div><div class="card-d">Dans Settings → Memory, tu peux autoriser Claude à retenir des informations entre sessions — ton école, tes préférences, tes projets en cours.</div></div>
+      <div class="card"><div class="card-icon">⚠️</div><div class="card-t">Ce qu'il ne faut pas stocker</div><div class="card-d">Aucune information sur des élèves identifiables. Pas de noms, pas de difficultés spécifiques nominatives. La mémoire n'est pas plus RGPD-compliant que le chat.</div></div>
+      <div class="card"><div class="card-icon">🔁</div><div class="card-t">Alternative sans mémoire</div><div class="card-d">Utilise les Projets (section suivante) pour stocker le contexte par classe ou par matière. Plus contrôlé, plus clair.</div></div>
+    </div>
+
+    <div class="danger">
+      <div class="danger-label">⚠️ Attention RGPD</div>
+      <p>Si tu actives la mémoire, Claude peut retenir des informations que tu as mentionnées dans une conversation précédente — y compris des éléments sur des élèves si tu n'as pas anonymisé. Active cette fonction avec discernement.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── PROJETS ── -->
+<section id="projets">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">📁 Projets</div>
+    <div class="guide-title">Organiser son travail enseignant</div>
+    <div class="guide-subtitle">Les Projets, c'est la fonctionnalité la moins connue — et l'une des plus utiles pour les enseignants qui utilisent Claude régulièrement.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10 minutes</span>
+      <span class="gmeta">📁 Organisation</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Qu'est-ce qu'un Projet ?</div>
+    <div class="prose">
+      <p>Un Projet est un dossier de conversations avec un <strong>contexte permanent</strong> propre à ce dossier. Chaque Projet peut avoir ses propres instructions — différentes de tes instructions globales — et regroupe toutes les conversations liées à ce sujet.</p>
+      <p>Concrètement : tu peux avoir un Projet "S4 Cuisine Tournai" avec des instructions spécifiques à cette classe, et un Projet "CPMS Réunions" avec un contexte complètement différent. Claude passe d'un mode à l'autre selon le Projet ouvert.</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Cas d'usage FWB</div>
+    <div class="grid2">
+      <div class="card"><div class="card-icon">🍳</div><div class="card-t">Un Projet par classe</div><div class="card-d">Instructions spécifiques au niveau et au profil d'élèves. Toutes les ressources de la classe au même endroit. Tu retrouves ce que tu as déjà fait.</div></div>
+      <div class="card"><div class="card-icon">📋</div><div class="card-t">Un Projet par matière</div><div class="card-d">Si tu enseignes plusieurs matières, un Projet par discipline avec les référentiels spécifiques en contexte. Claude sait quelle séquence il a déjà aidé à construire.</div></div>
+      <div class="card"><div class="card-icon">🤝</div><div class="card-t">Un Projet CPMS / PIA</div><div class="card-d">Contexte juridique FWB, définitions des aménagements raisonnables. Toutes les réflexions sur l'inclusion regroupées, anonymisées.</div></div>
+      <div class="card"><div class="card-icon">💬</div><div class="card-t">Un Projet Communication</div><div class="card-d">Style de tes emails aux parents, aux collègues, à la direction. Claude connaît ton ton. Tu gagnes du temps sur les communications récurrentes.</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Projet vs conversation simple vs skill</div>
+    <div class="prose"><p>Ces trois outils ne font pas la même chose — et se complètent.</p></div>
+    <div class="recap-card">
+      <div class="recap-row">
+        <span class="recap-pill" style="background:var(--surface2);color:var(--text3);">Conversation</span>
+        <div class="recap-text">Une tâche ponctuelle, un besoin immédiat. Claude repart de zéro à chaque fois. <strong>Idéal pour les demandes uniques</strong>.</div>
+      </div>
+      <div class="recap-row">
+        <span class="recap-pill" style="background:var(--green-bg);color:var(--green);">Skill</span>
+        <div class="recap-text">Un changement de registre dans une conversation — Claude active un mode spécialisé (FWB, procédure, Bloom…). <strong>Idéal pour la tâche pédagogique</strong>.</div>
+      </div>
+      <div class="recap-row">
+        <span class="recap-pill" style="background:var(--blue-bg);color:var(--blue);">Projet</span>
+        <div class="recap-text">Un contexte permanent pour un ensemble de travaux liés. Claude connaît l'historique. <strong>Idéal pour les usagers réguliers sur un même sujet</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comment créer un Projet</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Dans la sidebar gauche → "New Project"</div>
+          <div class="step-d">Disponible dans le plan Pro. Le plan gratuit a accès à une version limitée selon les mises à jour.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Nomme le Projet clairement</div>
+          <div class="step-d">Ex : "S4 Cuisine - IPES Tournai 2024-25". Un nom clair te permet de retrouver le bon Projet rapidement.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Rédige les instructions propres à ce Projet</div>
+          <div class="step-d">Ces instructions s'ajoutent à tes Instructions globales (ou les remplacent si elles sont plus précises). Concentre-toi ici sur ce qui est spécifique à cette classe ou ce sujet.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-t">Ajoute des fichiers si nécessaire</div>
+          <div class="step-d">Tu peux joindre des documents de référence dans le Projet (plan de cours, grille d'évaluation, référentiel). Claude y a accès dans toutes les conversations du Projet.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="warn-label">⚠️ Partage en équipe</div>
+      <p>Le partage de Projets avec des collègues est disponible sur le plan <strong>Team ou Enterprise</strong> — pas sur les plans individuels. Si ton école n'a pas de plan Team, tu peux partager les instructions du Projet par copier-coller, mais pas le Projet lui-même.</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── RÉCAP ── -->
+<section id="recap">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">✅ Récap</div>
+    <div class="guide-title">Ma checklist de configuration</div>
+    <div class="guide-subtitle">Coche les étapes au fur et à mesure. Une configuration solide se construit en 30 minutes — et te fait gagner des heures.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 30 minutes en tout</span>
+      <span class="gmeta">🎯 Une fois, bien fait</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Étapes obligatoires</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Instructions pour Claude rédigées</strong> — les 5 blocs (qui je suis, mon contexte, comment répondre, ce que tu ne fais jamais, anti-généricité)</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Instructions sauvegardées</strong> dans Settings → Instructions for Claude</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Test de cohérence</strong> — relecture à voix haute des instructions, pas de contradictions, moins de 250 mots</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Première conversation test</strong> — j'ai vérifié que Claude répond dans mon contexte FWB, pas dans un contexte générique</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Étapes recommandées</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Modèle par défaut choisi</strong> — j'ai vérifié que Sonnet est actif pour mes usages quotidiens</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Préférences utilisateur renseignées</strong> — format, longueur, registre dans Settings → Profile</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Au moins 1 Projet créé</strong> — pour ma classe ou ma matière principale, avec instructions spécifiques</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Étapes avancées (quand tu es à l'aise)</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Style d'écriture configuré</strong> — 2-3 exemples de mes textes professionnels fournis à Claude</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Mémoire activée avec discernement</strong> — j'ai vérifié qu'aucune donnée identifiable d'élève ne sera stockée</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Skills + Paramétrage combinés</strong> — mes Instructions savent que j'utilise des skills ; mes Projets ont des instructions complémentaires aux skills</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Un paramétrage, ça s'affine. La première version n'est pas la bonne — c'est le point de départ. Chaque fois que Claude produit quelque chose de trop générique, c'est un signal : il manque une précision dans tes Instructions. Ajoute-la. <strong>Le bon réglage, c'est celui que tu corriges jusqu'à ce que Claude te surprenne par sa pertinence.</strong> »</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="container">
+    <p>Guide Paramétrer Claude · Formation PLAI · Pôle Territorial de la Ville de Liège — Écoles coopérantes</p>
+    <p>Référence officielle : <a href="https://enseignement.be">enseignement.be</a> · Documentation Claude : <a href="https://docs.claude.ai">docs.claude.ai</a></p>
+  </div>
+</div>
+
+<script>
+  /* Nav active state */
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+
+  /* Accordéon */
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  /* Checklist */
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>
