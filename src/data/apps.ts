@@ -1626,7 +1626,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) ou monologues via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) ou monologues via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix neurales Microsoft — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
@@ -1684,8 +1684,8 @@ const apps: AppItem[] = [
           {
             title: "1. Choisir la langue et les locuteurs",
             items: [
-              "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol.",
-              "Néerlandais : 4 voix neurales pour nl_BE (Dena, Arnaud, Colette NL, Maarten NL) et 3 pour nl_NL (Colette, Fenna, Maarten) — qualité Microsoft Edge TTS.",
+              "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol, italien.",
+              "4 voix neurales Microsoft par langue (2 féminines + 2 masculines) — qualité Edge TTS, aucun compte requis.",
               "Choisissez 2 à 4 locuteurs (A, B, C, D) pour un dialogue, ou A seul pour un monologue.",
               "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
             ],
@@ -1709,7 +1709,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Réserve d'usage : l'outil est en développement actif. Voix néerlandaises : Microsoft Edge TTS (neurales, sans compte). Autres langues : Piper TTS open source (MIT), hébergé sur Hugging Face. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
+        tip: "Réserve d'usage : l'outil est en développement actif. Toutes les voix utilisent Microsoft Edge TTS (neurales, sans compte, aucune clé API). L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
       },
     },
   },
