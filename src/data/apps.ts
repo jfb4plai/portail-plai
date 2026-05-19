@@ -1685,7 +1685,7 @@ const apps: AppItem[] = [
   {
     id: 'diffactif',
     name: 'DiffActif',
-    description: "Différenciation pédagogique ancrée CUA : cartographie les profils de besoins (DYS, TDAH, HPI, allophone, décrocheur), génère des variantes d'activités par profil via IA (split 80/20), planifie des séquences CUA, suit la progression de la pratique. Codes anonymes. 8 références RISS vérifiées.",
+    description: "Différenciation pédagogique par Aménagements Universels (AUs) : cartographie les profils de besoins (DYS, TDAH, HPI, allophone, décrocheur), génère des variantes d'activités adaptées par profil via IA (split 80/20), planifie des séquences différenciées avec AUs intégrés, suit la progression de la pratique. Codes anonymes. 8 références RISS vérifiées.",
     url: 'https://diffactif.jfb4plai.com',
     emoji: '🧩',
     category: 'Différenciation',
