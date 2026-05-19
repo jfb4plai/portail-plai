@@ -1682,6 +1682,94 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'diffactif',
+    name: 'DiffActif',
+    description: "Différenciation pédagogique ancrée CUA : cartographie les profils de besoins (DYS, TDAH, HPI, allophone, décrocheur), génère des variantes d'activités par profil via IA (split 80/20), planifie des séquences CUA, suit la progression de la pratique. Codes anonymes. 8 références RISS vérifiées.",
+    url: 'https://diffactif.jfb4plai.com',
+    emoji: '🧩',
+    category: 'Différenciation',
+    status: 'en-développement',
+    color: 'orange',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary:
+          "DiffActif opérationnalise la Conception Universelle de l'Apprentissage (CUA/UDL) en contexte FWB : ses 5 modules couvrent les 3 principes CAST (représentation, action/expression, engagement). L'IA génère des variantes différenciées selon le profil de l'élève (DYS, TDAH, HPI, allophone, décrocheur), en laissant 20% de décision à l'enseignant. Toutes les stratégies-clés proposées par profil sont ancrées dans des recherches du corpus RISS (522 627 articles scientifiques francophones). Les codes anonymes garantissent la conformité RGPD.",
+        references: [
+          {
+            citation: "Rusconi, L. (2025). La conception universelle de l'apprentissage (CUA) dans la formation des enseignants. [RISS : W4414205903]",
+            content:
+              "Le cadre CUA/CAST préconise une inclusion pédagogique dès la conception des activités, selon trois principes : varier les formes de représentation, les modalités d'action/expression et les leviers d'engagement. DiffActif structure ses modules et sa génération IA autour de ces trois axes.",
+          },
+          {
+            citation: "Alvarez, L. (2024). La conception universelle de l'apprentissage. [RISS : W4402615917]",
+            content:
+              "La CUA part du constat que la variabilité des apprenants est la norme, non l'exception. Concevoir d'emblée pour la diversité est plus efficace que d'adapter a posteriori pour chaque cas individuel.",
+          },
+          {
+            citation: "Mahi Haddad, S. & Beaud, M. (2025). L'IA au service de la différenciation pédagogique dans l'enseignement des mathématiques. [RISS : dumas-05106961]",
+            content:
+              "L'IA générative permet une différenciation immédiate et individualisée sans surcharge pour l'enseignant, à condition de maintenir le jugement professionnel de celui-ci dans la boucle — ce que DiffActif formalise par le split 80% IA / 20% enseignant.",
+          },
+          {
+            citation: "Fournier, M. (2024). Les adaptations pédagogiques de l'enseignant pour les élèves ayant des troubles « dys ». [RISS : dumas-04562654]",
+            content:
+              "Les stratégies d'adaptation efficaces pour les élèves DYS portent sur la forme des supports (typographie, interligne), la formulation des consignes (verbe d'action, phrases courtes) et les modalités de production (oral, numérique). Ces stratégies structurent les profils DYS de DiffActif.",
+          },
+          {
+            citation: "Goetchel, E-M. (2025). Diversité des profils, unité dans l'apprentissage : la différenciation pédagogique. [RISS : dumas-05353601]",
+            content:
+              "La différenciation pédagogique efficace s'évalue selon cinq dimensions : adaptation du contenu, des processus, des productions, de l'environnement et des pratiques inclusives. Le Module 5 de DiffActif (Progression) reprend cette grille d'auto-évaluation.",
+          },
+          {
+            citation: "Huau, A., Jover, M. & Roussey, J-Y. (2017). Difficultés associées et scolarisation des enfants dyslexiques. [RISS : hal-01792683]",
+            content:
+              "La dyslexie s'accompagne fréquemment de comorbidités (dysorthographie, dyscalculie, TDAH) qui complexifient le profil de l'élève. DiffActif permet de combiner plusieurs profils pour un même élève et de générer des variantes adaptées à ce profil composite.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Cartographier la classe",
+            items: [
+              "Connectez-vous avec votre compte PLAI (partagé avec les autres apps).",
+              "Allez dans 'Profils' et créez vos élèves avec un code anonyme (ex. : A1, B3, Élève12).",
+              "Pour chaque élève, sélectionnez un ou plusieurs profils de besoins : dyslexie, dyscalculie, dyspraxie, TDAH, allophone, décrocheur, HPI.",
+              "Les stratégies-clés associées à chaque profil s'affichent automatiquement — elles guideront la génération IA.",
+            ],
+          },
+          {
+            title: "2. Adapter une activité",
+            items: [
+              "Allez dans 'Adapter' et collez le texte d'une activité existante (exercice, consigne, document).",
+              "Sélectionnez les profils cibles et la matière.",
+              "Cliquez 'Générer' — l'IA produit une variante par profil en 10 à 20 secondes.",
+              "Chaque variante reste modifiable : le 20% enseignant s'applique ici — ajustez selon ce que vous savez de vos élèves.",
+              "Exportez les variantes en DOCX, prêtes à imprimer ou à partager.",
+            ],
+          },
+          {
+            title: "3. Planifier une séquence CUA",
+            items: [
+              "Allez dans 'Séquence' pour structurer une séquence complète selon les 3 principes CUA.",
+              "Pour chaque séance, renseignez les objectifs, les modalités de représentation, d'action/expression et d'engagement.",
+              "La séquence peut être exportée en DOCX ou partagée avec l'équipe pédagogique.",
+            ],
+          },
+          {
+            title: "4. Bibliothèque et suivi de progression",
+            items: [
+              "La bibliothèque propose des exemples concrets validés par la recherche RISS, filtrables par profil et par niveau FWB.",
+              "Le module Progression propose une grille d'auto-évaluation en 5 dimensions pour suivre l'évolution de votre pratique différenciée dans le temps.",
+            ],
+          },
+        ],
+        tip: "Commencez par adapter une seule activité pour un seul profil — le résultat sera plus précis et plus utile qu'une différenciation tous profils d'un coup. Une fois à l'aise avec le module Adapter, la Séquence CUA devient un outil de planification trimestrielle puissant.",
+      },
+    },
+  },
 ];
 
 export default apps;
