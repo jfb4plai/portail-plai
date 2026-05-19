@@ -23,6 +23,7 @@ export type AppItem = {
   section?: AppSection;
   browserNote?: string;
   devBanner?: boolean;   // affiche le bandeau "En développement" sur la vignette
+  isNew?: boolean;       // affiche le badge "Nouveau" en orange PLAI
   guide?: GuideContent;
 };
 

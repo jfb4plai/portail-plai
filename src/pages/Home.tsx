@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { AppItem, ColorScheme } from '../types';
+import Hero from '../components/Hero';
 
 const colorMap: Record<string, ColorScheme> = {
   blue:   { bg: 'bg-blue-50',   border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',    btn: 'bg-blue-600 hover:bg-blue-700',    light: 'bg-blue-100' },
@@ -16,6 +17,43 @@ const colorMap: Record<string, ColorScheme> = {
 import apps from '../data/apps';
 
 export { colorMap };
+
+// ─── Section header ──────────────────────────────────────────────────────────
+
+const accentColors: Record<string, string> = {
+  amber:  '#f59e0b',
+  teal:   '#14b8a6',
+  teal2:  '#2dd4bf',
+  gray:   '#d1d5db',
+  purple: '#a78bfa',
+};
+
+function SectionHeader({
+  label,
+  count,
+  subtitle,
+  accent,
+}: {
+  label: string;
+  count: number;
+  subtitle?: string;
+  accent: string;
+}) {
+  return (
+    <div
+      className="pl-4 mb-6"
+      style={{ borderLeft: `4px solid ${accentColors[accent] ?? '#14b8a6'}` }}
+    >
+      <h2 className="text-xl font-bold text-gray-800">
+        {label}{' '}
+        <span className="text-base font-normal text-gray-400">({count})</span>
+      </h2>
+      {subtitle && <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>}
+    </div>
+  );
+}
+
+// ─── Guide modal ─────────────────────────────────────────────────────────────
 
 function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
   const [tab, setTab] = useState<'howto' | 'scientific'>('howto');
@@ -41,7 +79,7 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
               onClick={() => window.print()}
               className="text-xs px-3 py-1.5 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-100 transition"
             >
-              🖨️ Imprimer
+              Imprimer
             </button>
             <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-2xl leading-none">×</button>
           </div>
@@ -52,13 +90,13 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
             onClick={() => setTab('howto')}
             className={`pb-2 text-sm font-semibold border-b-2 transition ${tab === 'howto' ? `border-current ${c.badge.split(' ')[1]}` : 'border-transparent text-gray-400 hover:text-gray-600'}`}
           >
-            📋 Mode d'emploi
+            Mode d'emploi
           </button>
           <button
             onClick={() => setTab('scientific')}
             className={`pb-2 text-sm font-semibold border-b-2 transition ${tab === 'scientific' ? `border-current ${c.badge.split(' ')[1]}` : 'border-transparent text-gray-400 hover:text-gray-600'}`}
           >
-            🔬 Ancrage scientifique
+            Ancrage scientifique
           </button>
         </div>
 
@@ -80,7 +118,7 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
               ))}
               {g.howto.tip && (
                 <div className={`rounded-xl p-4 ${c.light} border ${c.border}`}>
-                  <p className="text-sm text-gray-700"><strong>💡 Conseil pédagogique :</strong> {g.howto.tip}</p>
+                  <p className="text-sm text-gray-700"><strong>Conseil pédagogique :</strong> {g.howto.tip}</p>
                 </div>
               )}
             </div>
@@ -114,8 +152,20 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
   );
 }
 
-function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => void }) {
-  const c = colorMap[app.color];
+// ─── App card ─────────────────────────────────────────────────────────────────
+
+function AppCard({
+  app,
+  onGuide,
+  colorOverride,
+  muted,
+}: {
+  app: AppItem;
+  onGuide: (app: AppItem) => void;
+  colorOverride?: string;
+  muted?: boolean;
+}) {
+  const c = colorMap[colorOverride ?? app.color] ?? colorMap.gray;
   const available = app.status === 'disponible';
   const inDev = app.status === 'en-développement';
 
@@ -146,46 +196,52 @@ function AppCard({ app, onGuide }: { app: AppItem; onGuide: (app: AppItem) => vo
   );
 
   return (
-    <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden`}>
-      {app.devBanner && (
+    <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden ${muted ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
+      {app.isNew && (
+        <div className="w-full text-xs font-bold text-center py-1 tracking-wide text-white" style={{ backgroundColor: '#f97316' }}>
+          Nouveau
+        </div>
+      )}
+      {app.devBanner && !app.isNew && (
         <div className="w-full bg-amber-400 text-amber-900 text-xs font-bold text-center py-1 tracking-wide">
-          🚧 En développement
+          En développement
         </div>
       )}
       <div className="flex flex-col flex-1 p-6">
-      <div className="flex items-start justify-between mb-3">
-        <span className="text-4xl">{app.emoji}</span>
-        {app.category && (
-          <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
-            {app.category}
-          </span>
-        )}
-      </div>
-      <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
-      <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
-      {app.browserNote && (
-        <div className="flex items-start gap-2 mb-4 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
-          <span className="text-base leading-none mt-0.5">🌐</span>
-          <p className="text-xs text-blue-700">{app.browserNote}</p>
+        <div className="flex items-start justify-between mb-3">
+          <span className="text-4xl">{app.emoji}</span>
+          {app.category && (
+            <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
+              {app.category}
+            </span>
+          )}
         </div>
-      )}
-      <div className="flex gap-2">
-        {openButton}
-        {app.guide && (
-          <button
-            onClick={() => onGuide(app)}
-            className="px-3 py-2 rounded-lg border-2 border-current text-sm font-semibold transition hover:opacity-80"
-            style={{ color: 'inherit' }}
-            title="Guide d'utilisation"
-          >
-            📖
-          </button>
+        <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
+        <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
+        {app.browserNote && (
+          <div className="flex items-start gap-2 mb-4 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
+            <p className="text-xs text-blue-700">{app.browserNote}</p>
+          </div>
         )}
-      </div>
+        <div className="flex gap-2">
+          {openButton}
+          {app.guide && (
+            <button
+              onClick={() => onGuide(app)}
+              className="px-3 py-2 rounded-lg border-2 border-current text-sm font-semibold transition hover:opacity-80"
+              style={{ color: 'inherit' }}
+              title="Guide d'utilisation"
+            >
+              Guide
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
 }
+
+// ─── Home page ────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [guideApp, setGuideApp] = useState<AppItem | null>(null);
@@ -201,73 +257,93 @@ export default function Home() {
     <>
       {guideApp && <GuideModal app={guideApp} onClose={() => setGuideApp(null)} />}
 
+      <Hero />
+
       <main className="max-w-6xl mx-auto px-6 py-10">
+
+        {/* Sensibilisation */}
         {sensiItems.length > 0 && (
-          <section className="mb-12">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-2 h-2 rounded-full bg-amber-500 inline-block"></span>
-              <h2 className="text-lg font-semibold text-gray-700">Sensibilisation ({sensiItems.length})</h2>
-            </div>
-            <p className="text-sm text-gray-500 mb-5 pl-5">
-              Outils de mise en situation pour comprendre de l'intérieur les défis des élèves à besoins spécifiques.
-            </p>
+          <section className="mb-14">
+            <SectionHeader
+              label="Sensibilisation"
+              count={sensiItems.length}
+              subtitle="Mettez-vous dans la peau de vos élèves : ces outils font vivre de l'intérieur les défis des apprenants à besoins spécifiques."
+              accent="amber"
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sensiItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+              {sensiItems.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" />
+              ))}
             </div>
           </section>
         )}
 
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-700 mb-5 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-            Applications disponibles ({available.length})
-          </h2>
+        {/* Applications disponibles */}
+        <section className="mb-14">
+          <SectionHeader
+            label="Applications disponibles"
+            count={available.length}
+            subtitle="Utilisables maintenant dans votre classe. Connexion requise pour sauvegarder."
+            accent="teal"
+          />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {available.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+            {available.map(app => (
+              <AppCard key={app.id} app={app} onGuide={setGuideApp} />
+            ))}
           </div>
         </section>
 
+        {/* Prochainement */}
         {coming.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-lg font-semibold text-gray-400 mb-5 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-gray-300 inline-block"></span>
-              Prochainement ({coming.length})
-            </h2>
+          <section className="mb-14">
+            <SectionHeader
+              label="Prochainement"
+              count={coming.length}
+              subtitle="En cours de conception. Pas encore accessibles."
+              accent="gray"
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {coming.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+              {coming.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="gray" muted />
+              ))}
             </div>
           </section>
         )}
 
+        {/* Utilitaires */}
         {utilItems.length > 0 && (
-          <section className="mb-12">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-2 h-2 rounded-full bg-teal-500 inline-block"></span>
-              <h2 className="text-lg font-semibold text-gray-700">Utilitaires ({utilItems.length})</h2>
-            </div>
-            <p className="text-sm text-gray-500 mb-5 pl-5">
-              Outils à installer sur l'ordinateur pour un usage hors ligne ou indépendant des plateformes externes.
-            </p>
+          <section className="mb-14">
+            <SectionHeader
+              label="Utilitaires"
+              count={utilItems.length}
+              subtitle="À installer sur votre ordinateur pour un usage hors ligne, indépendant des plateformes externes."
+              accent="teal2"
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {utilItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+              {utilItems.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} />
+              ))}
             </div>
           </section>
         )}
 
+        {/* Claude */}
         {claudeItems.length > 0 && (
           <section>
-            <div className="flex items-center gap-3 mb-2">
-              <span className="w-2 h-2 rounded-full bg-purple-500 inline-block"></span>
-              <h2 className="text-lg font-semibold text-gray-700">Claude ({claudeItems.length})</h2>
-            </div>
-            <p className="text-sm text-gray-500 mb-5 pl-5">
-              Modes d'emploi pour maîtriser Claude dans votre pratique enseignante en Fédération Wallonie-Bruxelles.
-            </p>
+            <SectionHeader
+              label="Guides Claude"
+              count={claudeItems.length}
+              subtitle="Maîtriser Claude dans votre pratique enseignante en Fédération Wallonie-Bruxelles."
+              accent="purple"
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {claudeItems.map(app => <AppCard key={app.id} app={app} onGuide={setGuideApp} />)}
+              {claudeItems.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" />
+              ))}
             </div>
           </section>
         )}
+
       </main>
     </>
   );
