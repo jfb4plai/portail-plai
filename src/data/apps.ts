@@ -1685,6 +1685,7 @@ const apps: AppItem[] = [
             title: "1. Choisir la langue et les locuteurs",
             items: [
               "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol.",
+              "Néerlandais : 4 voix neurales pour nl_BE (Dena, Arnaud, Colette NL, Maarten NL) et 3 pour nl_NL (Colette, Fenna, Maarten) — qualité Microsoft Edge TTS.",
               "Choisissez 2 à 4 locuteurs (A, B, C, D) pour un dialogue, ou A seul pour un monologue.",
               "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
             ],
@@ -1708,7 +1709,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Réserve d'usage : l'outil est en développement actif. Les voix Piper TTS sont open source (licence MIT) et hébergées sur Hugging Face. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
+        tip: "Réserve d'usage : l'outil est en développement actif. Voix néerlandaises : Microsoft Edge TTS (neurales, sans compte). Autres langues : Piper TTS open source (MIT), hébergé sur Hugging Face. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
       },
     },
   },
