@@ -1587,6 +1587,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'import-skill-partage',
+    name: 'Importer un skill partagé',
+    description: 'Mode d\'emploi pour activer un fichier .skill reçu d\'un collègue : procédure d\'import, vérifications de sécurité et checklist avant activation.',
+    url: '/guide-import-skill-partage.html',
+    emoji: '📥',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'claude',
+  },
+  {
     id: 'ytdl-plai',
     name: 'YT-DL PLAI',
     emoji: '📥',
