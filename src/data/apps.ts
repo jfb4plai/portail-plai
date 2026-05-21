@@ -1708,7 +1708,7 @@ const apps: AppItem[] = [
     id: 'diffactif',
     name: 'DiffActif',
     description: "Différenciation pédagogique par Aménagements Universels (AUs) : cartographie les profils de besoins (DYS, TDAH, HPI, allophone, décrocheur), génère des variantes d'activités adaptées par profil via IA (split 80/20), planifie des séquences différenciées avec AUs intégrés, suit la progression de la pratique. Codes anonymes. 8 références RISS vérifiées.",
-    url: 'https://diffactif.jfb4plai.com',
+    url: 'https://diffactif.vercel.app',
     emoji: '🧩',
     category: 'Différenciation',
     status: 'en-développement',
