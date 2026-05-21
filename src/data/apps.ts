@@ -1600,7 +1600,7 @@ const apps: AppItem[] = [
   {
     id: 'bien-ecrire-claude',
     name: 'Bien écrire à Claude',
-    description: 'Guide pratique pour formuler des prompts efficaces dans Claude : structure d\'une bonne demande, exemples par type de tâche pédagogique, erreurs fréquentes et astuces PLAI.',
+    description: 'Guide pratique pour formuler des prompts efficaces dans Claude (particulièrement pour Opus 4.7) : structure d\'une bonne demande, exemples par type de tâche pédagogique, erreurs fréquentes et astuces PLAI.',
     url: '/guide-bien-ecrire-claude-plai.html',
     emoji: '✍️',
     category: 'Guide',
