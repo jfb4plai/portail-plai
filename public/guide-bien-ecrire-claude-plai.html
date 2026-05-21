@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bien écrire à Claude — Guide PLAI · Pôle Territorial de la Ville de Liège</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 12px; font-weight: 500; padding: 5px 10px;
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--text2); transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); border: 1px solid var(--border2);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 6vw, 58px); line-height: 1.1;
+    letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub {
+    font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* ── LEITMOTIV ── */
+  .leitmotiv {
+    background: var(--text);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .leitmotiv p {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #e8e5de;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .leitmotiv p strong { color: #ffffff; }
+
+  /* ── EYEBROW ── */
+  .eyebrow {
+    font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── SECTION TITLES ── */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px;
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem;
+  }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--red-bg); color: var(--red); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUTS ── */
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  /* ── EXEMPLES / PROMPTS ── */
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+  .ptag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  .pt-blue { background: var(--blue-bg); color: var(--blue); }
+  .pt-green { background: var(--green-bg); color: var(--green); }
+  .pt-amber { background: var(--amber-bg); color: var(--amber); }
+  .pt-purple { background: var(--purple-bg); color: var(--purple); }
+  .pt-red { background: var(--red-bg); color: var(--red); }
+
+  /* ── CARDS GRID ── */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── COMPARE ── */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  /* ── ACCORDÉON ── */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head {
+    background: var(--surface); padding: 0.85rem 1rem;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; user-select: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.15s;
+  }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  /* ── NUMERO PRINCIPE ── */
+  .principe { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .principe-head { background: var(--surface2); padding: 0.8rem 1rem; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border); }
+  .principe-num { width: 32px; height: 32px; border-radius: 50%; background: var(--text); color: var(--bg); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-size: 15px; flex-shrink: 0; }
+  .principe-title { font-size: 15px; font-weight: 500; }
+  .principe-body { padding: 1rem 1.1rem; }
+  .principe-tagline { font-size: 13px; font-style: italic; font-family: 'DM Serif Display', serif; color: var(--text2); margin-bottom: 0.75rem; }
+
+  /* ── RECAP ── */
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  /* ── NIVEAU BADGE ── */
+  .niveau-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 10px; margin-right: 4px; }
+  .niv-fond { background: #fff3cd; color: #7a4f00; border: 1px solid #fcd87e; }
+  .niv-sec { background: #d6eaf8; color: #1a527a; border: 1px solid #8ec6e8; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 34px; }
+    .grid3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/"><img src="https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg" alt="PLAI" style="height:32px;width:auto;margin-right:8px;">Bien écrire à Claude · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#pourquoi">Pourquoi</a>
+    <a class="nav-link" href="#principes">7 principes</a>
+    <a class="nav-link" href="#exemples">Exemples</a>
+    <a class="nav-link" href="#erreurs">Erreurs fréquentes</a>
+    <a class="nav-link" href="#recap">Récap</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section style="border-bottom: 1px solid var(--border); padding-bottom: 0;">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">✍️ Guide enseignants · Écoles coopérantes du Pôle Territorial de la Ville de Liège</div>
+    <h1>Ce que tu écris<br><em>détermine ce qu'il produit</em></h1>
+    <p class="hero-sub">Bien formuler une demande à Claude, c'est la compétence clé. Ni technique, ni complexe — juste précise.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">7</span><span class="stat-label">principes à retenir</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">jargon informatique</span></div>
+      <div><span class="stat-num">∞</span><span class="stat-label">essais possibles</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Claude ne lit pas dans les pensées. Si tu lui écris "fais-moi une activité", il ne sait pas si c'est pour des P1 qui apprennent les sons ou pour des S6 qui préparent un jury. Plus ta demande est claire, plus sa réponse est utile. <strong>Un bon prompt, c'est une bonne question posée à un collègue très compétent qui ne connaît pas encore ta classe.</strong> »</p>
+  </div>
+
+  <div class="eyebrow">Avant de commencer</div>
+
+  <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;">
+    <div style="background:var(--purple-bg);padding:0.8rem 1rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);">
+      <span style="font-size:20px;">🧠</span>
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--purple);">Quel modèle Claude utiliser ?</div>
+        <div style="font-size:12px;color:var(--purple-mid);margin-top:1px;">Sonnet pour le quotidien · Opus 4.7 pour les tâches complexes uniquement</div>
+      </div>
+    </div>
+    <div style="padding:1rem 1.1rem;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.75rem;">
+        <div style="background:var(--blue-bg);border:1px solid #8ec6e8;border-radius:var(--radius);padding:0.85rem 1rem;">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:var(--blue);margin-bottom:4px;">✅ Claude Sonnet — usage quotidien</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.55;">Rédiger une fiche, reformuler une consigne, préparer un exercice, écrire une lettre aux parents, créer une grille. <strong>À utiliser par défaut.</strong> Rapide et économe en tokens.</div>
+        </div>
+        <div style="background:var(--purple-bg);border:1px solid #c5c0f5;border-radius:var(--radius);padding:0.85rem 1rem;">
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:var(--purple);margin-bottom:4px;">⚡ Claude Opus 4.7 — tâches complexes</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.55;">Analyser une situation d'élève difficile, concevoir une séquence complète, raisonner sur un cas complexe. <strong>Réserver aux vrais besoins.</strong> Consomme beaucoup plus de tokens.</div>
+        </div>
+      </div>
+      <div class="warn" style="margin:0;">
+        <div class="warn-label">⚠️ Tokens = quota mensuel</div>
+        <p>Chaque message consomme des "tokens" (unités de traitement). Opus 4.7 en consomme 5 à 10 fois plus que Sonnet pour un résultat souvent identique sur les tâches simples. Utiliser Opus 4.7 pour tout, c'est épuiser son quota rapidement. <strong>Règle pratique : commence toujours par Sonnet. Passe à Opus 4.7 seulement si la réponse est insuffisante.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENCART SKILL /opus-47 -->
+  <div style="border:1px solid #c5c0f5;border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;">
+    <div style="background:linear-gradient(to right,var(--purple-bg),#f0eff9);padding:0.8rem 1rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #c5c0f5;">
+      <span style="font-size:20px;">⚡</span>
+      <div>
+        <div style="font-size:14px;font-weight:500;color:var(--purple);">Le skill <code style="background:var(--purple-bg);padding:1px 6px;border-radius:4px;font-size:13px;">/opus-47</code> — ton co-pilote pour Opus 4.7</div>
+        <div style="font-size:12px;color:var(--purple-mid);margin-top:1px;">Il transforme ta demande approximative en prompt optimisé, prêt à envoyer</div>
+      </div>
+    </div>
+    <div style="padding:1rem 1.1rem;">
+      <div class="prose" style="margin-bottom:1rem;">
+        <p>Opus 4.7 est puissant — mais il est aussi plus exigeant sur la qualité de ce qu'on lui écrit. Plus le prompt est précis et bien structuré, meilleure est la réponse. C'est là qu'intervient le skill <strong>/opus-47</strong> : il prend ta demande brute et la réécrit en un prompt taillé pour Opus 4.7.</p>
+      </div>
+      <div class="steps" style="margin-bottom:1rem;">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <div class="step-t">Active le skill une fois pour toutes</div>
+            <div class="step-d">Va dans <strong>Customize → Skills → +</strong> et uploade le fichier du skill. C'est une manipulation unique. Ensuite, le skill est disponible dans toutes tes conversations.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <div class="step-t">Écris ta demande en brouillon</div>
+            <div class="step-d">Pas besoin de perfectionner. Une idée approximative suffit : "je veux corriger les rédactions de mes S3" ou "aide-moi à préparer une leçon sur les fractions".</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <div class="step-t">Tape <code style="background:var(--surface2);padding:1px 6px;border-radius:4px;font-size:12px;">/opus-47</code> suivi de ta demande</div>
+            <div class="step-d">Le skill analyse ta demande, comble les manques, structure le prompt et te renvoie un bloc de texte prêt à copier-coller — avec la bonne formule finale pour déclencher le raisonnement maximal d'Opus 4.7.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div>
+            <div class="step-t">Copie le prompt généré — colle-le dans une nouvelle conversation avec Opus 4.7</div>
+            <div class="step-d">Ne réponds pas dans la même conversation : ouvre une nouvelle conversation, sélectionne Opus 4.7, et colle. Le skill a fait son travail ; laisse Opus faire le sien.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.75rem;">
+        <div class="c-bad" style="border-radius:var(--radius);">
+          <div class="c-label">❌ Ta demande brute</div>
+          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">/<span style="font-weight:500">opus-47</span> corriger les rédactions de mes élèves de 3e secondaire</div>
+        </div>
+        <div class="c-good" style="border-radius:var(--radius);">
+          <div class="c-label">✅ Ce que le skill produit</div>
+          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">Un prompt complet, structuré, ancré dans le contexte FWB, avec les critères de correction détaillés — prêt à coller dans Opus 4.7.</div>
+        </div>
+      </div>
+
+      <div class="purple-box" style="margin:0;">
+        <div class="purple-label">💡 Le skill sait aussi te freiner</div>
+        <p>Si ta demande est trop simple pour justifier Opus 4.7 (une devinette, une reformulation rapide), le skill te le signale avant de produire le prompt — pour que tu ne gaspilles pas ton quota inutilement. C'est lui le garde-fou intelligent entre Sonnet et Opus.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card"><div class="card-icon">🗣️</div><div class="card-t">C'est quoi un "prompt" ?</div><div class="card-d">Un prompt, c'est simplement le message que tu envoies à Claude. Pas plus compliqué que ça. Ce guide t'apprend à bien le formuler.</div></div>
+    <div class="card"><div class="card-icon">🔄</div><div class="card-t">On peut reformuler</div><div class="card-d">Si la réponse ne convient pas, tu peux demander à Claude d'ajuster, de raccourcir, de changer de ton. Il ne se froisse pas et recommence autant de fois que nécessaire.</div></div>
+    <div class="card"><div class="card-icon">🏫</div><div class="card-t">Pour quel niveau ?</div><div class="card-d">Ce guide contient des exemples pour le <strong>fondamental</strong> (P1 à P6) et le <strong>secondaire</strong> (S1 à S6 / 7). Les badges <span class="niveau-badge niv-fond">Fond.</span> et <span class="niveau-badge niv-sec">Sec.</span> t'indiquent lequel.</div></div>
+    <div class="card"><div class="card-icon">🔒</div><div class="card-t">RGPD toujours</div><div class="card-d">Jamais de noms d'élèves réels, de matricules ou de résultats nominatifs. Utilise des initiales ou des cas fictifs anonymisés.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── POURQUOI ── -->
+<section id="pourquoi">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 Pourquoi</div>
+    <div class="guide-title">Claude n'est pas Google</div>
+    <div class="guide-subtitle">On a tendance à lui écrire comme à un moteur de recherche. C'est la première erreur à corriger.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes à lire</span>
+      <span class="gmeta">👤 Tous niveaux</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Avec Google, tu tapes trois mots-clés : "recette lasagne rapide". Le moteur cherche une page qui correspond. Avec Claude, tu as une <strong>conversation</strong>. Claude comprend des phrases entières, des nuances, des contextes. Si tu lui donnes peu, il produit quelque chose de générique. Si tu lui donnes du contexte, il produit quelque chose d'adapté.</p>
+  </div>
+
+  <div class="compare">
+    <div class="c-bad">
+      <div class="c-label">🔍 Réflexe Google (à éviter)</div>
+      <div class="c-text">Activité fractions 5e primaire</div>
+    </div>
+    <div class="c-good">
+      <div class="c-label">💬 Réflexe Claude (à adopter)</div>
+      <div class="c-text">Crée une activité de découverte des fractions pour des élèves de 5e primaire qui ont déjà vu les fractions simples (½, ¼). Je veux une situation concrète liée à la cuisine. Format : 20 minutes, travail par deux, sans calculatrice.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 La règle d'or</div>
+    <p>Imagine que tu demandes à un collègue très compétent de remplacer ta classe demain matin. Tu lui expliques : qui sont tes élèves, quel est l'objectif, ce qu'ils ont déjà vu, le temps disponible. C'est exactement ça, un bon prompt.</p>
+  </div>
+
+  <div style="margin-top: 2rem;">
+    <div class="section-h">Les 3 questions à se poser avant d'écrire</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Pour qui est-ce que je demande ça ?</div>
+          <div class="step-d">Ton niveau (P3, S4…), le profil de tes élèves (niveau de lecture, difficultés, besoins spécifiques), ta filière ou ton option si tu es en secondaire.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Qu'est-ce que je veux exactement comme résultat ?</div>
+          <div class="step-d">Un exercice ? Une explication pour les parents ? Une grille d'évaluation ? Un résumé en deux lignes ? Le format importe autant que le fond.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Y a-t-il des contraintes importantes ?</div>
+          <div class="step-d">Durée, matériel disponible, niveau de langue visé, pas de calculatrice, pas de découpage pour les P1, texte accessible pour des élèves en difficulté de lecture…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── 7 PRINCIPES ── -->
+<section id="principes">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🧭 7 principes</div>
+    <div class="guide-title">Comment bien formuler ta demande</div>
+    <div class="guide-subtitle">Sept règles simples, illustrées par des exemples tirés de la réalité des classes du Pôle.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 15 minutes</span>
+      <span class="gmeta">🎯 L'essentiel du guide</span>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 1 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">1</div>
+      <div class="principe-title">Dis à Claude ce que tu veux, pas ce que tu ne veux pas</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Les instructions négatives marchent mal. Formule toujours ce que tu attends en positif.</div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">❌ Trop vague et négatif</div>
+          <div class="c-text">Ne fais pas trop compliqué et n'utilise pas de mots difficiles.</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">✅ Précis et positif</div>
+          <div class="c-text">Utilise des phrases courtes, des mots du quotidien et un vocabulaire qu'un élève de P4 peut lire seul.</div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P3</span><br>Explique ce qu'est la multiplication à un élève de P3. Utilise des phrases de moins de 12 mots. Donne un seul exemple avec des objets du quotidien (ex : billes, bonbons).</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S2</span><br>Rédige une explication de la photosynthèse pour des élèves de S2. Utilise le vocabulaire des sciences du programme FWB. Longueur : 10 lignes maximum. Ton : direct et factuel, pas de métaphores.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 2 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">2</div>
+      <div class="principe-title">Nomme le format exact que tu attends</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Claude adapte la longueur et la forme à sa propre estimation — pas à la tienne. Dis-lui ce que tu veux.</div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">❌ Format non précisé</div>
+          <div class="c-text">Fais-moi un résumé de cette leçon.</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">✅ Format défini</div>
+          <div class="c-text">Fais un résumé en 5 phrases maximum. Commence chaque phrase par un verbe d'action. Une seule idée par phrase.</div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P6</span><br>Crée une fiche de révision sur les États de la matière pour des P6. Format : 3 colonnes (solide, liquide, gaz). Chaque colonne : 3 caractéristiques + 1 exemple du quotidien. Pas de phrases entières, des mots-clés.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S4 Cuisine</span><br>Crée une grille d'évaluation pour la réalisation d'une sauce béchamel en S4 cuisine. Format : tableau à 4 colonnes (critère / insuffisant / suffisant / excellent). Cinq critères liés au geste professionnel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 3 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">3</div>
+      <div class="principe-title">Donne du contexte sur tes élèves</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Claude ne connaît pas ta classe. Plus tu lui décris le public réel, plus la réponse lui colle.</div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">❌ Public inconnu</div>
+          <div class="c-text">Crée une activité sur la lecture pour mes élèves.</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">✅ Public décrit</div>
+          <div class="c-text">Crée une activité de compréhension de lecture pour une classe de S1. La moitié des élèves a un niveau de lecture équivalent à P4-P5. Certains ont une dyslexie diagnostiquée. Durée : 25 minutes.</div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P2</span><br>Je travaille avec une classe de P2 dans une école à encadrement différencié à Liège. La moitié des élèves est allophone (arabe, turc). Crée une activité de découverte des nombres jusqu'à 20 qui s'appuie sur le visuel. Aucune consigne uniquement écrite : tout doit être illustré ou montrable.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S3 Qualif.</span><br>Ma classe de S3 en section qualifiante (esthétique) a un niveau de lecture faible. Plusieurs élèves ont un PIA. Réécris cette procédure de soin du visage en simplifiant le vocabulaire. Phrases courtes, verbes d'action, pas de jargon professionnel non expliqué.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 4 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">4</div>
+      <div class="principe-title">Utilise des verbes d'action précis</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">"Aide-moi" ou "fais quelque chose" sont trop vagues. Un verbe précis déclenche une action précise.</div>
+      <div class="grid3">
+        <div class="card">
+          <div class="card-icon">✍️</div>
+          <div class="card-t">À la place de "aide-moi avec"</div>
+          <div class="card-d"><strong>Rédige, reformule, traduis, simplifie, réécris, corrige, développe, résume</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🛠️</div>
+          <div class="card-t">À la place de "fais-moi"</div>
+          <div class="card-d"><strong>Crée, génère, liste, propose, conçois, structure, élabore, décompose</strong></div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <div class="card-t">À la place de "regarde"</div>
+          <div class="card-d"><strong>Analyse, identifie, repère, évalue, compare, vérifie, explique pourquoi</strong></div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P5</span><br>Reformule cette consigne d'exercice pour qu'elle soit compréhensible par un élève de P5 en difficulté de lecture. Garde l'objectif pédagogique intact. Maximum 2 phrases.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S6 Boucherie</span><br>Liste les 8 points de sécurité à vérifier avant d'utiliser un couteau de découpe en boucherie. Formule chaque point comme une action concrète au présent de l'impératif. Une ligne par point.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 5 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">5</div>
+      <div class="principe-title">Donne un rôle à Claude si nécessaire</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Lui dire "agis comme un…" oriente sa façon de répondre. Utile pour les retours, les simulations ou les reformulations.</div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">❌ Sans rôle</div>
+          <div class="c-text">Dis-moi ce que tu penses de ce texte d'élève.</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">✅ Avec rôle</div>
+          <div class="c-text">Agis comme un enseignant correcteur bienveillant de l'enseignement secondaire FWB. Identifie 3 points forts et 2 pistes d'amélioration dans ce texte d'élève de S3. Pas de note — uniquement un retour formatif.</div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P4</span><br>Agis comme un élève de P4 qui ne comprend pas la soustraction avec retenue. Pose-moi les questions qu'un tel élève poserait. Je vais ensuite préparer mes explications à partir de tes questions.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S5 Coiffure</span><br>Agis comme un jury de qualification FWB en coiffure. Évalue ce portfolio d'élève selon 4 critères : maîtrise technique, présentation, respect des normes d'hygiène, créativité. Retour en une phrase par critère.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 6 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">6</div>
+      <div class="principe-title">Montre un exemple de ce que tu veux</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Si tu as un modèle en tête — un ton, une mise en page, une structure — colle-le directement. Claude va l'imiter.</div>
+      <div class="callout">
+        <div class="callout-label">💡 Astuce</div>
+        <p>Tu peux copier-coller un vieux document que tu as créé toi-même et demander à Claude de produire quelque chose "dans le même style et la même structure". Ça marche très bien pour les fiches de cours, les lettres aux parents, les résumés de leçons.</p>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P3-P4</span><br>Voici une fiche que j'ai créée pour la leçon sur les heures : [colle le texte de ta fiche]. Crée une fiche identique pour la leçon sur les mois de l'année. Garde exactement la même structure, le même ton et la même longueur.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. tous niveaux</span><br>Voici comment j'écris d'habitude mes communications aux parents : [colle un exemple]. Rédige une communication pour annoncer la visite d'entreprise du 12 juin. Garde mon style et mon ton. Longueur identique.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPE 7 -->
+  <div class="principe">
+    <div class="principe-head">
+      <div class="principe-num">7</div>
+      <div class="principe-title">Demande à Claude de vérifier avant de répondre</div>
+    </div>
+    <div class="principe-body">
+      <div class="principe-tagline">Pour les tâches complexes ou créatives, ajouter "pense d'abord, puis réponds" améliore la qualité de la réponse.</div>
+      <div class="prose">
+        <p>Claude peut être invité à raisonner en deux temps : d'abord analyser la situation, puis produire. Cette simple instruction évite les réponses trop rapides et trop génériques sur les tâches qui demandent du jugement.</p>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏫 Exemple fondamental</div>
+        <div class="prompt"><span class="ptag pt-green">Fond. P6</span><br>Avant de répondre, réfléchis aux obstacles que des élèves de P6 pourraient rencontrer avec ce concept. Ensuite, propose une séquence de 3 activités progressives pour introduire les nombres décimaux. La première activité doit être concrète et manipulatrice.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">🏛️ Exemple secondaire</div>
+        <div class="prompt"><span class="ptag pt-blue">Sec. S4-S5-S6</span><br>Avant de me donner un plan de cours, analyse les prérequis nécessaires pour aborder la comptabilité de base en S4 technique de qualification. Ensuite, propose un plan pour une leçon de 50 minutes qui tient compte des lacunes habituelles à ce niveau.</div>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ La formule magique à retenir</div>
+        <p>Ajoute "Pense avant de répondre — raisonnement maximal." à la fin de ta demande quand tu veux que Claude soit particulièrement rigoureux.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── EXEMPLES COMPLETS ── -->
+<section id="exemples">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">📋 Exemples</div>
+    <div class="guide-title">Prompts complets prêts à l'emploi</div>
+    <div class="guide-subtitle">Copie, adapte à ta réalité, envoie. Ces exemples combinent plusieurs des 7 principes à la fois.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ À utiliser directement</span>
+      <span class="gmeta">🎯 Fondamental + Secondaire</span>
+    </div>
+  </div>
+
+  <div class="eyebrow">Fondamental</div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏫</span>
+      <div class="acc-info">
+        <div class="acc-title">Créer une activité différenciée — P3 mathématiques</div>
+        <div class="acc-meta">Multiplication · Niveaux hétérogènes · 30 minutes</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Je travaille avec une classe de P3 hétérogène dans une école à Liège. Certains élèves maîtrisent bien l'addition, d'autres ont encore des difficultés. Je veux introduire la multiplication comme une addition répétée.<br><br>Crée une activité en 3 niveaux de difficulté :<br>— Niveau 1 (base) : manipulation concrète avec des objets à dessiner<br>— Niveau 2 (consolidation) : exercices semi-concrets avec des schémas<br>— Niveau 3 (dépassement) : résolution d'un mini-problème en contexte réel<br><br>Chaque niveau doit durer environ 10 minutes. Format : une fiche par niveau, avec la consigne en haut et l'espace de travail en dessous. Ton simple, pas de jargon.</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏫</span>
+      <div class="acc-info">
+        <div class="acc-title">Rédiger une communication aux parents — P1</div>
+        <div class="acc-meta">Sortie scolaire · Ton accessible · Bilingue si nécessaire</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Rédige une lettre aux parents d'une classe de P1 pour annoncer une sortie au parc de la Boverie à Liège le jeudi 5 juin. La lettre doit être :<br>— Courte : maximum 15 lignes<br>— Dans un langage simple (certains parents ont un niveau de lecture limité)<br>— Avec les informations pratiques clairement séparées : heure de départ, heure de retour, matériel à apporter, coût<br>— Un espace en bas pour la signature des parents et la date<br><br>Pas de jargon administratif. Ton chaleureux et direct.</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏫</span>
+      <div class="acc-info">
+        <div class="acc-title">Préparer une leçon sur un concept abstrait — P5 sciences</div>
+        <div class="acc-meta">Cycle de l'eau · Démarche concrète → abstraite</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Pense d'abord aux représentations initiales fréquentes et aux erreurs classiques des P5 sur le cycle de l'eau. Ensuite propose une séquence de découverte en 4 temps :<br>1. Accroche concrète (expérience ou observation : 5 min)<br>2. Mise en commun et questionnement (10 min)<br>3. Trace écrite à compléter (pas un texte à copier — une schématisation à légender)<br>4. Question de dépassement pour les élèves rapides<br><br>Le vocabulaire clé à faire acquérir : évaporation, condensation, précipitation. Chaque mot doit être lié à quelque chose que les élèves ont observé dans leur vie.</div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-top:2rem;">Secondaire</div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏛️</span>
+      <div class="acc-info">
+        <div class="acc-title">Simplifier un texte de cours — S2 Géographie</div>
+        <div class="acc-meta">Élèves en difficulté de lecture · FWB · Format accessible</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Voici un extrait de mon cours de géographie sur la mondialisation pour des S2 : [colle ton texte ici].<br><br>Réécris ce texte pour des élèves de S2 ayant un niveau de lecture équivalent à P5. Contraintes :<br>— Phrases de maximum 15 mots<br>— Un seul concept par paragraphe<br>— Chaque mot technique doit être immédiatement expliqué entre parenthèses<br>— Garde les exemples concrets, remplace les exemples trop abstraits par des exemples liégeois ou belges si possible<br>— Longueur finale : maximum les deux tiers du texte original</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏛️</span>
+      <div class="acc-info">
+        <div class="acc-title">Créer une évaluation formative — S4 Pâtisserie</div>
+        <div class="acc-meta">QCM + vrai/faux + question courte · 20 minutes</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Crée une évaluation formative sur les techniques de base de la pâtisserie (pâte brisée, crème pâtissière, montage d'une tarte) pour une classe de S4 qualifiant pâtisserie.<br><br>Format :<br>— 5 questions QCM (4 choix de réponse, une seule bonne réponse)<br>— 3 questions vrai/faux avec justification en une phrase<br>— 1 question ouverte courte : "Décris en 3 étapes comment tu vérifies la cuisson d'une crème pâtissière"<br><br>Durée prévue : 20 minutes. Langage professionnel mais accessible. Chaque question porte sur un geste ou une connaissance évaluable en atelier.</div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🏛️</span>
+      <div class="acc-info">
+        <div class="acc-title">Préparer une réunion de concertation — tous niveaux</div>
+        <div class="acc-meta">Ordre du jour · Prise de notes · Suivi d'actions</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prompt">Je dois animer une réunion de concertation de 45 minutes avec l'équipe éducative de S3 pour faire le point sur 3 élèves en difficulté et décider des mesures à prendre avant le conseil de classe.<br><br>Crée :<br>1. Un ordre du jour structuré (avec durée estimée pour chaque point)<br>2. Un tableau de prise de notes prêt à remplir : colonne "Constats", colonne "Décisions", colonne "Qui fait quoi d'ici quand"<br>3. Une question-amorce pour lancer chacun des 3 points de discussion<br><br>Format : document simple, utilisable directement en réunion, à imprimer ou projeter.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── ERREURS FRÉQUENTES ── -->
+<section id="erreurs">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">⚠️ Erreurs fréquentes</div>
+    <div class="guide-title">Ce qui produit des réponses décevantes</div>
+    <div class="guide-subtitle">Ces erreurs sont normales au début. Les identifier, c'est déjà les corriger à moitié.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes</span>
+      <span class="gmeta">👤 Tous niveaux</span>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">😶</span>
+      <div class="acc-info">
+        <div class="acc-title">La demande trop courte</div>
+        <div class="acc-meta">"Fais-moi une activité sur les fractions" → Claude ne sait rien de ta classe</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>Une demande de 5 mots donne une réponse générique. Claude manque d'informations sur le niveau, le contexte, les élèves, le format attendu. Il produit quelque chose qui pourrait convenir à n'importe qui — donc à personne en particulier.</p>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ Le réflexe</div>
+        <p>Avant d'envoyer, compte les informations que tu as données : niveau, profil des élèves, format, durée, contraintes. Si tu en as moins de 3, complète.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🇫🇷</span>
+      <div class="acc-info">
+        <div class="acc-title">Oublier de préciser le contexte FWB</div>
+        <div class="acc-meta">Claude cite l'Éducation nationale par défaut → compétences, programmes et terminologie incorrects</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>Claude a été entraîné sur des textes du monde entier. En matière d'éducation francophone, il connaît mieux l'Éducation nationale française que le système FWB. Si tu ne précises pas, il va parler de "CP, CE1, brevet, baccalauréat" à la place de "P1, P3, CEB, CESS".</p>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ Le réflexe</div>
+        <p>Ajoute systématiquement "dans le cadre de l'enseignement FWB" ou "pour le programme de la Fédération Wallonie-Bruxelles" dans tes demandes, au moins la première fois dans une conversation.</p>
+      </div>
+      <div class="warn">
+        <div class="warn-label">⚠️ À vérifier</div>
+        <p>Claude peut faire des erreurs sur les référentiels FWB spécifiques (OUVAP, socles de compétences, profils de formation). Relis toujours avec ton regard professionnel — il n'est pas infaillible sur les détails réglementaires locaux.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🔄</span>
+      <div class="acc-info">
+        <div class="acc-title">Accepter la première réponse sans ajuster</div>
+        <div class="acc-meta">Claude n'est pas infaillible au premier essai — la conversation compte</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>La première réponse est un point de départ, pas un résultat final. Si quelque chose ne convient pas, dis-le simplement : "C'est trop long", "Le niveau est trop élevé", "Reformule la consigne 3 en évitant le mot déduction", "Ajoute un exemple concret sur le premier point".</p>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">💬 Phrases pour ajuster</div>
+        <div class="prompt">"C'est bien mais trop long. Réduis à 10 lignes maximum."</div>
+        <div class="prompt">"La question 2 est trop difficile pour mon niveau. Simplifie-la pour des élèves de P4."</div>
+        <div class="prompt">"Garde la même structure mais change le thème : remplace les fractions par les pourcentages."</div>
+        <div class="prompt">"Reformule sans utiliser le mot 'compétence' — mes élèves ne connaissent pas ce terme."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🔒</span>
+      <div class="acc-info">
+        <div class="acc-title">Coller des données personnelles d'élèves</div>
+        <div class="acc-meta">Interdit — RGPD — même avec de bonnes intentions</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="danger">
+        <div class="danger-label">🚫 Interdit</div>
+        <p>Ne jamais coller dans Claude : le nom complet d'un élève, son numéro de matricule, ses résultats nominatifs, des informations médicales ou familiales identifiables. Claude est un service cloud : les données que tu y envoies sortent du réseau scolaire.</p>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ La bonne pratique</div>
+        <p>Utilise des cas fictifs ou anonymisés : "un élève de P4, dyslexique, qui a du mal avec les sons complexes" — sans nom, sans identifiant. Claude travaille aussi bien avec des descriptions qu'avec des noms réels.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🤯</span>
+      <div class="acc-info">
+        <div class="acc-title">Poser 5 questions en même temps</div>
+        <div class="acc-meta">Claude répond à tout — souvent superficiellement — mieux vaut un focus par message</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>Si tu poses 5 questions dans un seul message, Claude va répondre à toutes — mais parfois en survolant. Pour les tâches complexes, il vaut mieux avancer question par question, ou indiquer clairement l'ordre de priorité.</p>
+      </div>
+      <div class="compare">
+        <div class="c-bad">
+          <div class="c-label">❌ Trop à la fois</div>
+          <div class="c-text">Crée une activité, écris la grille d'évaluation, rédige la lettre aux parents et prépare l'ordre du jour de la concertation.</div>
+        </div>
+        <div class="c-good">
+          <div class="c-label">✅ Une tâche à la fois</div>
+          <div class="c-text">Commence par créer l'activité. Une fois validée, je te demanderai la grille d'évaluation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── RÉCAP ── -->
+<section id="recap">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">✅ Récap</div>
+    <div class="guide-title">Ma checklist avant d'envoyer</div>
+    <div class="guide-subtitle">Coche chaque point avant d'appuyer sur Entrée. Un bon prompt, ça se vérifie en 30 secondes.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 30 secondes à chaque fois</span>
+      <span class="gmeta">🎯 Le bon réflexe</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">L'essentiel</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai dit pour qui</strong> — niveau, profil des élèves, contexte de la classe</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai nommé ce que je veux exactement</strong> — un verbe d'action précis (créer, reformuler, analyser…)</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai précisé le format</strong> — longueur, structure, tableau, liste, fiche…</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai mentionné le contexte FWB</strong> — ou mes Instructions pour Claude le font déjà</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Pas de données personnelles identifiables</strong> — aucun nom, matricule ou résultat nominatif</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Pour aller plus loin</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai donné un exemple</strong> si j'ai un format ou un ton précis en tête</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai assigné un rôle à Claude</strong> si c'est pertinent (correcteur, jury, élève fictif…)</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai ajouté "pense avant de répondre"</strong> pour les tâches complexes ou créatives</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Je sais que je peux ajuster</strong> — si la réponse ne convient pas, je reformule dans la même conversation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Un prompt, ça s'améliore. La première version n'est jamais la meilleure — c'est juste le début du dialogue. Chaque fois que Claude produit quelque chose de trop général, c'est un signal : il manque un détail sur ta réalité. Ajoute-le. <strong>Le bon prompt, c'est celui que tu affines jusqu'à ce que Claude te surprenne par sa pertinence.</strong> »</p>
+  </div>
+
+  <div style="margin-top:2rem">
+    <div class="section-h">La formule universelle à garder</div>
+    <div class="ex-box">
+      <div class="ex-label">🧩 Copie-colle et complète</div>
+      <div class="prompt">Je travaille avec [niveau + contexte de la classe + école si utile]. Mes élèves [profil : niveau de lecture, difficultés éventuelles, ce qu'ils ont déjà vu].<br><br>[Verbe d'action] : [description précise de la tâche].<br><br>Format attendu : [longueur / structure / type de document].<br>Contraintes : [durée, matériel, niveau de langue, FWB…].<br><br>[Optionnel] Voici un exemple de ce que j'ai en tête : [colle ton exemple].</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="container">
+    <p>Guide Bien écrire à Claude · Formation PLAI · Pôle Territorial de la Ville de Liège — Écoles coopérantes</p>
+    <p>Référence officielle : <a href="https://enseignement.be">enseignement.be</a> · Documentation Claude : <a href="https://docs.claude.ai">docs.claude.ai</a></p>
+  </div>
+</div>
+
+<script>
+  /* Nav active state */
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+
+  /* Accordéon */
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  /* Checklist */
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>

@@ -1598,6 +1598,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'bien-ecrire-claude',
+    name: 'Bien écrire à Claude',
+    description: 'Guide pratique pour formuler des prompts efficaces dans Claude : structure d\'une bonne demande, exemples par type de tâche pédagogique, erreurs fréquentes et astuces PLAI.',
+    url: '/guide-bien-ecrire-claude-plai.html',
+    emoji: '✍️',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'claude',
+  },
+  {
     id: 'ytdl-plai',
     name: 'YT-DL PLAI',
     emoji: '📥',
