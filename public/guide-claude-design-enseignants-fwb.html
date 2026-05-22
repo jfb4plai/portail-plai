@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --fond: #faf9f7;
+    --bg: #faf9f7;
     --surface: #ffffff;
     --surface2: #f4f2ee;
-    --bord: #e8e4dd;
+    --border: #e8e4dd;
     --bord2: #d4cfc6;
-    --texte: #1a1814;
+    --text: #1a1814;
     --texte-doux: #5a564f;
     --texte-3: #9a958c;
     --orange: #854f0b;
@@ -38,8 +38,8 @@
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--fond);
-    color: var(--texte);
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.7;
     font-size: 15px;
   }
@@ -49,24 +49,24 @@
     position: sticky; top: 0; z-index: 200;
     background: rgba(250,249,247,0.94);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--bord);
+    border-bottom: 1px solid var(--border);
     padding: 0 1.5rem;
     display: flex; align-items: center; justify-content: space-between;
     height: 52px;
   }
   .nav-logo {
     display: flex; align-items: center; gap: 10px;
-    text-decoration: none; color: var(--texte);
+    text-decoration: none; color: var(--text);
   }
   .nav-logo img { height: 34px; object-fit: contain; }
   .nav-logo-text { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; }
 
   /* HEADER */
   .header {
-    border-bottom: 1px solid var(--bord);
+    border-bottom: 1px solid var(--border);
     padding: 3.5rem 2rem 3rem;
     text-align: center;
-    background: var(--fond);
+    background: var(--bg);
   }
   .header-badge {
     display: inline-flex; align-items: center; gap: 6px;
@@ -103,7 +103,7 @@
   /* NAV SOMMAIRE */
   .nav-sommaire {
     background: var(--surface);
-    border-bottom: 1px solid var(--bord);
+    border-bottom: 1px solid var(--border);
     padding: 0.75rem 1.5rem;
     display: flex;
     flex-wrap: wrap;
@@ -120,7 +120,7 @@
     font-weight: 500;
     padding: 4px 10px;
     border-radius: 20px;
-    border: 1px solid var(--bord);
+    border: 1px solid var(--border);
     transition: all 0.15s;
     white-space: nowrap;
   }
@@ -140,7 +140,7 @@
   /* SECTIONS */
   section {
     padding: 3rem 0 2.5rem;
-    border-bottom: 1px solid var(--bord);
+    border-bottom: 1px solid var(--border);
   }
 
   .section-label {
@@ -172,11 +172,11 @@
     font-size: 1rem;
     font-weight: 500;
     margin: 1.5rem 0 0.6rem;
-    color: var(--texte);
+    color: var(--text);
   }
 
   p { margin-bottom: 1rem; color: var(--texte-doux); font-size: 15px; }
-  p strong { color: var(--texte); font-weight: 500; }
+  p strong { color: var(--text); font-weight: 500; }
 
   /* ALERTES */
   .alerte {
@@ -207,14 +207,14 @@
   }
   .card {
     background: var(--surface);
-    border: 1px solid var(--bord);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 1rem;
     transition: box-shadow 0.15s;
   }
   .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .card-emoji { font-size: 1.5rem; margin-bottom: 0.5rem; }
-  .card-titre { font-weight: 500; font-size: 13px; margin-bottom: 0.3rem; color: var(--texte); }
+  .card-titre { font-weight: 500; font-size: 13px; margin-bottom: 0.3rem; color: var(--text); }
   .card-texte { font-size: 12px; color: var(--texte-doux); margin: 0; line-height: 1.5; }
   .card-orange { border-top: 3px solid var(--orange-mid); }
   .card-vert   { border-top: 3px solid var(--vert-mid); }
@@ -224,7 +224,7 @@
   /* EXEMPLES */
   .exemple {
     background: var(--surface);
-    border: 1px solid var(--bord);
+    border: 1px solid var(--border);
     border-radius: 10px;
     margin: 1.25rem 0;
     overflow: hidden;
@@ -249,15 +249,15 @@
   .badge-primaire { background: var(--vert-mid); color: white; }
   .exemple-header-secondaire { background: var(--bleu-light); color: var(--bleu); }
   .badge-secondaire { background: var(--bleu-mid); color: white; }
-  .exemple-body { padding: 1rem 1.25rem; border-top: 1px solid var(--bord); }
+  .exemple-body { padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
   .exemple-prompt {
     background: var(--surface2);
-    border: 1px solid var(--bord);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 0.75rem 1rem;
     font-family: 'DM Serif Display', serif;
     font-size: 13.5px;
-    color: var(--texte);
+    color: var(--text);
     margin: 0.75rem 0;
     line-height: 1.65;
     position: relative;
@@ -284,7 +284,7 @@
     margin-bottom: 10px;
     align-items: flex-start;
     background: var(--surface);
-    border: 1px solid var(--bord);
+    border: 1px solid var(--border);
     border-radius: 10px;
     padding: 0.9rem 1rem;
   }
@@ -304,7 +304,7 @@
   .etape-num-orange { background: var(--orange-mid); color: white; }
   .etape-num-vert   { background: var(--vert-mid);   color: white; }
   .etape-num-bleu   { background: var(--bleu-mid);   color: white; }
-  .etape-titre { font-weight: 500; margin-bottom: 3px; color: var(--texte); font-size: 14px; }
+  .etape-titre { font-weight: 500; margin-bottom: 3px; color: var(--text); font-size: 14px; }
   .etape-desc { font-size: 13px; color: var(--texte-doux); margin: 0; line-height: 1.55; }
 
   /* COMPARATIF */
@@ -314,7 +314,7 @@
     gap: 10px;
     margin: 1.25rem 0;
   }
-  .comp-col { border-radius: 10px; padding: 1rem; border: 1px solid var(--bord); }
+  .comp-col { border-radius: 10px; padding: 1rem; border: 1px solid var(--border); }
   .comp-col-non { background: var(--rose-light); border-color: #f09595; }
   .comp-col-oui { background: var(--vert-light); border-color: #c0dd97; }
   .comp-titre {
@@ -334,12 +334,12 @@
     margin: 1.25rem 0; font-size: 13.5px;
   }
   .quota-table th {
-    background: var(--texte); color: white;
+    background: var(--text); color: white;
     padding: 9px 12px; text-align: left;
     font-weight: 500; font-size: 12px;
   }
   .quota-table td {
-    padding: 9px 12px; border-bottom: 1px solid var(--bord); color: var(--texte-doux);
+    padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--texte-doux);
   }
   .quota-table tr:nth-child(even) td { background: var(--surface2); }
   .quota-table tr:last-child td { border-bottom: none; }
@@ -355,9 +355,9 @@
   }
   .outil-lien {
     display: flex; align-items: center; gap: 8px;
-    background: var(--surface); border: 1px solid var(--bord);
+    background: var(--surface); border: 1px solid var(--border);
     border-radius: 8px; padding: 0.65rem 0.9rem;
-    text-decoration: none; color: var(--texte);
+    text-decoration: none; color: var(--text);
     font-size: 13px; font-weight: 500; transition: all 0.15s;
   }
   .outil-lien:hover { border-color: var(--bleu-mid); background: var(--bleu-light); color: var(--bleu); }
@@ -367,7 +367,7 @@
   .checklist { margin: 1rem 0; }
   .check-item {
     display: flex; align-items: flex-start; gap: 10px;
-    padding: 8px 0; border-bottom: 1px solid var(--bord);
+    padding: 8px 0; border-bottom: 1px solid var(--border);
     font-size: 13.5px; color: var(--texte-doux);
   }
   .check-item:last-child { border-bottom: none; }
@@ -383,7 +383,7 @@
   /* SCÉNARIOS */
   .scenario {
     background: var(--surface); border-radius: 10px;
-    border: 1px solid var(--bord); margin: 1rem 0; overflow: hidden;
+    border: 1px solid var(--border); margin: 1rem 0; overflow: hidden;
   }
   .scenario-head {
     padding: 1rem 1.1rem; display: flex; align-items: center;
@@ -392,17 +392,17 @@
   .scenario-head:hover { background: var(--surface2); }
   .scenario-emoji { font-size: 1.4rem; }
   .scenario-info { flex: 1; }
-  .scenario-titre { font-weight: 500; font-size: 14px; color: var(--texte); }
+  .scenario-titre { font-weight: 500; font-size: 14px; color: var(--text); }
   .scenario-meta { font-size: 12px; color: var(--texte-3); }
   .scenario-toggle { font-size: 1rem; color: var(--texte-3); transition: transform 0.2s; }
   .scenario-toggle.open { transform: rotate(180deg); }
-  .scenario-body { padding: 0 1.1rem 1.1rem; border-top: 1px solid var(--bord); display: none; }
+  .scenario-body { padding: 0 1.1rem 1.1rem; border-top: 1px solid var(--border); display: none; }
   .scenario-body.visible { display: block; }
   .scenario-body p { margin-top: 1rem; }
 
   /* FOOTER */
   footer {
-    background: var(--texte); color: #e8e4dd;
+    background: var(--text); color: #e8e4dd;
     text-align: center; padding: 2.5rem 2rem;
     font-size: 13px; margin-top: 3rem;
     font-family: 'DM Serif Display', serif; font-style: italic;
@@ -422,7 +422,7 @@
 <!-- NAV PRINCIPALE -->
 <nav class="nav-principale" aria-label="Navigation principale">
   <a href="/" class="nav-logo">
-    <img src="https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg" alt="Logo PLAI" />
+    <img src="/portail-plai/public/plai-logo.jpg" alt="Logo PLAI" />
     <span class="nav-logo-text">Claude · PLAI</span>
   </a>
 </nav>

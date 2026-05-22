@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cowork — Automatiser ses tâches · PLAI · Pôle Territorial de la Ville de Liège</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7; --surface: #ffffff; --surface2: #f4f2ee;
+    --border: #e8e4dd; --border2: #d4cfc6;
+    --text: #1a1814; --text2: #5a564f; --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --teal: #0e6b6b; --teal-bg: #e0f4f4; --teal-mid: #2aadad;
+    --radius: 10px; --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--radius-sm); text-decoration: none; color: var(--text2); transition: background 0.15s, color 0.15s; }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); border: 1px solid var(--border2); padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 6vw, 54px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub { font-size: 17px; color: var(--text2); max-width: 500px; margin: 0 auto 2.5rem; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* ── LEITMOTIV ── */
+  .leitmotiv { background: var(--text); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .leitmotiv p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: #e8e5de; margin: 0; line-height: 1.6; }
+  .leitmotiv p strong { color: #ffffff; }
+
+  /* ── EYEBROW ── */
+  .eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── GUIDE HEADER ── */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--red-bg); color: var(--red); }
+  .tag5 { background: var(--teal-bg); color: var(--teal); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUTS ── */
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .teal-box { background: var(--teal-bg); border-left: 3px solid var(--teal-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .teal-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #074f4f; margin-bottom: 3px; }
+  .teal-box p { font-size: 14px; color: var(--teal); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 26px; height: 26px; border-radius: 50%; background: var(--text); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; margin-top: 2px; }
+  .step-n.green { background: var(--green-mid); }
+  .step-n.blue { background: var(--blue-mid); }
+  .step-n.amber { background: var(--amber-mid); }
+  .step-n.purple { background: var(--purple-mid); }
+  .step-n.teal { background: var(--teal-mid); }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .step-d code { background: var(--surface2); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+
+  /* ── CARDS ── */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── WORKFLOW CARD ── */
+  .wf-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.5rem 0; }
+  .wf-head { padding: 0.9rem 1.1rem; display: flex; align-items: flex-start; gap: 14px; border-bottom: 1px solid var(--border); }
+  .wf-emoji { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+  .wf-meta { flex: 1; }
+  .wf-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 3px; }
+  .wf-title { font-size: 17px; font-weight: 500; font-family: 'DM Serif Display', serif; line-height: 1.3; }
+  .wf-subtitle { font-size: 13px; color: var(--text2); margin-top: 2px; }
+  .wf-body { padding: 1rem 1.1rem; }
+  .wf-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 8px; }
+  .wf-tag { font-size: 11px; padding: 2px 8px; border-radius: 8px; font-weight: 500; }
+  .wf-tag-fond { background: #fff3cd; color: #7a4f00; border: 1px solid #fcd87e; }
+  .wf-tag-sec { background: #d6eaf8; color: #1a527a; border: 1px solid #8ec6e8; }
+  .wf-tag-tous { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
+
+  /* ── BLOC WORKFLOW VISUEL ── */
+  .flow { display: flex; align-items: flex-start; gap: 0; margin: 1.25rem 0; flex-wrap: wrap; }
+  .flow-step { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; flex: 1; min-width: 130px; }
+  .flow-step-n { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text3); margin-bottom: 3px; }
+  .flow-step-t { font-size: 13px; font-weight: 500; color: var(--text); }
+  .flow-step-d { font-size: 11px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+  .flow-arrow { font-size: 16px; color: var(--text3); padding: 0 6px; align-self: center; flex-shrink: 0; }
+
+  /* ── COMPARE ── */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  /* ── ACCORDÉON ── */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head { background: var(--surface); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; border-bottom: 1px solid transparent; transition: background 0.15s; }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  /* ── CHECKLIST ── */
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  /* ── NIVEAU BADGE ── */
+  .niveau-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 10px; margin-right: 4px; }
+  .niv-fond { background: #fff3cd; color: #7a4f00; border: 1px solid #fcd87e; }
+  .niv-sec { background: #d6eaf8; color: #1a527a; border: 1px solid #8ec6e8; }
+  .niv-tous { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
+
+  /* ── PROMPT BOX ── */
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .grid3 { grid-template-columns: 1fr; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); align-self: flex-start; padding: 4px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="/"><img src="/portail-plai/public/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;margin-right:8px;">Cowork · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#cest-quoi">C'est quoi</a>
+    <a class="nav-link" href="#installer">Installer</a>
+    <a class="nav-link" href="#creer">Créer un workflow</a>
+    <a class="nav-link" href="#workflows">Exemples</a>
+    <a class="nav-link" href="#limites">Limites</a>
+    <a class="nav-link" href="#recap">Récap</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section style="border-bottom: 1px solid var(--border); padding-bottom: 0;">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🤖 Automatismes · Guide PLAI · Pôle Territorial de la Ville de Liège</div>
+    <h1>Claude Cowork —<br><em>tes tâches répétitives,<br>une seule fois.</em></h1>
+    <p class="hero-sub">Un workflow, c'est une suite d'actions que tu fais souvent et que tu confies à Claude pour qu'il les exécute à ta place — sur ton ordinateur, tes fichiers, tes dossiers.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">1×</span><span class="stat-label">créer le workflow</span></div>
+      <div><span class="stat-num">5</span><span class="stat-label">exécutions / jour (Pro)</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">code à écrire</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Chaque semaine, tu refais les mêmes choses : ranger les copies scannées dans le bon dossier, préparer le compte rendu du conseil de classe, envoyer le même type de courriel aux parents. Cowork, c'est l'outil qui apprend une fois comment tu veux que ce soit fait — et qui le refait pour toi chaque fois. <strong>Pas de code, pas de technique : tu décris, il exécute.</strong> »</p>
+  </div>
+
+  <div class="eyebrow">Avant de commencer</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">💻</div><div class="card-t">Il faut Cowork sur ton ordinateur</div><div class="card-d">Cowork est une application distincte de claude.ai. Elle s'installe sur ton ordinateur Windows ou Mac. Elle permet à Claude d'agir directement sur tes fichiers et dossiers locaux.</div></div>
+    <div class="card"><div class="card-icon">🗂️</div><div class="card-t">Il agit sur tes fichiers réels</div><div class="card-d">Contrairement au chat Claude, Cowork peut lire, déplacer, renommer et créer des fichiers sur ton ordinateur. C'est ce qui rend l'automatisation possible.</div></div>
+    <div class="card"><div class="card-icon">🔒</div><div class="card-t">RGPD toujours présent</div><div class="card-d">Cowork traite les fichiers que tu lui montres. Ne lui montre jamais un fichier contenant des données nominatives d'élèves non anonymisées.</div></div>
+    <div class="card"><div class="card-icon">🔁</div><div class="card-t">Un workflow = une recette</div><div class="card-d">Tu décris la tâche en français, une seule fois. Cowork la mémorise. La prochaine fois, un clic suffit.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── C'EST QUOI ── -->
+<section id="cest-quoi">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 C'est quoi</div>
+    <div class="guide-title">Un workflow, c'est quoi concrètement ?</div>
+    <div class="guide-subtitle">Avant d'apprendre à en créer un, il faut comprendre ce que c'est — et ce que ce n'est pas.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes</span>
+      <span class="gmeta">👤 Débutant complet</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Imagine que chaque vendredi tu fasses exactement la même chose : tu ouvres le dossier "Copies scannées", tu regardes les fichiers qui s'y trouvent, tu les déplaces dans le bon sous-dossier de classe selon la matière. Ça prend 20 minutes.</p>
+    <p>Avec Cowork, tu décris cette suite d'actions <strong>une seule fois</strong>, en français, comme tu l'expliquerais à un collègue. Cowork mémorise la recette. La semaine suivante, tu cliques sur "Lancer" et ça se fait tout seul en 30 secondes.</p>
+  </div>
+
+  <div class="compare" style="margin-top:1.5rem;">
+    <div class="c-bad">
+      <div class="c-label">😮‍💨 Sans Cowork — chaque semaine</div>
+      <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.6;">Ouvrir le dossier → chercher les fichiers → les renommer un par un → les glisser dans le bon dossier → répéter pour chaque classe → 20 min perdues.</div>
+    </div>
+    <div class="c-good">
+      <div class="c-label">✅ Avec Cowork — chaque semaine</div>
+      <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.6;">Ouvrir Cowork → cliquer sur "Ranger les copies" → attendre 30 secondes → c'est fait.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="section-h">Ce que Cowork peut faire</div>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">📁</div><div class="card-t">Organiser des fichiers</div><div class="card-d">Renommer, déplacer, trier, créer des sous-dossiers selon des règles que tu définit.</div></div>
+      <div class="card"><div class="card-icon">📄</div><div class="card-t">Lire et résumer des documents</div><div class="card-d">Ouvrir un PDF ou un Word, en extraire les points essentiels, rédiger un résumé.</div></div>
+      <div class="card"><div class="card-icon">✍️</div><div class="card-t">Rédiger à partir de données</div><div class="card-d">Lire un fichier, générer automatiquement des textes personnalisés (commentaires, courriers).</div></div>
+      <div class="card"><div class="card-icon">📋</div><div class="card-t">Copier et structurer</div><div class="card-d">Extraire des informations d'un document et les coller dans un autre format ou modèle.</div></div>
+      <div class="card"><div class="card-icon">🔄</div><div class="card-t">Répéter sur plusieurs fichiers</div><div class="card-d">Faire la même opération sur 30 copies d'un coup — pas une par une.</div></div>
+      <div class="card"><div class="card-icon">📂</div><div class="card-t">Surveiller un dossier</div><div class="card-d">Détecter les nouveaux fichiers arrivés et les traiter automatiquement.</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="section-h">Ce que Cowork ne peut pas faire</div>
+    <div class="warn">
+      <div class="warn-label">⚠️ Limites importantes</div>
+      <p>Cowork ne peut pas envoyer des courriels à ta place (il peut les <em>rédiger</em>, mais c'est toi qui envoies). Il ne peut pas accéder à Smartschool ou à la plateforme de ton école directement. Il ne peut pas signer des documents officiels. Il ne remplace pas ton jugement professionnel sur ce qui est écrit.</p>
+    </div>
+  </div>
+
+  <div class="teal-box">
+    <div class="teal-label">🎯 Le bon réflexe</div>
+    <p>Avant de créer un workflow, pose-toi cette question : <strong>"Est-ce que je refais exactement la même chose au moins une fois par semaine ?"</strong> Si oui, c'est un bon candidat pour Cowork.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ── INSTALLER ── -->
+<section id="installer">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🔧 Installer</div>
+    <div class="guide-title">Installer Cowork sur ton ordinateur</div>
+    <div class="guide-subtitle">Une seule fois. Dix minutes. Et c'est prêt pour toujours.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10 minutes</span>
+      <span class="gmeta">💻 Windows et Mac</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Prérequis</div>
+    <p>Il faut un abonnement Claude Pro ou Team actif. Cowork est inclus dans ces abonnements — pas de coût supplémentaire. Si tu n'es pas sûr de ton abonnement, contacte ton référent numérique du Pôle.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-n green">1</div>
+      <div>
+        <div class="step-t">Va sur claude.ai dans ton navigateur</div>
+        <div class="step-d">Connecte-toi avec ton compte Claude habituel. Assure-toi d'être bien sur ton compte personnel (pas un compte de test).</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n green">2</div>
+      <div>
+        <div class="step-t">Cherche "Cowork" dans le menu ou les paramètres</div>
+        <div class="step-d">Dans le menu de gauche ou dans tes paramètres de compte, tu trouveras une section Cowork ou "Applications de bureau". Clique dessus.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n green">3</div>
+      <div>
+        <div class="step-t">Télécharge l'application pour ton système</div>
+        <div class="step-d">Choisis <strong>Windows</strong> ou <strong>Mac</strong> selon ton ordinateur. Le fichier d'installation se télécharge automatiquement (environ 150 Mo).</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n green">4</div>
+      <div>
+        <div class="step-t">Installe l'application normalement</div>
+        <div class="step-d">Sur <strong>Mac</strong> : glisse l'icône dans Applications. Sur <strong>Windows</strong> : double-clique sur le fichier .exe et suis les étapes. Si Windows affiche un avertissement "Application inconnue", clique sur "Informations complémentaires" puis "Exécuter quand même".</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n green">5</div>
+      <div>
+        <div class="step-t">Connecte Cowork à ton compte Claude</div>
+        <div class="step-d">Au premier lancement, Cowork te demande de te connecter. Utilise exactement les mêmes identifiants que sur claude.ai. C'est le même compte.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n green">6</div>
+      <div>
+        <div class="step-t">Donne à Cowork l'accès à tes dossiers</div>
+        <div class="step-d">Cowork te demandera l'autorisation d'accéder à certains dossiers de ton ordinateur. <strong>Accepte uniquement les dossiers pédagogiques</strong> (ex : "Documents/Cours", "Documents/Copies"). Tu peux affiner à tout moment dans les paramètres.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ok">
+    <div class="ok-label">✅ Cowork est prêt quand tu vois</div>
+    <p>L'écran d'accueil affiche "Mes workflows" avec un bouton "+ Nouveau workflow". Si tu vois ça, tout est bon. Tu peux créer ton premier automatisme.</p>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ Si ça bloque</div>
+    <p>Si l'installation échoue ou que Cowork ne trouve pas ton compte, contacte ton référent numérique du Pôle — ne tente pas de modifier des paramètres système seul. L'installation est simple mais peut varier selon la configuration informatique de ton école.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ── CRÉER UN WORKFLOW ── -->
+<section id="creer">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">🛠️ Créer</div>
+    <div class="guide-title">Comment créer ton premier workflow</div>
+    <div class="guide-subtitle">Tu décris ce que tu veux faire, Cowork construit la recette. Pas de code, pas de technique.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10–15 minutes la première fois</span>
+      <span class="gmeta">👤 Débutant complet</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Créer un workflow, c'est comme expliquer une tâche à un collègue très consciencieux. Tu lui décris ce qu'il doit faire, sur quels fichiers, et quel résultat tu attends. Il mémorise et recommence exactement pareil chaque fois.</p>
+  </div>
+
+  <div class="steps" style="margin-top:1.5rem;">
+    <div class="step">
+      <div class="step-n blue">1</div>
+      <div>
+        <div class="step-t">Ouvre Cowork et clique sur "+ Nouveau workflow"</div>
+        <div class="step-d">Une fenêtre s'ouvre avec un grand champ de texte vide. C'est là que tu vas décrire ce que tu veux automatiser.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n blue">2</div>
+      <div>
+        <div class="step-t">Décris ta tâche en français, étape par étape</div>
+        <div class="step-d">Écris comme si tu expliquais à quelqu'un. Sois précis sur les noms de dossiers, le format des fichiers, et ce que tu attends en résultat. Plus c'est clair, meilleur sera le workflow. Exemple : <em>"Ouvre le dossier Documents/Copies P5. Pour chaque fichier PDF qui s'y trouve, lis-le et génère un fichier texte résumant les points clés en 5 lignes. Enregistre ces résumés dans Documents/Résumés P5."</em></div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n blue">3</div>
+      <div>
+        <div class="step-t">Indique les dossiers concernés</div>
+        <div class="step-d">Cowork te demandera de sélectionner les dossiers sur ton ordinateur (via un explorateur de fichiers classique). Tu n'as pas besoin de taper des chemins — il suffit de naviguer et de cliquer.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n blue">4</div>
+      <div>
+        <div class="step-t">Cowork te montre ce qu'il a compris — vérifie !</div>
+        <div class="step-d">Avant d'enregistrer, Cowork affiche un résumé des actions qu'il va effectuer. <strong>Lis-le attentivement.</strong> Si quelque chose ne correspond pas à ce que tu voulais, clique sur "Modifier la description" et reformule.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n blue">5</div>
+      <div>
+        <div class="step-t">Lance un test sur un seul fichier d'abord</div>
+        <div class="step-d">Avant de lancer le workflow sur tous tes fichiers, teste-le sur un seul. Si le résultat est celui que tu attendais, tu peux lancer sur l'ensemble. Si non, modifie la description et reteste.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n blue">6</div>
+      <div>
+        <div class="step-t">Donne un nom clair à ton workflow et enregistre</div>
+        <div class="step-d">Nomme-le de façon à t'en souvenir : "Ranger copies P5", "Résumés conseils de classe", "Courriers parents S3". Il apparaîtra dans ta liste de workflows prêts à lancer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-h" style="margin-top:2rem;">La structure d'une bonne description</div>
+  <div class="prose">
+    <p>Une description efficace répond à ces 4 questions :</p>
+  </div>
+
+  <div class="grid2" style="margin-top:0.75rem;">
+    <div class="card"><div class="card-icon">📂</div><div class="card-t">Où sont les fichiers ?</div><div class="card-d">Nomme le dossier exact sur ton ordinateur. Ex : "Documents/Cours/S4/Évaluations".</div></div>
+    <div class="card"><div class="card-icon">🎯</div><div class="card-t">Qu'est-ce que tu veux faire ?</div><div class="card-d">Décris l'action précise : renommer, lire, résumer, trier, copier, générer un document.</div></div>
+    <div class="card"><div class="card-icon">📋</div><div class="card-t">Quel format pour le résultat ?</div><div class="card-d">Fichier texte, PDF, Word, liste, tableau ? Précise où le résultat doit aller.</div></div>
+    <div class="card"><div class="card-icon">⚠️</div><div class="card-t">Y a-t-il des règles spéciales ?</div><div class="card-d">Certains fichiers à ignorer ? Un format de nom précis ? Une condition particulière ?</div></div>
+  </div>
+
+  <div class="teal-box" style="margin-top:1.5rem;">
+    <div class="teal-label">💡 Astuce de débutant</div>
+    <p>Si tu ne sais pas comment formuler ta tâche, commence par la faire toi-même une fois en te <em>racontant à voix haute</em> chaque étape. Ensuite, tape exactement ce que tu viens de dire. C'est souvent suffisant pour que Cowork comprenne.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ── WORKFLOWS EXEMPLES ── -->
+<section id="workflows">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">📋 Exemples</div>
+    <div class="guide-title">Workflows prêts à t'inspirer</div>
+    <div class="guide-subtitle">Des automatismes concrets pour le fondamental et le secondaire. Adapte les noms de dossiers à ta réalité.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ À adapter et utiliser directement</span>
+      <span class="gmeta">🏫 Fondamental + Secondaire</span>
+    </div>
+  </div>
+
+  <div class="eyebrow">Fondamental — P1 à P6</div>
+
+  <!-- WF 1 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📁</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Organisation de fichiers</div>
+        <div class="wf-title">Ranger automatiquement les copies scannées par matière</div>
+        <div class="wf-subtitle">Tu scannes les copies dans un seul dossier — Cowork les trie par matière selon le nom de fichier que <em>tu</em> as donné. Jamais de lecture du contenu des copies.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-fond">Fond. P1–P6</span>
+          <span class="wf-tag wf-tag-tous">Hebdomadaire</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+
+      <div class="danger" style="margin-bottom:1rem;">
+        <div class="danger-label">🚫 Ce workflow ne lit jamais le contenu des copies</div>
+        <p>Demander à Claude d'extraire automatiquement le nom d'un élève depuis une copie scannée, c'est lui transmettre des données personnelles d'élèves à traiter via un service cloud externe. Ce n'est pas conforme au RGPD. <strong>La règle ici : Cowork agit uniquement sur les noms de fichiers — jamais sur leur contenu.</strong></p>
+      </div>
+
+      <div class="callout" style="margin-bottom:1rem;">
+        <div class="callout-label">💡 Comment ça fonctionne</div>
+        <p>Toi, tu nommes les fichiers au scanner ou juste après (ex : <code style="background:var(--blue-bg);padding:1px 5px;border-radius:4px;font-size:12px;">Français_P4_mai.pdf</code>, <code style="background:var(--blue-bg);padding:1px 5px;border-radius:4px;font-size:12px;">Maths_P4_mai.pdf</code>). Cowork lit uniquement ces noms et range les fichiers dans les bons sous-dossiers. Il ne voit jamais ce qu'il y a à l'intérieur des copies.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Avant Cowork</div>
+          <div class="flow-step-t">Tu nommes les fichiers</div>
+          <div class="flow-step-d">Ex : "Français_P4_mai.pdf" — toi seul fais ce lien, pas Claude</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Lit les noms de fichiers</div>
+          <div class="flow-step-d">Détecte la matière dans le nom — sans ouvrir les fichiers</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Fichiers déplacés</div>
+          <div class="flow-step-d">"Français_P4_mai.pdf" dans "Copies/P4/Français/"</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le dossier Documents/Copies/À-trier. Pour chaque fichier PDF qui s'y trouve, lis uniquement son nom de fichier — n'ouvre pas les fichiers et ne lis pas leur contenu. À partir du nom, détecte la matière (Français, Maths, Éveil…) et l'année (P3, P4, P5…). Déplace le fichier dans le sous-dossier correspondant : Documents/Copies/[Année]/[Matière]/. Crée le sous-dossier s'il n'existe pas. Si le nom de fichier ne permet pas de détecter la matière ou l'année, déplace le fichier dans Documents/Copies/À-vérifier/ sans le renommer ni l'ouvrir.</div>
+          </div>
+          <div class="ok" style="margin-top:0.75rem;margin-bottom:0;">
+            <div class="ok-label">✅ Ce workflow est RGPD-compatible</div>
+            <p>Cowork ne voit aucune donnée personnelle d'élève. Le lien entre un fichier et un élève reste uniquement dans ton classeur physique ou dans ton système de nommage personnel — pas dans Claude.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF 2 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📝</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Rédaction automatique</div>
+        <div class="wf-title">Générer les commentaires de bulletin à partir de tes notes</div>
+        <div class="wf-subtitle">Tu tiens un fichier texte avec tes observations par élève — Cowork les transforme en commentaires de bulletin rédigés.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-fond">Fond. P3–P6</span>
+          <span class="wf-tag wf-tag-tous">Par trimestre</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Ton fichier de notes</div>
+          <div class="flow-step-d">Un fichier texte avec tes observations brutes par élève (anonymisées ou initiales)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Rédige les commentaires</div>
+          <div class="flow-step-d">Transforme tes mots-clés en phrases bienveillantes et constructives</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Fichier Word prêt</div>
+          <div class="flow-step-d">Un commentaire par élève, à copier dans le bulletin</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le fichier Documents/Bulletins/Notes-trimestre2.txt. Ce fichier contient mes observations brutes pour chaque élève de P5, séparées par une ligne vide. Pour chaque élève, rédige un commentaire de bulletin de 3 à 4 phrases qui : commence par un point positif concret, mentionne un axe de progrès de manière constructive, utilise un ton bienveillant lisible par les parents et par l'enfant, évite les formules toutes faites. Génère un fichier Word nommé Commentaires-bulletin-T2.docx et enregistre-le dans Documents/Bulletins/. Un commentaire par élève, clairement séparé.</div>
+          </div>
+          <div class="callout" style="margin-top:0.75rem;margin-bottom:0;">
+            <div class="callout-label">💡 Conseil</div>
+            <p>Dans ton fichier de notes, utilise les initiales de tes élèves (E.M., T.D.) plutôt que les prénoms complets. Cowork travaille aussi bien avec des initiales et c'est plus protecteur pour les données.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF 3 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📬</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Courriers personnalisés</div>
+        <div class="wf-title">Préparer les communications personnalisées aux parents</div>
+        <div class="wf-subtitle">Tu as un modèle de lettre — Cowork génère une version personnalisée pour chaque famille à partir de ta liste.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-fond">Fond. P1–P6</span>
+          <span class="wf-tag wf-tag-tous">Selon besoins</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Modèle + liste</div>
+          <div class="flow-step-d">Un modèle de lettre + un fichier avec les infos par famille (date, nom, situation)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Personnalise chaque lettre</div>
+          <div class="flow-step-d">Insère les bonnes informations dans chaque exemplaire</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Lettres individuelles</div>
+          <div class="flow-step-d">Un fichier Word par famille, prêt à imprimer ou envoyer</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le fichier Documents/Communications/modele-invitation-reunion.docx. C'est mon modèle de lettre avec des zones à personnaliser marquées entre crochets : [NOM_FAMILLE], [DATE_REUNION], [HEURE], [SALLE]. Ouvre ensuite le fichier Documents/Communications/liste-familles-juin.txt qui contient une ligne par famille avec ces informations séparées par des points-virgules. Pour chaque ligne, génère une lettre personnalisée en remplaçant les zones du modèle par les bonnes informations. Enregistre chaque lettre dans Documents/Communications/Lettres-juin/ sous le nom Lettre_NOM_FAMILLE.docx. Crée le dossier s'il n'existe pas.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-top:2.5rem;">Secondaire — S1 à S6/7</div>
+
+  <!-- WF 4 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📊</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Compte rendu automatique</div>
+        <div class="wf-title">Générer le compte rendu du conseil de classe</div>
+        <div class="wf-subtitle">Tu prends tes notes pendant le conseil — Cowork les transforme en compte rendu structuré, prêt à distribuer.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-sec">Sec. S1–S6</span>
+          <span class="wf-tag wf-tag-tous">Par trimestre</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Tes notes brutes</div>
+          <div class="flow-step-d">Un fichier texte avec tes notes prises pendant le conseil (mots-clés, décisions)</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Structure et rédige</div>
+          <div class="flow-step-d">Met en forme les décisions, les actions à mener, les délais</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Compte rendu Word</div>
+          <div class="flow-step-d">Document structuré avec points abordés, décisions et suivi</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le fichier Documents/Conseils/notes-conseil-S3A-juin.txt. Ce fichier contient mes notes brutes prises pendant le conseil de classe de S3A. Génère un compte rendu structuré au format Word avec les sections suivantes : (1) En-tête avec la classe, la date et les présents, (2) Points abordés listés clairement, (3) Décisions prises avec pour chacune la personne responsable et le délai, (4) Points de suivi pour le prochain conseil. Le document doit être lisible et professionnel, sans jargon. Enregistre-le dans Documents/Conseils/CR-S3A-juin.docx. N'invente rien qui ne soit pas dans mes notes — si une information manque, laisse un espace marqué [À COMPLÉTER].</div>
+          </div>
+          <div class="ok" style="margin-top:0.75rem;margin-bottom:0;">
+            <div class="ok-label">✅ Bonne pratique</div>
+            <p>La mention "N'invente rien" est essentielle dans la description. Elle empêche Cowork de compléter des informations qu'il ne connaît pas. Utilise-la pour tous les documents officiels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF 5 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">🗂️</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Organisation de ressources</div>
+        <div class="wf-title">Trier et indexer tes ressources pédagogiques</div>
+        <div class="wf-subtitle">Tu accumules des PDF et des documents en vrac — Cowork les lit, les nomme clairement et crée un index utilisable.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-sec">Sec. tous niveaux</span>
+          <span class="wf-tag wf-tag-tous">Une fois par an</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Dossier en vrac</div>
+          <div class="flow-step-d">Des dizaines de PDF avec des noms incompréhensibles ("doc_final_v3_2024.pdf")</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Lit et identifie</div>
+          <div class="flow-step-d">Détecte le sujet, le niveau, le type de document pour chaque fichier</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Index + fichiers renommés</div>
+          <div class="flow-step-d">Un tableau récapitulatif + des noms de fichiers clairs</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le dossier Documents/Ressources/En-vrac. Pour chaque fichier PDF qui s'y trouve, lis-le et identifie : (1) le sujet principal en 5 mots maximum, (2) l'année ou le niveau scolaire si précisé, (3) le type de document (exercice, fiche théorique, évaluation, support de cours). Renomme chaque fichier au format : Type_Sujet_Niveau.pdf (ex : Exercice_Fractions_S2.pdf). Si tu ne peux pas identifier une information, écris "Inconnu" à la place. Déplace les fichiers renommés dans Documents/Ressources/Triées/. Génère aussi un fichier texte nommé Index-ressources.txt qui liste tous les fichiers avec leur sujet et leur type, une ligne par fichier.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF 6 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📑</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Préparation d'évaluations</div>
+        <div class="wf-title">Créer des variantes d'une même évaluation</div>
+        <div class="wf-subtitle">Tu as une évaluation — Cowork génère plusieurs versions avec des données différentes pour éviter les copies entre élèves.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-sec">Sec. S2–S6</span>
+          <span class="wf-tag wf-tag-tous">Selon besoins</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Ton évaluation originale</div>
+          <div class="flow-step-d">Un fichier Word avec tes questions et exercices</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Génère des variantes</div>
+          <div class="flow-step-d">Change les chiffres, les noms, l'ordre des questions — même niveau de difficulté</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Versions A, B, C…</div>
+          <div class="flow-step-d">Autant de fichiers Word que de variantes demandées</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le fichier Documents/Évaluations/S4/eval-fractions-original.docx. C'est mon évaluation de mathématiques pour S4. Génère 3 variantes de cette évaluation (versions A, B et C) en modifiant uniquement les valeurs numériques dans les exercices de calcul — conserve exactement le même niveau de difficulté, la même structure et les mêmes compétences évaluées. Ne change pas les questions théoriques ni les consignes. Enregistre les trois variantes dans Documents/Évaluations/S4/ sous les noms eval-fractions-A.docx, eval-fractions-B.docx et eval-fractions-C.docx. Ajoute "Version A / B / C" en haut de chaque document.</div>
+          </div>
+          <div class="callout" style="margin-top:0.75rem;margin-bottom:0;">
+            <div class="callout-label">💡 Important</div>
+            <p>Relis toujours les variantes générées avant de les distribuer. Cowork peut parfois créer des incohérences mathématiques dans les calculs — ton regard professionnel reste indispensable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WF 7 -->
+  <div class="wf-card">
+    <div class="wf-head">
+      <div class="wf-emoji">📧</div>
+      <div class="wf-meta">
+        <div class="wf-label">Workflow · Communication</div>
+        <div class="wf-title">Rédiger les courriels de suivi après un entretien parent</div>
+        <div class="wf-subtitle">Tu notes les points essentiels d'un entretien — Cowork rédige le courriel de suivi professionnel à envoyer à la famille.</div>
+        <div class="wf-tags">
+          <span class="wf-tag wf-tag-sec">Sec. tous niveaux</span>
+          <span class="wf-tag wf-tag-fond">Fond. P3–P6</span>
+        </div>
+      </div>
+    </div>
+    <div class="wf-body">
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-n">Entrée</div>
+          <div class="flow-step-t">Tes notes d'entretien</div>
+          <div class="flow-step-d">Quelques lignes sur ce qui a été dit et les engagements pris</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Action Cowork</div>
+          <div class="flow-step-t">Rédige le courriel</div>
+          <div class="flow-step-d">Ton professionnel, factuel, bienveillant, rappel des engagements</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-n">Résultat</div>
+          <div class="flow-step-t">Courriel prêt</div>
+          <div class="flow-step-d">Un fichier texte à copier dans ta messagerie — tu envoies toi-même</div>
+        </div>
+      </div>
+      <div class="accordion" style="margin-top:1rem;">
+        <div class="acc-head" onclick="toggle(this)">
+          <span class="acc-emoji">✍️</span>
+          <div class="acc-info">
+            <div class="acc-title">Voir la description à copier dans Cowork</div>
+          </div>
+          <span class="acc-toggle">▼</span>
+        </div>
+        <div class="acc-body">
+          <div class="ex-box" style="margin:0;">
+            <div class="ex-label">📋 Description à coller dans Cowork</div>
+            <div class="prompt">Ouvre le fichier Documents/Entretiens/notes-entretien-du-jour.txt. Ce fichier contient mes notes brutes d'un entretien parent tenu aujourd'hui. Rédige un courriel de suivi professionnel qui : rappelle brièvement l'objet de l'entretien, résume les points discutés, liste clairement les engagements pris (par l'école et par la famille si précisés dans mes notes), indique les prochaines étapes ou la prochaine échéance. Ton : bienveillant, factuel, professionnel. Longueur : 150 à 200 mots. N'invente rien qui n'est pas dans mes notes. Enregistre le courriel rédigé dans Documents/Entretiens/courriel-suivi-du-jour.txt.</div>
+          </div>
+          <div class="danger" style="margin-top:0.75rem;margin-bottom:0;">
+            <div class="danger-label">🚫 Rappel important</div>
+            <p>Cowork rédige, toi tu envoies. Ne configure jamais Cowork pour qu'il envoie des courriels automatiquement à des familles — les communications officielles passent toujours par toi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── LIMITES ── -->
+<section id="limites">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">⚠️ Limites</div>
+    <div class="guide-title">Ce qu'il faut savoir avant de se lancer</div>
+    <div class="guide-subtitle">Cowork est puissant mais pas infaillible. Quelques réflexes importants à intégrer dès le début.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ À lire avant le premier workflow</span>
+      <span class="gmeta">🔒 Sécurité et bon usage</span>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🔍</span>
+      <div class="acc-info">
+        <div class="acc-title">Cowork peut se tromper — toujours vérifier</div>
+        <div class="acc-meta">Particulièrement sur les chiffres, les noms et les documents officiels</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>Cowork lit et comprend bien la langue, mais il peut faire des erreurs sur des données précises : un chiffre mal lu dans un PDF scanné, un nom confondu, un calcul incorrect dans une variante d'évaluation. Pour tout document que tu vas distribuer à des élèves ou envoyer à des familles, une relecture humaine est indispensable.</p>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ Le réflexe</div>
+        <p>Pour les documents importants, ajoute toujours dans ta description : "Si tu n'es pas certain d'une information, marque [À VÉRIFIER] à la place de l'inventer." Et relis avant de distribuer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🔒</span>
+      <div class="acc-info">
+        <div class="acc-title">RGPD — les données d'élèves restent sensibles</div>
+        <div class="acc-meta">Même en local, certaines précautions s'imposent</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="danger">
+        <div class="danger-label">🚫 À ne jamais faire</div>
+        <p>Ne laisse jamais Cowork traiter des fichiers contenant des données nominatives complètes (nom + prénom + résultats + situation familiale) sur un ordinateur partagé, non sécurisé ou connecté à un réseau non fiable. Les données d'élèves sont des données personnelles protégées par le RGPD.</p>
+      </div>
+      <div class="ok">
+        <div class="ok-label">✅ La bonne pratique</div>
+        <p>Utilise les initiales dans tes fichiers de notes. Pour les bulletins et comptes rendus, travaille sur ton ordinateur personnel sécurisé uniquement. En cas de doute sur ce qui est permis, consulte le référent RGPD de ton école ou du Pôle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">⚡</span>
+      <div class="acc-info">
+        <div class="acc-title">Tu as 5 exécutions de workflows par jour — pas plus</div>
+        <div class="acc-meta">Plan Pro · Le compteur se voit dans Paramètres → Abonnement · Se remet à zéro chaque jour</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div style="background:var(--surface2);border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:1rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">
+        <div style="text-align:center;flex-shrink:0;">
+          <div style="font-family:'DM Serif Display',serif;font-size:42px;line-height:1;color:var(--text);">5</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:2px;">exécutions / jour</div>
+          <div style="font-size:10px;color:var(--text3);">Plan Pro</div>
+        </div>
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:13px;color:var(--text2);line-height:1.6;">C'est le quota visible dans l'interface : <strong>"Exécutions de routines quotidiennes incluses — 0 / 5"</strong>. Chaque fois que tu cliques sur "Lancer" dans Cowork, tu utilises une exécution, quelle que soit la taille du workflow. Le compteur repart à zéro chaque jour.</div>
+        </div>
+      </div>
+
+      <div class="warn" style="margin-bottom:1rem;">
+        <div class="warn-label">⚠️ Une exécution ratée compte quand même</div>
+        <p>Si tu lances un workflow mal décrit et que le résultat ne convient pas, l'exécution est consommée. C'est pour ça qu'il faut toujours tester sur un seul fichier d'abord — et affiner la description avant de lancer en masse.</p>
+      </div>
+
+      <div class="section-h" style="font-size:14px;margin-bottom:0.75rem;">Comment bien utiliser ses 5 exécutions quotidiennes</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n teal">1</div>
+          <div>
+            <div class="step-t">Prépare ta description hors Cowork d'abord</div>
+            <div class="step-d">Écris ta description dans un fichier texte ou dans le chat Claude normal. Peaufine-la. Lance dans Cowork seulement quand tu es satisfait de la description. Le chat Claude ne consomme pas tes 5 exécutions.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n teal">2</div>
+          <div>
+            <div class="step-t">Teste toujours sur un seul fichier en premier</div>
+            <div class="step-d">Utilise une exécution de test sur 1 fichier → vérifie le résultat → si c'est bon, lance sur l'ensemble. Tu évites de gaspiller 1 exécution sur 50 fichiers avec une description imparfaite.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n teal">3</div>
+          <div>
+            <div class="step-t">Regroupe les tâches dans un même workflow</div>
+            <div class="step-d">Si tu veux trier des fichiers ET générer un index, décris les deux actions dans une seule description. Un seul lancement = une seule exécution consommée.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n teal">4</div>
+          <div>
+            <div class="step-t">Garde les petites tâches pour le chat Claude normal</div>
+            <div class="step-d">Rédiger un seul commentaire, reformuler une phrase, générer une question d'exercice — ça ne mérite pas une exécution Cowork. Utilise Cowork uniquement quand tu as plusieurs fichiers à traiter d'un coup.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-box" style="margin-top:1rem;">
+        <div class="teal-label">🎯 La règle des 5</div>
+        <p>5 exécutions bien utilisées — test + tri des copies + commentaires de bulletin + compte rendu + courriers parents — couvrent une bonne journée de fin de trimestre. Hors période chargée, 5 par jour est très largement suffisant pour un usage pédagogique régulier.</p>
+      </div>
+
+      <div class="callout" style="margin-top:0.75rem;margin-bottom:0;">
+        <div class="callout-label">📊 Comparaison des plans</div>
+        <p>Plan Pro : <strong>5 exécutions/jour</strong> · Plan Team/Enterprise : jusqu'à <strong>25 exécutions/jour</strong> · Plan Max : quota significativement plus élevé. Si les 5 exécutions deviennent régulièrement insuffisantes, contacte ton référent numérique du Pôle pour évaluer si un plan supérieur est justifié.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <span class="acc-emoji">🚫</span>
+      <div class="acc-info">
+        <div class="acc-title">Ce que Cowork ne peut pas faire</div>
+        <div class="acc-meta">Les limites à ne pas dépasser</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card" style="border-color:#f09595;background:var(--red-bg);">
+          <div class="card-icon">📨</div>
+          <div class="card-t" style="color:var(--red);">Envoyer des courriels</div>
+          <div class="card-d" style="color:#791f1f;">Cowork peut rédiger, jamais envoyer. L'envoi reste toujours sous ta responsabilité.</div>
+        </div>
+        <div class="card" style="border-color:#f09595;background:var(--red-bg);">
+          <div class="card-icon">🌐</div>
+          <div class="card-t" style="color:var(--red);">Accéder à Smartschool ou aux plateformes en ligne</div>
+          <div class="card-d" style="color:#791f1f;">Cowork agit sur des fichiers locaux, pas sur des applications web ou des plateformes scolaires.</div>
+        </div>
+        <div class="card" style="border-color:#f09595;background:var(--red-bg);">
+          <div class="card-icon">✒️</div>
+          <div class="card-t" style="color:var(--red);">Prendre des décisions à ta place</div>
+          <div class="card-d" style="color:#791f1f;">Il automatise des tâches, il ne remplace pas ton jugement sur la pertinence pédagogique ou éducative.</div>
+        </div>
+        <div class="card" style="border-color:#f09595;background:var(--red-bg);">
+          <div class="card-icon">🖨️</div>
+          <div class="card-t" style="color:var(--red);">Imprimer directement</div>
+          <div class="card-d" style="color:#791f1f;">Cowork produit des fichiers. L'impression passe par toi, comme d'habitude.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── RÉCAP ── -->
+<section id="recap">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">✅ Récap</div>
+    <div class="guide-title">Mes premières étapes avec Cowork</div>
+    <div class="guide-subtitle">Un parcours progressif pour te lancer sans stress — du plus simple au plus ambitieux.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ À cocher au fil des semaines</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div class="section-h">Cette semaine — les bases</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai installé Cowork</strong> sur mon ordinateur et connecté mon compte Claude</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai identifié une tâche répétitive</strong> que je fais au moins une fois par semaine</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai créé mon premier workflow</strong> et testé sur un seul fichier avant de lancer sur tous</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai relu le résultat</strong> avant de l'utiliser ou de le distribuer</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div class="section-h">Dans le mois — monter en puissance</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai 2 ou 3 workflows enregistrés</strong> que je lance régulièrement</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai affiné mes descriptions</strong> en ajoutant des précisions après les premiers tests</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>J'ai partagé un workflow utile</strong> avec un collègue ou testé une idée ensemble</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Un bon workflow, ça se peaufine. Le premier essai n'est jamais parfait — et c'est normal. Chaque fois que le résultat ne te convient pas, modifie la description en ajoutant le détail qui manquait. Après deux ou trois ajustements, <strong>tu as une recette qui tourne seule et te fait gagner un temps réel chaque semaine.</strong> »</p>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="section-h">La formule de description universelle</div>
+    <div class="ex-box">
+      <div class="ex-label">🧩 Copie-colle et adapte</div>
+      <div class="prompt">Ouvre le dossier / fichier [chemin exact sur mon ordinateur].<br><br>Pour chaque [type de fichier] qui s'y trouve, [action précise : lis / renomme / résume / génère...].<br><br>Le résultat doit être [format : fichier texte / Word / PDF / liste...] enregistré dans [dossier de destination].<br><br>Règles particulières : [ce qu'il faut respecter, ignorer, ou faire si quelque chose est ambigu].<br><br>Si tu ne peux pas identifier [une information], marque [À VÉRIFIER] à la place — ne rien inventer.</div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="container">
+    <p>Guide Claude Cowork · Automatismes · Formation PLAI · Pôle Territorial de la Ville de Liège — Écoles coopérantes</p>
+    <p>Documentation officielle : <a href="https://claude.ai/download">claude.ai/download</a> · Questions : référent numérique du Pôle</p>
+  </div>
+</div>
+
+<script>
+  /* Nav active */
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(s => obs.observe(s));
+
+  /* Accordéon */
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  /* Checklist */
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  }
+</script>
+</body>
+</html>

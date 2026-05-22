@@ -1609,6 +1609,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'claude-cowork',
+    name: 'Claude Cowork — Automatiser ses tâches',
+    description: 'Créer des workflows qui automatisent les tâches répétitives (ranger des copies, préparer des comptes rendus, trier des fichiers) avec Claude Cowork. Aucun code requis — tu décris en français, Claude exécute.',
+    url: '/guide-cowork-automatismes-plai.html',
+    emoji: '🤖',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'teal',
+    section: 'claude',
+  },
+  {
     id: 'ytdl-plai',
     name: 'YT-DL PLAI',
     emoji: '📥',
