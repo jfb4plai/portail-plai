@@ -31,16 +31,23 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(250,249,247,0.93);
+    background: rgba(250,249,247,0.97);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 52px;
+    display: flex; flex-direction: column;
   }
-  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 4px; }
-  .nav-link { font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--radius-sm); text-decoration: none; color: var(--text2); transition: background 0.15s, color 0.15s; }
+  .nav-top {
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 48px; flex-shrink: 0;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--text); text-decoration: none; display: flex; align-items: center; }
+  .nav-scroll {
+    display: flex; gap: 4px; overflow-x: auto; padding: 6px 1rem 8px;
+    scrollbar-width: none; border-top: 1px solid var(--border);
+  }
+  .nav-scroll::-webkit-scrollbar { display: none; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; text-decoration: none; color: var(--text2); white-space: nowrap; border: 1px solid var(--border); transition: background 0.15s, color 0.15s; flex-shrink: 0; }
   .nav-link:hover { background: var(--surface2); color: var(--text); }
 
   /* LAYOUT */
@@ -233,7 +240,6 @@
   @media (max-width: 600px) {
     .compare { grid-template-columns: 1fr; }
     .ia-grid { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
     .hero h1 { font-size: 32px; }
     .recap-row { grid-template-columns: 80px 1fr; }
     .recap-row .recap-ask { display: none; }
@@ -244,14 +250,17 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">Quelle IA pour quoi faire ? · PLAI</a>
-  <div class="nav-links">
+  <div class="nav-top">
+    <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:28px;width:auto;margin-right:8px;">Quelle IA pour quoi faire ?</a>
+  </div>
+  <div class="nav-scroll">
     <a class="nav-link" href="#intro">Comprendre</a>
-    <a class="nav-link" href="#gemini">Gemini</a>
-    <a class="nav-link" href="#chatgpt">ChatGPT</a>
-    <a class="nav-link" href="#claude">Claude</a>
-    <a class="nav-link" href="#kimi">Kimi</a>
-    <a class="nav-link" href="#deepseek">DeepSeek</a>
+    <a class="nav-link" href="#gemini">🏗️ Gemini</a>
+    <a class="nav-link" href="#chatgpt">⚖️ ChatGPT</a>
+    <a class="nav-link" href="#claude">🔍 Claude</a>
+    <a class="nav-link" href="#kimi">🔥 Kimi</a>
+    <a class="nav-link" href="#deepseek">🛠️ DeepSeek</a>
+    <a class="nav-link" href="#combo">Combiner</a>
     <a class="nav-link" href="#recap">Récap</a>
   </div>
 </nav>
