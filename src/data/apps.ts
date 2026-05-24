@@ -1617,7 +1617,7 @@ const apps: AppItem[] = [
     category: 'Guide',
     status: 'disponible',
     color: 'amber',
-    section: 'claude',
+    section: 'ia',
   },
   {
     id: 'claude-cowork',

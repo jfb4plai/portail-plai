@@ -1,7 +1,7 @@
 // ===== Portail =====
 
 export type AppStatus = 'disponible' | 'bientôt' | 'en-développement';
-export type AppSection = 'applications' | 'sensibilisation' | 'claude' | 'utilitaires';
+export type AppSection = 'applications' | 'sensibilisation' | 'claude' | 'utilitaires' | 'ia';
 
 export type Reference = { id?: string; citation: string; content: string };
 export type StepGroup = { title: string; items: string[] };

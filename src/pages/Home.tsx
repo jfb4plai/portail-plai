@@ -249,6 +249,7 @@ export default function Home() {
   const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
   const claudeItems = apps.filter(a => a.section === 'claude');
+  const iaItems     = apps.filter(a => a.section === 'ia');
   const utilItems   = apps.filter(a => a.section === 'utilitaires');
   const available   = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
   const coming      = appItems.filter(a => a.status === 'bientôt');
@@ -329,7 +330,7 @@ export default function Home() {
 
         {/* Claude */}
         {claudeItems.length > 0 && (
-          <section>
+          <section className="mb-14">
             <SectionHeader
               label="Guides Claude"
               count={claudeItems.length}
@@ -339,6 +340,23 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeItems.map(app => (
                 <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* IA — guides multi-outils */}
+        {iaItems.length > 0 && (
+          <section>
+            <SectionHeader
+              label="Guides IA"
+              count={iaItems.length}
+              subtitle="Comprendre et choisir entre les différentes IA disponibles pour les enseignants FWB."
+              accent="amber"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {iaItems.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" />
               ))}
             </div>
           </section>
