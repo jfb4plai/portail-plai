@@ -1609,6 +1609,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'ia-enseignants-plai',
+    name: 'Quelle IA pour quoi faire ?',
+    description: 'Portraits de 5 IA (Gemini, ChatGPT, Claude, Kimi, DeepSeek) ancrés dans le contexte FWB : forces, angles morts, prompts qui fonctionnent, combinaisons multi-IA. Choisir le bon outil pour chaque tâche pédagogique.',
+    url: '/guide-ia-enseignants-plai.html',
+    emoji: '🧭',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'amber',
+    section: 'claude',
+  },
+  {
     id: 'claude-cowork',
     name: 'Claude Cowork — Automatiser ses tâches',
     description: 'Créer des workflows qui automatisent les tâches répétitives (ranger des copies, préparer des comptes rendus, trier des fichiers) avec Claude Cowork. Aucun code requis — tu décris en français, Claude exécute.',

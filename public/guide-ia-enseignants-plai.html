@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quelle IA pour quoi faire ? · Guide enseignants FWB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --teal: #0f6b6b; --teal-bg: #e0f5f5; --teal-mid: #2aadad;
+    --radius: 10px; --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.93);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--radius-sm); text-decoration: none; color: var(--text2); transition: background 0.15s, color 0.15s; }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+
+  /* LAYOUT */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  /* HERO */
+  .hero { padding: 5rem 0 3.5rem; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); border: 1px solid var(--border2); padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 6vw, 56px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub { font-size: 17px; color: var(--text2); max-width: 500px; margin: 0 auto 2.5rem; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  /* LEITMOTIV */
+  .leitmotiv { background: var(--text); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .leitmotiv p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: #e8e5de; margin: 0; line-height: 1.65; }
+  .leitmotiv p strong { color: #ffffff; }
+
+  /* EYEBROW */
+  .eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* SECTION TITLES */
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* CALLOUTS */
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+
+  /* CARDS */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* PROMPTS */
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; margin-bottom: 8px; }
+  .prompt:last-child { margin-bottom: 0; }
+  .ptag { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 8px; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+  .pt-blue { background: var(--blue-bg); color: var(--blue); }
+  .pt-green { background: var(--green-bg); color: var(--green); }
+  .pt-amber { background: var(--amber-bg); color: var(--amber); }
+  .pt-purple { background: var(--purple-bg); color: var(--purple); }
+  .pt-red { background: var(--red-bg); color: var(--red); }
+  .pt-teal { background: var(--teal-bg); color: var(--teal); }
+
+  /* COMPARE */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+
+  /* IA CARD — le bloc central */
+  .ia-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 1.5rem 0;
+  }
+  .ia-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .ia-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .ia-name { font-family: 'DM Serif Display', serif; font-size: 20px; line-height: 1; margin-bottom: 3px; }
+  .ia-role { font-size: 12px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .ia-body { padding: 1.1rem 1.25rem; }
+  .ia-pitch {
+    font-family: 'DM Serif Display', serif; font-style: italic;
+    font-size: 15px; color: var(--text2); line-height: 1.6;
+    margin-bottom: 1.1rem; padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* FOR / AGAINST */
+  .ia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.1rem; }
+  .ia-for { background: var(--green-bg); border-radius: var(--radius-sm); padding: 0.75rem 0.9rem; }
+  .ia-against { background: var(--red-bg); border-radius: var(--radius-sm); padding: 0.75rem 0.9rem; }
+  .ia-col-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 7px; }
+  .ia-for .ia-col-label { color: var(--green); }
+  .ia-against .ia-col-label { color: var(--red); }
+  .ia-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .ia-list li { font-size: 13px; line-height: 1.5; display: flex; gap: 6px; align-items: flex-start; }
+  .ia-for .ia-list li { color: #2a5009; }
+  .ia-against .ia-list li { color: #701c1c; }
+  .ia-for .ia-list li::before { content: '✓'; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+  .ia-against .ia-list li::before { content: '✗'; font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+
+  /* TIPS */
+  .ia-tips { background: var(--surface2); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 1.1rem; }
+  .ia-tips-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 8px; }
+  .tip { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .tip:last-child { margin-bottom: 0; }
+  .tip::before { content: '→'; font-weight: 600; color: var(--text3); flex-shrink: 0; }
+
+  /* SIGNAL TAGS */
+  .ia-signals { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.5rem; }
+  .signal { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; border: 1px solid; }
+
+  /* COLOR VARIANTS per IA */
+  .ia-gemini .ia-head { background: linear-gradient(135deg, #e8f4e8 0%, #f0f8f0 100%); }
+  .ia-gemini .ia-avatar { background: #4caf50; }
+  .ia-gemini .signal { background: var(--green-bg); color: var(--green); border-color: #c0dd97; }
+
+  .ia-chatgpt .ia-head { background: linear-gradient(135deg, #e8f5ee 0%, #f0faf4 100%); }
+  .ia-chatgpt .ia-avatar { background: #10a37f; }
+  .ia-chatgpt .signal { background: #e8f5ee; color: #0d7a5f; border-color: #a0d9c4; }
+
+  .ia-claude .ia-head { background: linear-gradient(135deg, var(--amber-bg) 0%, #fdf4e8 100%); }
+  .ia-claude .ia-avatar { background: #d97706; }
+  .ia-claude .signal { background: var(--amber-bg); color: var(--amber); border-color: #f0c97a; }
+
+
+  .ia-kimi .ia-head { background: linear-gradient(135deg, var(--red-bg) 0%, #fff2f2 100%); }
+  .ia-kimi .ia-avatar { background: #dc2626; }
+  .ia-kimi .signal { background: var(--red-bg); color: var(--red); border-color: #f09595; }
+
+  .ia-deepseek .ia-head { background: linear-gradient(135deg, var(--blue-bg) 0%, #f0f6ff 100%); }
+  .ia-deepseek .ia-avatar { background: var(--blue-mid); }
+  .ia-deepseek .signal { background: var(--blue-bg); color: var(--blue); border-color: #a0c8f0; }
+
+  /* ACCORDEON */
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head { background: var(--surface); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; border-bottom: 1px solid transparent; transition: background 0.15s; }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  /* RECAP TABLE */
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .recap-row { display: grid; grid-template-columns: 110px 1fr 1fr; gap: 12px; padding: 0.8rem 1rem; border-bottom: 1px solid var(--border); align-items: center; }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-row.header { background: var(--surface2); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); }
+  .recap-ia { font-size: 13px; font-weight: 500; }
+  .recap-use { font-size: 12px; color: var(--text2); line-height: 1.4; }
+  .recap-ask { font-size: 12px; color: var(--text2); line-height: 1.4; font-family: 'DM Serif Display', serif; font-style: italic; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .ia-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 32px; }
+    .recap-row { grid-template-columns: 80px 1fr; }
+    .recap-row .recap-ask { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/"><img src="/portail-plai/public/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">Quelle IA pour quoi faire ? · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#intro">Comprendre</a>
+    <a class="nav-link" href="#gemini">Gemini</a>
+    <a class="nav-link" href="#chatgpt">ChatGPT</a>
+    <a class="nav-link" href="#claude">Claude</a>
+    <a class="nav-link" href="#kimi">Kimi</a>
+    <a class="nav-link" href="#deepseek">DeepSeek</a>
+    <a class="nav-link" href="#recap">Récap</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🎓 Guide enseignants · Fédération Wallonie-Bruxelles · 2026</div>
+    <h1>Cinq IA.<br><em>Cinq personnalités.</em></h1>
+    <p class="hero-sub">Elles se ressemblent de loin. De près, elles sont radicalement différentes. Ce guide te dit laquelle choisir — et comment lui parler.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">5</span><span class="stat-label">IA comparées</span></div>
+      <div><span class="stat-num">FWB</span><span class="stat-label">ancrage local</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">jargon technique</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Ces IA ne sont pas interchangeables. Utiliser n'importe laquelle pour n'importe quelle tâche, c'est comme demander à un plombier de faire de la chirurgie. Chacune a son terrain. Ce guide t'aide à <strong>choisir le bon outil</strong> — et à corriger ses défauts avant qu'ils ne te coûtent du temps. »</p>
+  </div>
+
+  <div class="eyebrow">Avant de commencer</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">🔍</div><div class="card-t">Ce que ce guide est</div><div class="card-d">Un portrait honnête de cinq IA basé sur leur comportement réel dans des débats pédagogiques sur l'enseignement en FWB. Pas de la publicité. Pas de la théorie.</div></div>
+    <div class="card"><div class="card-icon">⚖️</div><div class="card-t">Aucune est parfaite</div><div class="card-d">Chaque IA a une force dominante et un angle mort documenté. Connaître les deux, c'est doubler l'efficacité de ce que tu en tires.</div></div>
+    <div class="card"><div class="card-icon">🏫</div><div class="card-t">Ancré dans la FWB</div><div class="card-d">Les exemples de prompts sont adaptés au contexte wallon et bruxellois : Pacte d'Excellence, réseaux, CEB, CE1D, réalités de terrain.</div></div>
+    <div class="card"><div class="card-icon">⚡</div><div class="card-t">Le correctif universel</div><div class="card-d">Chaque portrait inclut la question à poser pour corriger le défaut principal. Un bon correctif vaut mieux qu'un long mode d'emploi.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 Comprendre d'abord</div>
+    <div class="guide-title">Pourquoi elles se comportent différemment</div>
+    <div class="guide-subtitle">Elles ont toutes été entraînées différemment — et ça se voit dans chaque réponse.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 3 minutes à lire</span>
+      <span class="gmeta">👤 Tous niveaux</span>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Quand tu poses la même question à cinq IA différentes, tu n'obtiens pas cinq versions de la même réponse. Tu obtiens cinq réponses qui reflètent cinq <em>postures intellectuelles</em> différentes.</p>
+    <p>Gemini pense en systèmes. ChatGPT pense en procédures. Claude cherche ce qui cloche dans ce qu'on lui dit. Kimi nomme les tensions politiques que les autres évitent. DeepSeek conçoit des situations d'apprentissage.</p>
+    <p>Ces différences ne sont pas des défauts. Ce sont des identités. Et les connaître change tout à la façon dont tu travailles avec elles.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Le principe de base</div>
+    <p>Pour chaque tâche, demande-toi : est-ce que j'ai besoin d'analyser une situation complexe (Gemini), de concevoir une procédure équitable (ChatGPT), de trouver ce que j'ai raté (Claude), de comprendre la résistance humaine (Kimi) ou de créer une tâche pédagogique qui fonctionne seule (DeepSeek) ?</p>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">Ce que ce guide ne fait pas</div>
+    <p>Il ne te dit pas laquelle est "la meilleure". Cette question n'a pas de réponse. Il te dit laquelle est la meilleure <em>pour ce que tu veux faire maintenant</em>.</p>
+  </div>
+</div>
+</section>
+
+<!-- GEMINI -->
+<section id="gemini">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🏗️ Portrait 1/5</div>
+    <div class="guide-title">Gemini</div>
+    <div class="guide-subtitle">Google · Architecte de politique éducative</div>
+  </div>
+
+  <div class="ia-card ia-gemini">
+    <div class="ia-head">
+      <div class="ia-avatar">🏗️</div>
+      <div>
+        <div class="ia-name">Gemini</div>
+        <div class="ia-role">L'architecte systémique</div>
+      </div>
+    </div>
+    <div class="ia-body">
+      <div class="ia-pitch">
+        Gemini pense en systèmes avant de penser en solutions. Sa première question implicite est toujours : <em>« Qui fait quoi et où est le goulot d'étranglement ? »</em> Il identifie les forces en présence et les obstacles organisationnels avant de proposer quoi que ce soit.
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <div class="ia-signals">
+          <span class="signal ia-gemini">Analyse de situation</span>
+          <span class="signal ia-gemini">Politique d'établissement</span>
+          <span class="signal ia-gemini">Arguments pour direction</span>
+          <span class="signal ia-gemini">Coûts organisationnels</span>
+          <span class="signal ia-gemini">SWOT structurée</span>
+        </div>
+      </div>
+
+      <div class="ia-grid">
+        <div class="ia-for">
+          <div class="ia-col-label">✅ Ce qu'il fait bien</div>
+          <ul class="ia-list">
+            <li>Anticipe les obstacles systémiques que les autres ne voient pas</li>
+            <li>Pose le cadre institutionnel avant les solutions</li>
+            <li>Produit des argumentaires utilisables avec une direction ou un PO</li>
+            <li>Identifie qui décide quoi dans une chaîne de décision</li>
+            <li>Voit les coûts organisationnels cachés (charge enseignante, etc.)</li>
+          </ul>
+        </div>
+        <div class="ia-against">
+          <div class="ia-col-label">⚠️ Ses angles morts</div>
+          <ul class="ia-list">
+            <li>Solutions élégantes qui supposent des budgets que la FWB n'a pas</li>
+            <li>Ce qui marche à l'Athénée Royal de Bruxelles ne marche pas partout</li>
+            <li>Sous-estime la résistance humaine au changement</li>
+            <li>Propose parfois des outils technologiques hors de portée</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-tips">
+        <div class="ia-tips-label">💬 Comment lui parler pour en tirer le meilleur</div>
+        <div class="tip">Décris la situation concrète avec ses contraintes réelles : <em>« Dans mon école de Charleroi, 28 élèves par classe, pas de coordinateur TIC... »</em></div>
+        <div class="tip">Ajoute toujours la contrainte budgétaire : <em>« ...en sachant qu'il n'y a pas de budget formation cette année. »</em></div>
+        <div class="tip">Demande-lui le scénario d'échec : <em>« Maintenant dis-moi ce qui empêchera concrètement cette solution de fonctionner. »</em></div>
+        <div class="tip">Pour les argumentaires : <em>« Construis-moi la présentation à faire à mon directeur pour justifier X. »</em></div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Prompts qui fonctionnent bien avec Gemini</div>
+        <div class="prompt"><span class="ptag pt-green">Politique d'établissement</span><br>Notre école doit décider d'une politique commune sur l'utilisation de l'IA par les élèves. Nous avons trois réseaux différents et des enseignants avec des niveaux très variés. Quels sont les enjeux clés à adresser et dans quel ordre ?</div>
+        <div class="prompt"><span class="ptag pt-green">Argumentaire</span><br>Construis-moi un argumentaire pour présenter à mon directeur l'idée d'une heure de concertation mensuelle sur l'IA, en sachant qu'il est surtout préoccupé par la charge de travail administrative et les résultats au CEB.</div>
+        <div class="prompt"><span class="ptag pt-green">Analyse d'obstacle</span><br>On veut introduire des évaluations processuelles en histoire au secondaire inférieur. Quels sont les blocages institutionnels réels — pas théoriques — auxquels on va se heurter en FWB ?</div>
+      </div>
+
+      <div class="danger">
+        <div class="danger-label">Ce qu'il ne faut pas lui demander</div>
+        <p>Du concret de classe immédiat : « Donne-moi une activité pour lundi matin. » Il pensera à l'échelle de la politique éducative quand tu as besoin d'une fiche opérationnelle.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CHATGPT -->
+<section id="chatgpt">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">⚖️ Portrait 2/5</div>
+    <div class="guide-title">ChatGPT</div>
+    <div class="guide-subtitle">OpenAI · Architecte d'équité procédurale</div>
+  </div>
+
+  <div class="ia-card ia-chatgpt">
+    <div class="ia-head">
+      <div class="ia-avatar">⚖️</div>
+      <div>
+        <div class="ia-name">ChatGPT</div>
+        <div class="ia-role">L'ingénieur de procédures équitables</div>
+      </div>
+    </div>
+    <div class="ia-body">
+      <div class="ia-pitch">
+        ChatGPT conçoit des systèmes qui tiennent face à l'hétérogénéité réelle. Sa vraie question : <em>« Comment garantir que ça fonctionne aussi pour l'élève de CEFA de Liège ? »</em> Il ne se contente pas d'une belle idée — il la rend praticable et équitable.
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <div class="ia-signals">
+          <span class="signal ia-chatgpt">Fiches et procédures</span>
+          <span class="signal ia-chatgpt">Grilles d'évaluation</span>
+          <span class="signal ia-chatgpt">Équité et inclusion</span>
+          <span class="signal ia-chatgpt">Référentiels</span>
+          <span class="signal ia-chatgpt">Formation concrète</span>
+        </div>
+      </div>
+
+      <div class="ia-grid">
+        <div class="ia-for">
+          <div class="ia-col-label">✅ Ce qu'il fait bien</div>
+          <ul class="ia-list">
+            <li>Produit des ressources directement utilisables en classe</li>
+            <li>Pense à l'équité sans qu'on le lui demande</li>
+            <li>Construit des procédures solides et comparables entre classes</li>
+            <li>Traduit un concept abstrait en étapes concrètes</li>
+            <li>Gère bien l'hétérogénéité des élèves et des contextes</li>
+          </ul>
+        </div>
+        <div class="ia-against">
+          <div class="ia-col-label">⚠️ Ses angles morts</div>
+          <ul class="ia-list">
+            <li>Reste souvent au-dessus de la mêlée sans descendre dans le concret</li>
+            <li>Enrichit le consensus sans jamais le fracasser</li>
+            <li>Peu subversif : donne une version améliorée plutôt qu'une alternative</li>
+            <li>Formulations lisibles mais rarement mémorables</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-tips">
+        <div class="ia-tips-label">💬 Comment lui parler pour en tirer le meilleur</div>
+        <div class="tip">Donne-lui une contrainte d'équité dès le départ : <em>« ...en sachant que 40% de mes élèves ont des difficultés de lecture et que certains sont allophones. »</em></div>
+        <div class="tip">Demande-lui de descendre d'altitude : <em>« Bien. Maintenant traduis ça en une chose concrète que je fais lundi avec mes 4e qualifiant. »</em></div>
+        <div class="tip">Pour les grilles : <em>« Construis-moi une grille d'évaluation avec des indicateurs observables, pas des formules générales. »</em></div>
+        <div class="tip">Pour l'inclure dans le débat : <em>« Qu'est-ce que ton système ne dit pas — qu'est-ce qu'il évite de nommer ? »</em></div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Prompts qui fonctionnent bien avec ChatGPT</div>
+        <div class="prompt"><span class="ptag pt-teal">Fiche de travail</span><br>Crée une activité sur le jugement de fiabilité d'une source pour des élèves de 3e secondaire en histoire, avec une consigne claire, une grille simple et un barème. Prévu pour 50 minutes. Certains élèves ont des difficultés de lecture.</div>
+        <div class="prompt"><span class="ptag pt-teal">Équité</span><br>Comment rendre cette évaluation accessible à un élève dyslexique sans réduire les exigences du programme FWB ? Donne-moi trois adaptations concrètes de la forme, pas du fond.</div>
+        <div class="prompt"><span class="ptag pt-teal">Formation enseignants</span><br>Construis un atelier de 2h pour des enseignants du secondaire sur "comment évaluer le processus et pas seulement le résultat". Niveau débutant complet. Pas de jargon pédagogique.</div>
+      </div>
+
+      <div class="warn">
+        <div class="warn-label">Ce qui le déverrouille vraiment</div>
+        <p>Si tu veux qu'il sorte de l'abstraction, dis-lui : <em>« La réponse est bien structurée. Mais qu'est-ce qu'elle évite de dire ? »</em> C'est là qu'il devient le plus utile.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CLAUDE -->
+<section id="claude">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🔍 Portrait 3/5</div>
+    <div class="guide-title">Claude</div>
+    <div class="guide-subtitle">Anthropic · Pointeur d'angles morts · Spécialiste des besoins spécifiques</div>
+  </div>
+
+  <div class="ia-card ia-claude">
+    <div class="ia-head">
+      <div class="ia-avatar">🔍</div>
+      <div>
+        <div class="ia-name">Claude</div>
+        <div class="ia-role">Le chercheur de ce qu'on n'a pas vu</div>
+      </div>
+    </div>
+    <div class="ia-body">
+      <div class="ia-pitch">
+        Claude ne propose pas en premier — il identifie ce que tu n'as pas vu. Sa posture préférée : pointer l'incohérence dans un raisonnement qui semble solide, nommer le paradoxe que tout le monde évite, retourner une prémisse. Il est à son meilleur quand il est en minorité. Et il lit l'<em>entièreté</em> de ce que tu lui soumets — y compris la contradiction que tu n'avais pas vue toi-même.
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <div class="ia-signals">
+          <span class="signal ia-claude">Analyse critique</span>
+          <span class="signal ia-claude">Angles morts</span>
+          <span class="signal ia-claude">Incohérences cachées</span>
+          <span class="signal ia-claude">Retournement de prémisse</span>
+          <span class="signal ia-claude">Synthèse critique</span>
+          <span class="signal ia-claude">Différenciation pédagogique</span>
+          <span class="signal ia-claude">Besoins spécifiques (DYS, TDAH, TSA)</span>
+          <span class="signal ia-claude">Lecture complète du prompt</span>
+        </div>
+      </div>
+
+      <div class="ia-grid">
+        <div class="ia-for">
+          <div class="ia-col-label">✅ Ce qu'il fait bien</div>
+          <ul class="ia-list">
+            <li>Trouve la faille dans un raisonnement qui semble solide</li>
+            <li>Nomme ce qu'une réflexion collective a collectivement évité</li>
+            <li>Pose des questions qui retournent les prémisses</li>
+            <li>Reconnaît ses propres limites sans qu'on le lui demande</li>
+            <li>Produit des synthèses critiques qui ne lissent pas les tensions</li>
+            <li>Différenciation pédagogique fine : il comprend et traduit les profils DYS, TDAH, TSA, allophones en adaptations concrètes et bienveillantes</li>
+            <li>Lit ton prompt en entier — il relève les contradictions internes ou les erreurs que tu n'avais pas vues, avant même de répondre au fond</li>
+          </ul>
+        </div>
+        <div class="ia-against">
+          <div class="ia-col-label">⚠️ Ses angles morts</div>
+          <ul class="ia-list">
+            <li>Trop de titres et de sous-titres : la mise en forme cache parfois la pensée</li>
+            <li>Constitutionnellement nuancé : difficile d'obtenir une réponse tranchée</li>
+            <li>Réactif par nature : excelle dans la critique, moins dans la proposition initiale</li>
+            <li>Sa posture change selon son rôle (modérateur vs contradicteur)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-tips">
+        <div class="ia-tips-label">💬 Comment lui parler pour en tirer le meilleur</div>
+        <div class="tip">Donne-lui du matériau à critiquer : un document, un plan, une décision — et demande-lui ce qui cloche : <em>« Voici notre plan de formation. Qu'est-ce qu'on n'a pas vu ? »</em></div>
+        <div class="tip">Place-le délibérément en minorité : <em>« Tout le monde dans l'équipe est d'accord pour adopter cette plateforme IA. Défends la position inverse. »</em></div>
+        <div class="tip">Interdis-lui les titres pour obtenir sa vraie pensée : <em>« Réponds sans titres ni puces. Deux paragraphes maximum. »</em></div>
+        <div class="tip">Force-le à trancher : <em>« Maintenant dis-moi ta position finale — pas les nuances qui l'entourent. »</em></div>
+        <div class="tip">Pour la différenciation, donne-lui le profil précis de l'élève et la tâche concernée : <em>« Mon élève a une dyslexie sévère et un TDAH de type inattentif. Voici l'évaluation prévue. Qu'est-ce que je dois adapter — forme et consignes — sans réduire les exigences du programme ? »</em></div>
+        <div class="tip">Pour qu'il vérifie la cohérence de ta demande avant de répondre : <em>« Avant de répondre, dis-moi si tu vois une contradiction ou une imprécision dans ce que je viens de t'écrire. »</em></div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Prompts qui fonctionnent bien avec Claude</div>
+        <div class="prompt"><span class="ptag pt-amber">Analyse critique</span><br>Voici le plan de cours que j'ai préparé sur l'utilisation de l'IA en classe de français (secondaire supérieur). Qu'est-ce qui ne tient pas ? Qu'est-ce que j'ai supposé sans le vérifier ?</div>
+        <div class="prompt"><span class="ptag pt-amber">Retournement</span><br>Toute mon équipe pédagogique est d'accord pour interdire les téléphones en classe. Construis l'argumentaire le plus solide contre cette décision — pas pour troller, mais pour que l'équipe ait vraiment pesé les deux côtés.</div>
+        <div class="prompt"><span class="ptag pt-amber">Angle mort</span><br>On vient de décider d'introduire les portfolios réflexifs au secondaire inférieur pour remplacer les interrogations classiques. Qu'est-ce qu'on risque de ne pas avoir anticipé — côté élèves, côté enseignants, côté parents ?</div>
+        <div class="prompt"><span class="ptag pt-amber">Différenciation · besoins spécifiques</span><br>J'ai un élève de 3e secondaire avec un diagnostic de dyslexie sévère et un trouble de la mémoire de travail. Voici mon évaluation d'histoire (colle le texte). Qu'est-ce que je dois adapter dans la forme et les consignes — sans alléger les exigences du programme FWB ?</div>
+        <div class="prompt"><span class="ptag pt-amber">Vérification de cohérence</span><br>Avant de répondre à ma demande, lis l'entièreté de ce que je viens d'écrire et dis-moi si tu y vois une contradiction, une imprécision ou quelque chose qui manque. Ensuite seulement, réponds. [ta demande ici]</div>
+      </div>
+
+      <div class="ok">
+        <div class="ok-label">Son moment de gloire</div>
+        <p>Trois situations où Claude est imbattable : quand tout le monde est d'accord et que tu veux vérifier que vous n'avez pas tous raté la même chose ; quand tu cherches comment adapter vraiment une situation pédagogique pour un élève avec des besoins spécifiques ; et quand tu veux qu'une IA lise <em>tout</em> ce que tu as écrit — y compris ce que tu ne sais pas que tu as dit.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- KIMI -->
+<section id="kimi">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🔥 Portrait 4/5</div>
+    <div class="guide-title">Kimi</div>
+    <div class="guide-subtitle">Moonshot AI · Politicien de la résistance légitime</div>
+  </div>
+
+  <div class="ia-card ia-kimi">
+    <div class="ia-head">
+      <div class="ia-avatar">🔥</div>
+      <div>
+        <div class="ia-name">Kimi</div>
+        <div class="ia-role">L'empathie institutionnelle</div>
+      </div>
+    </div>
+    <div class="ia-body">
+      <div class="ia-pitch">
+        Kimi est l'IA la plus politiquement acérée. Il nomme ce que les autres enrobent. Il dit « violence du terrain » là où les autres disent « inadéquation ». Et il est le seul à parler des enseignants comme des sujets souffrants — pas comme des leviers à actionner.
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <div class="ia-signals">
+          <span class="signal ia-kimi">Résistance au changement</span>
+          <span class="signal ia-kimi">Dimension politique</span>
+          <span class="signal ia-kimi">Anxiété enseignante</span>
+          <span class="signal ia-kimi">Tension pouvoir-savoir</span>
+          <span class="signal ia-kimi">Inégalités structurelles</span>
+        </div>
+      </div>
+
+      <div class="ia-grid">
+        <div class="ia-for">
+          <div class="ia-col-label">✅ Ce qu'il fait bien</div>
+          <ul class="ia-list">
+            <li>Nomme politiquement ce qui se joue derrière un discours institutionnel</li>
+            <li>Comprend la résistance des enseignants comme rationnelle, pas pathologique</li>
+            <li>Anticipe qui va s'opposer à une réforme — et pourquoi, légitimement</li>
+            <li>Connecte les enjeux pédagogiques aux enjeux de pouvoir et de financement</li>
+            <li>Formule des tensions en phrases mémorables et percutantes</li>
+          </ul>
+        </div>
+        <div class="ia-against">
+          <div class="ia-col-label">⚠️ Ses angles morts</div>
+          <ul class="ia-list">
+            <li>Magnifique pour diagnostiquer, moins concret pour prescrire</li>
+            <li>Peut rester dans le conceptuel sans atterrir dans le classe réelle</li>
+            <li>Parfois légèrement sentencieux dans le ton</li>
+            <li>La qualité de ses formulations peut masquer l'absence de solution pratique</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-tips">
+        <div class="ia-tips-label">💬 Comment lui parler pour en tirer le meilleur</div>
+        <div class="tip">Utilise-le pour anticiper l'opposition : <em>« Qui va s'y opposer dans mon école, et pourquoi — pas pour de mauvaises raisons, mais pour de bonnes raisons mal comprises ? »</em></div>
+        <div class="tip">Pour comprendre ce qui se joue vraiment : <em>« Derrière le discours de ma direction sur l'IA comme "opportunité", qu'est-ce qui se passe réellement ? »</em></div>
+        <div class="tip">Force-le à atterrir : <em>« Tu as bien décrit le problème. Maintenant : qu'est-ce que je fais concrètement avec mes 26 élèves de 4e professionnelle lundi matin ? »</em></div>
+        <div class="tip">Pour les formulations : <em>« Formule en une phrase percutante pourquoi cette réforme risque d'échouer si on ne change pas X. »</em></div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Prompts qui fonctionnent bien avec Kimi</div>
+        <div class="prompt"><span class="ptag pt-red">Résistance légitime</span><br>Mon école veut imposer à tous les enseignants d'utiliser une plateforme IA pour différencier leurs cours d'ici septembre. Qui va résister, pour quelles raisons légitimes, et comment je peux présenter ce projet pour réduire cette résistance — sans la nier ?</div>
+        <div class="prompt"><span class="ptag pt-red">Dimension politique</span><br>La direction dit que l'IA va "personnaliser les apprentissages" de tous les élèves. Traduis ce discours en termes politiques réels : qui bénéficie de ce cadrage, qui en supporte les coûts ?</div>
+        <div class="prompt"><span class="ptag pt-red">Anxiété enseignante</span><br>Comment présenter l'IA à des collègues enseignants de 55 ans qui ont l'impression que leur expertise de 30 ans est menacée par un outil ? Je veux les convaincre sans les condescendre.</div>
+      </div>
+
+      <div class="ok">
+        <div class="ok-label">Sa vraie valeur ajoutée</div>
+        <p>Quand tu prépares une réforme et que tu veux éviter qu'elle meure à la première réunion de parents ou au premier changement de direction. Kimi cartographie l'opposition rationnelle avant qu'elle se manifeste.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- DEEPSEEK -->
+<section id="deepseek">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🛠️ Portrait 5/5</div>
+    <div class="guide-title">DeepSeek</div>
+    <div class="guide-subtitle">DeepSeek AI · Concepteur de situations d'apprentissage</div>
+  </div>
+
+  <div class="ia-card ia-deepseek">
+    <div class="ia-head">
+      <div class="ia-avatar">🛠️</div>
+      <div>
+        <div class="ia-name">DeepSeek</div>
+        <div class="ia-role">L'architecte de tâches pédagogiques</div>
+      </div>
+    </div>
+    <div class="ia-body">
+      <div class="ia-pitch">
+        DeepSeek pense en situations d'apprentissage, pas en compétences abstraites. Sa thèse : une bonne tâche doit <em>exiger intrinsèquement</em> la compétence visée — sans que l'enseignant ait à la demander explicitement. Il est aussi celui qui défend le droit institutionnel de dire non à l'IA.
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <div class="ia-signals">
+          <span class="signal ia-deepseek">Conception de tâches</span>
+          <span class="signal ia-deepseek">Activités concrètes</span>
+          <span class="signal ia-deepseek">Droit au non-usage</span>
+          <span class="signal ia-deepseek">Pensée critique intégrée</span>
+          <span class="signal ia-deepseek">Évaluation par le faire</span>
+        </div>
+      </div>
+
+      <div class="ia-grid">
+        <div class="ia-for">
+          <div class="ia-col-label">✅ Ce qu'il fait bien</div>
+          <ul class="ia-list">
+            <li>Conçoit des tâches qui rendent la compétence visible sans lourd appareillage</li>
+            <li>Pense à l'équité via l'évaluation du gain (progrès) pas du niveau absolu</li>
+            <li>Défend le droit de ne pas utiliser l'IA quand elle n'ajoute rien</li>
+            <li>Construit des arguments pour refuser une injonction technologique</li>
+            <li>Propose des évaluations collectives qui réduisent le biais culturel</li>
+          </ul>
+        </div>
+        <div class="ia-against">
+          <div class="ia-col-label">⚠️ Ses angles morts</div>
+          <ul class="ia-list">
+            <li>Style parfois froid, manque de texture émotionnelle</li>
+            <li>Arguments solides mais peu incarnés : difficile d'en faire un discours humain</li>
+            <li>La posture "refus" peut sembler systématique si pas contextualisée</li>
+            <li>Moins à l'aise pour les argumentaires politiques que Kimi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ia-tips">
+        <div class="ia-tips-label">💬 Comment lui parler pour en tirer le meilleur</div>
+        <div class="tip">Pour créer une tâche : <em>« Conçois une activité en histoire pour des 14 ans où évaluer la fiabilité d'une source devient nécessaire — sans que je doive le demander explicitement. »</em></div>
+        <div class="tip">Pour le refus argumenté : <em>« Mon établissement est sous pression pour adopter telle plateforme IA. Construis l'argumentaire du "pas maintenant, pour ces raisons". »</em></div>
+        <div class="tip">Pour humaniser ses réponses : <em>« Dis-moi la même chose, mais comme si tu l'expliquais à un collègue épuisé en fin de journée, pas à un comité de direction. »</em></div>
+        <div class="tip">Pour l'équité : <em>« Comment évalue-t-on le progrès de cet élève en partant de où il est, pas de où il devrait être ? »</em></div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Prompts qui fonctionnent bien avec DeepSeek</div>
+        <div class="prompt"><span class="ptag pt-blue">Conception de tâche</span><br>Je veux que mes élèves de 5e secondaire apprennent à détecter une hallucination dans une réponse d'IA. Conçois une activité en sciences qui rende cette compétence nécessaire sans que je la nomme comme objectif — les élèves doivent "tomber dedans".</div>
+        <div class="prompt"><span class="ptag pt-blue">Argumentaire du refus</span><br>Quelles questions concrètes poser à un représentant commercial qui vend une plateforme IA éducative pour évaluer si elle vaut vraiment quelque chose — au-delà du discours marketing ?</div>
+        <div class="prompt"><span class="ptag pt-blue">Évaluation équitable</span><br>J'ai un élève de CEFA qui progresse beaucoup mais reste en dessous du niveau de la classe. Comment construire une évaluation qui valorise sa progression réelle plutôt que son niveau absolu ?</div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-label">Son angle le plus original</div>
+        <p>DeepSeek est le seul à avoir posé la question : <em>« Et si on enseignait l'esprit critique sans IA du tout ? »</em> Parfois, la meilleure intégration pédagogique est de choisir de ne pas intégrer. Il aide à argumenter ce choix sans passer pour un réactionnaire.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- COMBO -->
+<section id="combo">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">🎯 Utilisation avancée</div>
+    <div class="guide-title">Combiner les IA</div>
+    <div class="guide-subtitle">Seule, chaque IA a un angle mort. Combinées sur la même question, elles se complètent.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ Pour aller plus loin</span>
+      <span class="gmeta">🔄 Multi-IA</span>
+    </div>
+  </div>
+
+  <div class="prose"><p>Les IA ont été conçues pour travailler seules. Mais rien ne t'empêche de poser la même question à plusieurs et de comparer. Voici des combinaisons qui fonctionnent.</p></div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span class="acc-emoji">📋</span>
+      <div class="acc-info">
+        <div class="acc-title">Préparer une réforme pédagogique</div>
+        <div class="acc-meta">Gemini + Kimi + Claude · 3 angles complémentaires</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="steps" style="display:flex;flex-direction:column;gap:8px;margin:0">
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">1</div>
+          <div><div class="step-t">Gemini d'abord</div><div class="step-d">« Quels sont les enjeux institutionnels de cette réforme en FWB, et où sont les goulots d'étranglement ? »</div></div>
+        </div>
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">2</div>
+          <div><div class="step-t">Kimi ensuite</div><div class="step-d">« Qui va s'y opposer légitimement, et comment anticiper ces résistances sans les mépriser ? »</div></div>
+        </div>
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">3</div>
+          <div><div class="step-t">Claude enfin</div><div class="step-d">« Voici ce que Gemini et Kimi ont dit. Qu'est-ce qu'ils n'ont pas vu tous les deux ? »</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span class="acc-emoji">🎓</span>
+      <div class="acc-info">
+        <div class="acc-title">Créer une activité pédagogique robuste</div>
+        <div class="acc-meta">DeepSeek + ChatGPT · Du brouillon à la fiche utilisable</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="steps" style="display:flex;flex-direction:column;gap:8px;margin:0">
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">1</div>
+          <div><div class="step-t">DeepSeek pour le concept</div><div class="step-d">« Conçois une situation d'apprentissage où la compétence X devient nécessaire sans que je la nomme comme objectif. »</div></div>
+        </div>
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">2</div>
+          <div><div class="step-t">ChatGPT pour la mise en forme</div><div class="step-d">« Transforme ça en fiche utilisable avec consigne claire, grille d'évaluation et barème. Adapté pour des élèves en difficulté de lecture. »</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggleAcc(this)">
+      <span class="acc-emoji">💬</span>
+      <div class="acc-info">
+        <div class="acc-title">Préparer une communication difficile</div>
+        <div class="acc-meta">Kimi + ChatGPT · Comprendre puis formuler</div>
+      </div>
+      <span class="acc-toggle">▼</span>
+    </div>
+    <div class="acc-body">
+      <div class="steps" style="display:flex;flex-direction:column;gap:8px;margin:0">
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">1</div>
+          <div><div class="step-t">Kimi pour comprendre l'enjeu réel</div><div class="step-d">« Je dois annoncer X à mes collègues. Qu'est-ce qui se joue réellement derrière cette annonce ? Qui va se sentir menacé et pourquoi ? »</div></div>
+        </div>
+        <div class="step" style="display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.9rem 1rem">
+          <div class="step-n" style="min-width:24px;height:24px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--text3);flex-shrink:0;margin-top:2px">2</div>
+          <div><div class="step-t">ChatGPT pour le message</div><div class="step-d">« Voici le contexte. Rédige un message qui annonce X en tenant compte de ces résistances légitimes, sans les nier. »</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- RECAP -->
+<section id="recap">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">📌 Récapitulatif</div>
+    <div class="guide-title">Tableau de décision rapide</div>
+    <div class="guide-subtitle">Pour chaque besoin, l'IA et la question à lui poser.</div>
+  </div>
+
+  <div class="recap-card">
+    <div class="recap-row header">
+      <div>IA</div>
+      <div>Utilise-la quand...</div>
+      <div>La question à poser</div>
+    </div>
+    <div class="recap-row">
+      <div class="recap-ia">🏗️ Gemini</div>
+      <div class="recap-use">Tu dois analyser une situation d'école complexe ou construire un argumentaire institutionnel</div>
+      <div class="recap-ask">« Quelles sont les forces en présence et où sont les goulots d'étranglement ? »</div>
+    </div>
+    <div class="recap-row">
+      <div class="recap-ia">⚖️ ChatGPT</div>
+      <div class="recap-use">Tu dois créer une fiche, une grille ou un dispositif qui doit fonctionner pour tous tes élèves</div>
+      <div class="recap-ask">« Comment rendre ça accessible à l'élève le plus en difficulté de ma classe ? »</div>
+    </div>
+    <div class="recap-row">
+      <div class="recap-ia">🔍 Claude</div>
+      <div class="recap-use">Tout le monde est d'accord et tu veux vérifier ce que vous avez raté ; tu cherches une adaptation fine pour un élève à besoins spécifiques ; tu veux qu'une IA relise ta demande avant de répondre</div>
+      <div class="recap-ask">« Qu'est-ce qu'on n'a pas vu ? » · « Adapte pour cet élève DYS. » · « Dis-moi si ma demande se contredit avant de répondre. »</div>
+    </div>
+    <div class="recap-row">
+      <div class="recap-ia">🔥 Kimi</div>
+      <div class="recap-use">Tu prépares un changement et tu veux anticiper les résistances légitimes avant qu'elles arrivent</div>
+      <div class="recap-ask">« Qui va s'y opposer pour de bonnes raisons — et comment je peux l'entendre ? »</div>
+    </div>
+    <div class="recap-row">
+      <div class="recap-ia">🛠️ DeepSeek</div>
+      <div class="recap-use">Tu veux créer une activité qui rende une compétence nécessaire — ou argumenter le droit de ne pas utiliser l'IA</div>
+      <div class="recap-ask">« Conçois une situation où la compétence devient nécessaire d'elle-même. »</div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Ces cinq IA ont débattu ensemble de l'enseignement en Fédération Wallonie-Bruxelles. La seule intervention qui a vraiment fait bouger le débat était humaine — imparfaite dans sa formulation, irréductible dans son ancrage dans le réel. <strong>Cette capacité-là ne se délègue pas.</strong> »</p>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">Rappel RGPD — toujours</div>
+    <p>Jamais de noms d'élèves, de matricules, de résultats nominatifs dans une IA — quelle qu'elle soit. Initiales ou cas anonymisés uniquement. Ce principe ne souffre aucune exception.</p>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p><img src="/portail-plai/public/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Quelle IA pour quoi faire ? — Guide enseignants FWB</strong></p>
+    <p>Guide produit à partir d'une analyse de débats réels entre cinq IA sur l'enseignement en Fédération Wallonie-Bruxelles · Mai 2026</p>
+    <p>Les portraits sont basés sur des comportements observés dans des contextes pédagogiques réels — pas sur des déclarations marketing.</p>
+  </div>
+</div>
+
+<script>
+function toggleAcc(head) {
+  const body = head.nextElementSibling;
+  const toggle = head.querySelector('.acc-toggle');
+  const isOpen = head.classList.contains('open');
+  head.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+  body.classList.toggle('visible', !isOpen);
+}
+
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
