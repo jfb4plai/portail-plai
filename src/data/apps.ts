@@ -1455,7 +1455,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix génératives Gemini TTS — profils de personnages — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix génératives IA — profils de personnages — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
@@ -1514,7 +1514,7 @@ const apps: AppItem[] = [
             title: "1. Choisir la langue et les locuteurs",
             items: [
               "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol, italien.",
-              "8 voix génératives Gemini TTS (4 féminines + 4 masculines) — personnalité, âge, rôle, registre émotionnel configurables.",
+              "8 voix génératives IA (4 féminines + 4 masculines) — personnalité, âge, rôle, registre émotionnel configurables.",
               "Choisissez 2 à 4 locuteurs (A, B, C, D) et configurez le profil de chaque personnage.",
               "Ajoutez une ambiance sonore (café, bureau, rue…) pour contextualiser le dialogue.",
             ],
@@ -1538,7 +1538,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Réserve d'usage : l'outil est en développement actif. Les voix utilisent Gemini TTS (Google) — quota gratuit 500 générations/jour. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
+        tip: "Réserve d'usage : l'outil est en développement actif. Limite : 500 générations/jour pour l'ensemble des utilisateurs des écoles coopérantes. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
       },
     },
   },
