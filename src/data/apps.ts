@@ -1455,7 +1455,7 @@ const apps: AppItem[] = [
   {
     id: 'dialogue-audio',
     name: 'Dialogue Audio',
-    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) ou monologues via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix neurales Microsoft — QR code imprimable intégré.",
+    description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix génératives Gemini TTS — profils de personnages — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
     emoji: '🎙️',
     category: 'Langues',
@@ -1514,9 +1514,9 @@ const apps: AppItem[] = [
             title: "1. Choisir la langue et les locuteurs",
             items: [
               "Sélectionnez la langue cible : néerlandais (BE), néerlandais (NL), français, français (Belgique), allemand, anglais (UK), espagnol, italien.",
-              "4 voix neurales Microsoft par langue (2 féminines + 2 masculines) — qualité Edge TTS, aucun compte requis.",
-              "Choisissez 2 à 4 locuteurs (A, B, C, D) pour un dialogue, ou A seul pour un monologue.",
-              "Ajustez le silence entre les répliques (200–1000 ms) selon le niveau des élèves.",
+              "8 voix génératives Gemini TTS (4 féminines + 4 masculines) — personnalité, âge, rôle, registre émotionnel configurables.",
+              "Choisissez 2 à 4 locuteurs (A, B, C, D) et configurez le profil de chaque personnage.",
+              "Ajoutez une ambiance sonore (café, bureau, rue…) pour contextualiser le dialogue.",
             ],
           },
           {
@@ -1531,14 +1531,14 @@ const apps: AppItem[] = [
           {
             title: "3. Générer et distribuer",
             items: [
-              "Cliquez \"Générer le dialogue audio\" (30–60 secondes au premier lancement). ⚠ Max ~60 répliques par génération.",
+              "Cliquez \"Générer le dialogue audio\" (60–120 secondes selon la longueur). ⚠ Max ~30 répliques par génération recommandé.",
               "Écoutez via le lecteur intégré, téléchargez le MP3, copiez le lien.",
               "Imprimez ou intégrez le QR code (600×600 px) sur vos fiches papier. L'audio est disponible ~10 minutes après génération (délai Internet Archive).",
               "Les élèves scannent le QR code avec leur smartphone pour écouter directement.",
             ],
           },
         ],
-        tip: "Réserve d'usage : l'outil est en développement actif. Toutes les voix utilisent Microsoft Edge TTS (neurales, sans compte, aucune clé API). L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
+        tip: "Réserve d'usage : l'outil est en développement actif. Les voix utilisent Gemini TTS (Google) — quota gratuit 500 générations/jour. L'audio est stocké sur Internet Archive (accès public permanent). Ne pas utiliser pour des contenus sensibles ou confidentiels.",
       },
     },
   },
