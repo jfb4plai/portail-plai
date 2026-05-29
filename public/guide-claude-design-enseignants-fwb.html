@@ -402,13 +402,13 @@
 
   /* FOOTER */
   footer {
-    background: var(--text); color: #e8e4dd;
-    text-align: center; padding: 2.5rem 2rem;
+    background: var(--bg); color: var(--text3);
+    text-align: center; padding: 3rem 2rem 2.5rem;
     font-size: 13px; margin-top: 3rem;
-    font-family: 'DM Serif Display', serif; font-style: italic;
+    border-top: 1px solid var(--border);
   }
-  footer p { color: #e8e4dd; }
-  footer a { color: #c8c0b0; text-decoration: none; }
+  footer p { color: var(--text3); margin-top: 6px; }
+  footer a { color: var(--text2); text-decoration: none; }
 
   @media (max-width: 600px) {
     .comparatif { grid-template-columns: 1fr; }
@@ -1074,9 +1074,9 @@
 </div><!-- /container -->
 
 <footer>
-  <p><strong>Guide Claude Design — Écoles coopérantes du Pôle Territorial de la Ville de Liège (PLAI)</strong></p>
-  <p style="margin-top:0.5rem">Basé sur le guide d'<a href="https://driven-alex.substack.com" target="_blank">Alex Bouchez (Drivenlabs)</a> · Adapté pour les écoles coopérantes du PLAI · Avril 2026</p>
-  <p style="margin-top:0.5rem; font-size:13px;">Ce guide est à jour en mai 2026. Les tarifs et fonctionnalités peuvent évoluer — vérifier sur <a href="https://claude.ai" target="_blank">claude.ai</a></p>
+  <p><img src="/portail-plai/public/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Guide Claude Design — Écoles coopérantes du PLAI</strong></p>
+  <p>Basé sur le guide d'<a href="https://driven-alex.substack.com" target="_blank">Alex Bouchez (Drivenlabs)</a> · Adapté pour les écoles coopérantes du PLAI · Avril 2026</p>
+  <p>Ce guide est à jour en mai 2026. Les tarifs et fonctionnalités peuvent évoluer — vérifier sur <a href="https://claude.ai" target="_blank">claude.ai</a></p>
 </footer>
 
 <script>
