@@ -506,6 +506,126 @@
 </div>
 </section>
 
+<!-- TUTORIEL -->
+<section id="tutoriel">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">🛠️ Tutoriel</div>
+    <div class="guide-title">Construire le générateur de QCM — pas à pas</div>
+    <div class="guide-subtitle">De zéro à une URL partageable. Durée totale estimée : 90 minutes.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 90 min au total</span>
+      <span class="gmeta">🎯 Niveau 1 — zéro expérience requise</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">📌 App fil rouge</div>
+    <p>L'enseignant colle un texte dans l'app → elle génère 5 questions à choix multiple avec les bonnes réponses. Zéro compte, zéro sauvegarde. Résultat : une URL à partager aux collègues.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="step-t">Prérequis — 15 min</div>
+        <div class="step-d">Avant de commencer, vérifier que tu as : <strong>un abonnement Claude Pro actif</strong> sur claude.ai · <strong>Chrome installé</strong> et connecté à claude.ai · <strong>PowerShell 7</strong> installé (chercher "PowerShell 7" dans le menu Démarrer — pas le terminal Windows classique). Pour installer Claude Code et Superpowers en même temps : consulter le <a href="/superpowers-guide.html">guide Superpowers</a> — il couvre les deux.</div>
+        <div class="step-timer">⏱ Cumul : 15 min</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="step-t">L'atelier — 5 min</div>
+        <div class="step-d">Ouvrir PowerShell 7. Taper les commandes suivantes une par une :</div>
+        <div class="code-block">mkdir "$HOME\claude-workspace\qcm-generator"
+cd "$HOME\claude-workspace\qcm-generator"
+claude</div>
+        <div class="step-d" style="margin-top:8px;">Claude Code s'ouvre dans le dossier de ton projet. Vérifier que Superpowers est actif en tapant <code>/using-superpowers</code>. Tu dois voir un message de confirmation.</div>
+        <div class="step-timer">⏱ Cumul : 20 min</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div>
+        <div class="step-t">Décrire l'app à Claude Code — 20 min</div>
+        <div class="step-d">Taper <code>/brainstorming</code> puis coller ce texte :</div>
+        <div class="prompt-block">
+          <div class="prompt-label">✍️ À écrire dans Claude Code</div>
+          <pre>/brainstorming
+Je veux créer une app web simple pour mes élèves de [ton niveau].
+L'enseignant colle un texte dans une zone de saisie.
+L'app génère 5 questions à choix multiple avec les bonnes réponses,
+en utilisant l'IA Claude. Pas de compte, pas de sauvegarde,
+juste un résultat à copier-coller ou imprimer.
+L'interface doit être claire et utilisable sur tablette.</pre>
+        </div>
+        <div class="step-d">Claude Code va te poser des questions de précision (niveau, matière, langue). Réponds simplement. Il produira ensuite un document de spécification — <strong>lis-le attentivement avant de valider</strong>.</div>
+        <div class="variation">
+          <div class="variation-label">🔀 Variation — autre app</div>
+          <p>Si ton app est un générateur de consignes simplifiées, remplace la ligne 3 par : "L'enseignant colle une consigne complexe, l'app génère 3 versions : standard, simplifié, FALC."</p>
+        </div>
+        <div class="step-timer">⏱ Cumul : 40 min</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">4</div>
+      <div>
+        <div class="step-t">Valider le plan et laisser construire — 30 min</div>
+        <div class="step-d">Superpowers génère un plan d'implémentation avec des tâches de 2 à 5 minutes. <strong>Lis chaque tâche</strong> — c'est là que tu vérifies que l'app correspond à ce que tu veux. Tape <code>ok</code> pour valider et lancer la construction. Claude Code exécute tâche par tâche. Tu n'interviens que si une question se pose. À la fin, l'app tourne en local — Claude Code indique comment la voir dans le navigateur.</div>
+        <div class="ok">
+          <div class="ok-label">✅ À ce stade</div>
+          <p>Ton générateur de QCM fonctionne sur ton ordinateur. Tu peux le tester avec un texte de cours. L'URL commence par localhost — elle n'est pas encore accessible à d'autres.</p>
+        </div>
+        <div class="variation">
+          <div class="variation-label">🔀 Variation</div>
+          <p>Quelle que soit l'app choisie, cette étape est identique : valide le plan, laisse construire, teste en local avant de continuer.</p>
+        </div>
+        <div class="step-timer">⏱ Cumul : 70 min</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">5</div>
+      <div>
+        <div class="step-t">GitHub — 10 min</div>
+        <div class="step-d">Créer un dépôt sur <a href="https://github.com" target="_blank">github.com</a> (bouton "New repository", nom : <code>qcm-generator</code>, laisser les autres options par défaut). Puis dans Claude Code :</div>
+        <div class="prompt-block">
+          <div class="prompt-label">✍️ À écrire dans Claude Code</div>
+          <pre>Pousse le code sur GitHub.
+Mon dépôt : https://github.com/[ton-compte]/qcm-generator</pre>
+        </div>
+        <div class="step-d">Claude Code exécute les commandes Git. Si c'est la première fois, il te demandera de t'authentifier — suis les instructions affichées dans le terminal.</div>
+        <div class="step-timer">⏱ Cumul : 80 min</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">6</div>
+      <div>
+        <div class="step-t">Vercel — 10 min</div>
+        <div class="step-d">Aller sur <a href="https://vercel.com" target="_blank">vercel.com</a>, se connecter avec le compte GitHub. Cliquer "Add New Project", sélectionner le dépôt <code>qcm-generator</code>, laisser tous les paramètres par défaut, cliquer "Deploy". Après 1–2 minutes : une URL apparaît.</div>
+        <div class="ok">
+          <div class="ok-label">✅ À ce stade — 90 min depuis le début</div>
+          <p>Ton générateur de QCM est en ligne. L'URL fonctionne sur ordinateur, tablette et smartphone. Chaque modification poussée sur GitHub met l'app à jour automatiquement en 60 secondes.</p>
+        </div>
+        <div class="warn">
+          <div class="warn-label">⚠️ Clé API</div>
+          <p>Si ton app utilise l'IA Claude pour générer les questions, la clé ANTHROPIC_API_KEY doit être ajoutée dans les variables d'environnement Vercel — jamais dans le code. Claude Code t'explique comment faire si nécessaire.</p>
+        </div>
+        <div class="step-timer">⏱ Total : ~90 min</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
 <!-- SECTIONS -->
 
 <div class="footer">
