@@ -71,7 +71,7 @@ CSS footer standard (fond clair, pas sombre) :
 ### F. Bandeau support référent numérique — immédiatement après `</nav>`
 
 ```html
-<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jf.beguin@outlook.com" style="color:#0f6e56;font-weight:500;">jf.beguin@outlook.com</a></div>
+<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
 ```
 
 **Position :** première ligne après `</nav>`, avant toute section.
@@ -154,7 +154,7 @@ sed -i 's|/portail-plai/public/plai-logo.jpg|/plai-logo.jpg|g' public/*.html
 **Ajout du bandeau support en masse** (Python, insère après le premier `</nav>`) :
 ```python
 import os
-banner = '<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d\'accompagnement — à distance ou en présentiel — n\'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jf.beguin@outlook.com" style="color:#0f6e56;font-weight:500;">jf.beguin@outlook.com</a></div>'
+banner = '<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d\'accompagnement — à distance ou en présentiel — n\'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>'
 for fname in [f for f in os.listdir('public') if f.endswith('.html')]:
     path = f'public/{fname}'
     content = open(path, encoding='utf-8').read()

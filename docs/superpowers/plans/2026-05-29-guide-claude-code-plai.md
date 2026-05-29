@@ -984,7 +984,7 @@ Données stockées : [oui/non — si oui, lesquelles].</pre>
 
   <div class="teal-box">
     <div class="teal-label">📬 Partager ton app</div>
-    <p>Tu as construit un outil utile pour tes collègues des écoles coopérantes du PLAI ? Contacte l'équipe PLAI pour l'intégrer au portail : <a href="mailto:jf.beguin@outlook.com" style="color:var(--teal)">jf.beguin@outlook.com</a></p>
+    <p>Tu as construit un outil utile pour tes collègues des écoles coopérantes du PLAI ? Contacte l'équipe PLAI pour l'intégrer au portail : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:var(--teal)">jeanfrancois.beguin@ens.ecl.be</a></p>
   </div>
 
 </div>
