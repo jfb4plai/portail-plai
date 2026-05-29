@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Superpowers — Guide Claude Code · Écoles coopérantes FWB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --teal: #0f6e56; --teal-bg: #e1f5ee; --teal-mid: #1d9e75;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--radius-sm); text-decoration: none; color: var(--text2); transition: background 0.15s, color 0.15s; }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); border: 1px solid var(--border2); padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(34px, 6vw, 52px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub { font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  .leitmotiv { background: var(--text); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .leitmotiv p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: #e8e5de; margin: 0; line-height: 1.6; }
+  .leitmotiv p strong { color: #ffffff; }
+
+  .eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--teal-bg); color: var(--teal); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+  .teal-box { background: var(--teal-bg); border-left: 3px solid var(--teal-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .teal-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #085041; margin-bottom: 3px; }
+  .teal-box p { font-size: 14px; color: var(--teal); margin: 0; line-height: 1.6; }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  code { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 12.5px; color: var(--text); }
+  .code-block { background: #1a1814; border-radius: var(--radius); padding: 0.85rem 1rem; margin: 1rem 0; font-family: 'DM Serif Display', serif; font-size: 13px; color: #e8e5de; line-height: 1.7; white-space: pre-wrap; }
+  .code-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 6px; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-neutral { background: var(--surface2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-neutral .c-label { color: var(--text3); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+  .c-neutral .c-text { color: var(--text2); }
+
+  /* ── TABLEAU COMPARATIF ── */
+  .cmp-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .cmp-head { display: grid; grid-template-columns: 170px 1fr 1fr; }
+  .cmp-h { padding: 10px 12px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cmp-h-empty { background: var(--surface2); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cmp-h-sans { background: #f4f2ee; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--text3); }
+  .cmp-h-avec { background: var(--teal-bg); border-bottom: 1px solid var(--border); color: var(--teal); }
+  .cmp-h-title { font-size: 14px; font-weight: 500; }
+  .cmp-h-sub { font-size: 11px; font-weight: 400; margin-top: 1px; opacity: 0.8; }
+  .cmp-row { display: grid; grid-template-columns: 170px 1fr 1fr; border-top: 1px solid var(--border); }
+  .cmp-row:first-child { border-top: none; }
+  .cmp-cat { padding: 12px; background: var(--surface2); border-right: 1px solid var(--border); display: flex; align-items: flex-start; }
+  .cmp-cat-text { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text3); line-height: 1.4; }
+  .cmp-cell { padding: 12px; font-size: 13px; line-height: 1.55; border-right: 1px solid var(--border); }
+  .cmp-cell:last-child { border-right: none; }
+  .cmp-bad { color: #791f1f; }
+  .cmp-good { color: #3b6d11; }
+  .cmp-muted { color: var(--text3); font-style: italic; }
+  .cmp-verdict { display: grid; grid-template-columns: 170px 1fr 1fr; border-top: 1px solid var(--border); }
+  .cmp-v-empty { background: var(--surface2); border-right: 1px solid var(--border); padding: 12px; }
+  .cmp-v-sans { background: #f4f2ee; border-right: 1px solid var(--border); padding: 14px 12px; }
+  .cmp-v-avec { background: var(--teal-bg); padding: 14px 12px; }
+  .cmp-v-text { font-size: 13px; line-height: 1.6; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .cmp-v-sans .cmp-v-text { color: #5f5e5a; }
+  .cmp-v-avec .cmp-v-text { color: var(--teal); }
+
+  /* ── TABLEAU COMMANDES ── */
+  .cmd-section { margin: 1.5rem 0; }
+  .cmd-section-title { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .cmd-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .cmd-row { display: grid; grid-template-columns: 1fr 60px; border-bottom: 1px solid var(--border); }
+  .cmd-row:last-child { border-bottom: none; }
+  .cmd-row-head { display: grid; grid-template-columns: 1fr 60px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .cmd-cell-code { padding: 10px 12px; border-right: 1px solid var(--border); }
+  .cmd-cell-auto { padding: 10px 8px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .cmd-name { font-family: 'DM Serif Display', serif; font-size: 13px; color: var(--teal); margin-bottom: 2px; }
+  .cmd-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .cmd-h { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); padding: 8px 12px; border-right: 1px solid var(--border); }
+  .cmd-h-auto { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); padding: 8px 8px; text-align: center; }
+  .badge-auto { font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 500; background: var(--teal-bg); color: var(--teal); }
+  .badge-man { font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 500; background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head { background: var(--surface); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; border-bottom: 1px solid transparent; transition: background 0.15s; }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .recap-row { display: flex; align-items: flex-start; gap: 12px; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-pill { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 10px; white-space: nowrap; margin-top: 2px; }
+  .recap-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .recap-text strong { color: var(--text); font-weight: 500; }
+
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 30px; }
+    .cmp-head, .cmp-row, .cmp-verdict { grid-template-columns: 110px 1fr 1fr; }
+    .cmp-cat { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">🚀 Superpowers · Claude Code</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#comprendre">Comprendre</a>
+    <a class="nav-link" href="#enseignants">Enseignants</a>
+    <a class="nav-link" href="#comparatif">Comparatif</a>
+    <a class="nav-link" href="#commandes">Commandes</a>
+    <a class="nav-link" href="#demarrer">Démarrer</a>
+    <a class="nav-link" href="#installer">Installer</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🚀 Guide développeur · Écoles coopérantes FWB</div>
+    <h1>Superpowers<br><em>ce que Claude Code ne fait pas seul</em></h1>
+    <p class="hero-sub">Un plugin qui impose la méthode là où l'IA improvise — pour des applis fiables livrées à des enseignants qui ne debuggueront pas.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">10</span><span class="stat-label">critères comparés</span></div>
+      <div><span class="stat-num">14</span><span class="stat-label">commandes disponibles</span></div>
+      <div><span class="stat-num">1</span><span class="stat-label">commande pour démarrer</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Claude Code sans Superpowers, c'est un développeur junior très rapide qui improvise. Il fonce, il code, il livre quelque chose qui semble marcher en démo. Avec Superpowers, c'est le même développeur — mais avec un protocole qu'il ne peut pas contourner. <strong>Pour des applis livrées à des enseignants qui ne debuggueront pas, la différence est décisive.</strong> »</p>
+  </div>
+
+  <div class="eyebrow">Ce que ce guide contient</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">🏫</div><div class="card-t">Pour les enseignants</div><div class="card-d">Ce que Superpowers garantit concrètement pour les outils de votre école — sans jargon technique.</div></div>
+    <div class="card"><div class="card-icon">⚖️</div><div class="card-t">Tableau comparatif honnête</div><div class="card-d">Claude Code avec et sans Superpowers, critère par critère, sans publicité. Y compris les limites réelles du plugin.</div></div>
+    <div class="card"><div class="card-icon">⌨️</div><div class="card-t">Référentiel des commandes</div><div class="card-d">Les 14 commandes Superpowers, organisées par phase de développement, avec distinction auto-déclenchées / manuelles.</div></div>
+    <div class="card"><div class="card-icon">⚙️</div><div class="card-t">Guide d'installation Windows</div><div class="card-d">Les étapes testées pour installer Superpowers sur Windows 11 — avec le .docx téléchargeable.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- COMPRENDRE -->
+<section id="comprendre">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 Comprendre</div>
+    <div class="guide-title">Pourquoi Claude Code a besoin de discipline</div>
+    <div class="guide-subtitle">Le problème n'est pas la capacité de l'IA — c'est son manque de méthode par défaut.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes à lire</span>
+      <span class="gmeta">🎯 Le pourquoi avant le comment</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Le problème central</div>
+    <div class="prose">
+      <p>Claude Code est capable d'écrire du code complet, de refactoriser des modules, de générer des tests. Ce n'est pas la capacité qui pose problème — c'est la discipline. Livré à lui-même, Claude Code saute la phase de conception, plonge directement dans le code, et rationalise chaque raccourci avec confiance.</p>
+      <p>Pour des applis ponctuelles ou des scripts jetables, c'est acceptable. Pour des outils livrés à des enseignants qui ne signaleront pas un bug subtil — ils abandonnent l'outil — c'est insuffisant.</p>
+    </div>
+    <div class="compare">
+      <div class="c-bad">
+        <div class="c-label">Sans méthode</div>
+        <div class="c-text">Claude fonce, produit quelque chose qui marche en démo. Les cas limites que les enseignants vont rencontrer ne sont pas testés. Tu le découvres deux semaines après la livraison.</div>
+      </div>
+      <div class="c-good">
+        <div class="c-label">Avec Superpowers</div>
+        <div class="c-text">Claude ne peut pas coder avant que les comportements attendus soient définis et approuvés. Ce que tu as validé dans le plan est ce que l'appli fait.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Ce qu'est Superpowers — et ce qu'il n'est pas</div>
+    <div class="prose">
+      <p>Superpowers est un plugin open source (licence MIT) créé par Jesse Vincent. Il fonctionne comme un ensemble de fichiers markdown — appelés <em>skills</em> — que Claude Code lit et applique comme instructions de workflow. Ce n'est pas un prompt amélioré. C'est une méthodologie encodée en code.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">✅</div><div class="card-t">C'est</div><div class="card-d">Une méthodologie complète : brainstorming → plan → TDD → revue → livraison. Chaque phase a des portes qui ne s'ouvrent que si la précédente est validée.</div></div>
+      <div class="card"><div class="card-icon">❌</div><div class="card-t">Ce n'est pas</div><div class="card-d">Un correcteur de mauvaises spécifications. Si tu décris mal ton appli au départ, Superpowers construit rigoureusement la mauvaise chose.</div></div>
+      <div class="card"><div class="card-icon">⚙️</div><div class="card-t">Prérequis</div><div class="card-d">Claude Code CLI (abonnement Pro ou Max). Superpowers s'installe en une commande dans le terminal. Aucun hardware spécifique requis.</div></div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ Honnêteté sur le coût</div>
+    <p>Superpowers ajoute <strong>~480 tokens par échange</strong> et ~29 500 tokens quand un skill se déclenche. La phase brainstorming + plan prend 10 à 20 minutes de plus qu'un démarrage immédiat. Cet investissement est rentabilisé sur les applis complexes — pas sur les scripts de 30 lignes.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- ENSEIGNANTS -->
+<section id="enseignants">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">🏫 Pour les enseignants</div>
+    <div class="guide-title">Ce que Superpowers change pour vos écoles</div>
+    <div class="guide-subtitle">Vous ne coderez probablement pas vous-mêmes — mais vous serez les utilisateurs finals. Voici ce que ce plugin garantit concrètement.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 3 minutes</span>
+      <span class="gmeta">🎯 L'essentiel sans jargon</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">L'analogie qui résume tout</div>
+    <div class="leitmotiv">
+      <p>« C'est comme si vous demandiez à un élève de rendre un exercice. <strong>Sans méthode</strong> : il écrit, soumet, espère. <strong>Avec Superpowers</strong> : il doit d'abord écrire les critères de réussite (le test), puis rédiger sa réponse, puis vérifier que ça colle. L'IA ne peut pas tricher l'ordre. »</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Pourquoi c'est important pour vous</div>
+    <div class="prose">
+      <p>Si un collègue, un étudiant en stage, ou l'équipe numérique de votre école utilise Claude Code pour créer des outils pédagogiques (quiz automatiques, générateurs de fiches, extracteurs de données), Superpowers garantit que le résultat est fiable et maintenable — pas seulement impressionnant à la démo.</p>
+    </div>
+    <div class="compare">
+      <div class="c-bad">
+        <div class="c-label">Sans Superpowers</div>
+        <div class="c-text">Code qui fonctionne une fois sur deux. Corrections qui cassent autre chose ailleurs. Solutions impossibles à comprendre ou modifier plus tard.</div>
+      </div>
+      <div class="c-good">
+        <div class="c-label">Avec Superpowers</div>
+        <div class="c-text">Workflow prévisible. Outils testés avant livraison. Comportements que les enseignants vont déclencher (champs vides, mauvais format, double-clic) vérifiés à l'avance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Le cycle TDD expliqué sans jargon</div>
+    <div class="prose">
+      <p>Au cœur de Superpowers se trouve une méthode appelée TDD (Test-Driven Development). Elle impose un ordre précis que l'IA ne peut pas contourner :</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n" style="background:var(--red-bg);color:var(--red);border:1px solid #f09595;">🔴</div>
+        <div>
+          <div class="step-t">Rouge — définir ce que l'outil doit faire</div>
+          <div class="step-d">Écrire un test qui décrit le comportement attendu — avant d'écrire le code. Ce test échoue (normal : le code n'existe pas encore). <em>Exemple : on définit ce que doit contenir une grille d'évaluation en boucherie avant de la coder.</em></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n" style="background:var(--green-bg);color:var(--green);border:1px solid #c0dd97;">🟢</div>
+        <div>
+          <div class="step-t">Vert — écrire le minimum de code pour valider</div>
+          <div class="step-d">Écrire uniquement ce qui est nécessaire pour que le test réussisse. Pas d'improvisation, pas d'extras non spécifiés.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n" style="background:var(--blue-bg);color:var(--blue);border:1px solid #a8d0f5;">🔁</div>
+        <div>
+          <div class="step-t">Refactor — nettoyer sans casser</div>
+          <div class="step-d">Améliorer le code sans modifier son comportement. Les tests vérifient que rien n'a changé pour l'utilisateur.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Ce que Superpowers n'est pas</div>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">🖱️</div><div class="card-t">Pas un outil direct pour vous</div><div class="card-d">Pas d'interface graphique, pas de bouton à cliquer. C'est un outil pour la personne technique qui développe les applis de votre école.</div></div>
+      <div class="card"><div class="card-icon">🎁</div><div class="card-t">Pas gratuit</div><div class="card-d">Nécessite un abonnement Claude Code (Anthropic). À prévoir dans le budget numérique de l'école si des outils sont développés en interne.</div></div>
+      <div class="card"><div class="card-icon">🧠</div><div class="card-t">Pas magique</div><div class="card-d">Structure le travail du développeur IA. Ne remplace pas le jugement humain — et surtout pas votre expertise pédagogique sur ce que doit faire l'outil.</div></div>
+    </div>
+  </div>
+
+  <div class="ok">
+    <div class="ok-label">✅ Message à retenir</div>
+    <p>Si votre école utilise Claude Code pour développer des outils numériques pédagogiques, insistez pour que l'équipe technique installe Superpowers. Cela garantit que les outils livrés sont fiables, testés et compréhensibles — pas juste impressionnants à la démo.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- COMPARATIF -->
+<section id="comparatif">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">⚖️ Comparatif</div>
+    <div class="guide-title">Claude Code avec et sans Superpowers</div>
+    <div class="guide-subtitle">Critère par critère, sans complaisance. Les colonnes "auto" signalent ce que Superpowers impose sans que tu aies à y penser.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes</span>
+      <span class="gmeta">📊 Tableau de référence</span>
+    </div>
+  </div>
+
+  <div class="cmp-table">
+    <div class="cmp-head">
+      <div class="cmp-h cmp-h-empty"></div>
+      <div class="cmp-h cmp-h-sans">
+        <div class="cmp-h-title">Sans Superpowers</div>
+        <div class="cmp-h-sub">Claude Code natif</div>
+      </div>
+      <div class="cmp-h cmp-h-avec">
+        <div class="cmp-h-title">Avec Superpowers</div>
+        <div class="cmp-h-sub">Claude Code + plugin</div>
+      </div>
+    </div>
+
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Démarrage du projet</div></div>
+      <div class="cmp-cell cmp-bad">Fonce directement dans le code dès que tu décris l'appli. Aucune question posée.</div>
+      <div class="cmp-cell cmp-good">Pose des questions ciblées sur le contexte, les cas limites, les contraintes — avant d'écrire la moindre ligne.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Planification</div></div>
+      <div class="cmp-cell cmp-bad">Pas de plan structuré. Claude improvise au fil de la session. Si elle plante, tu repars de zéro.</div>
+      <div class="cmp-cell cmp-good">Plan écrit avec cases à cocher par tâche. Si la session plante, la suivante reprend exactement où elle s'est arrêtée.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Tests</div></div>
+      <div class="cmp-cell cmp-bad">Tests écrits après le code (ou pas du tout). Ils testent ce que le code fait — pas ce qu'il devrait faire.</div>
+      <div class="cmp-cell cmp-good">Test échouant écrit en premier. Le code n'existe pas tant que le test ne le valide pas. Impossible de tricher l'ordre.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Bugs introduits</div></div>
+      <div class="cmp-cell cmp-bad">Fréquents. Corriger un bug en crée souvent deux autres. Pas de filet de sécurité automatique.</div>
+      <div class="cmp-cell cmp-good">Détectés immédiatement. Les tests existants cassent si une correction touche autre chose — avant que tu le découvres toi-même.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Revue de code</div></div>
+      <div class="cmp-cell cmp-bad">Aucune revue automatique. Claude livre ce qu'il a produit, sans recul critique.</div>
+      <div class="cmp-cell cmp-good">Deux passes automatiques : conformité au plan, puis qualité technique. Séparées exprès — l'une ne remplace pas l'autre.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Cohérence avec l'existant</div></div>
+      <div class="cmp-cell cmp-bad">Variable. Claude peut ignorer les conventions de ton projet et introduire des patterns différents selon les sessions.</div>
+      <div class="cmp-cell cmp-good">Chaque sous-agent lit le code existant avant d'agir. Les patterns de ton projet sont respectés.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Sessions longues</div></div>
+      <div class="cmp-cell cmp-bad">Dégradation progressive. Claude perd le fil après beaucoup d'échanges — contexte pollué par l'historique.</div>
+      <div class="cmp-cell cmp-good">Sous-agents frais par tâche. Chaque tâche démarre avec un contexte propre. Pas de dégradation sur la durée.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Débogage</div></div>
+      <div class="cmp-cell cmp-bad">Tentatives successives sans méthode. Claude peut proposer 4 corrections sans jamais identifier la cause réelle.</div>
+      <div class="cmp-cell cmp-good">4 phases obligatoires : investigation → analyse → hypothèse → correction. Après 3 échecs : revue architecturale forcée.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Coût en tokens</div></div>
+      <div class="cmp-cell cmp-muted">Faible au démarrage — mais les allers-retours pour corriger les erreurs consomment au final davantage.</div>
+      <div class="cmp-cell cmp-muted">+480 tokens par échange, +29 500 quand un skill se déclenche. Investissement rentabilisé sur les applis complexes.</div>
+    </div>
+    <div class="cmp-row">
+      <div class="cmp-cat"><div class="cmp-cat-text">Fiabilité du livrable</div></div>
+      <div class="cmp-cell cmp-bad">Appli qui "semble" marcher en démo. Les cas limites que les enseignants vont rencontrer ne sont pas testés.</div>
+      <div class="cmp-cell cmp-good">Comportements attendus définis avant le code. Ce que tu as validé dans le plan est ce que l'appli fait.</div>
+    </div>
+    <div class="cmp-verdict">
+      <div class="cmp-v-empty"></div>
+      <div class="cmp-v-sans"><div class="cmp-v-text">Adapté aux petits scripts jetables ou pour explorer une idée rapidement. Pour des applis livrées à des enseignants qui ne debuggueront pas — risqué.</div></div>
+      <div class="cmp-v-avec"><div class="cmp-v-text">Adapté aux applis qui doivent fonctionner sans toi derrière. Le temps de la phase planning est récupéré dès la première fois que tu n'as pas à rouvrir le projet pour un bug signalé.</div></div>
+    </div>
+  </div>
+
+  <div class="danger">
+    <div class="danger-label">Limite à ne pas oublier</div>
+    <p>Superpowers ne compense pas une mauvaise spécification. Si tu décris mal ton appli au départ, il va juste construire rigoureusement la mauvaise chose. La qualité du brainstorming initial reste ta responsabilité.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- COMMANDES -->
+<section id="commandes">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">⌨️ Commandes</div>
+    <div class="guide-title">Les 14 commandes Superpowers</div>
+    <div class="guide-subtitle">Organisées par phase de développement. La colonne "Auto" indique si Superpowers déclenche la commande lui-même selon le contexte — ou si tu dois l'appeler manuellement.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ Référence à garder ouverte</span>
+      <span class="gmeta">📌 Référentiel complet</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Comment lire ce tableau</div>
+    <p><strong>Auto</strong> = Superpowers déclenche la commande seul selon le contexte, sans que tu aies à la taper. <strong>Manuel</strong> = tu dois l'invoquer explicitement. En pratique, tu n'utiliseras activement que 2 à 3 commandes — le reste s'enclenche automatiquement.</p>
+  </div>
+
+  <!-- WORKFLOW PRINCIPAL -->
+  <div class="cmd-section">
+    <div class="cmd-section-title">① Workflow principal — dans l'ordre d'utilisation</div>
+    <div class="cmd-table">
+      <div class="cmd-row-head">
+        <div class="cmd-h">Commande · description</div>
+        <div class="cmd-h-auto">Auto ?</div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/using-superpowers</div>
+          <div class="cmd-desc">Meta-skill chargé au démarrage de chaque session. Active la règle du 1% — vérifie si un skill s'applique avant toute action. À taper manuellement si l'auto-chargement échoue.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/brainstorming</div>
+          <div class="cmd-desc">Démarre une session de conception Socratique. Claude pose des questions progressives, ne code pas. Produit un document de spécification dans docs/plans/. Bloqué tant que tu n'as pas approuvé le design — cette porte ne peut pas être contournée.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/writing-plans</div>
+          <div class="cmd-desc">Convertit le document de design en plan d'implémentation détaillé. Tâches de 2 à 5 minutes, chemins de fichiers exacts, critères de vérification, cases à cocher. Chaque tâche inclut un test avant le code.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/subagent-driven-development</div>
+          <div class="cmd-desc">Dispatche un sous-agent frais par tâche du plan. Évite la pollution de contexte sur les sessions longues. Chaque sous-agent lit le plan et le code existant avant d'agir.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/test-driven-development</div>
+          <div class="cmd-desc">Impose le cycle rouge → vert → refactor. Le test échouant doit exister avant le code. Refuse les rationalisations ("trop simple", "je testerai après"). Code écrit avant test = recommencer depuis zéro.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/verification-before-completion</div>
+          <div class="cmd-desc">Checklist de vérification avant de déclarer une tâche "done". Empêche les livraisons prématurées. Se déclenche automatiquement quand Claude s'apprête à dire que c'est terminé.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/requesting-code-review</div>
+          <div class="cmd-desc">Lance la revue en deux passes : conformité au plan (spec reviewer), puis qualité technique (code quality reviewer). À invoquer quand tu veux une revue formelle avant livraison.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/finishing-a-development-branch</div>
+          <div class="cmd-desc">Procédure de clôture d'une branche : vérification finale, merge propre, nettoyage des worktrees. À utiliser quand une feature est complète et prête à intégrer.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÉBOGAGE -->
+  <div class="cmd-section">
+    <div class="cmd-section-title">② Débogage et investigation</div>
+    <div class="cmd-table">
+      <div class="cmd-row-head">
+        <div class="cmd-h">Commande · description</div>
+        <div class="cmd-h-auto">Auto ?</div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/systematic-debugging</div>
+          <div class="cmd-desc">4 phases obligatoires : investigation → analyse de patterns → hypothèse → correction. Après 3 tentatives échouées : revue architecturale forcée. Interdit de corriger sans avoir identifié la cause racine.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/dispatching-parallel-agents</div>
+          <div class="cmd-desc">Lance plusieurs sous-agents en parallèle sur des problèmes indépendants. Utile pour investiguer plusieurs pistes de bug simultanément. Gain de temps significatif sur les projets complexes.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GIT -->
+  <div class="cmd-section">
+    <div class="cmd-section-title">③ Git et branches</div>
+    <div class="cmd-table">
+      <div class="cmd-row-head">
+        <div class="cmd-h">Commande · description</div>
+        <div class="cmd-h-auto">Auto ?</div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/using-git-worktrees</div>
+          <div class="cmd-desc">Crée des branches Git isolées (worktrees) pour chaque feature. Permet de travailler sur plusieurs fonctionnalités en parallèle sans conflit. Chaque agent travaille dans son propre worktree.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLABORATION -->
+  <div class="cmd-section">
+    <div class="cmd-section-title">④ Collaboration et retours</div>
+    <div class="cmd-table">
+      <div class="cmd-row-head">
+        <div class="cmd-h">Commande · description</div>
+        <div class="cmd-h-auto">Auto ?</div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/receiving-code-review</div>
+          <div class="cmd-desc">Protocole structuré pour intégrer les retours d'une revue de code externe. Classe les commentaires par priorité, planifie les corrections, relance les tests après chaque modification.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-auto">auto</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKILLS PERSO -->
+  <div class="cmd-section">
+    <div class="cmd-section-title">⑤ Créer ses propres skills (niveau avancé)</div>
+    <div class="cmd-table">
+      <div class="cmd-row-head">
+        <div class="cmd-h">Commande · description</div>
+        <div class="cmd-h-auto">Auto ?</div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/writing-skills</div>
+          <div class="cmd-desc">Crée un nouveau skill Superpowers personnalisé. Utilise lui-même le TDD pour tester que le skill est compréhensible et que Claude le respecte avant de le valider. Les skills se stockent dans ~/.config/superpowers/skills/.</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+      <div class="cmd-row">
+        <div class="cmd-cell-code">
+          <div class="cmd-name">/sharing-skills</div>
+          <div class="cmd-desc">Prépare un skill pour contribution à la communauté Superpowers. Formate, documente et soumet via pull request sur le repo GitHub (obra/superpowers, licence MIT).</div>
+        </div>
+        <div class="cmd-cell-auto"><span class="badge-man">manuel</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-head" onclick="toggle(this)">
+      <div class="acc-emoji">💡</div>
+      <div class="acc-info">
+        <div class="acc-title">Pourquoi la plupart des commandes sont "auto"</div>
+        <div class="acc-meta">Le design fondamental de Superpowers</div>
+      </div>
+      <div class="acc-toggle">▼</div>
+    </div>
+    <div class="acc-body">
+      <div class="prose">
+        <p>Superpowers se charge via un hook <code>SessionStart</code> qui s'exécute à chaque ouverture de session Claude Code. Il injecte une règle fondamentale dans le contexte : si même 1% de chance qu'un skill s'applique à la tâche en cours, Claude doit vérifier et l'invoquer.</p>
+        <p>Cela signifie que tu n'as pas à mémoriser les commandes pour les déclencher — Claude le fait automatiquement quand il détecte le contexte approprié. Tu commandes le <em>quoi</em> (décrire l'appli), Superpowers gère le <em>comment</em> (quelle méthode appliquer).</p>
+      </div>
+      <div class="teal-box" style="margin-top:0.75rem">
+        <div class="teal-label">En pratique</div>
+        <p>Sur une session typique de création d'appli, tu n'utiliseras activement que <strong>/brainstorming</strong> au départ et <strong>/requesting-code-review</strong> avant de livrer. Les 12 autres commandes se déclenchent seules.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- DÉMARRER -->
+<section id="demarrer">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">🚀 Démarrer</div>
+    <div class="guide-title">Flux minimal pour une nouvelle appli</div>
+    <div class="guide-subtitle">Les 5 étapes concrètes pour démarrer un projet avec Superpowers — sans avoir à tout mémoriser.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 20 min de plus que sans Superpowers</span>
+      <span class="gmeta">🎯 Récupéré sur la correction de bugs</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Les 5 étapes dans l'ordre</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Ouvre Claude Code dans le dossier de ton projet</div>
+          <div class="step-d">Dans PowerShell : <code>cd C:\chemin\vers\ton\projet</code> puis <code>claude</code>. Superpowers se charge automatiquement au démarrage de la session.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Lance le brainstorming — décris l'appli</div>
+          <div class="step-d">Tape <code>/brainstorming</code> puis décris ce que tu veux créer. Claude pose des questions progressives sur le contexte, les utilisateurs (les enseignants), les cas limites. Ne code rien encore.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Valide le document de spécification</div>
+          <div class="step-d">Superpowers génère un document de design. Lis-le attentivement — c'est ici que tu évites de construire la mauvaise chose. Approuve ou corrige. Claude ne peut pas passer à l'étape suivante sans ton accord explicite.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-t">Valide le plan d'implémentation</div>
+          <div class="step-d">Superpowers génère automatiquement un plan avec les tâches de 2 à 5 minutes, les fichiers à toucher, les tests à écrire. Relis chaque tâche — le plan a des cases à cocher qui servent de journal de progression si la session plante.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <div class="step-t">Laisse Superpowers exécuter — interviens si nécessaire</div>
+          <div class="step-d">Les sous-agents implémentent le plan tâche par tâche, avec TDD et revue automatique à chaque étape. Tu n'interviens que si une décision architecturale nécessite ton jugement. Avant de livrer : <code>/requesting-code-review</code>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Comparaison avec et sans Superpowers sur une session type</div>
+    <div class="recap-card">
+      <div class="recap-row">
+        <span class="recap-pill" style="background:var(--red-bg);color:var(--red);">Sans</span>
+        <div class="recap-text">Tu décris l'appli → Claude code immédiatement → tu testes → tu signales les bugs → Claude corrige et en crée d'autres → tu retestes → <strong>cycle sans fin jusqu'à livraison approximative</strong>.</div>
+      </div>
+      <div class="recap-row">
+        <span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);">Avec</span>
+        <div class="recap-text">Tu décris l'appli → brainstorming (10-15 min) → plan validé → exécution structurée → revue automatique → <strong>livraison correspondant à ce qui a été spécifié</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Checklist avant de livrer aux enseignants</div>
+    <div class="checklist">
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Brainstorming validé</strong> — le document de spécification a été relu et approuvé avant le début du code</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Tous les tests passent</strong> — le cycle rouge-vert-refactor a été respecté pour chaque fonctionnalité</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Revue de code faite</strong> — /requesting-code-review a produit un résultat sans problème bloquant</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Cas limites testés</strong> — les comportements que les enseignants non-techniques déclencheront ont été vérifiés (champs vides, mauvais format, double-clic…)</div>
+      </div>
+      <div class="check-item" onclick="chk(this)">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Session de test réelle</strong> — l'appli a été testée par quelqu'un qui ne sait pas comment elle fonctionne, pas uniquement par son créateur</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Erreurs classiques à éviter avec Superpowers</div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Approuver le plan sans le lire</div>
+          <div class="acc-meta">La faute la plus fréquente</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Superpowers génère un plan détaillé — mais c'est toi qui valides. Si tu approuves sans lire, tu perds l'avantage principal du système. La valeur est dans la phase planning : c'est là que les problèmes architecturaux sont détectés avant d'être codés.</p></div>
+        <div class="ok">
+          <div class="ok-label">Règle pratique</div>
+          <p>Lis chaque tâche du plan et vérifie qu'elle a bien un test associé avant une implémentation. Si une tâche n'a pas de test, le plan est incomplet — demande à Claude de le corriger.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Utiliser Superpowers pour des scripts simples</div>
+          <div class="acc-meta">Outil disproportionné</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Pour un script de 30 lignes, un one-shot, ou une exploration rapide d'une idée, Superpowers ajoute une friction inutile. Le plugin est conçu pour des applis avec plusieurs fonctionnalités, des utilisateurs non-techniques, et un besoin de maintenabilité.</p></div>
+        <div class="compare">
+          <div class="c-bad">
+            <div class="c-label">Disproportionné</div>
+            <div class="c-text">Script de conversion CSV, test rapide d'une API, exploration d'une bibliothèque. Pas besoin de Superpowers.</div>
+          </div>
+          <div class="c-good">
+            <div class="c-label">Approprié</div>
+            <div class="c-text">Quiz interactif pour 200 élèves, générateur de fiches pédagogiques, outil de suivi des compétences. Superpowers a du sens.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">❌</div>
+        <div class="acc-info">
+          <div class="acc-title">Croire que Superpowers remplace la spécification</div>
+          <div class="acc-meta">Le piège de la délégation totale</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Superpowers structure l'implémentation — il ne remplace pas ton jugement sur ce que doit faire l'appli. Si tu entres en brainstorming avec une idée vague ("faire un truc pour les quiz"), Superpowers va poser des questions — mais les réponses, c'est toi qui les donnes. Une mauvaise spécification reste une mauvaise appli, même bien construite.</p></div>
+        <div class="warn">
+          <div class="warn-label">⚠️ À mémoriser</div>
+          <p>Avant de lancer /brainstorming, passe 5 minutes à répondre à ces questions toi-même : qui sont les utilisateurs exacts ? Quel est le cas d'usage principal ? Qu'est-ce qui doit absolument fonctionner, même si le reste est imparfait ?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Superpowers ne rend pas Claude plus intelligent — il le rend <strong>constant</strong>. Et dans le développement d'applis pour des enseignants, la constance bat l'intelligence à chaque fois. »</p>
+  </div>
+
+</div>
+</section>
+
+<!-- INSTALLER -->
+<section id="installer">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">⚙️ Installer</div>
+    <div class="guide-title">Installer Superpowers sur Windows</div>
+    <div class="guide-subtitle">Guide complet testé et validé — de zéro à Superpowers actif en 10 minutes.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10 minutes</span>
+      <span class="gmeta">🪟 Windows 11 · PowerShell 7 · Claude Code v2.1.156</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Prérequis</div>
+    <div class="grid2">
+      <div class="card"><div class="card-icon">✅</div><div class="card-t">Abonnement Claude Pro ou Max</div><div class="card-d">Requis pour accéder à Claude Code CLI. À activer sur claude.ai avant de commencer.</div></div>
+      <div class="card"><div class="card-icon">🌐</div><div class="card-t">Chrome installé (obligatoire)</div><div class="card-d">Edge bloque l'authentification OAuth d'Anthropic. Chrome doit être le navigateur utilisé pour l'autorisation.</div></div>
+      <div class="card"><div class="card-icon">💻</div><div class="card-t">PowerShell 7</div><div class="card-d">Pas PowerShell 5, pas le terminal Windows. Chercher "PowerShell 7" dans le menu Démarrer.</div></div>
+      <div class="card"><div class="card-icon">🔐</div><div class="card-t">Claude ouvert dans Chrome</div><div class="card-d">Se connecter sur claude.ai dans Chrome AVANT de lancer le terminal — sans cette étape, l'OAuth échoue.</div></div>
+    </div>
+    <div class="warn">
+      <div class="warn-label">⚠️ Action préalable obligatoire</div>
+      <p>Ouvre Chrome et connecte-toi sur <strong>claude.ai</strong> avec ton compte avant d'ouvrir PowerShell. Sans cette étape, l'authentification OAuth échoue avec le message "Invalid code".</p>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Installation pas à pas</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Ouvrir PowerShell 7</div>
+          <div class="step-d">Appuie sur <strong>Windows + S</strong>, tape <strong>PowerShell 7</strong> et ouvre-le. Tu dois voir <code>PS C:\Users\…&gt;</code> comme invite de commande.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Ajouter Claude Code au PATH (si nécessaire)</div>
+          <div class="step-d">Si la commande <code>claude</code> n'est pas reconnue : <code>$env:PATH += ";C:\Users\TON_NOM\.local\bin"</code>. Si Claude Code n'est pas encore installé : <code>irm https://claude.ai/install.ps1 | iex</code></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Lancer Claude Code et s'authentifier</div>
+          <div class="step-d">Tape <code>claude</code>. Sélectionne <strong>"1. Claude account with subscription"</strong>. Une URL OAuth s'affiche — Ctrl+clic pour l'ouvrir dans Chrome. Clique sur <strong>"Authorize"</strong>. Succès : <em>"Welcome back !"</em> avec ton email et Claude Pro.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-t">Installer Superpowers</div>
+          <div class="step-d">Dans la session Claude Code, tape : <code>/plugin install superpowers@claude-plugins-official</code>. Sélectionne <strong>"Install for you (user scope)"</strong> — active Superpowers pour TOUS tes projets futurs.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <div class="step-t">Activer Superpowers</div>
+          <div class="step-d">Tape <code>/reload-plugins</code>. Succès : <em>"Reloaded: 1 plugin · 6 agents · 1 hook"</em>. À partir de maintenant, Superpowers se charge automatiquement à chaque nouvelle session.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Problèmes courants</div>
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">⚠️</div>
+        <div class="acc-info">
+          <div class="acc-title">"claude" n'est pas reconnu</div>
+          <div class="acc-meta">PATH manquant</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Ajoute le chemin manuellement dans PowerShell :</p></div>
+        <div class="code-block">$env:PATH += ";C:\Users\TON_NOM\.local\bin"</div>
+        <div class="ok"><div class="ok-label">Pour rendre permanent</div><p>[Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Users\TON_NOM\.local\bin", "User")</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">⚠️</div>
+        <div class="acc-info">
+          <div class="acc-title">"OAuth error: Invalid code"</div>
+          <div class="acc-meta">L'URL s'est ouverte dans Edge</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>L'URL OAuth s'est ouverte dans Edge au lieu de Chrome. Copie l'URL affichée dans le terminal et colle-la manuellement dans Chrome.</p></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">⚠️</div>
+        <div class="acc-info">
+          <div class="acc-title">"/plugin isn't available"</div>
+          <div class="acc-meta">Mauvaise interface</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose"><p>Tu es dans l'application bureau graphique Claude, pas dans le terminal CLI. Les commandes <code>/plugin</code> ne fonctionnent que dans PowerShell avec la commande <code>claude</code>.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">📥 Guide complet à télécharger</div>
+    <p>Le guide d'installation détaillé (avec captures d'écran des messages de succès et toutes les variantes d'erreurs) est disponible en téléchargement. Testé et validé le 29 mai 2026 sur Windows 11 · PowerShell 7 · Claude Code v2.1.156.</p>
+  </div>
+  <div style="margin:1rem 0 2rem">
+    <a href="installation-superpowers-windows.docx" download style="display:inline-flex;align-items:center;gap:8px;background:var(--text);color:var(--bg);text-decoration:none;padding:10px 20px;border-radius:var(--radius);font-size:14px;font-weight:500;transition:opacity 0.15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+      ⬇️ Télécharger le guide Windows (.docx)
+    </a>
+  </div>
+
+</div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p>Guide Superpowers · Claude Code · Développeur applis éducatives FWB — Écoles coopérantes</p>
+    <p>Plugin open source (MIT) : <a href="https://github.com/obra/superpowers">github.com/obra/superpowers</a> · Documentation Claude Code : <a href="https://code.claude.com/docs">code.claude.com/docs</a></p>
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>

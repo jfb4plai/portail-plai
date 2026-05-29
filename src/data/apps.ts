@@ -1631,6 +1631,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'superpowers-guide',
+    name: 'Donner des supers pouvoirs à Claude Code',
+    description: 'Comprendre et installer le plugin Superpowers : pourquoi Claude Code a besoin de discipline, ce que le plugin garantit concrètement, les 14 commandes disponibles et le guide d\'installation Windows testé.',
+    url: '/superpowers-guide.html',
+    emoji: '🚀',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'claude-code',
+  },
+  {
     id: 'ytdl-plai',
     name: 'YT-DL PLAI',
     emoji: '📥',

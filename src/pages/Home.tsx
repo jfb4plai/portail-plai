@@ -248,8 +248,9 @@ export default function Home() {
 
   const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
-  const claudeItems = apps.filter(a => a.section === 'claude');
-  const iaItems     = apps.filter(a => a.section === 'ia');
+  const claudeItems     = apps.filter(a => a.section === 'claude');
+  const claudeCodeItems = apps.filter(a => a.section === 'claude-code');
+  const iaItems         = apps.filter(a => a.section === 'ia');
   const utilItems   = apps.filter(a => a.section === 'utilitaires');
   const available   = appItems.filter(a => a.status === 'disponible' || a.status === 'en-développement');
   const coming      = appItems.filter(a => a.status === 'bientôt');
@@ -340,6 +341,23 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeItems.map(app => (
                 <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Claude Code */}
+        {claudeCodeItems.length > 0 && (
+          <section className="mb-14">
+            <SectionHeader
+              label="Guides Claude Code"
+              count={claudeCodeItems.length}
+              subtitle="Maîtriser Claude Code et ses plugins pour développer des outils pédagogiques fiables et maintenables."
+              accent="indigo"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {claudeCodeItems.map(app => (
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="indigo" />
               ))}
             </div>
           </section>
