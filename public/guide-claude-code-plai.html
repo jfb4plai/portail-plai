@@ -626,7 +626,131 @@ Mon dépôt : https://github.com/[ton-compte]/qcm-generator</pre>
 </div>
 </section>
 
-<!-- SECTIONS -->
+<!-- SUPABASE -->
+<section id="supabase">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">🗄️ Supabase</div>
+    <div class="guide-title">Quand ajouter une base de données ?</div>
+    <div class="guide-subtitle">Le moment où ton app passe du niveau 🟢 au niveau 🔴 — et ce que ça implique côté RGPD.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 30 min supplémentaires</span>
+      <span class="gmeta">🎯 Après la première app déployée</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Le problème concret</div>
+    <div class="prose">
+      <p>Ton générateur de QCM fonctionne — mais les questions générées disparaissent quand tu fermes l'onglet. Si tu veux que chaque enseignant retrouve ses QCM d'une session à l'autre, ou que plusieurs enseignants aient chacun leur espace, il faut une base de données.</p>
+      <p>Supabase fournit les deux en un : base de données PostgreSQL + système d'authentification. Il dispose de serveurs en Europe — indispensable pour les données d'élèves.</p>
+    </div>
+  </div>
+
+  <div class="danger">
+    <div class="danger-label">🔴 RGPD — avant de commencer</div>
+    <p>Dès qu'une app stocke des données sur un serveur, même anonymisées, tu dois : <strong>informer les élèves et les parents</strong> · utiliser des <strong>codes anonymes</strong> (jamais de noms réels) · activer le <strong>RLS Supabase</strong> sur toutes les tables · choisir la <strong>région Europe</strong> lors de la création du projet.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-n">1</div>
+      <div>
+        <div class="step-t">Créer le projet Supabase</div>
+        <div class="step-d">Aller sur <a href="https://supabase.com" target="_blank">supabase.com</a>, créer un compte gratuit, cliquer "New project". Nom : <code>qcm-generator</code>. <strong>Region : choisir "West EU (Ireland)" ou "Central EU (Frankfurt)"</strong>. Copier l'URL du projet et la clé anon — elles seront utilisées à l'étape suivante.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">2</div>
+      <div>
+        <div class="step-t">Demander l'extension à Claude Code</div>
+        <div class="step-d">Dans Claude Code, taper :</div>
+        <div class="prompt-block">
+          <div class="prompt-label">✍️ À écrire dans Claude Code</div>
+          <pre>/brainstorming
+Je veux que les QCM générés soient sauvegardés pour chaque enseignant.
+Ajoute une authentification simple (email + mot de passe) et une base
+de données Supabase pour stocker les QCM par utilisateur.
+URL Supabase : [coller l'URL]
+Clé anon : [coller la clé]
+Utilise des codes anonymes pour les élèves, jamais de noms réels.
+Active le RLS sur toutes les tables.
+Région choisie : Europe.</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-n">3</div>
+      <div>
+        <div class="step-t">Variables d'environnement Vercel</div>
+        <div class="step-d">Après le déploiement, aller dans les paramètres du projet sur Vercel → "Environment Variables". Ajouter <code>SUPABASE_URL</code> et <code>SUPABASE_ANON_KEY</code> avec les valeurs copiées de Supabase. <strong>Ne jamais mettre ces valeurs dans le code déposé sur GitHub.</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+<!-- PROCHAINE APP -->
+<section id="prochaine-app">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag5">🚀 Prochaine app</div>
+    <div class="guide-title">Construire son propre outil</div>
+    <div class="guide-subtitle">5 questions à se poser avant d'ouvrir Claude Code. Une checklist pour démarrer du bon pied.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 10 min de réflexion</span>
+      <span class="gmeta">🎯 Avant de commencer un nouveau projet</span>
+    </div>
+  </div>
+
+  <div class="section-h">5 questions avant de lancer Claude Code</div>
+  <div class="checklist">
+    <div class="check-item" onclick="chk(this)">
+      <div class="check-box"></div>
+      <div class="check-label"><strong>Quel problème concret résout cette app ?</strong> — Pas "une app pour les élèves" mais "les élèves perdent 10 minutes à chercher les consignes sur 3 supports différents".</div>
+    </div>
+    <div class="check-item" onclick="chk(this)">
+      <div class="check-box"></div>
+      <div class="check-label"><strong>Qui l'utilise exactement ?</strong> — Moi seul, mes collègues, mes élèves ? Depuis quel appareil ? Cette réponse détermine le niveau RGPD.</div>
+    </div>
+    <div class="check-item" onclick="chk(this)">
+      <div class="check-box"></div>
+      <div class="check-label"><strong>Des données sont-elles stockées ?</strong> — Si oui : codes anonymes, Supabase EU, RLS activé, parents informés.</div>
+    </div>
+    <div class="check-item" onclick="chk(this)">
+      <div class="check-box"></div>
+      <div class="check-label"><strong>Quel est le cas d'usage principal qui doit absolument fonctionner ?</strong> — Définir la fonction essentielle. Le reste peut venir plus tard.</div>
+    </div>
+    <div class="check-item" onclick="chk(this)">
+      <div class="check-box"></div>
+      <div class="check-label"><strong>Est-ce une app simple (🟢) ou complexe (🔴) ?</strong> — Commencer par la version la plus simple possible, ajouter la complexité si le besoin est confirmé.</div>
+    </div>
+  </div>
+
+  <div style="margin: 2rem 0">
+    <div class="section-h">La première commande à taper</div>
+    <div class="prompt-block">
+      <div class="prompt-label">✍️ Point de départ universel</div>
+      <pre>/brainstorming
+Je veux créer une app pour [décrire le problème concret].
+Utilisateurs : [qui, quel appareil].
+Fonctionnalité essentielle : [une phrase].
+Données stockées : [oui/non — si oui, lesquelles].</pre>
+    </div>
+  </div>
+
+  <div class="teal-box">
+    <div class="teal-label">📬 Partager ton app</div>
+    <p>Tu as construit un outil utile pour tes collègues des écoles coopérantes du PLAI ? Contacte l'équipe PLAI pour l'intégrer au portail : <a href="mailto:jf.beguin@outlook.com" style="color:var(--teal)">jf.beguin@outlook.com</a></p>
+  </div>
+
+</div>
+</section>
 
 <div class="footer">
   <div class="container">

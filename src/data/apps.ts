@@ -1642,6 +1642,17 @@ const apps: AppItem[] = [
     section: 'claude-code',
   },
   {
+    id: 'claude-code-guide',
+    name: 'Claude Code — Construire ses outils pédagogiques',
+    description: 'De l\'idée à l\'URL en production sans être développeur. Galerie de 12 apps pédagogiques avec profils RGPD, trilogie claude-workspace/GitHub/Vercel, tutoriel fil rouge QCM generator et extension Supabase.',
+    url: '/guide-claude-code-plai.html',
+    emoji: '🛠️',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'teal',
+    section: 'claude-code',
+  },
+  {
     id: 'ytdl-plai',
     name: 'YT-DL PLAI',
     emoji: '📥',
