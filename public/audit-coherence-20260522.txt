@@ -1,0 +1,118 @@
+Audit cohérence guides PLAI — 2026-05-22
+=========================================
+
+
+TABLEAU RÉCAPITULATIF
+─────────────────────────────────────────────────────────────────────────────────────────────────────
+Fichier                              | Sujet (10 mots max)                           | C1     | C2                   | C3     | C4                                     | C5     | C6
+─────────────────────────────────────────────────────────────────────────────────────────────────────
+claude101-fwb.html                   | Guide Claude 5 niveaux pour enseignants FWB   | ❌     | ❌ logo absent       | ❌     | ❌ style différent                     | ✅     | ❌
+guide-bien-ecrire-claude-plai.html   | Maîtriser l'art d'écrire des prompts à Claude | ❌     | ❌ logo absent       | ✅     | ✅                                     | ✅     | ✅
+guide-claude-design-enseignants-fwb  | Créer des guides visuels cohérents avec Claude| ❌     | ❌ logo absent       | ✅     | ⚠️ partiel                             | ✅     | ✅
+guide-cowork-automatismes-plai.html  | Automatiser des tâches répétitives avec Cowork| ✅     | ✅                   | ✅     | ✅                                     | ✅     | ✅
+guide-import-skill-partage.html      | Importer un skill PLAI partagé dans Claude    | ❌     | ❌ logo absent       | ❌     | ✅                                     | ✅     | ✅
+guide-parametrer-claude-plai.html    | Configurer Claude avec projets et instructions| ❌     | ❌ logo absent       | ✅     | ✅                                     | ✅     | ✅
+guide-skills-claude-plai.html        | Créer et activer des skills dans Claude       | ❌     | ❌ logo absent       | ❌     | ✅                                     | ✅     | ✅
+─────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Légende colonnes :
+  C1 — Logo PLAI (plai-logo.jpg présent)
+  C2 — Chemin du logo (/portail-plai/public/plai-logo.jpg)
+  C3 — Footer "Pôle Territorial de la Ville de Liège"
+  C4 — Style cohérent (DM Serif Display + DM Sans + --bg / --surface / --text / --border)
+  C5 — "PLAI" ou "Pôle Territorial" dans <title>
+  C6 — Nav avec class="nav-logo"
+
+
+═══════════════════════════════════════════════════════
+POINTS À CORRIGER — GROUPÉS PAR CRITÈRE
+═══════════════════════════════════════════════════════
+
+CRITÈRE 1 — Logo PLAI (balise <img src="plai-logo.jpg"> absente)
+─────────────────────────────────────────────────────────────────
+6 fichiers utilisent une URL GitHub raw
+(https://raw.githubusercontent.com/jfb4plai/Picto-lecture/main/public/nouveau_logo_plai_(1).jpg)
+au lieu du fichier local plai-logo.jpg.
+  → claude101-fwb.html
+  → guide-bien-ecrire-claude-plai.html
+  → guide-claude-design-enseignants-fwb.html
+  → guide-import-skill-partage.html  (footer : image encodée en base64, pas de référence plai-logo.jpg)
+  → guide-parametrer-claude-plai.html
+  → guide-skills-claude-plai.html
+
+Action : remplacer chaque src par "/portail-plai/public/plai-logo.jpg" et s'assurer que le fichier
+plai-logo.jpg est bien présent dans le dossier public.
+
+
+CRITÈRE 2 — Chemin du logo
+──────────────────────────
+Dépend directement de C1. Pour les 6 fichiers ci-dessus, corriger le src en même temps que C1.
+Seul guide-cowork-automatismes-plai.html utilise déjà le bon chemin (/portail-plai/public/plai-logo.jpg).
+
+
+CRITÈRE 3 — Footer "Pôle Territorial de la Ville de Liège" absent ou incorrect
+───────────────────────────────────────────────────────────────────────────────
+  → claude101-fwb.html
+     Aucune balise <footer> ni classe "footer". La mention "Pôle Territorial de la Ville de Liège"
+     apparaît dans le rendu React (JSX) mais pas dans une structure footer identifiable.
+     Action : ajouter un <div class="footer"> (ou <footer>) contenant la mention exacte.
+
+  → guide-import-skill-partage.html
+     Le footer existe (class="footer") mais contient "Pôle Liégeois d'Accompagnement vers une
+     École Inclusive" — pas la mention exacte "Pôle Territorial de la Ville de Liège".
+     Action : ajouter ou remplacer par la mention exacte requise.
+
+  → guide-skills-claude-plai.html
+     Le footer existe (class="footer") mais contient "Pôle Liégeois d'Accompagnement vers une
+     École Inclusive" — pas la mention exacte "Pôle Territorial de la Ville de Liège".
+     Action : ajouter ou remplacer par la mention exacte requise.
+
+
+CRITÈRE 4 — Style cohérent (polices + variables CSS)
+─────────────────────────────────────────────────────
+  → claude101-fwb.html  [❌ style différent]
+     Fichier React/JSX : polices importées via @import à l'intérieur d'un bloc <style> JSX (non
+     dans le <head> HTML). Aucune variable CSS :root (--bg, --surface, --text, --border) définie.
+     Les couleurs et typographies sont toutes en valeurs littérales inline.
+     Action : refactoriser vers une architecture HTML statique avec <link> Google Fonts dans le
+     <head> et variables CSS :root standard, ou accepter l'écart structurel (app React).
+
+  → guide-claude-design-enseignants-fwb.html  [⚠️ partiel]
+     DM Serif Display et DM Sans bien importés. La variable --surface est présente.
+     Mais les variables de fond, texte et bordure sont renommées :
+       --fond   (au lieu de --bg)
+       --texte  (au lieu de --text)
+       --bord   (au lieu de --border)
+     Action : renommer les 3 variables pour aligner avec la convention des autres guides,
+     et mettre à jour toutes les références dans le CSS.
+
+
+CRITÈRE 5 — "PLAI" ou "Pôle Territorial" dans <title>
+──────────────────────────────────────────────────────
+Aucun point à corriger. Les 7 fichiers contiennent "PLAI" dans la balise <title>.
+
+
+CRITÈRE 6 — Nav avec class="nav-logo"
+──────────────────────────────────────
+  → claude101-fwb.html
+     La navigation est entièrement construite en JSX avec styles inline.
+     Aucune classe CSS "nav-logo" n'est appliquée ; le logo est dans un <button> avec
+     styles React inline (style={{ ... }}).
+     Action : ajouter class="nav-logo" à l'élément de navigation contenant le logo,
+     ou refactoriser la nav pour correspondre à la structure HTML standard des autres guides.
+
+
+═══════════════════════════════════════════════════════
+RÉSUMÉ
+═══════════════════════════════════════════════════════
+Fichiers audités      : 7
+Points à corriger     : 18
+
+  C1 (logo absent)    : 6 fichiers
+  C2 (chemin logo)    : 6 fichiers (corrections liées à C1)
+  C3 (footer)         : 3 fichiers
+  C4 (style)          : 2 fichiers (1 ❌ + 1 ⚠️)
+  C5 (titre)          : 0 fichier
+  C6 (nav-logo)       : 1 fichier
+
+Fichier conforme sur tous les critères : guide-cowork-automatismes-plai.html
