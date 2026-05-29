@@ -1,15 +1,15 @@
 ---
 name: coherence-guides-plai
-description: Use when auditing or creating HTML guide files in the portail-plai public/ folder. Triggers on any mention of "cohérence", "guide html", "vérifier les guides", "logo manquant", or when adding a new guide to the portail.
+description: Use when auditing or creating HTML guide files in the portail-plai public/ folder. Triggers on any mention of "cohérence", "guide html", "vérifier les guides", "logo manquant", "bandeau support", or when adding a new guide to the portail.
 ---
 
 # Cohérence des guides HTML — Portail PLAI
 
 ## Vue d'ensemble
 
-Checklist d'audit et de correction pour les fichiers HTML du dossier `public/` du portail PLAI. Cinq critères à vérifier systématiquement sur chaque guide.
+Checklist d'audit et de correction pour les fichiers HTML du dossier `public/` du portail PLAI. Six critères à vérifier systématiquement sur chaque guide.
 
-## Les 5 critères
+## Les 6 critères
 
 ### A. Police — DM Serif Display + DM Sans
 ```html
@@ -68,6 +68,17 @@ CSS footer standard (fond clair, pas sombre) :
 
 ---
 
+### F. Bandeau support référent numérique — immédiatement après `</nav>`
+
+```html
+<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jf.beguin@outlook.com" style="color:#0f6e56;font-weight:500;">jf.beguin@outlook.com</a></div>
+```
+
+**Position :** première ligne après `</nav>`, avant toute section.
+**Couleurs en dur** (hex) — pas de variables CSS, pour fonctionner sur tous les guides quelle que soit leur palette.
+
+---
+
 ### E. Mention public-cible dans le hero eyebrow
 ```html
 <div class="hero-eyebrow">🎓 Guide enseignants · Écoles coopérantes du PLAI</div>
@@ -104,6 +115,9 @@ grep -n "footer" public/*.html | grep "plai-logo"
 
 # E. Public-cible
 grep -n "Écoles coopérantes du PLAI" public/*.html
+
+# F. Bandeau support
+grep -n "référent numérique du PLAI" public/*.html
 ```
 
 ### 3. Corriger le chemin logo en masse si nécessaire
@@ -124,6 +138,7 @@ sed -i 's|/portail-plai/public/plai-logo.jpg|/plai-logo.jpg|g' public/*.html
 | Public-cible | `Écoles coopérantes du PLAI` | `Pôle Territorial…` ou `FWB` |
 | Footer bg | `var(--bg)` clair | `var(--text)` sombre |
 | Font | DM Serif Display + DM Sans | Georgia seul |
+| Bandeau support | Présent après `</nav>`, couleurs hex `#e1f5ee`/`#0f6e56` | absent |
 
 ---
 
@@ -136,9 +151,22 @@ sed -i 's|/portail-plai/public/plai-logo.jpg|/plai-logo.jpg|g' public/*.html
 
 **Guides à footer sombre** : remplacer le CSS `footer { background: var(--text) }` par le style standard `.footer` (fond clair) avant d'ajouter le logo.
 
+**Ajout du bandeau support en masse** (Python, insère après le premier `</nav>`) :
+```python
+import os
+banner = '<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d\'accompagnement — à distance ou en présentiel — n\'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jf.beguin@outlook.com" style="color:#0f6e56;font-weight:500;">jf.beguin@outlook.com</a></div>'
+for fname in [f for f in os.listdir('public') if f.endswith('.html')]:
+    path = f'public/{fname}'
+    content = open(path, encoding='utf-8').read()
+    if 'référent numérique' in content: continue
+    idx = content.find('</nav>')
+    if idx == -1: continue
+    open(path, 'w', encoding='utf-8').write(content[:idx+6] + '\n' + banner + '\n' + content[idx+6:])
+```
+
 ---
 
 ## Commit type
 ```
-Corrige cohérence guides HTML (logo + public-cible)
+Corrige cohérence guides HTML (logo + public-cible + bandeau support)
 ```
