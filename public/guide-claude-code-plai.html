@@ -412,6 +412,100 @@
 </div>
 </section>
 
+<!-- TRILOGIE -->
+<section id="trilogie">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">🏗️ La trilogie</div>
+    <div class="guide-title">Les trois briques — et pourquoi elles existent</div>
+    <div class="guide-subtitle">Chaque brique résout un problème concret. On ne les utilise pas par convention — on les utilise parce qu'elles sont nécessaires.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 8 minutes</span>
+      <span class="gmeta">🎯 Comprendre avant d'installer</span>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Claude Code est l'artisan. Le dossier <strong>claude-workspace</strong> est son atelier. <strong>GitHub</strong> est son carnet de chantier. <strong>Vercel</strong> est la vitrine ouverte au public. »</p>
+  </div>
+
+  <div class="trio-card">
+    <div class="trio-head">
+      <div class="trio-emoji">🗂️</div>
+      <div><div class="trio-title">claude-workspace</div><div class="trio-subtitle">L'atelier local — sur ton ordinateur</div></div>
+    </div>
+    <div class="trio-body">
+      <div class="trio-row"><div class="trio-label">C'est quoi ?</div><div class="trio-val">Un dossier sur ton ordinateur où vivent tous tes projets. Chaque app a son sous-dossier. Claude Code sait toujours où il est.</div></div>
+      <div class="trio-row"><div class="trio-label">Pourquoi ?</div><div class="trio-val">Organisation, chemins stables entre sessions, Claude Code retrouve le contexte d'un projet même après une fermeture.</div></div>
+      <div class="trio-row"><div class="trio-label">RGPD</div><div class="trio-val">Les données restent sur ta machine à ce stade. Rien ne sort, rien n'est transmis.</div></div>
+    </div>
+  </div>
+
+  <div class="trio-card">
+    <div class="trio-head">
+      <div class="trio-emoji">📒</div>
+      <div><div class="trio-title">GitHub</div><div class="trio-subtitle">Le carnet de chantier — historique de chaque modification</div></div>
+    </div>
+    <div class="trio-body">
+      <div class="trio-row"><div class="trio-label">C'est quoi ?</div><div class="trio-val">Un service qui enregistre chaque modification apportée à ton app. Chaque "commit" est une photo de l'état du projet à un instant donné.</div></div>
+      <div class="trio-row"><div class="trio-label">Pourquoi ?</div><div class="trio-val">Si Claude Code casse quelque chose, tu reviens à la version d'avant en une commande. Sauvegarde automatique hors de ta machine.</div></div>
+      <div class="trio-row"><div class="trio-label">RGPD</div><div class="trio-val">Le code peut être public ou privé. <strong>Règle absolue : jamais de clé API ni de données élèves dans le code déposé sur GitHub.</strong></div></div>
+      <div class="trio-row"><div class="trio-label">Compte</div><div class="trio-val">Gratuit sur github.com. Création en 5 minutes.</div></div>
+    </div>
+  </div>
+
+  <div class="trio-card">
+    <div class="trio-head">
+      <div class="trio-emoji">🌐</div>
+      <div><div class="trio-title">Vercel</div><div class="trio-subtitle">La vitrine — ton app accessible en ligne</div></div>
+    </div>
+    <div class="trio-body">
+      <div class="trio-row"><div class="trio-label">C'est quoi ?</div><div class="trio-val">Un service qui transforme ton code GitHub en URL accessible à n'importe qui, depuis n'importe quel appareil.</div></div>
+      <div class="trio-row"><div class="trio-label">Pourquoi ?</div><div class="trio-val">Mises à jour automatiques à chaque commit, URL stable, HTTPS sécurisé, fonctionne sur mobile sans installation.</div></div>
+      <div class="trio-row"><div class="trio-label">RGPD</div><div class="trio-val">Apps sans données = sans risque. Vercel est hébergé aux États-Unis. <strong>Si l'app collecte des données : en informer la direction et préférer Supabase EU pour le stockage.</strong></div></div>
+      <div class="trio-row"><div class="trio-label">Compte</div><div class="trio-val">Gratuit, connexion via GitHub. Les apps PLAI tiennent dans le plan gratuit.</div></div>
+    </div>
+  </div>
+
+  <div style="margin: 2rem 0 1rem">
+    <div class="section-h">Options avancées — quand ton app grandit</div>
+    <div class="options-table">
+      <div class="opt-head">
+        <div class="opt-h">Option</div>
+        <div class="opt-h">Quand l'ajouter · Ce qu'elle résout</div>
+        <div class="opt-h">RGPD</div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-cell"><div class="opt-name">Supabase</div></div>
+        <div class="opt-cell">Dès qu'on veut un compte utilisateur ou sauvegarder des données entre sessions. Base de données PostgreSQL + authentification intégrée.</div>
+        <div class="opt-cell"><strong>Choisir la région Europe obligatoirement</strong> si l'app traite des données d'élèves identifiables.</div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-cell"><div class="opt-name">Upstash</div></div>
+        <div class="opt-cell">Si l'app fait des appels IA fréquents. Limite le nombre de requêtes par utilisateur (rate limiting) pour éviter les abus.</div>
+        <div class="opt-cell">Données éphémères, pas de stockage nominatif. Sans risque RGPD particulier.</div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-cell"><div class="opt-name">Variables d'env. Vercel</div></div>
+        <div class="opt-cell">Dès qu'une clé API entre dans le projet (Claude, Google, etc.). Les clés sont stockées côté serveur, invisibles dans le code public.</div>
+        <div class="opt-cell"><strong>Jamais de clé API dans le code déposé sur GitHub.</strong> Toujours via les variables d'environnement Vercel.</div>
+      </div>
+      <div class="opt-row">
+        <div class="opt-cell"><div class="opt-name">Superpowers</div></div>
+        <div class="opt-cell">Dès que les apps deviennent complexes ou livrées à d'autres. Impose la méthode brainstorming → plan → TDD → revue. Évite les apps qui marchent en démo mais cassent en classe.</div>
+        <div class="opt-cell">Pas de données. <a href="/superpowers-guide.html">Guide d'installation →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="danger">
+    <div class="danger-label">🔐 Règle des 3 jamais</div>
+    <p>1. Jamais de nom d'élève dans le code ou sur GitHub · 2. Jamais de clé API visible dans le code · 3. Jamais de base de données hors Europe si elle contient des données identifiables</p>
+  </div>
+
+</div>
+</section>
+
 <!-- SECTIONS -->
 
 <div class="footer">
