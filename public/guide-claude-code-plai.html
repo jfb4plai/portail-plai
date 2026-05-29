@@ -269,6 +269,149 @@
 </div>
 </section>
 
+<!-- APPS POSSIBLES -->
+<section id="apps-possibles">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🎓 Apps possibles</div>
+    <div class="guide-title">Ce que Claude Code peut construire pour ta classe</div>
+    <div class="guide-subtitle">12 exemples pédagogiques classés par complexité technique et profil RGPD.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 5 minutes</span>
+      <span class="gmeta">🎯 Trouver son idée</span>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ RGPD — trois règles absolues</div>
+    <p>1. Jamais de nom d'élève dans le code ou dans GitHub · 2. Jamais de clé API visible dans le code · 3. Jamais de base de données hors Europe si elle contient des données identifiables</p>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="eyebrow">🟢 Niveau 1 — Sans données · zéro RGPD · déployable en 30 min</div>
+    <div class="app-grid">
+      <div class="app-row highlight">
+        <div class="app-badge">📝</div>
+        <div class="app-body">
+          <div class="app-name">Générateur de QCM <span style="font-size:11px;background:var(--teal-bg);color:var(--teal);padding:1px 7px;border-radius:8px;font-weight:500;margin-left:6px;">App fil rouge de ce guide</span></div>
+          <div class="app-desc">L'enseignant colle un texte → l'app génère 5 questions à choix multiple avec bonnes réponses. Différenciation immédiate, zéro préparation.</div>
+          <div class="app-meta">
+            <span class="rgpd-pill rgpd-vert">🟢 Zéro RGPD</span>
+            <span class="stack-pill">HTML · JS · Vercel</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">⏱️</div>
+        <div class="app-body">
+          <div class="app-name">Minuteur de classe paramétrable</div>
+          <div class="app-desc">Phases travail / pause / restitution visibles par tous sur le tableau. L'enseignant définit les durées. Alerte sonore en fin de phase.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-vert">🟢 Zéro RGPD</span><span class="stack-pill">HTML · JS · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">📐</div>
+        <div class="app-body">
+          <div class="app-name">Convertisseur d'unités pédagogique</div>
+          <div class="app-desc">Explique le raisonnement de la conversion, pas seulement le résultat. Conçu pour les élèves dyscalculiques : décomposition visible de chaque étape.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-vert">🟢 Zéro RGPD</span><span class="stack-pill">HTML · JS · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">✂️</div>
+        <div class="app-body">
+          <div class="app-name">Générateur de consignes simplifiées</div>
+          <div class="app-desc">Colle une consigne complexe → reçoit 3 versions : standard, simplifié, FALC. Utile pour la différenciation et les élèves DYS.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-vert">🟢 Zéro RGPD</span><span class="stack-pill">HTML · IA Claude · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">🎲</div>
+        <div class="app-body">
+          <div class="app-name">Dé de classe virtuel</div>
+          <div class="app-desc">Pioche aléatoire d'élève, de groupe ou de rôle. L'enseignant encode la liste une fois, le dé gère l'aléatoire. Paramétrable sans code.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-vert">🟢 Zéro RGPD</span><span class="stack-pill">HTML · JS · Vercel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="eyebrow">🟡 Niveau 2 — Données locales (localStorage) · RGPD minimal · rien ne quitte l'appareil</div>
+    <div class="app-grid">
+      <div class="app-row">
+        <div class="app-badge">📚</div>
+        <div class="app-body">
+          <div class="app-name">Journal de bord de lecture</div>
+          <div class="app-desc">L'élève note ses livres lus et impressions. Les données restent dans son navigateur — aucun serveur, aucune transmission. Persiste entre les sessions sur le même appareil.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-jaune">🟡 Données locales</span><span class="stack-pill">HTML · JS · localStorage · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">✅</div>
+        <div class="app-body">
+          <div class="app-name">Suivi de compétences auto-évalué</div>
+          <div class="app-desc">L'élève coche ses compétences maîtrisées. L'enseignant ne voit rien — intentionnel. Favorise la métacognition sans pression d'évaluation externe.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-jaune">🟡 Données locales</span><span class="stack-pill">HTML · JS · localStorage · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">🃏</div>
+        <div class="app-body">
+          <div class="app-name">Flashcards personnalisables</div>
+          <div class="app-desc">L'enseignant crée le deck (vocabulaire, dates, formules), les élèves s'entraînent. Scores stockés localement, progression visible sur le même appareil.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-jaune">🟡 Données locales</span><span class="stack-pill">HTML · JS · localStorage · Vercel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="eyebrow">🔴 Niveau 3 — Données utilisateur (Supabase) · RGPD complet obligatoire</div>
+    <div class="app-grid">
+      <div class="app-row highlight">
+        <div class="app-badge">📊</div>
+        <div class="app-body">
+          <div class="app-name">RetroActif <span style="font-size:11px;background:var(--teal-bg);color:var(--teal);padding:1px 7px;border-radius:8px;font-weight:500;margin-left:6px;">App réelle — construite par un enseignant PLAI</span></div>
+          <div class="app-desc">Rétroaction différenciée par compétence, historique par élève (code anonyme). Déjà en production pour les écoles coopérantes du PLAI.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-rouge">🔴 Supabase EU</span><span class="stack-pill">React · Vite · Supabase · Vercel</span><a href="https://retroactif.jfb4plai.com" target="_blank" style="font-size:10px;color:var(--teal);text-decoration:none;border:1px solid var(--teal-mid);padding:2px 8px;border-radius:8px;">Voir l'app →</a></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">📋</div>
+        <div class="app-body">
+          <div class="app-name">Carnet de suivi de classe</div>
+          <div class="app-desc">L'enseignant consigne des observations par élève (code anonyme). Accès sécurisé depuis n'importe quel appareil. Données chiffrées, région EU.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-rouge">🔴 Supabase EU</span><span class="stack-pill">React · Supabase · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">📄</div>
+        <div class="app-body">
+          <div class="app-name">Générateur de fiches différenciées</div>
+          <div class="app-desc">Paramètres sauvegardés par enseignant (niveau, matière, style). Profils d'élèves réutilisables d'une session à l'autre.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-rouge">🔴 Supabase EU</span><span class="stack-pill">React · IA Claude · Supabase · Vercel</span></div>
+        </div>
+      </div>
+      <div class="app-row">
+        <div class="app-badge">🎯</div>
+        <div class="app-body">
+          <div class="app-name">Quiz avec résultats par classe</div>
+          <div class="app-desc">Les élèves se connectent (code anonyme), répondent, l'enseignant voit les résultats agrégés en temps réel. Aucun nom stocké.</div>
+          <div class="app-meta"><span class="rgpd-pill rgpd-rouge">🔴 Supabase EU</span><span class="stack-pill">React · Supabase · Vercel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ok">
+    <div class="ok-label">✅ Par où commencer ?</div>
+    <p>Si tu n'as jamais construit d'app, commence par un niveau 🟢. Le tutoriel de ce guide utilise le générateur de QCM — 90 minutes, zéro donnée, un résultat concret.</p>
+  </div>
+
+</div>
+</section>
+
 <!-- SECTIONS -->
 
 <div class="footer">
