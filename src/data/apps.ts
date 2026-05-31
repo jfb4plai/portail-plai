@@ -1836,6 +1836,103 @@ const apps: AppItem[] = [
       },
     },
   },
+  // CorpusActif
+  {
+    id: 'corpusactif',
+    name: 'CorpusActif',
+    description: "Créez des espaces IA bridés par vos ressources documentaires. Uploadez vos documents (PDF, Word, texte), l'IA ne répond qu'à partir de ce corpus. Mode socratique : Claude guide l'apprenant par des questions plutôt que de donner la réponse. Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    url: 'https://corpus-actif.vercel.app',
+    emoji: '📚',
+    category: 'IA pédagogique',
+    status: 'en-développement',
+    color: 'teal',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary: "CorpusActif repose sur deux principes complémentaires validés par la recherche. D'une part, la génération augmentée par récupération (RAG) permet à un agent conversationnel de répondre uniquement à partir de ressources validées — ce qui réduit les hallucinations et garantit la cohérence pédagogique entre les documents de l'enseignant et les réponses de l'IA. D'autre part, le mode socratique s'ancre dans la tradition de la maïeutique et du guidage par questionnement : plutôt que de fournir la réponse, l'IA accompagne l'apprenant vers elle par une progression en trois niveaux (relances → indices → réponse valorisante). Cette approche dialogue avec la zone proximale de développement de Vygotski et le concept d'étayage (Bruner) : l'outil fait exactement ce qu'un pair ou un tuteur ferait — poser la bonne question au bon moment. Toutes les références sont vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
+        references: [
+          {
+            id: 'W4410332612',
+            citation: "Miladi, F., Psyché, V., Diattara, A., El Mawas, N. & Lemire, D. (2025). Conception et évaluation d'un agent conversationnel enrichi par la génération augmentée par récupération : effet sur l'acquisition des connaissances des personnes apprenantes, l'utilisabilité perçue et l'expérience d'interaction. Revue internationale des technologies en pédagogie universitaire, 22(1). DOI: 10.18162/ritpu-2025-v22n1-08",
+            content: "Un agent conversationnel basé sur GPT-4 et le RAG améliore significativement l'acquisition des connaissances des apprenants par rapport à un LLM non augmenté. La RAG ancre les réponses dans des sources validées et réduit les hallucinations — fondement direct de l'architecture de CorpusActif.",
+          },
+          {
+            id: 'hal-05536445',
+            citation: "Grangeret, N. (2026). Hallucinations émotionnelles dans l'interaction humain-IA : vers un cadre théorique pour analyser la projection anthropomorphique sur les modèles de langage conversationnels. Sciences humaines et sociales ; Sciences cognitives.",
+            content: "Les LLM produisent des affirmations factuellement incorrectes avec une assurance stylistique qui ne reflète pas leur fiabilité réelle. Le bridage par corpus documentaire (RAG) est une réponse directe à ce risque — l'IA ne peut répondre qu'avec ce que l'enseignant a validé.",
+          },
+          {
+            id: 'dumas-05106961',
+            citation: "Mahi Haddad, S. & Beaud, M. (2025). L'intelligence artificielle au service de la différenciation pédagogique dans l'enseignement des mathématiques : expérimentation de ChatGPT dans une classe de CE1 en contexte REP.",
+            content: "L'intégration de l'IA dans la différenciation pédagogique requiert un cadrage fort : formation des enseignants, ressources adaptées et dispositif contrôlé. CorpusActif répond à cette exigence en laissant l'enseignant définir le corpus et les paramètres de réponse.",
+          },
+          {
+            id: 'W4311494431',
+            citation: "Connac, S. & Robbes, B. (2022). Est-il nécessaire de douter pour apprendre ? Schweizerische Zeitschrift für Bildungswissenschaften, 44(3). DOI: 10.24452/sjer.44.3.4",
+            content: "Le questionnement personnel — distinct de la maïeutique socratique pure — est au cœur de la construction des savoirs. Le mode socratique de CorpusActif s'inscrit dans cette logique : l'IA ne réveille pas un savoir dormant, elle pousse l'apprenant à formuler ce qu'il comprend déjà partiellement.",
+          },
+          {
+            id: 'hal-00922977',
+            citation: "Quintin, J.-J. (2013). L'autonomie en question(s). Sciences humaines et sociales.",
+            content: "L'autonomie de l'apprenant est indissociable de la zone proximale de développement (Vygotski) : l'outil doit conduire les actions vers les résultats visés, pas les substituer. Le mode socratique de CorpusActif vise exactement ce guidage progressif — l'IA s'efface quand l'apprenant avance.",
+          },
+          {
+            id: 'dumas-02150322',
+            citation: "Bezin, L. (2018). Le rôle des outils numériques dans la phase d'apprentissage chez les élèves ayant des troubles cognitifs.",
+            content: "La théorie de la charge cognitive (Tricot, Sweller) montre que les outils numériques adaptés réduisent la surcharge chez les élèves avec troubles. CorpusActif limite la charge en circonscrivant le corpus : l'élève ne cherche pas dans l'immensité d'Internet, mais dans ce que son enseignant a préparé.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer un espace et uploader vos documents',
+            items: [
+              "Connectez-vous sur corpus-actif.vercel.app (compte enseignant requis — contactez le référent PLAI pour l'accès).",
+              "Cliquez « Créer un espace » — nommez-le avec le sujet pédagogique : ex. 'La photosynthèse', 'Les fractions CE2'. Ce nom est affiché à vos apprenants.",
+              "Dans l'onglet Documents, uploadez vos fichiers (.pdf, .docx, .txt — max 10 MB). L'indexation est automatique : les documents sont découpés et vectorisés.",
+              "Patientez quelques secondes. Un message confirme le nombre de fragments créés.",
+            ],
+          },
+          {
+            title: 'Configurer le comportement de l\'IA',
+            items: [
+              "Hors-base : choisissez comment l'IA répond aux questions hors corpus — Strict (refus), Partiel (réponse limitée avec avertissement), Ouvert (réponse libre signalée).",
+              "Seuil de similarité : choisissez un preset selon la matière — Vocabulaire (0.80, correspondance quasi-exacte), Compréhension (0.55, reformulations acceptées), Exploration (0.35, associations larges).",
+              "Mode pédagogique : Direct (réponse immédiate) ou Socratique (guidage par questions — 5 relances → indice → indice → réponse valorisante).",
+            ],
+          },
+          {
+            title: 'Générer les QR codes',
+            items: [
+              "Onglet Codes & QR → générez des codes anonymes pour vos apprenants (ex. E01, E02 ou M01 pour maths). La correspondance code ↔ élève reste dans votre registre de classe.",
+              "Cliquez sur un code → Générer QR. Un QR code s'affiche avec l'URL directe.",
+              "Imprimez un QR individuel par élève, ou utilisez le QR Code commun à afficher au tableau (les élèves saisissent leur code à l'arrivée).",
+              "Durée de validité configurable (30 jours par défaut). Révocation possible depuis la liste des QR codes actifs.",
+            ],
+          },
+          {
+            title: 'L\'apprenant utilise le chat',
+            items: [
+              "L'apprenant scanne le QR code → arrive directement dans le chat (ou saisit son code anonyme si QR commun).",
+              "Le message d'accueil lui rappelle le sujet de l'espace.",
+              "En mode Direct : il pose ses questions, l'IA répond uniquement à partir des documents uploadés, avec indication des sources.",
+              "En mode Socratique : l'IA pose des questions de relance. Après 5 échanges sans progression → indice. Après 2 nouveaux blocages → réponse complète qui valorise ce que l'apprenant a déjà compris.",
+            ],
+          },
+          {
+            title: 'Consulter le tableau de bord',
+            items: [
+              "Onglet Tableau de bord → vue agrégée : nombre de questions posées, taux de questions hors-base.",
+              "Vue par code anonyme : questions posées par chaque apprenant, thèmes abordés, signaux d'alerte (questions hors-base répétées).",
+              "Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas — signal pour enrichir vos ressources.",
+            ],
+          },
+        ],
+        tip: "Commencez par un espace test avec un document simple (une page de cours). Testez vous-même le chat avant de le proposer aux élèves. Le mode Socratique est plus efficace avec des documents qui expliquent des concepts — pas seulement des listes de faits.",
+      },
+    },
+  },
 ];
 
 export default apps;
