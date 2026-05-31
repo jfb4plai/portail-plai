@@ -46,6 +46,23 @@ export default function Hero() {
           Chaque outil est ancré dans la recherche scientifique francophone (corpus RISS, 522&nbsp;627 articles).
         </p>
 
+        {/* Invitation enseignants */}
+        <div className="mt-4 rounded-xl border-2 border-teal-200 bg-white px-6 py-4 max-w-2xl">
+          <p className="text-base font-semibold text-gray-800 mb-1">
+            Vous avez une idée, une demande ou une amélioration à suggérer ?
+          </p>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Correction d'un outil existant, nouvelle fonctionnalité, application à créer pour votre classe — chaque demande est bienvenue.{' '}
+            Le PLAI s'engage à répondre personnellement à chaque enseignant qui écrit à{' '}
+            <a
+              href="mailto:jeanfrancois.beguin@ens.ecl.be"
+              style={{ color: '#0a9370', fontWeight: 600 }}
+            >
+              jeanfrancois.beguin@ens.ecl.be
+            </a>
+          </p>
+        </div>
+
         {open && (
           <div className="mt-3 space-y-3 max-w-2xl">
             {refs.map(r => (
