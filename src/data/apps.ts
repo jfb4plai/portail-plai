@@ -1840,7 +1840,7 @@ const apps: AppItem[] = [
   {
     id: 'corpusactif',
     name: 'CorpusActif',
-    description: "Créez des espaces IA bridés par vos ressources documentaires. Uploadez vos documents (PDF, Word, texte), l'IA ne répond qu'à partir de ce corpus. Mode socratique : Claude guide l'apprenant par des questions plutôt que de donner la réponse. Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    description: "Créez des espaces IA bridés par vos ressources documentaires. Uploadez vos documents (PDF, Word, texte), l'IA ne répond qu'à partir de ce corpus. Mode socratique avec mémoire inter-sessions : Claude guide l'apprenant par des questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Signal de compréhension, connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
     emoji: '📚',
     category: 'IA pédagogique',
@@ -1849,7 +1849,7 @@ const apps: AppItem[] = [
     devBanner: true,
     guide: {
       scientific: {
-        summary: "CorpusActif repose sur deux principes complémentaires validés par la recherche. D'une part, la génération augmentée par récupération (RAG) permet à un agent conversationnel de répondre uniquement à partir de ressources validées — ce qui réduit les hallucinations et garantit la cohérence pédagogique entre les documents de l'enseignant et les réponses de l'IA. D'autre part, le mode socratique s'ancre dans la tradition de la maïeutique et du guidage par questionnement : plutôt que de fournir la réponse, l'IA accompagne l'apprenant vers elle par une progression en trois niveaux (relances → indices → réponse valorisante). Cette approche dialogue avec la zone proximale de développement de Vygotski et le concept d'étayage (Bruner) : l'outil fait exactement ce qu'un pair ou un tuteur ferait — poser la bonne question au bon moment. Toutes les références sont vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
+        summary: "CorpusActif repose sur quatre principes validés par la recherche. La génération augmentée par récupération (RAG) ancre chaque réponse dans les documents de l'enseignant, éliminant les hallucinations et garantissant la cohérence pédagogique. Le mode socratique s'inscrit dans la tradition du guidage par questionnement : l'IA ne donne pas la réponse — elle accompagne l'apprenant vers elle par une progression en trois niveaux (relances configurables → indice → réponse valorisante), avec mémoire des sessions précédentes pour éviter les redites et construire sur les acquis. Le signal de compréhension (« Utile / Pas clair ») s'appuie sur les principes de la rétroaction formative : l'enseignant dispose d'une mesure directe de l'utilité perçue par chaque apprenant, sans attendre une évaluation formelle. Enfin, la connexion avec RetroActif (remédiation ciblée) et FlashFWB (révision espacée Leitner) ferme la boucle pédagogique : diagnostic → rétroaction → consolidation. Toutes les références sont vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
         references: [
           {
             id: 'W4410332612',
@@ -1881,6 +1881,21 @@ const apps: AppItem[] = [
             citation: "Bezin, L. (2018). Le rôle des outils numériques dans la phase d'apprentissage chez les élèves ayant des troubles cognitifs.",
             content: "La théorie de la charge cognitive (Tricot, Sweller) montre que les outils numériques adaptés réduisent la surcharge chez les élèves avec troubles. CorpusActif limite la charge en circonscrivant le corpus : l'élève ne cherche pas dans l'immensité d'Internet, mais dans ce que son enseignant a préparé.",
           },
+          {
+            id: 'hal-00699802',
+            citation: "Luengo, V. (2009). Les rétroactions épistémiques dans les Environnements Informatiques pour l'Apprentissage Humain. Informatique ; Sciences humaines et sociales.",
+            content: "Les EIAH produisent des rétroactions dont l'objectif premier est de faire avancer la connaissance de l'apprenant, pas seulement de corriger une réponse. Le signal « Utile / Pas clair » de CorpusActif s'inscrit dans cette logique : il donne à l'enseignant une mesure directe de l'utilité perçue de chaque réponse, fondement d'une régulation pédagogique plus fine.",
+          },
+          {
+            id: 'hal-01177846',
+            citation: "Mandin, S., Guin, N. & Lefevre, M. (2015). Modèle de personnalisation de l'apprentissage pour un EIAH fondé sur un référentiel de compétences. Informatique.",
+            content: "Le cycle diagnostic–approfondissement–remédiation est au cœur des EIAH adaptatifs : identifier les lacunes, les creuser, puis les traiter. CorpusActif ferme ce cycle en un clic via le handoff vers RetroActif : le diagnostic issu du chat socratique (acquis, blocages, synthèse) devient le point de départ de la rétroaction individualisée.",
+          },
+          {
+            id: 'tel-03216648',
+            citation: "Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage pour l'optimisation de la maîtrise à long terme de composantes de connaissance. Thèse de doctorat, Université Paris-Saclay.",
+            content: "La répétition espacée adaptative optimise la maîtrise à long terme en planifiant les révisions selon la courbe de l'oubli. La connexion CorpusActif → FlashFWB matérialise ce principe : les concepts bloquants identifiés en session socratique deviennent des cartes Leitner, révisées au bon moment selon la progression de chaque apprenant.",
+          },
         ],
       },
       howto: {
@@ -1899,7 +1914,8 @@ const apps: AppItem[] = [
             items: [
               "Hors-base : choisissez comment l'IA répond aux questions hors corpus — Strict (refus), Partiel (réponse limitée avec avertissement), Ouvert (réponse libre signalée).",
               "Seuil de similarité : choisissez un preset selon la matière — Vocabulaire (0.80, correspondance quasi-exacte), Compréhension (0.55, reformulations acceptées), Exploration (0.35, associations larges).",
-              "Mode pédagogique : Direct (réponse immédiate) ou Socratique (guidage par questions — 5 relances → indice → indice → réponse valorisante).",
+              "Mode pédagogique : Direct (réponse immédiate) ou Socratique (guidage par questions). En mode Socratique, choisissez le rythme d'accompagnement : Rapide (3 relances avant indice, pour drill et vocabulaire), Standard (5 relances, usage général), Patient (7 relances, exploration et raisonnement complexe).",
+              "Contexte pédagogique (optionnel) : renseignez niveau et matière pour enrichir le handoff vers RetroActif.",
             ],
           },
           {
@@ -1916,20 +1932,21 @@ const apps: AppItem[] = [
             items: [
               "L'apprenant scanne le QR code → arrive directement dans le chat (ou saisit son code anonyme si QR commun).",
               "Le message d'accueil lui rappelle le sujet de l'espace.",
-              "En mode Direct : il pose ses questions, l'IA répond uniquement à partir des documents uploadés, avec indication des sources.",
-              "En mode Socratique : l'IA pose des questions de relance. Après 5 échanges sans progression → indice. Après 2 nouveaux blocages → réponse complète qui valorise ce que l'apprenant a déjà compris.",
+              "En mode Direct : il pose ses questions, l'IA répond uniquement à partir des documents uploadés, avec indication des sources et du nombre de fragments consultés. Un signal « ✓ Utile / ✗ Pas clair » s'affiche après chaque réponse.",
+              "En mode Socratique : l'IA guide par questions. Après le seuil configuré (3, 5 ou 7 relances) sans progression → indice. Après 2 nouveaux blocages → réponse complète valorisant les acquis. Claude se souvient des sessions précédentes sur cet espace : il ne repose pas les mêmes questions de base.",
             ],
           },
           {
             title: 'Consulter le tableau de bord',
             items: [
-              "Onglet Tableau de bord → vue agrégée : nombre de questions posées, taux de questions hors-base.",
-              "Vue par code anonyme : questions posées par chaque apprenant, thèmes abordés, signaux d'alerte (questions hors-base répétées).",
-              "Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas — signal pour enrichir vos ressources.",
+              "Onglet Tableau de bord → vue agrégée : questions totales, taux hors-base, blocages socratiques, taux de réponses jugées utiles, apprenants actifs.",
+              "Vue par code anonyme : questions posées, blocages identifiés, taux « Utile ». Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas — signal pour enrichir vos ressources.",
+              "Bouton « → RetroActif » : en un clic, génère un diagnostic (acquis, blocages, synthèse Claude) et ouvre RetroActif Module6 pré-rempli pour construire la rétroaction individualisée.",
+              "Bouton « Créer le deck FlashFWB » (dans les paramètres de l'espace) : génère un deck de cartes mémoire Leitner à partir du curriculum, des questions bloquantes et des termes-clés du corpus. Les mises à jour ajoutent des cartes sans effacer la progression Leitner.",
             ],
           },
         ],
-        tip: "Commencez par un espace test avec un document simple (une page de cours). Testez vous-même le chat avant de le proposer aux élèves. Le mode Socratique est plus efficace avec des documents qui expliquent des concepts — pas seulement des listes de faits.",
+        tip: "Commencez par un espace test avec un document simple (une page de cours). Testez vous-même le chat avant de le proposer aux élèves. Le mode Socratique est plus efficace avec des documents qui expliquent des concepts — pas seulement des listes de faits. La boucle complète (chat socratique → RetroActif → FlashFWB) se met en place naturellement après 2-3 sessions par apprenant.",
       },
     },
   },
