@@ -1840,7 +1840,7 @@ const apps: AppItem[] = [
   {
     id: 'corpusactif',
     name: 'CorpusActif',
-    description: "Créez des espaces IA bridés par vos ressources documentaires. Uploadez vos documents (PDF, Word, texte), l'IA ne répond qu'à partir de ce corpus. Mode socratique avec mémoire inter-sessions : Claude guide l'apprenant par des questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Signal de compréhension, connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Signal de compréhension, connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
     emoji: '📚',
     category: 'IA pédagogique',
