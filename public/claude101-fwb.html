@@ -4,459 +4,1000 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Claude · PLAI — Guide pour enseignants</title>
-<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #faf9f7; }
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #faf9f7; font-family: 'DM Sans', Georgia, sans-serif; color: #1a1814; min-height: 100vh; }
+
+/* ── Google Fonts inline import ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --green-bg: #eaf3de; --green-mid: #639922; --green-text: #3b6d11;
+  --blue-bg: #e6f1fb;  --blue-mid: #378add;  --blue-text: #185fa5;
+  --amber-bg: #faeeda; --amber-mid: #ef9f27; --amber-text: #854f0b;
+  --red-bg: #fcebeb;   --red-mid: #e24b4a;   --red-text: #a32d2d;
+  --purple-bg: #eeedfe;--purple-mid: #7f77dd;--purple-text: #534ab7;
+  --border: #e8e4dd;
+  --muted: #9a958c;
+  --body-text: #5a564f;
+  --max-w: 720px;
+}
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,247,0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer; padding: 0; text-decoration: none;
+}
+.nav-logo-text {
+  font-family: Georgia, serif; font-style: italic; font-size: 16px; color: #1a1814;
+}
+.nav-links { display: flex; gap: 3px; flex-wrap: wrap; }
+.nav-btn {
+  font-size: 12px; font-weight: 500; padding: 5px 9px; border-radius: 6px;
+  background: transparent; color: var(--body-text); border: none; cursor: pointer;
+  transition: background 0.15s; font-family: inherit;
+}
+.nav-btn:hover { background: #f4f2ee; }
+.nav-btn.active { background: #1a1814; color: #faf9f7; }
+
+/* ── Banner ── */
+.banner {
+  background: #e1f5ee; border-bottom: 1px solid #1d9e75;
+  padding: 0.65rem 2rem; text-align: center;
+  font-size: 13px; color: #0f6e56;
+}
+.banner a { color: #0f6e56; font-weight: 500; }
+
+/* ── Layout ── */
+.page { display: none; }
+.page.visible { display: block; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── Home page ── */
+.hero { text-align: center; padding: 4rem 0 3rem; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); border: 1px solid #d4cfc6; padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: Georgia, serif; font-size: clamp(30px,5vw,48px); line-height: 1.15;
+  letter-spacing: -0.5px; margin-bottom: 0.75rem; font-weight: normal;
+}
+.hero h1 em { color: var(--body-text); }
+.hero-sub {
+  font-size: 17px; color: var(--body-text); max-width: 480px; margin: 0 auto 2.5rem;
+  font-family: Georgia, serif; font-style: italic;
+}
+.stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.stat-n { font-family: Georgia, serif; font-size: 30px; color: #1a1814; }
+.stat-l { font-size: 12px; color: var(--muted); }
+
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+.section-label {
+  font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.7px;
+  color: var(--muted); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content:''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── Level cards (home) ── */
+.level-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+.level-card {
+  display: flex; align-items: stretch; background: #fff;
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+  cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; text-align: left;
+  padding: 0; width: 100%; font-family: inherit;
+}
+.level-card:hover { border-color: #d4cfc6; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.level-stripe { width: 4px; flex-shrink: 0; }
+.level-inner { display: flex; align-items: center; gap: 14px; padding: 1rem 1.1rem; flex: 1; }
+.level-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+}
+.level-info { flex: 1; }
+.level-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.level-title { font-size: 15px; font-weight: 500; }
+.level-badge {
+  font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.level-sub { font-size: 13px; color: var(--body-text); line-height: 1.5; }
+.level-meta { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.level-arrow { font-size: 18px; color: #d4cfc6; margin-right: 4px; }
+
+/* ── Recommended path ── */
+.path-box { background: #f4f2ee; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+.path-title { font-size: 13px; font-weight: 500; margin-bottom: 0.75rem; }
+.path-steps { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.path-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.path-label { font-size: 12px; color: var(--body-text); }
+.path-arrow { color: #d4cfc6; font-size: 14px; margin-left: 2px; }
+.path-note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 8px; }
+
+/* ── Info grid (home bottom) ── */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 10px; margin-bottom: 3rem; }
+.info-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }
+.info-icon { font-size: 20px; margin-bottom: 6px; }
+.info-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.info-desc { font-size: 12px; color: var(--body-text); line-height: 1.5; }
+
+/* ── Guide pages ── */
+.guide-wrap { padding-top: 2rem; padding-bottom: 4rem; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted);
+  background: none; border: none; cursor: pointer; padding: 5px 0; margin-bottom: 1.5rem;
+  font-family: inherit;
+}
+.back-btn:hover { color: #1a1814; }
+.guide-tag {
+  display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+.guide-h1 {
+  font-family: Georgia, serif; font-weight: normal;
+  font-size: clamp(24px,4vw,32px); line-height: 1.2; margin-bottom: 0.5rem;
+}
+.guide-sub {
+  font-size: 15px; color: var(--body-text); font-family: Georgia, serif;
+  font-style: italic; margin-bottom: 0.75rem;
+}
+.guide-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.guide-meta span { font-size: 12px; color: var(--muted); }
+
+/* ── Section heading ── */
+.section-h {
+  font-size: 18px; font-weight: 500; margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: #1a1814;
+}
+.section-block { margin-bottom: 2rem; }
+
+/* ── Prose ── */
+.prose { font-size: 15px; color: var(--body-text); line-height: 1.75; }
+.prose p { margin-bottom: 0.85rem; }
+
+/* ── Boxes ── */
+.box, .warn-box, .ok-box, .danger-box, .purple-box {
+  border-radius: 0 8px 8px 0; padding: 0.85rem 1rem; margin: 1.25rem 0;
+}
+.box-label {
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 3px;
+}
+.box-content { font-size: 14px; line-height: 1.6; }
+
+.box       { background: var(--blue-bg);   border-left: 3px solid var(--blue-mid); }
+.box .box-label   { color: #0c447c; }
+.box .box-content { color: var(--blue-text); }
+
+.warn-box  { background: var(--amber-bg);  border-left: 3px solid var(--amber-mid); }
+.warn-box .box-label   { color: #633806; }
+.warn-box .box-content { color: var(--amber-text); }
+
+.ok-box    { background: var(--green-bg);  border-left: 3px solid var(--green-mid); }
+.ok-box .box-label   { color: #27500a; }
+.ok-box .box-content { color: var(--green-text); }
+
+.danger-box{ background: var(--red-bg);    border-left: 3px solid var(--red-mid); }
+.danger-box .box-label   { color: #501313; }
+.danger-box .box-content { color: var(--red-text); }
+
+.purple-box{ background: var(--purple-bg); border-left: 3px solid var(--purple-mid); }
+.purple-box .box-label   { color: #3c3489; }
+.purple-box .box-content { color: var(--purple-text); }
+
+/* ── Example box ── */
+.ex-box { background: #f4f2ee; border-radius: 10px; padding: 1rem 1.1rem; margin: 1.25rem 0; }
+.ex-label {
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--muted); margin-bottom: 0.6rem;
+}
+
+/* ── Prompt ── */
+.prompt {
+  background: #fff; border: 1px solid #d4cfc6; border-radius: 10px;
+  padding: 0.75rem 1rem; font-size: 14px; color: #1a1814; line-height: 1.65;
+  font-family: Georgia, serif; margin-bottom: 8px; white-space: pre-wrap;
+}
+.prompt-tag {
+  display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 7px;
+  border-radius: 8px; margin-bottom: 4px; font-family: sans-serif;
+}
+
+/* ── Steps ── */
+.steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+.step {
+  display: flex; gap: 12px; background: #fff;
+  border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem;
+}
+.step-num {
+  min-width: 24px; height: 24px; border-radius: 50%; background: #f4f2ee;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 500; color: var(--muted); flex-shrink: 0; margin-top: 2px;
+}
+.step-title { font-size: 14px; font-weight: 500; margin-bottom: 3px; }
+.step-desc { font-size: 13px; color: var(--body-text); line-height: 1.55; }
+
+/* ── Grid 2 ── */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; margin: 1.25rem 0; }
+.grid2-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }
+.grid2-icon { font-size: 20px; margin-bottom: 6px; }
+.grid2-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.grid2-desc { font-size: 12px; color: var(--body-text); line-height: 1.5; }
+
+/* ── Compare ── */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+.compare-bad {
+  background: var(--red-bg); border: 1px solid #f09595; border-radius: 10px; padding: 0.9rem 1rem;
+}
+.compare-bad-label { font-size: 10px; font-weight: 500; text-transform: uppercase; color: var(--red-text); margin-bottom: 5px; }
+.compare-bad-text { font-size: 13px; color: #791f1f; line-height: 1.55; font-family: Georgia, serif; }
+.compare-good {
+  background: var(--green-bg); border: 1px solid #c0dd97; border-radius: 10px; padding: 0.9rem 1rem;
+}
+.compare-good-label { font-size: 10px; font-weight: 500; text-transform: uppercase; color: var(--green-text); margin-bottom: 5px; }
+.compare-good-text { font-size: 13px; color: var(--green-text); line-height: 1.55; font-family: Georgia, serif; }
+
+/* ── Skill block ── */
+.skill-block { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 1.25rem 0; }
+.skill-header {
+  background: #f4f2ee; padding: 0.8rem 1rem;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.skill-cmd {
+  font-family: monospace; font-size: 14px; font-weight: 600;
+  color: var(--purple-text); background: var(--purple-bg); padding: 2px 8px; border-radius: 4px;
+}
+.skill-name { font-size: 14px; font-weight: 500; }
+.skill-body { padding: 1rem 1.1rem; }
+.skill-desc { font-size: 13px; color: var(--body-text); line-height: 1.6; margin-bottom: 0.75rem; }
+.skill-usage {
+  font-size: 13px; font-family: Georgia, serif; color: #1a1814;
+  background: #f4f2ee; padding: 0.6rem 0.8rem; border-radius: 6px;
+}
+
+/* ── PLAI collab box ── */
+.plai-box {
+  background: linear-gradient(135deg,var(--purple-bg) 0%,var(--blue-bg) 100%);
+  border: 1px solid var(--purple-mid); border-radius: 10px; padding: 1.5rem; margin: 1.25rem 0;
+}
+.plai-box-label {
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--purple-text); margin-bottom: 0.5rem;
+}
+.plai-box-title {
+  font-family: Georgia, serif; font-size: 20px; margin-bottom: 0.5rem; color: #1a1814;
+}
+.plai-box-desc { font-size: 14px; color: var(--body-text); line-height: 1.65; margin-bottom: 1rem; }
+.plai-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 8px; margin-bottom: 1rem; }
+.plai-item { background: rgba(255,255,255,0.7); border-radius: 6px; padding: 0.7rem 0.9rem; }
+.plai-item-title { font-size: 13px; font-weight: 500; color: var(--purple-text); margin-bottom: 2px; }
+.plai-item-desc { font-size: 12px; color: var(--body-text); line-height: 1.4; }
+.plai-quote { font-size: 12px; color: var(--purple-text); font-style: italic; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center; padding: 1rem 0 3rem;
+  font-size: 13px; color: var(--muted); font-family: Georgia, serif; font-style: italic;
+}
+.footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
+
+/* ── Guide nav buttons ── */
+.guide-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 0.5rem; flex-wrap: wrap; gap: 10px;
+}
+.btn-prev {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 6px;
+  border: 1px solid #d4cfc6; background: transparent; color: var(--body-text);
+  cursor: pointer; font-family: inherit; transition: background 0.15s;
+}
+.btn-prev:hover { background: #f4f2ee; }
+.btn-next {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 6px;
+  border: none; background: #1a1814; color: #faf9f7;
+  cursor: pointer; font-family: inherit;
+}
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script type="text/babel">
-const { useState, useRef } = React;
 
-const COLORS = {
-  green: { bg: "#eaf3de", mid: "#639922", text: "#3b6d11" },
-  blue:  { bg: "#e6f1fb", mid: "#378add", text: "#185fa5" },
-  amber: { bg: "#faeeda", mid: "#ef9f27", text: "#854f0b" },
-  red:   { bg: "#fcebeb", mid: "#e24b4a", text: "#a32d2d" },
-  purple:{ bg: "#eeedfe", mid: "#7f77dd", text: "#534ab7" },
-};
+<!-- NAV -->
+<nav>
+  <button class="nav-logo" onclick="showPage('home')">
+    <img src="/plai-logo.jpg" alt="PLAI" style="height:36px;object-fit:contain;" onerror="this.style.display='none'">
+    <span class="nav-logo-text">Claude · PLAI</span>
+  </button>
+  <div class="nav-links">
+    <button class="nav-btn active" id="nav-home" onclick="showPage('home')">Accueil</button>
+    <button class="nav-btn" id="nav-n1" onclick="showPage('n1')">N1</button>
+    <button class="nav-btn" id="nav-n2" onclick="showPage('n2')">N2</button>
+    <button class="nav-btn" id="nav-n3" onclick="showPage('n3')">N3</button>
+    <button class="nav-btn" id="nav-n4" onclick="showPage('n4')">N4</button>
+    <button class="nav-btn" id="nav-bonus" onclick="showPage('bonus')">Bonus</button>
+  </div>
+</nav>
 
-const LEVELS = [
-  { id:"n1", key:"green", icon:"🌱", label:"Niveau 1 — Débutant", title:"Les bases", sub:"De \"je n'ai jamais ouvert Claude\" à \"je l'utilise en classe\" — en 20 minutes.", time:"20 min", prereq:"Aucun prérequis" },
-  { id:"n2", key:"blue", icon:"⚙️", label:"Niveau 2 — Intermédiaire", title:"Projets & workflows", sub:"Claude se souvient de vous d'une session à l'autre.", time:"30 min", prereq:"Niveau 1 requis" },
-  { id:"n3", key:"amber", icon:"🔥", label:"Niveau 3 — Avancé", title:"Moves avancés", sub:"Claude qui vous ressemble vraiment.", time:"35 min", prereq:"Niveaux 1 et 2 requis" },
-  { id:"n4", key:"red", icon:"🚀", label:"Niveau 4 — Expert", title:"Claude Code & sur votre ordinateur", sub:"Claude qui travaille pendant que vous faites autre chose.", time:"40 min", prereq:"Tous les niveaux requis" },
-  { id:"bonus", key:"purple", icon:"✨", label:"Bonus — Spécial PLAI", title:"Skills PLAI", sub:"Vos commandes personnalisées pour chaque situation.", time:"20 min", prereq:"Niveau 2 minimum" },
-];
+<!-- BANNER -->
+<div class="banner">
+  Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be">jeanfrancois.beguin@ens.ecl.be</a>
+</div>
 
-const Tag = ({ color, children }) => (
-  <span style={{ display:"inline-flex", alignItems:"center", gap:5, fontSize:11, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.6px", padding:"3px 12px", borderRadius:20, background:COLORS[color].bg, color:COLORS[color].text, marginBottom:12 }}>{children}</span>
-);
-const SectionH = ({ children }) => (
-  <h2 style={{ fontSize:18, fontWeight:500, marginBottom:"0.9rem", paddingBottom:"0.5rem", borderBottom:"1px solid #e8e4dd", color:"#1a1814" }}>{children}</h2>
-);
-const Prose = ({ children }) => <div style={{ fontSize:15, color:"#5a564f", lineHeight:1.75 }}>{children}</div>;
-const P = ({ children }) => <p style={{ marginBottom:"0.85rem" }}>{children}</p>;
-
-const Box = ({ label, children }) => (
-  <div style={{ background:"#e6f1fb", borderLeft:"3px solid #378add", borderRadius:"0 8px 8px 0", padding:"0.85rem 1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#0c447c", marginBottom:3 }}>{label}</div>}
-    <div style={{ fontSize:14, color:"#185fa5", lineHeight:1.6 }}>{children}</div>
-  </div>
-);
-const WarnBox = ({ label, children }) => (
-  <div style={{ background:"#faeeda", borderLeft:"3px solid #ef9f27", borderRadius:"0 8px 8px 0", padding:"0.85rem 1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#633806", marginBottom:3 }}>{label}</div>}
-    <div style={{ fontSize:14, color:"#854f0b", lineHeight:1.6 }}>{children}</div>
-  </div>
-);
-const OkBox = ({ label, children }) => (
-  <div style={{ background:"#eaf3de", borderLeft:"3px solid #639922", borderRadius:"0 8px 8px 0", padding:"0.85rem 1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#27500a", marginBottom:3 }}>{label}</div>}
-    <div style={{ fontSize:14, color:"#3b6d11", lineHeight:1.6 }}>{children}</div>
-  </div>
-);
-const DangerBox = ({ label, children }) => (
-  <div style={{ background:"#fcebeb", borderLeft:"3px solid #e24b4a", borderRadius:"0 8px 8px 0", padding:"0.85rem 1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#501313", marginBottom:3 }}>{label}</div>}
-    <div style={{ fontSize:14, color:"#a32d2d", lineHeight:1.6 }}>{children}</div>
-  </div>
-);
-const PurpleBox = ({ label, children }) => (
-  <div style={{ background:"#eeedfe", borderLeft:"3px solid #7f77dd", borderRadius:"0 8px 8px 0", padding:"0.85rem 1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#3c3489", marginBottom:3 }}>{label}</div>}
-    <div style={{ fontSize:14, color:"#534ab7", lineHeight:1.6 }}>{children}</div>
-  </div>
-);
-const ExBox = ({ label, children }) => (
-  <div style={{ background:"#f4f2ee", borderRadius:10, padding:"1rem 1.1rem", margin:"1.25rem 0" }}>
-    {label && <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.5px", color:"#9a958c", marginBottom:"0.6rem" }}>{label}</div>}
-    {children}
-  </div>
-);
-const Prompt = ({ tag, tagColor="blue", children }) => (
-  <div style={{ background:"#fff", border:"1px solid #d4cfc6", borderRadius:10, padding:"0.75rem 1rem", fontSize:14, color:"#1a1814", lineHeight:1.65, fontFamily:"Georgia, serif", marginBottom:8 }}>
-    {tag && <><span style={{ display:"inline-block", fontSize:10, fontWeight:500, padding:"1px 7px", borderRadius:8, marginBottom:4, fontFamily:"sans-serif", background:COLORS[tagColor].bg, color:COLORS[tagColor].text }}>{tag}</span><br /></>}
-    {children}
-  </div>
-);
-const Steps = ({ items }) => (
-  <div style={{ display:"flex", flexDirection:"column", gap:8, margin:"1.25rem 0" }}>
-    {items.map((item, i) => (
-      <div key={i} style={{ display:"flex", gap:12, background:"#fff", border:"1px solid #e8e4dd", borderRadius:10, padding:"0.9rem 1rem" }}>
-        <div style={{ minWidth:24, height:24, borderRadius:"50%", background:"#f4f2ee", display:"flex", alignItems:"center", justifyContent:"center", fontSize:11, fontWeight:500, color:"#9a958c", flexShrink:0, marginTop:2 }}>{i+1}</div>
-        <div>
-          <div style={{ fontSize:14, fontWeight:500, marginBottom:3 }}>{item.title}</div>
-          <div style={{ fontSize:13, color:"#5a564f", lineHeight:1.55 }}>{item.desc}</div>
-        </div>
+<!-- ══════════════════════════════════════════════════ HOME ══ -->
+<div id="page-home" class="page visible">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-badge">🏫 Pôle Territorial de la Ville de Liège</div>
+      <h1>Claude<br><em>pour les enseignants des écoles coopérantes du PLAI</em></h1>
+      <p class="hero-sub">De la première conversation à l'automatisation complète — sans jargon, avec des exemples de votre quotidien.</p>
+      <div class="stats">
+        <div><div class="stat-n">5</div><div class="stat-l">guides progressifs</div></div>
+        <div><div class="stat-n">~2h30</div><div class="stat-l">au total</div></div>
+        <div><div class="stat-n">100%</div><div class="stat-l">exemples FWB</div></div>
+        <div><div class="stat-n">0</div><div class="stat-l">prérequis technique</div></div>
       </div>
-    ))}
-  </div>
-);
-const Grid2 = ({ items }) => (
-  <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))", gap:10, margin:"1.25rem 0" }}>
-    {items.map((item, i) => (
-      <div key={i} style={{ background:"#fff", border:"1px solid #e8e4dd", borderRadius:10, padding:"0.9rem 1rem" }}>
-        <div style={{ fontSize:20, marginBottom:6 }}>{item.icon}</div>
-        <div style={{ fontSize:13, fontWeight:500, marginBottom:3 }}>{item.title}</div>
-        <div style={{ fontSize:12, color:"#5a564f", lineHeight:1.5 }}>{item.desc}</div>
-      </div>
-    ))}
-  </div>
-);
-const Compare = ({ bad, good }) => (
-  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10, margin:"1.25rem 0" }}>
-    <div style={{ background:"#fcebeb", border:"1px solid #f09595", borderRadius:10, padding:"0.9rem 1rem" }}>
-      <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", color:"#a32d2d", marginBottom:5 }}>✗ Claude complaisant</div>
-      <div style={{ fontSize:13, color:"#791f1f", lineHeight:1.55, fontFamily:"Georgia, serif" }}>{bad}</div>
     </div>
-    <div style={{ background:"#eaf3de", border:"1px solid #c0dd97", borderRadius:10, padding:"0.9rem 1rem" }}>
-      <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", color:"#3b6d11", marginBottom:5 }}>✓ Claude honnête</div>
-      <div style={{ fontSize:13, color:"#3b6d11", lineHeight:1.55, fontFamily:"Georgia, serif" }}>{good}</div>
-    </div>
-  </div>
-);
-const SkillBlock = ({ cmd, name, desc, usage }) => (
-  <div style={{ border:"1px solid #e8e4dd", borderRadius:10, overflow:"hidden", margin:"1.25rem 0" }}>
-    <div style={{ background:"#f4f2ee", padding:"0.8rem 1rem", display:"flex", alignItems:"center", gap:10, borderBottom:"1px solid #e8e4dd" }}>
-      <span style={{ fontFamily:"monospace", fontSize:14, fontWeight:600, color:"#534ab7", background:"#eeedfe", padding:"2px 8px", borderRadius:4 }}>{cmd}</span>
-      <span style={{ fontSize:14, fontWeight:500 }}>{name}</span>
-    </div>
-    <div style={{ padding:"1rem 1.1rem" }}>
-      <div style={{ fontSize:13, color:"#5a564f", lineHeight:1.6, marginBottom:"0.75rem" }}>{desc}</div>
-      <div style={{ fontSize:13, fontFamily:"Georgia, serif", color:"#1a1814", background:"#f4f2ee", padding:"0.6rem 0.8rem", borderRadius:6 }}>{usage}</div>
-    </div>
-  </div>
-);
-const Divider = () => <div style={{ height:1, background:"#e8e4dd", margin:"2rem 0" }} />;
 
-const GuideN1 = () => (
-  <div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>C'est quoi, Claude ?</SectionH>
-      <Prose>
-        <P>Claude est une intelligence artificielle avec qui vous pouvez avoir une vraie conversation. Pas un moteur de recherche. Pas une calculatrice. Un interlocuteur : vous lui posez une question ou lui confiez une tâche, il vous répond en langage naturel, comme un collègue compétent qui aurait lu beaucoup de livres.</P>
-        <P>La différence avec Google : Google vous renvoie des liens. Claude produit directement un texte, un plan, une correction, une explication — adapté à ce que vous lui avez demandé.</P>
-        <P>La différence avec ChatGPT : Claude est réputé pour être plus précis, plus nuancé, et moins enclin à inventer des informations.</P>
-      </Prose>
-      <Box label="En bref">Claude ne remplace pas votre jugement d'enseignant. Il accélère les tâches répétitives — rédiger, reformuler, adapter, expliquer — pour que vous puissiez vous concentrer sur ce qui compte : la relation avec vos élèves.</Box>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Ouvrir Claude pour la première fois</SectionH>
-      <Grid2 items={[
-        { icon:"🌐", title:"Via le navigateur", desc:"Allez sur claude.ai. Créez un compte gratuit. Fonctionne sur n'importe quel ordinateur de l'école." },
-        { icon:"💻", title:"Application de bureau", desc:"À installer sur votre ordi personnel. Claude peut lire vos fichiers locaux. Idéal pour travailler sur vos cours." },
-        { icon:"📱", title:"Application mobile", desc:"Disponible sur iOS et Android. Pratique pour une idée rapide entre deux cours." },
-      ]} />
-      <WarnBox label="Attention — données personnelles">Ne collez jamais dans Claude des données identifiables d'élèves (noms, numéros de dossier, résultats nominatifs). Utilisez des initiales ou des cas anonymisés. C'est une règle de base RGPD.</WarnBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>5 premières tâches à tester ce soir</SectionH>
-      <ExBox label="Préparer une leçon"><Prompt tag="À coller dans Claude" tagColor="blue">Je suis enseignant en cuisine en S4 en Fédération Wallonie-Bruxelles. Prépare-moi un plan de leçon de 50 minutes sur les sauces mères. Inclus un objectif d'apprentissage clair, une activité pratique et 3 questions de vérification des acquis.</Prompt></ExBox>
-      <ExBox label="Communication aux parents"><Prompt tag="À coller dans Claude" tagColor="blue">Rédige un email professionnel à envoyer aux parents pour les informer d'une sortie pédagogique au marché de Namur le 15 juin. Ton poli et rassurant. Maximum 200 mots.</Prompt></ExBox>
-      <ExBox label="Simplifier un texte pour élèves en difficulté"><Prompt tag="À coller dans Claude" tagColor="blue">Voici un extrait de mon cours sur la fermentation : [colle ton texte]. Réécris-le de façon simple pour des élèves de S3 qui ont des difficultés de lecture. Phrases courtes, vocabulaire accessible, garde les mots techniques mais explique-les.</Prompt></ExBox>
-      <ExBox label="Créer une évaluation rapide"><Prompt tag="À coller dans Claude" tagColor="blue">Crée une évaluation formative de 10 minutes sur l'hygiène en cuisine pour des élèves de S3. Format : 5 questions vrai/faux + 3 questions à choix multiple. Niveau accessible.</Prompt></ExBox>
-      <ExBox label="Préparer un entretien avec un élève"><Prompt tag="À coller dans Claude" tagColor="blue">Je dois avoir un entretien avec un élève de 16 ans qui décroche et perturbe la classe. Donne-moi 5 questions ouvertes bienveillantes pour comprendre sa situation, sans le mettre sur la défensive.</Prompt></ExBox>
-      <Box label="Règle d'or">Traitez Claude comme un assistant stagiaire très compétent : capable de produire un premier jet solide, mais qui a besoin de votre regard professionnel avant que le document parte.</Box>
-    </div>
-  </div>
-);
+    <div class="divider"></div>
+    <div class="section-label">Les 5 guides</div>
 
-const GuideN2 = () => (
-  <div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Le problème du niveau 1</SectionH>
-      <Prose>
-        <P>À chaque nouvelle conversation, Claude repart de zéro. Vous devez re-expliquer que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme. Encore et encore.</P>
-        <P>Avec les <strong>Projets</strong>, Claude se souvient de votre contexte d'une conversation à l'autre.</P>
-      </Prose>
-      <Box label="L'analogie qui aide">Chat basique = nouveau collègue à qui vous vous présentez chaque matin. Projet = collaborateur qui a lu votre dossier et connaît vos élèves, votre section, vos contraintes.</Box>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Créer votre premier projet en 5 minutes</SectionH>
-      <Steps items={[
-        { title:'Allez sur claude.ai → "Projects" → "New project"', desc:'Donnez-lui un nom concret : "Cuisine S4", "Boucherie S3-S5", "Cours théoriques SEGEC".' },
-        { title:"Rédigez les instructions du projet", desc:"Le \"mode d'emploi\" que Claude lira avant chaque réponse." },
-        { title:"Déposez vos fichiers de référence", desc:"Programme du cours, grilles d'évaluation, exemples anonymisés. Formats : Word, PDF, texte." },
-        { title:"Lancez une conversation dans le projet", desc:"Claude lit automatiquement vos fichiers et instructions avant de répondre." },
-      ]} />
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Modèle d'instructions — à copier et adapter</SectionH>
-      <ExBox label="À coller dans « Instructions du projet »">
-        <Prompt>Tu es mon assistant pédagogique pour mon cours de [MATIÈRE] en [SECTION/NIVEAU] à [NOM DE L'ÉTABLISSEMENT], en Fédération Wallonie-Bruxelles.{"\n\n"}Mes élèves : [Section]. Niveau [S3/S4/S5]. [Décris brièvement ta classe.]{"\n\n"}Contraintes : Nous suivons le programme officiel de la FWB. Ne mentionne jamais des référentiels français (CAP, BEP, etc.).{"\n\n"}Quand tu produis un document : propose toujours une version courte que je peux ajuster. Si tu as besoin de précisions, pose une seule question avant de commencer.</Prompt>
-      </ExBox>
-      <WarnBox label="Ce qu'il ne faut pas mettre">Pas de noms d'élèves, pas de numéros de matricule, pas de résultats nominatifs.</WarnBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>3 workflows concrets à tester maintenant</SectionH>
-      <ExBox label="Planifier une séquence de cours"><Prompt tag="Dans votre projet" tagColor="green">Je dois couvrir "les découpes de viande bovine" en 3 séances de 50 minutes. Les élèves ont déjà vu les outils de base. Propose-moi une progression logique avec les objectifs de chaque séance.</Prompt></ExBox>
-      <ExBox label="Évaluation alignée sur votre programme"><Prompt tag="Dans votre projet" tagColor="green">Crée une évaluation sommative sur "l'hygiène et la chaîne du froid". Format mixte : questions courtes + une mise en situation pratique. Durée : 45 minutes.</Prompt></ExBox>
-      <ExBox label="Différencier pour un élève en difficulté"><Prompt tag="Dans votre projet" tagColor="green">J'ai un élève en S4 avec une dyslexie diagnostiquée. Adapte cette fiche de procédure [colle ta fiche] : phrases courtes, une action par ligne, mots clés en évidence, pas de blocs de texte.</Prompt></ExBox>
-      <OkBox label="Pourquoi c'est différent du N1">Ces prompts sont courts parce que Claude sait déjà que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme.</OkBox>
-    </div>
-  </div>
-);
-
-const GuideN3 = () => (
-  <div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Move 1 — Tuer la complaisance</SectionH>
-      <Prose><P>Claude est entraîné pour être agréable. Ce biais s'appelle la "sycophantie" : l'IA dit ce que vous voulez entendre plutôt que ce qui est vrai.</P></Prose>
-      <DangerBox label="Signal d'alarme">Si Claude commence par "Excellente question !" — il est en mode complaisant. Ce qu'il dit ensuite est biaisé en votre faveur.</DangerBox>
-      <ExBox label="À coller dans les instructions de chaque projet">
-        <Prompt>Tu n'es pas là pour me flatter. Si mon idée est mauvaise, dis-le directement. Si mon plan de cours a des failles, identifie-les. Je préfère une réponse inconfortable et utile à une réponse rassurante et creuse. Ne commence jamais par un compliment.</Prompt>
-      </ExBox>
-      <Compare
-        bad={"\"C'est une excellente approche qui montre votre engagement. Quelques points à affiner, mais la base est solide...\""}
-        good={"\"Trois problèmes dans ce plan : la progression S3→S4 n'est pas cohérente, l'objectif de la séance 2 est trop vague pour être évaluable...\""}
-      />
-      <ExBox label="Tester une idée — exemples PLAI">
-        <Prompt tag="Avocat du diable" tagColor="amber">Je veux supprimer les évaluations écrites en S3. Joue l'avocat du diable : quels sont les arguments contre ? Sois direct, pas diplomate.</Prompt>
-        <Prompt tag="Critiquer un document" tagColor="amber">Voici mon plan de séquence : [colle le plan]. Identifie les trois faiblesses principales. Ne commence pas par ce qui est bien.</Prompt>
-      </ExBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Move 2 — Donner votre voix à Claude</SectionH>
-      <Prose><P>Par défaut, Claude écrit avec un style reconnaissable. La solution : un fichier "voix" déposé dans vos projets.</P></Prose>
-      <ExBox label="Prompt pour générer votre fichier de style — hors projet">
-        <Prompt tag="À utiliser hors projet" tagColor="blue">Tu vas m'aider à créer un fichier de style pour que tu écrives comme moi. Pose-moi 10 questions, une par une, sur ma façon d'écrire. À la fin, compile mes réponses en un fichier court (max 400 mots) que je pourrai déposer dans mes projets Claude.</Prompt>
-      </ExBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Move 3 — Ne plus tomber à court de tokens</SectionH>
-      <ExBox label="Structure d'un prompt économique">
-        <Prompt tag="Format efficace" tagColor="amber">{"Tâche : [ce que vous voulez exactement]\nContraintes : [niveau, durée, format, longueur max]\nCe que je ne veux pas : [ce qu'il produit souvent et qui ne convient pas]\nLivrable attendu : [un tableau / une liste / un texte de 200 mots max]"}</Prompt>
-      </ExBox>
-      <WarnBox label="Le piège à éviter">Ne copiez pas des dizaines de pages dans Claude. Déposez les documents clés dans les fichiers de votre Projet — Claude les lit de façon optimisée.</WarnBox>
-    </div>
-  </div>
-);
-
-const GuideN4 = () => (
-  <div>
-    <Box label="Ce niveau n'est pas pour tout le monde">Les niveaux 1 à 3 suffisent pour 95% des enseignants. Le niveau 4 est pour ceux qui veulent automatiser des tâches répétitives sur des fichiers.</Box>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Claude Cowork en mode agent</SectionH>
-      <Prose><P>En mode agent, vous donnez un objectif à Claude et il avance seul jusqu'au bout — en lisant vos fichiers, en en produisant de nouveaux.</P></Prose>
-      <ExBox label="La formule qui déclenche le mode agent">
-        <Prompt tag="Structure à utiliser" tagColor="blue">{"Je veux [OBJECTIF FINAL] à partir de [FICHIERS SOURCE].\n\nLis d'abord tous les fichiers sans rien produire. Pose-moi 2 ou 3 questions de clarification. Une fois qu'on est alignés, commence et produis [FORMAT DE LIVRABLE]. Signale-moi quand tu as terminé chaque étape."}</Prompt>
-      </ExBox>
-      <ExBox label="Exemples concrets">
-        <Prompt tag="Adapter un corpus DYS" tagColor="blue">J'ai 12 fiches de cours dans ce dossier. Pour chacune, produis une version adaptée DYS : phrases courtes, une idée par ligne, mots techniques expliqués. Enregistre dans un sous-dossier "version-DYS".</Prompt>
-        <Prompt tag="Commentaires de bulletin" tagColor="blue">Pour chaque élève de ma liste anonymisée, rédige un commentaire de bulletin de 3 lignes — ton professionnel, bienveillant, factuel.</Prompt>
-      </ExBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Claude Code — pour les non-développeurs aussi</SectionH>
-      <Prose><P>Vous décrivez la tâche en français. Claude Code écrit et exécute le code. Vous validez le résultat.</P></Prose>
-      <DangerBox label="Précaution importante">Claude Code travaille directement sur vos fichiers. Faites toujours une copie de sauvegarde avant de lancer une tâche.</DangerBox>
-      <ExBox label="Tâches concrètes pour les écoles coopérantes">
-        <Prompt tag="Publipostage pédagogique" tagColor="amber">J'ai un fichier Excel avec les noms de mes 24 élèves, leur section et leur note finale. Génère un document Word individuel pour chacun à partir du modèle "attestation-modele.docx".</Prompt>
-        <Prompt tag="Extraction et synthèse" tagColor="amber">J'ai 15 rapports de stage en PDF. Pour chacun, extrais le nom de l'élève, le nom de l'entreprise et la note finale. Compile dans un tableau Excel.</Prompt>
-      </ExBox>
-    </div>
-  </div>
-);
-
-const GuideBonus = () => (
-  <div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>C'est quoi, un Skill ?</SectionH>
-      <Prose>
-        <P>Un Skill, c'est une commande personnalisée que vous créez dans Claude. Sans Skill : vous ré-expliquez à chaque fois. Avec Skill : vous tapez la commande et collez votre texte.</P>
-      </Prose>
-      <PurpleBox label="La différence avec les instructions de projet">Les instructions s'appliquent à toutes vos conversations. Un Skill s'applique uniquement quand vous l'invoquez. C'est plus précis, plus chirurgical.</PurpleBox>
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>6 Skills à créer pour vos écoles</SectionH>
-      <SkillBlock cmd="/simplif-ecrit" name="Simplification de texte" desc="Transforme n'importe quel texte de cours en version accessible pour des élèves en difficulté de lecture (dyslexie, allophones). Phrases courtes, mots techniques expliqués." usage="Usage : /simplif-ecrit [colle ton texte de cours]" />
-      <SkillBlock cmd="/eval-adaptee" name="Évaluation accessible" desc="Transforme une évaluation existante en version accessible sans réduire les exigences du programme FWB. Adapte la forme sans alléger le fond." usage="Usage : /eval-adaptee [colle ton évaluation existante]" />
-      <SkillBlock cmd="/procedure" name="Fiche de procédure" desc="Transforme tout contenu de cours en fiche numérotée, étape par étape, une action par ligne, avec marqueurs de sécurité pour les gestes à risque." usage="Usage : /procedure [décris la technique ou colle le texte du cours]" />
-      <SkillBlock cmd="/commentaire-bulletin" name="Commentaire de bulletin" desc="Rédige un commentaire professionnel, bienveillant et factuel à partir de vos observations brutes. Ton FWB, 2-3 lignes, pas de généralités." usage="Usage : /commentaire-bulletin [tes observations brutes, anonymisées]" />
-      <SkillBlock cmd="/email-parent" name="Communication aux parents" desc="Génère un email selon le type de situation. Ton adapté à chaque contexte, vouvoyement systématique, formule de politesse belge." usage="Usage : /email-parent [décris la situation en quelques mots]" />
-      <SkillBlock cmd="/sequence" name="Séquence de cours" desc="Crée une progression pédagogique complète. Respecte les référentiels FWB, propose des objectifs mesurables, une activité par séance." usage="Usage : /sequence [thème] [niveau S_] [nombre de séances]" />
-    </div>
-    <div style={{ marginBottom:"2rem" }}>
-      <SectionH>Collaborer avec le PLAI</SectionH>
-      <div style={{ background:"linear-gradient(135deg,#eeedfe 0%,#e6f1fb 100%)", border:"1px solid #7f77dd", borderRadius:10, padding:"1.5rem", margin:"1.25rem 0" }}>
-        <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.8px", color:"#534ab7", marginBottom:"0.5rem" }}>🏛️ Ressource PLAI</div>
-        <div style={{ fontFamily:"Georgia, serif", fontSize:20, marginBottom:"0.5rem", color:"#1a1814" }}>Le Pôle Territorial de la Ville de Liège</div>
-        <div style={{ fontSize:14, color:"#5a564f", lineHeight:1.65, marginBottom:"1rem" }}>Vous n'avez pas à tout découvrir seul. Le PLAI rassemble des experts et conseillers pédagogiques dont c'est le métier d'accompagner l'intégration des outils numériques dans les pratiques de classe.</div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:8, marginBottom:"1rem" }}>
-          {[
-            { t:"Accompagnement personnalisé", d:"Des conseillers qui viennent dans votre établissement, à votre rythme." },
-            { t:"Formation en équipe", d:"Une session pour toute une section — bien plus efficace qu'une découverte solitaire." },
-            { t:"Skills & ressources partagées", d:"Des Skills déjà créés et testés pour les métiers FWB." },
-            { t:"Veille et mises à jour", d:"Claude évolue vite. Le PLAI vous signale ce qui change vraiment." },
-          ].map((s,i) => (
-            <div key={i} style={{ background:"rgba(255,255,255,0.7)", borderRadius:6, padding:"0.7rem 0.9rem" }}>
-              <div style={{ fontSize:13, fontWeight:500, color:"#534ab7", marginBottom:2 }}>{s.t}</div>
-              <div style={{ fontSize:12, color:"#5a564f", lineHeight:1.4 }}>{s.d}</div>
+    <div class="level-list">
+      <!-- N1 -->
+      <button class="level-card" onclick="showPage('n1')">
+        <div class="level-stripe" style="background:var(--green-mid)"></div>
+        <div class="level-inner">
+          <div class="level-icon" style="background:var(--green-bg)">🌱</div>
+          <div class="level-info">
+            <div class="level-title-row">
+              <span class="level-title">Les bases</span>
+              <span class="level-badge" style="background:var(--green-bg);color:var(--green-text)">Débutant</span>
             </div>
-          ))}
+            <div class="level-sub">De "je n'ai jamais ouvert Claude" à "je l'utilise en classe" — en 20 minutes.</div>
+            <div class="level-meta">20 min · Aucun prérequis</div>
+          </div>
+          <div class="level-arrow">→</div>
         </div>
-        <div style={{ fontSize:12, color:"#534ab7", fontStyle:"italic" }}>Un enseignant qui utilise Claude seul, c'est bien. Une section qui partage ses Skills et ses projets, c'est dix fois plus puissant.</div>
+      </button>
+      <!-- N2 -->
+      <button class="level-card" onclick="showPage('n2')">
+        <div class="level-stripe" style="background:var(--blue-mid)"></div>
+        <div class="level-inner">
+          <div class="level-icon" style="background:var(--blue-bg)">⚙️</div>
+          <div class="level-info">
+            <div class="level-title-row">
+              <span class="level-title">Projets &amp; workflows</span>
+              <span class="level-badge" style="background:var(--blue-bg);color:var(--blue-text)">Intermédiaire</span>
+            </div>
+            <div class="level-sub">Claude se souvient de vous d'une session à l'autre.</div>
+            <div class="level-meta">30 min · Niveau 1 requis</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </div>
+      </button>
+      <!-- N3 -->
+      <button class="level-card" onclick="showPage('n3')">
+        <div class="level-stripe" style="background:var(--amber-mid)"></div>
+        <div class="level-inner">
+          <div class="level-icon" style="background:var(--amber-bg)">🔥</div>
+          <div class="level-info">
+            <div class="level-title-row">
+              <span class="level-title">Moves avancés</span>
+              <span class="level-badge" style="background:var(--amber-bg);color:var(--amber-text)">Avancé</span>
+            </div>
+            <div class="level-sub">Claude qui vous ressemble vraiment.</div>
+            <div class="level-meta">35 min · Niveaux 1 et 2 requis</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </div>
+      </button>
+      <!-- N4 -->
+      <button class="level-card" onclick="showPage('n4')">
+        <div class="level-stripe" style="background:var(--red-mid)"></div>
+        <div class="level-inner">
+          <div class="level-icon" style="background:var(--red-bg)">🚀</div>
+          <div class="level-info">
+            <div class="level-title-row">
+              <span class="level-title">Claude Code &amp; sur votre ordinateur</span>
+              <span class="level-badge" style="background:var(--red-bg);color:var(--red-text)">Expert</span>
+            </div>
+            <div class="level-sub">Claude qui travaille pendant que vous faites autre chose.</div>
+            <div class="level-meta">40 min · Tous les niveaux requis</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </div>
+      </button>
+      <!-- Bonus -->
+      <button class="level-card" onclick="showPage('bonus')">
+        <div class="level-stripe" style="background:var(--purple-mid)"></div>
+        <div class="level-inner">
+          <div class="level-icon" style="background:var(--purple-bg)">✨</div>
+          <div class="level-info">
+            <div class="level-title-row">
+              <span class="level-title">Skills PLAI</span>
+              <span class="level-badge" style="background:var(--purple-bg);color:var(--purple-text)">Spécial PLAI</span>
+            </div>
+            <div class="level-sub">Vos commandes personnalisées pour chaque situation.</div>
+            <div class="level-meta">20 min · Niveau 2 minimum</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </div>
+      </button>
+    </div>
+
+    <!-- Parcours recommandé -->
+    <div class="path-box">
+      <div class="path-title">Parcours recommandé</div>
+      <div class="path-steps">
+        <span class="path-dot" style="background:var(--green-mid)"></span>
+        <span class="path-label">N1 ce soir</span>
+        <span class="path-arrow">→</span>
+        <span class="path-dot" style="background:var(--blue-mid)"></span>
+        <span class="path-label">N2 cette semaine</span>
+        <span class="path-arrow">→</span>
+        <span class="path-dot" style="background:var(--amber-mid)"></span>
+        <span class="path-label">N3 dans 2 semaines</span>
+        <span class="path-arrow">→</span>
+        <span class="path-dot" style="background:var(--red-mid)"></span>
+        <span class="path-label">N4 si besoin</span>
+        <span class="path-arrow">→</span>
+        <span class="path-dot" style="background:var(--purple-mid)"></span>
+        <span class="path-label">Bonus en parallèle</span>
+      </div>
+      <div class="path-note">Ne bingez pas les 5 guides d'un coup. Appliquez chaque niveau avant de passer au suivant.</div>
+    </div>
+
+    <!-- Info grid -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-icon">🔒</div>
+        <div class="info-title">RGPD &amp; données élèves</div>
+        <div class="info-desc">Jamais de noms, matricules ou résultats nominatifs dans Claude. Initiales ou situations anonymisées.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">💳</div>
+        <div class="info-title">Gratuit ou payant ?</div>
+        <div class="info-desc">Plan gratuit suffisant pour N1 et N2. Plan Pro (~18€/mois) recommandé à partir du N3.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">⚠️</div>
+        <div class="info-title">Claude se trompe</div>
+        <div class="info-desc">Pour les programmes officiels FWB, vérifiez toujours sur enseignement.be. Vous êtes le professionnel.</div>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🇧🇪</div>
+        <div class="info-title">En français, ça marche</div>
+        <div class="info-desc">Claude comprend et produit du français de qualité. Écrivez comme vous parlez.</div>
       </div>
     </div>
+
+    <div class="footer">
+      <img src="/plai-logo.jpg" alt="PLAI" onerror="this.style.display='none'">
+      <div>Claude pour les enseignants des écoles coopérantes du PLAI</div>
+      <div style="margin-top:4px">Pôle Territorial de la Ville de Liège · Partagez librement avec vos collègues</div>
+    </div>
   </div>
-);
+</div>
 
-const GUIDE_COMPONENTS = { n1:GuideN1, n2:GuideN2, n3:GuideN3, n4:GuideN4, bonus:GuideBonus };
+<!-- ══════════════════════════════════════════════════ N1 ══ -->
+<div id="page-n1" class="page">
+  <div class="container guide-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Retour à l'accueil</button>
+    <div class="guide-tag" style="background:var(--green-bg);color:var(--green-text)">🌱 Niveau 1 — Débutant</div>
+    <h1 class="guide-h1">Les bases</h1>
+    <p class="guide-sub">De "je n'ai jamais ouvert Claude" à "je l'utilise en classe" — en 20 minutes.</p>
+    <div class="guide-meta">
+      <span>⏱ 20 min</span>
+      <span>✓ Aucun prérequis</span>
+    </div>
+    <div class="divider"></div>
 
-function App() {
-  const [active, setActive] = useState("home");
-  const topRef = useRef(null);
-  const go = (id) => { setActive(id); setTimeout(() => topRef.current?.scrollIntoView({ behavior:"smooth" }), 50); };
-  const currentLevel = LEVELS.find(l => l.id === active);
-  const GuideContent = active !== "home" ? GUIDE_COMPONENTS[active] : null;
+    <div class="section-block">
+      <h2 class="section-h">C'est quoi, Claude ?</h2>
+      <div class="prose">
+        <p>Claude est une intelligence artificielle avec qui vous pouvez avoir une vraie conversation. Pas un moteur de recherche. Pas une calculatrice. Un interlocuteur : vous lui posez une question ou lui confiez une tâche, il vous répond en langage naturel, comme un collègue compétent qui aurait lu beaucoup de livres.</p>
+        <p>La différence avec Google : Google vous renvoie des liens. Claude produit directement un texte, un plan, une correction, une explication — adapté à ce que vous lui avez demandé.</p>
+        <p>La différence avec ChatGPT : Claude est réputé pour être plus précis, plus nuancé, et moins enclin à inventer des informations.</p>
+      </div>
+      <div class="box">
+        <div class="box-label">En bref</div>
+        <div class="box-content">Claude ne remplace pas votre jugement d'enseignant. Il accélère les tâches répétitives — rédiger, reformuler, adapter, expliquer — pour que vous puissiez vous concentrer sur ce qui compte : la relation avec vos élèves.</div>
+      </div>
+    </div>
 
-  return (
-    <div style={{ fontFamily:"'DM Sans',Georgia,sans-serif", background:"#faf9f7", minHeight:"100vh", color:"#1a1814" }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
-        * { box-sizing:border-box; } body { margin:0; }
-        .lc:hover { border-color:#d4cfc6 !important; box-shadow:0 2px 12px rgba(0,0,0,0.06) !important; }
-        .nb:hover { background:#f4f2ee !important; }
-      `}</style>
-
-      <nav style={{ position:"sticky", top:0, zIndex:100, background:"rgba(250,249,247,0.94)", backdropFilter:"blur(8px)", borderBottom:"1px solid #e8e4dd", padding:"0 1.5rem", display:"flex", alignItems:"center", justifyContent:"space-between", height:52 }}>
-        <button className="nav-logo" onClick={() => go("home")} style={{ display:"flex", alignItems:"center", gap:8, background:"none", border:"none", cursor:"pointer", padding:0 }}>
-          <img src="/plai-logo.jpg" alt="Logo PLAI" style={{ height:36, objectFit:"contain" }} />
-          <span style={{ fontFamily:"Georgia,serif", fontStyle:"italic", fontSize:16, color:"#1a1814" }}>Claude · PLAI</span>
-        </button>
-        <div style={{ display:"flex", gap:3, flexWrap:"wrap" }}>
-          {[{ id:"home", label:"Accueil" }, ...LEVELS.map(l => ({ id:l.id, label:l.id==="bonus"?"Bonus":l.id.toUpperCase() }))].map(item => (
-            <button key={item.id} onClick={() => go(item.id)} className="nb" style={{ fontSize:12, fontWeight:500, padding:"5px 9px", borderRadius:6, background:active===item.id?"#1a1814":"transparent", color:active===item.id?"#faf9f7":"#5a564f", border:"none", cursor:"pointer", transition:"background 0.15s" }}>{item.label}</button>
-          ))}
+    <div class="section-block">
+      <h2 class="section-h">Ouvrir Claude pour la première fois</h2>
+      <div class="grid2">
+        <div class="grid2-card">
+          <div class="grid2-icon">🌐</div>
+          <div class="grid2-title">Via le navigateur</div>
+          <div class="grid2-desc">Allez sur claude.ai. Créez un compte gratuit. Fonctionne sur n'importe quel ordinateur de l'école.</div>
         </div>
-      </nav>
-<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
+        <div class="grid2-card">
+          <div class="grid2-icon">💻</div>
+          <div class="grid2-title">Application de bureau</div>
+          <div class="grid2-desc">À installer sur votre ordi personnel. Claude peut lire vos fichiers locaux. Idéal pour travailler sur vos cours.</div>
+        </div>
+        <div class="grid2-card">
+          <div class="grid2-icon">📱</div>
+          <div class="grid2-title">Application mobile</div>
+          <div class="grid2-desc">Disponible sur iOS et Android. Pratique pour une idée rapide entre deux cours.</div>
+        </div>
+      </div>
+      <div class="warn-box">
+        <div class="box-label">Attention — données personnelles</div>
+        <div class="box-content">Ne collez jamais dans Claude des données identifiables d'élèves (noms, numéros de dossier, résultats nominatifs). Utilisez des initiales ou des cas anonymisés. C'est une règle de base RGPD.</div>
+      </div>
+    </div>
 
+    <div class="section-block">
+      <h2 class="section-h">5 premières tâches à tester ce soir</h2>
 
-      <div ref={topRef} />
-      <div style={{ maxWidth:720, margin:"0 auto", padding:"0 1.5rem" }}>
+      <div class="ex-box">
+        <div class="ex-label">Préparer une leçon</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À coller dans Claude</span>
+Je suis enseignant en cuisine en S4 en Fédération Wallonie-Bruxelles. Prépare-moi un plan de leçon de 50 minutes sur les sauces mères. Inclus un objectif d'apprentissage clair, une activité pratique et 3 questions de vérification des acquis.</div>
+      </div>
 
-        {active === "home" && (
+      <div class="ex-box">
+        <div class="ex-label">Communication aux parents</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À coller dans Claude</span>
+Rédige un email professionnel à envoyer aux parents pour les informer d'une sortie pédagogique au marché de Namur le 15 juin. Ton poli et rassurant. Maximum 200 mots.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Simplifier un texte pour élèves en difficulté</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À coller dans Claude</span>
+Voici un extrait de mon cours sur la fermentation : [colle ton texte]. Réécris-le de façon simple pour des élèves de S3 qui ont des difficultés de lecture. Phrases courtes, vocabulaire accessible, garde les mots techniques mais explique-les.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Créer une évaluation rapide</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À coller dans Claude</span>
+Crée une évaluation formative de 10 minutes sur l'hygiène en cuisine pour des élèves de S3. Format : 5 questions vrai/faux + 3 questions à choix multiple. Niveau accessible.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Préparer un entretien avec un élève</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À coller dans Claude</span>
+Je dois avoir un entretien avec un élève de 16 ans qui décroche et perturbe la classe. Donne-moi 5 questions ouvertes bienveillantes pour comprendre sa situation, sans le mettre sur la défensive.</div>
+      </div>
+
+      <div class="box">
+        <div class="box-label">Règle d'or</div>
+        <div class="box-content">Traitez Claude comme un assistant stagiaire très compétent : capable de produire un premier jet solide, mais qui a besoin de votre regard professionnel avant que le document parte.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="guide-nav">
+      <button class="btn-prev" onclick="showPage('home')">← Accueil</button>
+      <button class="btn-next" onclick="showPage('n2')">Projets &amp; workflows →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ N2 ══ -->
+<div id="page-n2" class="page">
+  <div class="container guide-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Retour à l'accueil</button>
+    <div class="guide-tag" style="background:var(--blue-bg);color:var(--blue-text)">⚙️ Niveau 2 — Intermédiaire</div>
+    <h1 class="guide-h1">Projets &amp; workflows</h1>
+    <p class="guide-sub">Claude se souvient de vous d'une session à l'autre.</p>
+    <div class="guide-meta">
+      <span>⏱ 30 min</span>
+      <span>✓ Niveau 1 requis</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <h2 class="section-h">Le problème du niveau 1</h2>
+      <div class="prose">
+        <p>À chaque nouvelle conversation, Claude repart de zéro. Vous devez re-expliquer que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme. Encore et encore.</p>
+        <p>Avec les <strong>Projets</strong>, Claude se souvient de votre contexte d'une conversation à l'autre.</p>
+      </div>
+      <div class="box">
+        <div class="box-label">L'analogie qui aide</div>
+        <div class="box-content">Chat basique = nouveau collègue à qui vous vous présentez chaque matin. Projet = collaborateur qui a lu votre dossier et connaît vos élèves, votre section, vos contraintes.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Créer votre premier projet en 5 minutes</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
           <div>
-            <div style={{ textAlign:"center", padding:"4rem 0 3rem" }}>
-              <div style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:11, fontWeight:500, textTransform:"uppercase", letterSpacing:1, color:"#9a958c", border:"1px solid #d4cfc6", padding:"4px 14px", borderRadius:20, marginBottom:"1.5rem" }}>🏫 Pôle Territorial de la Ville de Liège</div>
-              <h1 style={{ fontFamily:"Georgia,serif", fontSize:"clamp(30px,5vw,48px)", lineHeight:1.15, letterSpacing:"-0.5px", marginBottom:"0.75rem", fontWeight:"normal" }}>
-                Claude<br /><em style={{ color:"#5a564f" }}>pour les enseignants des écoles coopérantes du PLAI</em>
-              </h1>
-              <p style={{ fontSize:17, color:"#5a564f", maxWidth:480, margin:"0 auto 2.5rem", fontFamily:"Georgia,serif", fontStyle:"italic" }}>De la première conversation à l'automatisation complète — sans jargon, avec des exemples de votre quotidien.</p>
-              <div style={{ display:"flex", justifyContent:"center", gap:"3rem", flexWrap:"wrap" }}>
-                {[["5","guides progressifs"],["~2h30","au total"],["100%","exemples FWB"],["0","prérequis technique"]].map(([n,l]) => (
-                  <div key={l}><div style={{ fontFamily:"Georgia,serif", fontSize:30, color:"#1a1814" }}>{n}</div><div style={{ fontSize:12, color:"#9a958c" }}>{l}</div></div>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ height:1, background:"#e8e4dd", margin:"0 0 2rem" }} />
-            <div style={{ fontSize:10, fontWeight:500, textTransform:"uppercase", letterSpacing:"0.7px", color:"#9a958c", marginBottom:"1rem", display:"flex", alignItems:"center", gap:10 }}>Les 5 guides <div style={{ flex:1, height:1, background:"#e8e4dd" }} /></div>
-
-            <div style={{ display:"flex", flexDirection:"column", gap:10, marginBottom:"2rem" }}>
-              {LEVELS.map(l => {
-                const c = COLORS[l.key];
-                return (
-                  <button key={l.id} onClick={() => go(l.id)} className="lc" style={{ display:"flex", alignItems:"stretch", background:"#fff", border:"1px solid #e8e4dd", borderRadius:10, overflow:"hidden", cursor:"pointer", transition:"border-color 0.15s,box-shadow 0.15s", textAlign:"left", padding:0, width:"100%" }}>
-                    <div style={{ width:4, flexShrink:0, background:c.mid }} />
-                    <div style={{ display:"flex", alignItems:"center", gap:14, padding:"1rem 1.1rem", flex:1 }}>
-                      <div style={{ width:40, height:40, borderRadius:8, background:c.bg, display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, flexShrink:0 }}>{l.icon}</div>
-                      <div style={{ flex:1 }}>
-                        <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:2 }}>
-                          <span style={{ fontSize:15, fontWeight:500 }}>{l.title}</span>
-                          <span style={{ fontSize:10, fontWeight:500, padding:"2px 8px", borderRadius:10, background:c.bg, color:c.text, textTransform:"uppercase", letterSpacing:"0.3px" }}>{l.id==="bonus"?"Spécial PLAI":l.label.split("—")[1]?.trim()}</span>
-                        </div>
-                        <div style={{ fontSize:13, color:"#5a564f", lineHeight:1.5 }}>{l.sub}</div>
-                        <div style={{ fontSize:11, color:"#9a958c", marginTop:4 }}>{l.time} · {l.prereq}</div>
-                      </div>
-                      <div style={{ fontSize:18, color:"#d4cfc6", marginRight:4 }}>→</div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div style={{ background:"#f4f2ee", borderRadius:10, padding:"1.25rem 1.5rem", marginBottom:"2rem" }}>
-              <div style={{ fontSize:13, fontWeight:500, marginBottom:"0.75rem" }}>Parcours recommandé</div>
-              <div style={{ display:"flex", alignItems:"center", flexWrap:"wrap", gap:6 }}>
-                {[["green","N1 ce soir"],["blue","N2 cette semaine"],["amber","N3 dans 2 semaines"],["red","N4 si besoin"],["purple","Bonus en parallèle"]].map(([c,label],i,arr) => (
-                  <span key={label} style={{ display:"flex", alignItems:"center", gap:5 }}>
-                    <span style={{ width:8, height:8, borderRadius:"50%", background:COLORS[c].mid, display:"inline-block" }} />
-                    <span style={{ fontSize:12, color:"#5a564f" }}>{label}</span>
-                    {i < arr.length-1 && <span style={{ color:"#d4cfc6", fontSize:14, marginLeft:2 }}>→</span>}
-                  </span>
-                ))}
-              </div>
-              <div style={{ fontSize:12, color:"#9a958c", fontStyle:"italic", marginTop:8 }}>Ne bingez pas les 5 guides d'un coup. Appliquez chaque niveau avant de passer au suivant.</div>
-            </div>
-
-            <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:10, marginBottom:"3rem" }}>
-              {[
-                { icon:"🔒", t:"RGPD & données élèves", d:"Jamais de noms, matricules ou résultats nominatifs dans Claude. Initiales ou situations anonymisées." },
-                { icon:"💳", t:"Gratuit ou payant ?", d:"Plan gratuit suffisant pour N1 et N2. Plan Pro (~18€/mois) recommandé à partir du N3." },
-                { icon:"⚠️", t:"Claude se trompe", d:"Pour les programmes officiels FWB, vérifiez toujours sur enseignement.be. Vous êtes le professionnel." },
-                { icon:"🇧🇪", t:"En français, ça marche", d:"Claude comprend et produit du français de qualité. Écrivez comme vous parlez." },
-              ].map(item => (
-                <div key={item.t} style={{ background:"#fff", border:"1px solid #e8e4dd", borderRadius:10, padding:"0.9rem 1rem" }}>
-                  <div style={{ fontSize:20, marginBottom:6 }}>{item.icon}</div>
-                  <div style={{ fontSize:13, fontWeight:500, marginBottom:3 }}>{item.t}</div>
-                  <div style={{ fontSize:12, color:"#5a564f", lineHeight:1.5 }}>{item.d}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="footer" style={{ textAlign:"center", padding:"1rem 0 3rem", fontSize:13, color:"#9a958c", fontFamily:"Georgia,serif", fontStyle:"italic" }}>
-              <img src="/plai-logo.jpg" alt="PLAI" style={{ height:40, width:"auto", display:"block", margin:"0 auto 8px" }} />
-              <div>Claude pour les enseignants des écoles coopérantes du PLAI</div>
-              <div style={{ marginTop:4 }}>Pôle Territorial de la Ville de Liège · Partagez librement avec vos collègues</div>
-            </div>
+            <div class="step-title">Allez sur claude.ai → "Projects" → "New project"</div>
+            <div class="step-desc">Donnez-lui un nom concret : "Cuisine S4", "Boucherie S3-S5", "Cours théoriques SEGEC".</div>
           </div>
-        )}
-
-        {active !== "home" && currentLevel && GuideContent && (
-          <div style={{ paddingTop:"2rem", paddingBottom:"4rem" }}>
-            <button onClick={() => go("home")} className="nb" style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:13, color:"#9a958c", background:"none", border:"none", cursor:"pointer", padding:"5px 0", marginBottom:"1.5rem" }}>← Retour à l'accueil</button>
-            <Tag color={currentLevel.key}>{currentLevel.icon} {currentLevel.label}</Tag>
-            <h1 style={{ fontFamily:"Georgia,serif", fontWeight:"normal", fontSize:"clamp(24px,4vw,32px)", lineHeight:1.2, marginBottom:"0.5rem" }}>{currentLevel.title}</h1>
-            <p style={{ fontSize:15, color:"#5a564f", fontFamily:"Georgia,serif", fontStyle:"italic", marginBottom:"0.75rem" }}>{currentLevel.sub}</p>
-            <div style={{ display:"flex", gap:"1.5rem", flexWrap:"wrap", marginBottom:"2rem" }}>
-              <span style={{ fontSize:12, color:"#9a958c" }}>⏱ {currentLevel.time}</span>
-              <span style={{ fontSize:12, color:"#9a958c" }}>✓ {currentLevel.prereq}</span>
-            </div>
-            <Divider />
-            <GuideContent />
-            <Divider />
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", paddingTop:"0.5rem", flexWrap:"wrap", gap:10 }}>
-              {(() => {
-                const idx = LEVELS.findIndex(l => l.id === active);
-                const prev = idx > 0 ? LEVELS[idx-1] : null;
-                const next = idx < LEVELS.length-1 ? LEVELS[idx+1] : null;
-                return (
-                  <>
-                    {prev
-                      ? <button onClick={() => go(prev.id)} className="nb" style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:13, fontWeight:500, padding:"7px 14px", borderRadius:6, border:"1px solid #d4cfc6", background:"transparent", color:"#5a564f", cursor:"pointer" }}>← {prev.title}</button>
-                      : <button onClick={() => go("home")} className="nb" style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:13, fontWeight:500, padding:"7px 14px", borderRadius:6, border:"1px solid #d4cfc6", background:"transparent", color:"#5a564f", cursor:"pointer" }}>← Accueil</button>
-                    }
-                    {next && <button onClick={() => go(next.id)} style={{ display:"inline-flex", alignItems:"center", gap:6, fontSize:13, fontWeight:500, padding:"7px 14px", borderRadius:6, border:"none", background:"#1a1814", color:"#faf9f7", cursor:"pointer" }}>{next.title} →</button>}
-                  </>
-                );
-              })()}
-            </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Rédigez les instructions du projet</div>
+            <div class="step-desc">Le "mode d'emploi" que Claude lira avant chaque réponse.</div>
           </div>
-        )}
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Déposez vos fichiers de référence</div>
+            <div class="step-desc">Programme du cours, grilles d'évaluation, exemples anonymisés. Formats : Word, PDF, texte.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Lancez une conversation dans le projet</div>
+            <div class="step-desc">Claude lit automatiquement vos fichiers et instructions avant de répondre.</div>
+          </div>
+        </div>
       </div>
     </div>
-  );
-}
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    <div class="section-block">
+      <h2 class="section-h">Modèle d'instructions — à copier et adapter</h2>
+      <div class="ex-box">
+        <div class="ex-label">À coller dans « Instructions du projet »</div>
+        <div class="prompt">Tu es mon assistant pédagogique pour mon cours de [MATIÈRE] en [SECTION/NIVEAU] à [NOM DE L'ÉTABLISSEMENT], en Fédération Wallonie-Bruxelles.
+
+Mes élèves : [Section]. Niveau [S3/S4/S5]. [Décris brièvement ta classe.]
+
+Contraintes : Nous suivons le programme officiel de la FWB. Ne mentionne jamais des référentiels français (CAP, BEP, etc.).
+
+Quand tu produis un document : propose toujours une version courte que je peux ajuster. Si tu as besoin de précisions, pose une seule question avant de commencer.</div>
+      </div>
+      <div class="warn-box">
+        <div class="box-label">Ce qu'il ne faut pas mettre</div>
+        <div class="box-content">Pas de noms d'élèves, pas de numéros de matricule, pas de résultats nominatifs.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">3 workflows concrets à tester maintenant</h2>
+
+      <div class="ex-box">
+        <div class="ex-label">Planifier une séquence de cours</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--green-bg);color:var(--green-text)">Dans votre projet</span>
+Je dois couvrir "les découpes de viande bovine" en 3 séances de 50 minutes. Les élèves ont déjà vu les outils de base. Propose-moi une progression logique avec les objectifs de chaque séance.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Évaluation alignée sur votre programme</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--green-bg);color:var(--green-text)">Dans votre projet</span>
+Crée une évaluation sommative sur "l'hygiène et la chaîne du froid". Format mixte : questions courtes + une mise en situation pratique. Durée : 45 minutes.</div>
+      </div>
+
+      <div class="ex-box">
+        <div class="ex-label">Différencier pour un élève en difficulté</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--green-bg);color:var(--green-text)">Dans votre projet</span>
+J'ai un élève en S4 avec une dyslexie diagnostiquée. Adapte cette fiche de procédure [colle ta fiche] : phrases courtes, une action par ligne, mots clés en évidence, pas de blocs de texte.</div>
+      </div>
+
+      <div class="ok-box">
+        <div class="box-label">Pourquoi c'est différent du N1</div>
+        <div class="box-content">Ces prompts sont courts parce que Claude sait déjà que vous êtes en FWB, que vos élèves sont en S4, que vous suivez tel programme.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="guide-nav">
+      <button class="btn-prev" onclick="showPage('n1')">← Les bases</button>
+      <button class="btn-next" onclick="showPage('n3')">Moves avancés →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ N3 ══ -->
+<div id="page-n3" class="page">
+  <div class="container guide-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Retour à l'accueil</button>
+    <div class="guide-tag" style="background:var(--amber-bg);color:var(--amber-text)">🔥 Niveau 3 — Avancé</div>
+    <h1 class="guide-h1">Moves avancés</h1>
+    <p class="guide-sub">Claude qui vous ressemble vraiment.</p>
+    <div class="guide-meta">
+      <span>⏱ 35 min</span>
+      <span>✓ Niveaux 1 et 2 requis</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <h2 class="section-h">Move 1 — Tuer la complaisance</h2>
+      <div class="prose">
+        <p>Claude est entraîné pour être agréable. Ce biais s'appelle la "sycophantie" : l'IA dit ce que vous voulez entendre plutôt que ce qui est vrai.</p>
+      </div>
+      <div class="danger-box">
+        <div class="box-label">Signal d'alarme</div>
+        <div class="box-content">Si Claude commence par "Excellente question !" — il est en mode complaisant. Ce qu'il dit ensuite est biaisé en votre faveur.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">À coller dans les instructions de chaque projet</div>
+        <div class="prompt">Tu n'es pas là pour me flatter. Si mon idée est mauvaise, dis-le directement. Si mon plan de cours a des failles, identifie-les. Je préfère une réponse inconfortable et utile à une réponse rassurante et creuse. Ne commence jamais par un compliment.</div>
+      </div>
+      <div class="compare">
+        <div class="compare-bad">
+          <div class="compare-bad-label">✗ Claude complaisant</div>
+          <div class="compare-bad-text">"C'est une excellente approche qui montre votre engagement. Quelques points à affiner, mais la base est solide..."</div>
+        </div>
+        <div class="compare-good">
+          <div class="compare-good-label">✓ Claude honnête</div>
+          <div class="compare-good-text">"Trois problèmes dans ce plan : la progression S3→S4 n'est pas cohérente, l'objectif de la séance 2 est trop vague pour être évaluable..."</div>
+        </div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">Tester une idée — exemples PLAI</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--amber-bg);color:var(--amber-text)">Avocat du diable</span>
+Je veux supprimer les évaluations écrites en S3. Joue l'avocat du diable : quels sont les arguments contre ? Sois direct, pas diplomate.</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--amber-bg);color:var(--amber-text)">Critiquer un document</span>
+Voici mon plan de séquence : [colle le plan]. Identifie les trois faiblesses principales. Ne commence pas par ce qui est bien.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Move 2 — Donner votre voix à Claude</h2>
+      <div class="prose">
+        <p>Par défaut, Claude écrit avec un style reconnaissable. La solution : un fichier "voix" déposé dans vos projets.</p>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">Prompt pour générer votre fichier de style — hors projet</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">À utiliser hors projet</span>
+Tu vas m'aider à créer un fichier de style pour que tu écrives comme moi. Pose-moi 10 questions, une par une, sur ma façon d'écrire. À la fin, compile mes réponses en un fichier court (max 400 mots) que je pourrai déposer dans mes projets Claude.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Move 3 — Ne plus tomber à court de tokens</h2>
+      <div class="ex-box">
+        <div class="ex-label">Structure d'un prompt économique</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--amber-bg);color:var(--amber-text)">Format efficace</span>
+Tâche : [ce que vous voulez exactement]
+Contraintes : [niveau, durée, format, longueur max]
+Ce que je ne veux pas : [ce qu'il produit souvent et qui ne convient pas]
+Livrable attendu : [un tableau / une liste / un texte de 200 mots max]</div>
+      </div>
+      <div class="warn-box">
+        <div class="box-label">Le piège à éviter</div>
+        <div class="box-content">Ne copiez pas des dizaines de pages dans Claude. Déposez les documents clés dans les fichiers de votre Projet — Claude les lit de façon optimisée.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="guide-nav">
+      <button class="btn-prev" onclick="showPage('n2')">← Projets &amp; workflows</button>
+      <button class="btn-next" onclick="showPage('n4')">Claude Code →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ N4 ══ -->
+<div id="page-n4" class="page">
+  <div class="container guide-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Retour à l'accueil</button>
+    <div class="guide-tag" style="background:var(--red-bg);color:var(--red-text)">🚀 Niveau 4 — Expert</div>
+    <h1 class="guide-h1">Claude Code &amp; sur votre ordinateur</h1>
+    <p class="guide-sub">Claude qui travaille pendant que vous faites autre chose.</p>
+    <div class="guide-meta">
+      <span>⏱ 40 min</span>
+      <span>✓ Tous les niveaux requis</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="box">
+      <div class="box-label">Ce niveau n'est pas pour tout le monde</div>
+      <div class="box-content">Les niveaux 1 à 3 suffisent pour 95% des enseignants. Le niveau 4 est pour ceux qui veulent automatiser des tâches répétitives sur des fichiers.</div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Claude Cowork en mode agent</h2>
+      <div class="prose">
+        <p>En mode agent, vous donnez un objectif à Claude et il avance seul jusqu'au bout — en lisant vos fichiers, en en produisant de nouveaux.</p>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">La formule qui déclenche le mode agent</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">Structure à utiliser</span>
+Je veux [OBJECTIF FINAL] à partir de [FICHIERS SOURCE].
+
+Lis d'abord tous les fichiers sans rien produire. Pose-moi 2 ou 3 questions de clarification. Une fois qu'on est alignés, commence et produis [FORMAT DE LIVRABLE]. Signale-moi quand tu as terminé chaque étape.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">Exemples concrets</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">Adapter un corpus DYS</span>
+J'ai 12 fiches de cours dans ce dossier. Pour chacune, produis une version adaptée DYS : phrases courtes, une idée par ligne, mots techniques expliqués. Enregistre dans un sous-dossier "version-DYS".</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--blue-bg);color:var(--blue-text)">Commentaires de bulletin</span>
+Pour chaque élève de ma liste anonymisée, rédige un commentaire de bulletin de 3 lignes — ton professionnel, bienveillant, factuel.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Claude Code — pour les non-développeurs aussi</h2>
+      <div class="prose">
+        <p>Vous décrivez la tâche en français. Claude Code écrit et exécute le code. Vous validez le résultat.</p>
+      </div>
+      <div class="danger-box">
+        <div class="box-label">Précaution importante</div>
+        <div class="box-content">Claude Code travaille directement sur vos fichiers. Faites toujours une copie de sauvegarde avant de lancer une tâche.</div>
+      </div>
+      <div class="ex-box">
+        <div class="ex-label">Tâches concrètes pour les écoles coopérantes</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--amber-bg);color:var(--amber-text)">Publipostage pédagogique</span>
+J'ai un fichier Excel avec les noms de mes 24 élèves, leur section et leur note finale. Génère un document Word individuel pour chacun à partir du modèle "attestation-modele.docx".</div>
+        <div class="prompt"><span class="prompt-tag" style="background:var(--amber-bg);color:var(--amber-text)">Extraction et synthèse</span>
+J'ai 15 rapports de stage en PDF. Pour chacun, extrais le nom de l'élève, le nom de l'entreprise et la note finale. Compile dans un tableau Excel.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="guide-nav">
+      <button class="btn-prev" onclick="showPage('n3')">← Moves avancés</button>
+      <button class="btn-next" onclick="showPage('bonus')">Skills PLAI →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ BONUS ══ -->
+<div id="page-bonus" class="page">
+  <div class="container guide-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Retour à l'accueil</button>
+    <div class="guide-tag" style="background:var(--purple-bg);color:var(--purple-text)">✨ Bonus — Spécial PLAI</div>
+    <h1 class="guide-h1">Skills PLAI</h1>
+    <p class="guide-sub">Vos commandes personnalisées pour chaque situation.</p>
+    <div class="guide-meta">
+      <span>⏱ 20 min</span>
+      <span>✓ Niveau 2 minimum</span>
+    </div>
+    <div class="divider"></div>
+
+    <div class="section-block">
+      <h2 class="section-h">C'est quoi, un Skill ?</h2>
+      <div class="prose">
+        <p>Un Skill, c'est une commande personnalisée que vous créez dans Claude. Sans Skill : vous ré-expliquez à chaque fois. Avec Skill : vous tapez la commande et collez votre texte.</p>
+      </div>
+      <div class="purple-box">
+        <div class="box-label">La différence avec les instructions de projet</div>
+        <div class="box-content">Les instructions s'appliquent à toutes vos conversations. Un Skill s'applique uniquement quand vous l'invoquez. C'est plus précis, plus chirurgical.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">6 Skills à créer pour vos écoles</h2>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/simplif-ecrit</span>
+          <span class="skill-name">Simplification de texte</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Transforme n'importe quel texte de cours en version accessible pour des élèves en difficulté de lecture (dyslexie, allophones). Phrases courtes, mots techniques expliqués.</div>
+          <div class="skill-usage">Usage : /simplif-ecrit [colle ton texte de cours]</div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/eval-adaptee</span>
+          <span class="skill-name">Évaluation accessible</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Transforme une évaluation existante en version accessible sans réduire les exigences du programme FWB. Adapte la forme sans alléger le fond.</div>
+          <div class="skill-usage">Usage : /eval-adaptee [colle ton évaluation existante]</div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/procedure</span>
+          <span class="skill-name">Fiche de procédure</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Transforme tout contenu de cours en fiche numérotée, étape par étape, une action par ligne, avec marqueurs de sécurité pour les gestes à risque.</div>
+          <div class="skill-usage">Usage : /procedure [décris la technique ou colle le texte du cours]</div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/commentaire-bulletin</span>
+          <span class="skill-name">Commentaire de bulletin</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Rédige un commentaire professionnel, bienveillant et factuel à partir de vos observations brutes. Ton FWB, 2-3 lignes, pas de généralités.</div>
+          <div class="skill-usage">Usage : /commentaire-bulletin [tes observations brutes, anonymisées]</div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/email-parent</span>
+          <span class="skill-name">Communication aux parents</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Génère un email selon le type de situation. Ton adapté à chaque contexte, vouvoyement systématique, formule de politesse belge.</div>
+          <div class="skill-usage">Usage : /email-parent [décris la situation en quelques mots]</div>
+        </div>
+      </div>
+
+      <div class="skill-block">
+        <div class="skill-header">
+          <span class="skill-cmd">/sequence</span>
+          <span class="skill-name">Séquence de cours</span>
+        </div>
+        <div class="skill-body">
+          <div class="skill-desc">Crée une progression pédagogique complète. Respecte les référentiels FWB, propose des objectifs mesurables, une activité par séance.</div>
+          <div class="skill-usage">Usage : /sequence [thème] [niveau S_] [nombre de séances]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <h2 class="section-h">Collaborer avec le PLAI</h2>
+      <div class="plai-box">
+        <div class="plai-box-label">🏛️ Ressource PLAI</div>
+        <div class="plai-box-title">Le Pôle Territorial de la Ville de Liège</div>
+        <div class="plai-box-desc">Vous n'avez pas à tout découvrir seul. Le PLAI rassemble des experts et conseillers pédagogiques dont c'est le métier d'accompagner l'intégration des outils numériques dans les pratiques de classe.</div>
+        <div class="plai-grid">
+          <div class="plai-item">
+            <div class="plai-item-title">Accompagnement personnalisé</div>
+            <div class="plai-item-desc">Des conseillers qui viennent dans votre établissement, à votre rythme.</div>
+          </div>
+          <div class="plai-item">
+            <div class="plai-item-title">Formation en équipe</div>
+            <div class="plai-item-desc">Une session pour toute une section — bien plus efficace qu'une découverte solitaire.</div>
+          </div>
+          <div class="plai-item">
+            <div class="plai-item-title">Skills &amp; ressources partagées</div>
+            <div class="plai-item-desc">Des Skills déjà créés et testés pour les métiers FWB.</div>
+          </div>
+          <div class="plai-item">
+            <div class="plai-item-title">Veille et mises à jour</div>
+            <div class="plai-item-desc">Claude évolue vite. Le PLAI vous signale ce qui change vraiment.</div>
+          </div>
+        </div>
+        <div class="plai-quote">Un enseignant qui utilise Claude seul, c'est bien. Une section qui partage ses Skills et ses projets, c'est dix fois plus puissant.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="guide-nav">
+      <button class="btn-prev" onclick="showPage('n4')">← Claude Code</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════ JS ══ -->
+<script>
+const ORDER = ['home','n1','n2','n3','n4','bonus'];
+
+function showPage(id) {
+  // masquer toutes les pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('visible'));
+  // afficher la page cible
+  document.getElementById('page-' + id).classList.add('visible');
+  // mettre à jour les boutons nav
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const navBtn = document.getElementById('nav-' + id);
+  if (navBtn) navBtn.classList.add('active');
+  // scroll en haut
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 </body>
 </html>
