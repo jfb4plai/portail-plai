@@ -614,6 +614,82 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'retroactif',
+    name: 'RetroActif',
+    description: "Constructeur de rétroaction structurée (Carless & Boud). Logigramme interactif, suivi par élève, dialogue apprenant, bibliothèque. IA 80/20 : l'enseignant personnalise, jamais de rétroaction automatique. Connexion directe depuis Corpus Actif.",
+    url: 'https://retroactif.jfb4plai.com',
+    emoji: '🔁',
+    category: 'Rétroaction',
+    status: 'disponible',
+    color: 'teal',
+    section: 'sensibilisation',
+    guide: {
+      scientific: {
+        summary:
+          "RetroActif repose sur le modèle en 4 dimensions de Carless & Boud (2018) : Dispositions, Conception, Littératie, Appropriation. Sans maîtrise de ces 4 dimensions, même la rétroaction la plus pertinente reste lettre morte pour l'élève. Le Constructeur 80/20 garantit que l'IA propose une base ancrée dans les données de l'élève — l'enseignant imprime sa patte sur les 100%. La rétroaction n'a d'effet que si elle est orientée vers la tâche et le processus (niveaux 2 et 3 de Hattie & Timperley, 2007), précise, émotionnellement accessible et actionnée par l'élève.",
+        references: [
+          {
+            citation:
+              "Virouleau, A., Peyroche, G. & Lopo, T. (2025). La rétroaction audio, une modalité d'évaluation plus efficace ? Un cas d'utilisation en contrôle continu de mathématiques. Colloque QPES 2025. [RISS : hal-05348650]",
+            content:
+              "La rétroaction descriptive (orientée processus et autorégulation) génère des effets positifs significatifs sur la précision perçue, l'utilité et les émotions de l'apprenant — inspiration et détermination — par rapport à la rétroaction évaluative (note seule). C'est exactement ce que vise le Constructeur RetroActif.",
+          },
+          {
+            citation:
+              "Soubre, V. et al. (2023). L'évaluation en tant que soutien d'apprentissage. Synergies France n° 17. [RISS : hal-04621117]",
+            content:
+              "L'évaluation-soutien d'apprentissage met à disposition des ressources visant à améliorer la réussite : perception accrue des objectifs, gestion de l'erreur, régulations aux moments-clés. Pour l'enseignant, la posture de l'ami-critique — qui encourage un retour réflexif — est la fonction dans laquelle son professionnalisme peut se révéler.",
+          },
+          {
+            citation:
+              "Altinsoy, M. (2025). Les évaluations scolaires comme levier d'autorégulation et de développement des compétences métacognitives au cycle 3. [RISS : dumas-05324645]",
+            content:
+              "L'évaluation formative opère quand l'élève dispose de critères transparents et peut s'autoévaluer avant soumission. RetroActif rend explicites les critères dans chaque rétroaction générée, posant les bases de cette autorégulation.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Se connecter',
+            items: [
+              "Depuis RetroActif directement : créer un compte ou se connecter.",
+              "Depuis Corpus Actif : utiliser le bouton « Envoyer vers RetroActif » — les données de l'élève (code, espace, points forts, difficultés, niveau, matière) sont pré-remplies automatiquement via le pont handoff.",
+              "La connexion Corpus Actif évite toute ressaisie et garantit que la rétroaction s'ancre dans les productions réelles de l'élève.",
+            ],
+          },
+          {
+            title: 'Module 1 — Atelier (logigramme)',
+            items: [
+              "Explorer le logigramme interactif des 4 dimensions Carless & Boud.",
+              "Identifier où se situe votre pratique actuelle de rétroaction.",
+              "Utiliser comme support de formation ou d'auto-évaluation professionnelle.",
+            ],
+          },
+          {
+            title: 'Module 6 — Constructeur 80/20 (le cœur)',
+            items: [
+              "Saisir ou vérifier le code élève, la matière, le niveau et les points forts / difficultés.",
+              "Cliquer « Générer » — l'IA (Claude Haiku) produit une base de rétroaction structurée.",
+              "Personnaliser : reformuler avec votre vocabulaire habituel, ajuster le ton, ajouter ce que vous seul savez de cet élève.",
+              "Valider et enregistrer — la rétroaction est archivée dans le suivi de l'élève.",
+            ],
+          },
+          {
+            title: 'Modules complémentaires',
+            items: [
+              "Module 2 — Suivi : historique des rétroactions par élève, génération de bulletins.",
+              "Module 3 — Dialogue apprenant : l'élève répond à la rétroaction, l'enseignant voit les réactions.",
+              "Module 4 — Bibliothèque : exemples de rétroactions et archive personnelle.",
+              "Module 5 — Progression : visualiser l'évolution de l'élève sur les 4 dimensions.",
+            ],
+          },
+        ],
+        tip: "Commencez par le Module 1 (logigramme) en réunion d'équipe pour identifier collectivement les angles morts de vos pratiques de rétroaction — avant d'utiliser le Constructeur en solo.",
+      },
+    },
+  },
+  {
     id: 'glissement',
     name: "Glissement à l'IA",
     description: "Fiction interactive sur la délégation cognitive à l'IA. On confie ses tâches à Pl'ai — et on glisse. 15 mécanismes sourcés en psychologie cognitive. 3 actes, 3 fins. Mode facilitation pour formateurs.",
