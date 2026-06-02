@@ -225,6 +225,7 @@
     <a class="nav-link" href="#commandes">Commandes</a>
     <a class="nav-link" href="#demarrer">Démarrer</a>
     <a class="nav-link" href="#installer">Installer</a>
+    <a class="nav-link" href="#installer-github">GitHub</a>
   </div>
 </nav>
 <div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
@@ -965,6 +966,193 @@
     <a href="installation-superpowers-windows.docx" download style="display:inline-flex;align-items:center;gap:8px;background:var(--text);color:var(--bg);text-decoration:none;padding:10px 20px;border-radius:var(--radius);font-size:14px;font-weight:500;transition:opacity 0.15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
       ⬇️ Télécharger le guide Windows (.docx)
     </a>
+  </div>
+
+</div>
+</section>
+
+<!-- INSTALLER DEPUIS GITHUB -->
+<section id="installer-github">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">🔧 Alternative : depuis GitHub</div>
+    <div class="guide-title">Cloner et installer Superpowers en local</div>
+    <div class="guide-subtitle">Pour les contributeurs, les utilisateurs avancés ou les environnements sans accès au plugin store.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏧ 15 minutes</span>
+      <span class="gmeta">👥 Utilisateurs avancés · Contributors</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Pourquoi installer depuis GitHub</div>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">🔄</div><div class="card-t">Dernière version</div><div class="card-d">Accès au code de développement avant la publication officielle du plugin.</div></div>
+      <div class="card"><div class="card-icon">🤝</div><div class="card-t">Contribution</div><div class="card-d">Tu veux proposer des améliorations ou des corrections au plugin ? Clone et travaille sur ta branche.</div></div>
+      <div class="card"><div class="card-icon">📌</div><div class="card-t">Version figée</div><div class="card-d">Besoin de rester sur une version spécifique ? Clone le tag exact dont tu as besoin.</div></div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Installation pas à pas</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Ouvrir PowerShell 7 — dossier de destination</div>
+          <div class="step-d">Appuie sur <strong>Windows + S</strong>, tape <strong>PowerShell 7</strong>, ouvre-le. Navigue vers le dossier où tu veux cloner le repo :</div>
+          <div class="code-block">cd $HOME\Projects</div>
+          <div class="step-d" style="margin-top:8px;">Si le dossier n'existe pas, crée-le :</div>
+          <div class="code-block">mkdir $HOME\Projects; cd $HOME\Projects</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Cloner le repository Superpowers</div>
+          <div class="step-d">Clone la version officielle depuis GitHub :</div>
+          <div class="code-block">git clone https://github.com/obra/superpowers.git</div>
+          <div class="step-d" style="margin-top:8px;">Cette commande crée un dossier <code>superpowers/</code> avec tout le code source.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-t">Accéder au dossier du plugin</div>
+          <div class="step-d">Entre dans le répertoire :</div>
+          <div class="code-block">cd superpowers</div>
+          <div class="step-d" style="margin-top:8px;">Optionnel — vérifier la version actuelle :</div>
+          <div class="code-block">git describe --tags</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">4</div>
+        <div>
+          <div class="step-t">Ouvrir Claude Code dans le dossier cloné</div>
+          <div class="step-d">Depuis PowerShell, lance Claude Code pour explorer le plugin :</div>
+          <div class="code-block">claude</div>
+          <div class="step-d" style="margin-top:8px;">Claude Code s'ouvre. Explore la structure du plugin pour comprendre comment il fonctionne.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">5</div>
+        <div>
+          <div class="step-t">Installer le plugin localement (installation en développement)</div>
+          <div class="step-d">Deux options selon ton intention :</div>
+          <div style="margin-top:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.75rem 1rem;margin-bottom:8px">
+            <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text);">Option A — Installation pour ton usage perso</div>
+            <div class="code-block" style="margin:0">cd /skills-to-install
+ln -s $HOME\Projects\superpowers ~/.config/superpowers/skills/superpowers</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:6px">Crée un lien symbolique vers la version clonée. Les mises à jour locales prennent effet immédiatement.</div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:0.75rem 1rem;">
+            <div style="font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text);">Option B — Installation pour contribuer</div>
+            <div class="code-block" style="margin:0">cd $HOME\Projects\superpowers
+# Crée ta branche de feature
+git checkout -b feature/mon-amelioration
+# Edite les fichiers du plugin — ils sont dans ./skills/
+# Chaque changement est immédiatement vu par Claude Code grâce au lien symb.</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:6px">Travaille directement sur le code source. Quand tu es satisfait, pousse sur GitHub et ouvre une pull request.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-n">6</div>
+        <div>
+          <div class="step-t">Vérifier que Superpowers est actif</div>
+          <div class="step-d">Ouvre une nouvelle session Claude Code dans un de tes projets et vérifie :</div>
+          <div class="code-block">/using-superpowers</div>
+          <div class="step-d" style="margin-top:8px;">Message attendu : <em>"Superpowers active"</em> ou liste des skills chargés.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Revenir à la version officielle du plugin store</div>
+    <div class="prose">
+      <p>Si tu veux revenir à l'installation via le plugin store (au lieu de la version locale) :</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-t">Supprimer le lien symbolique (ou la version locale)</div>
+          <div class="code-block">rm $HOME\.config\superpowers\skills\superpowers</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-t">Réinstaller depuis le plugin store</div>
+          <div class="step-d">Dans Claude Code :</div>
+          <div class="code-block">/plugin install superpowers@claude-plugins-official</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem">
+    <div class="section-h">Pour les contributeurs — ouvrir une pull request</div>
+    <div class="accordion">
+      <div class="acc-head" onclick="toggle(this)">
+        <div class="acc-emoji">🤝</div>
+        <div class="acc-info">
+          <div class="acc-title">Workflow de contribution au plugin</div>
+          <div class="acc-meta">Proposer tes améliorations à la communauté</div>
+        </div>
+        <div class="acc-toggle">▼</div>
+      </div>
+      <div class="acc-body">
+        <div class="prose">
+          <p>Une fois que tu as testé tes modifications localement :</p>
+        </div>
+        <div class="steps" style="margin:1rem 0">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div>
+              <div class="step-t">Fork le repo sur GitHub (optionnel mais recommandé)</div>
+              <div class="step-d">Va sur <a href="https://github.com/obra/superpowers" target="_blank">github.com/obra/superpowers</a> et clique <strong>"Fork"</strong>.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <div>
+              <div class="step-t">Commit et push ta branche</div>
+              <div class="code-block">git add .
+git commit -m "Décris ton amélioration ici"
+git push origin feature/mon-amelioration</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <div>
+              <div class="step-t">Ouvrir une pull request</div>
+              <div class="step-d">GitHub t'affichera une suggestion. Remplis la description de ta PR avec :</div>
+              <div style="list-style:disc;margin-left:1.5rem;color:var(--text2);font-size:13px;line-height:1.6">
+                <div>Ce que tu as changé et pourquoi</div>
+                <div>Les cas d'usage qu'ça résout</div>
+                <div>Les étapes pour tester</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ok">
+          <div class="ok-label">✅ Code de conduite</div>
+          <p>Superpowers est open source (MIT). Lis le CODE_OF_CONDUCT.md du repo avant de proposer. Les contributions sont bienvenues — teste bien avant de soumettre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="teal-box">
+    <div class="teal-label">📌 Cas d'usage courants</div>
+    <p><strong>Utilisateur solo</strong> : installation depuis le plugin store (par défaut) · <strong>Développeur qui améliore</strong> : clone local + branche de feature · <strong>Équipe de développeurs</strong> : fork d'équipe, contributions via PR · <strong>Besoin de version spécifique</strong> : clone + git tag pour fixer la version.</p>
   </div>
 
 </div>
