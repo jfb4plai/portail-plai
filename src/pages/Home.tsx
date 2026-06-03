@@ -198,7 +198,7 @@ function AppCard({
   return (
     <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden ${muted ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
       {app.isNew && (
-        <div className="w-full text-xs font-bold text-center py-1 tracking-wide text-white" style={{ backgroundColor: '#f97316' }}>
+        <div className="w-full text-xs font-bold text-center py-1 tracking-wide text-white" style={{ backgroundColor: '#FF3399' }}>
           Nouveau
         </div>
       )}

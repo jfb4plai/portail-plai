@@ -4,12 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        plai: {
-          teal: '#0a9370',
-          'teal-dark': '#077a5c',
-          'teal-light': '#f0fdf9',
-          orange: '#f97316',
-        },
+        'jfb-noir':      '#1a1a1a',
+        'jfb-noir-doux': '#2e2e2e',
+        'jfb-rose':      '#FF3399',
+        'jfb-rose-dk':   '#CC0070',
+        'jfb-beige':     '#F5F0E8',
+        'jfb-beige-dk':  '#E8E0D0',
+        'jfb-gris':      '#5a5a5a',
+        'jfb-gris-cl':   '#909090',
+        'jfb-bordure':   '#e8e8e8',
+        'jfb-subtil':    '#f9f9f7',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

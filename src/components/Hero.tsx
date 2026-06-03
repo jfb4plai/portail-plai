@@ -21,12 +21,12 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-6 py-8">
         <p className="text-2xl font-semibold text-gray-800 leading-snug mb-2">
           Des outils numériques inclusifs, construits{' '}
-          <span style={{ color: '#0a9370' }}>avec</span> les enseignants —{' '}
+          <span style={{ color: '#FF3399' }}>avec</span> les enseignants —{' '}
           <button
             onClick={() => setOpen(o => !o)}
             title="Voir les références scientifiques"
             style={{
-              color: '#0a9370',
+              color: '#FF3399',
               fontWeight: 600,
               fontSize: 'inherit',
               textDecoration: 'underline',
@@ -56,7 +56,7 @@ export default function Hero() {
             Le PLAI s'engage à répondre personnellement à chaque enseignant qui écrit à{' '}
             <a
               href="mailto:jeanfrancois.beguin@ens.ecl.be"
-              style={{ color: '#0a9370', fontWeight: 600 }}
+              style={{ color: '#FF3399', fontWeight: 600 }}
             >
               jeanfrancois.beguin@ens.ecl.be
             </a>
