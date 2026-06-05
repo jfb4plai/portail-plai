@@ -1841,7 +1841,7 @@ const apps: AppItem[] = [
   {
     id: 'corpusactif',
     name: 'CorpusActif',
-    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Signal de compréhension, connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Templates de curriculum réutilisables. Dashboard des questions bloquées classées par fréquence. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
     emoji: '📚',
     category: 'IA pédagogique',
@@ -1897,6 +1897,16 @@ const apps: AppItem[] = [
             citation: "Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage pour l'optimisation de la maîtrise à long terme de composantes de connaissance. Thèse de doctorat, Université Paris-Saclay.",
             content: "La répétition espacée adaptative optimise la maîtrise à long terme en planifiant les révisions selon la courbe de l'oubli. La connexion CorpusActif → FlashFWB matérialise ce principe : les concepts bloquants identifiés en session socratique deviennent des cartes Leitner, révisées au bon moment selon la progression de chaque apprenant.",
           },
+          {
+            id: 'W4410983326',
+            citation: "Tremblay, C., Miklohoun, S. & Poëllhuber, B. (2025). Recension des usages d'IAg pour offrir de la rétroaction en enseignement supérieur. Sciences de l'éducation.",
+            content: "L'IA générative peut produire des rétroactions formatives efficaces à condition de s'inscrire dans un cadre d'étayage progressif (scaffolding) : l'IA intervient au niveau de la zone proximale de développement et s'efface quand l'apprenant progresse. C'est exactement la logique de la séquence relances → indice → réponse du mode socratique de CorpusActif.",
+          },
+          {
+            id: 'dumas-03522911',
+            citation: "Affene, N. (2021). Les cartes mémoires : évaluation de la satisfaction et de l'utilité d'une méthode pédagogique efficace. Sciences du vivant, Université de Bordeaux.",
+            content: "Les flashcards associées à la révision active et à la répétition espacée (algorithme Anki/Leitner) produisent des effets significatifs sur la rétention à long terme. CorpusActif génère automatiquement ce deck depuis les questions bloquantes réelles des apprenants, garantissant que les cartes portent sur ce qui a effectivement résisté à la compréhension.",
+          },
         ],
       },
       howto: {
@@ -1906,7 +1916,7 @@ const apps: AppItem[] = [
             items: [
               "Connectez-vous sur corpus-actif.vercel.app (compte enseignant requis — contactez le référent PLAI pour l'accès).",
               "Cliquez « Créer un espace » — nommez-le avec le sujet pédagogique : ex. 'La photosynthèse', 'Les fractions CE2'. Ce nom est affiché à vos apprenants.",
-              "Dans l'onglet Documents, uploadez vos fichiers (.pdf, .docx, .txt — max 10 MB). L'indexation est automatique : les documents sont découpés et vectorisés.",
+              "Dans l'onglet Documents, uploadez vos fichiers (.pdf, .docx, .txt — max 10 MB) par dépôt local ou via un lien de partage OneDrive (réglé sur « Tout le monde peut afficher »). L'indexation est automatique : les documents sont découpés et vectorisés.",
               "Patientez quelques secondes. Un message confirme le nombre de fragments créés.",
             ],
           },
@@ -1940,8 +1950,9 @@ const apps: AppItem[] = [
           {
             title: 'Consulter le tableau de bord',
             items: [
-              "Onglet Tableau de bord → vue agrégée : questions totales, taux hors-base, blocages socratiques, taux de réponses jugées utiles, apprenants actifs.",
-              "Vue par code anonyme : questions posées, blocages identifiés, taux « Utile ». Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas — signal pour enrichir vos ressources.",
+              "Onglet Tableau de bord → vue agrégée : questions totales, taux hors-base, apprenants actifs.",
+              "Section « Questions bloquées » : liste des questions ayant systématiquement déclenché un indice, classées par fréquence. Ce sont les points durs de votre corpus — signal direct pour enrichir vos ressources ou adapter votre enseignement.",
+              "Vue par code anonyme : questions posées, blocages identifiés, taux « Utile ». Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas.",
               "Bouton « → RetroActif » : en un clic, génère un diagnostic (acquis, blocages, synthèse Claude) et ouvre RetroActif Module6 pré-rempli pour construire la rétroaction individualisée.",
               "Bouton « Créer le deck FlashFWB » (dans les paramètres de l'espace) : génère un deck de cartes mémoire Leitner à partir du curriculum, des questions bloquantes et des termes-clés du corpus. Les mises à jour ajoutent des cartes sans effacer la progression Leitner.",
             ],
