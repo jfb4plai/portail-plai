@@ -1842,7 +1842,7 @@ const apps: AppItem[] = [
     id: 'actiactif',
     name: 'ActiActif',
     description: "Générateur d'activités différenciées à partir de votre corpus. Collez votre leçon ou importez un fichier (PDF, DOCX, image) — l'IA génère en un clic une activité pédagogique adaptée au besoin actuel de l'élève et à la fonction visée (découverte, entraînement, remédiation, évaluation). 8 types d'activités : QCM, Vrai/Faux, texte à trous, questions ouvertes, mise en ordre, appariement, résumé guidé, production guidée. Split 80/20 : l'IA propose, vous éditez. Export .docx. Pas de compte requis.",
-    url: 'https://actiactif.vercel.app',
+    url: 'https://acti-actif.vercel.app',
     emoji: '✏️',
     category: 'Différenciation',
     status: 'en-développement',
