@@ -1846,7 +1846,7 @@ const apps: AppItem[] = [
     emoji: '✏️',
     category: 'Différenciation',
     status: 'en-développement',
-    color: 'rose',
+    color: 'pink',
     devBanner: true,
     guide: {
       scientific: {
