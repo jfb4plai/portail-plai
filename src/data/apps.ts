@@ -1837,6 +1837,88 @@ const apps: AppItem[] = [
       },
     },
   },
+  // ActiActif
+  {
+    id: 'actiactif',
+    name: 'ActiActif',
+    description: "Générateur d'activités différenciées à partir de votre corpus. Collez votre leçon ou importez un fichier (PDF, DOCX, image) — l'IA génère en un clic une activité pédagogique adaptée au besoin actuel de l'élève et à la fonction visée (découverte, entraînement, remédiation, évaluation). 8 types d'activités : QCM, Vrai/Faux, texte à trous, questions ouvertes, mise en ordre, appariement, résumé guidé, production guidée. Split 80/20 : l'IA propose, vous éditez. Export .docx. Pas de compte requis.",
+    url: 'https://actiactif.vercel.app',
+    emoji: '✏️',
+    category: 'Différenciation',
+    status: 'en-développement',
+    color: 'rose',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary:
+          "ActiActif génère des activités différenciées à partir du corpus de l'enseignant, ancrées dans le besoin actuel de l'élève — pas dans une catégorie diagnostique. Ce renversement (besoin → ajustement, plutôt que diagnostic → adaptation) s'inscrit dans la logique CUA (Conception Universelle de l'Apprentissage) : réduire les obstacles dès la conception, pour tous. Les 8 types d'activités proposés sont validés par des recherches du corpus RISS (522 627 articles scientifiques francophones). La distinction est explicite dans l'interface : les références valident le type d'activité — pas la génération IA elle-même. Le split 80/20 garantit que l'enseignant reste décideur sur le contenu final.",
+        references: [
+          {
+            citation: "Mahi Haddad, S. & Beaud, M. (2025). L'IA au service de la différenciation pédagogique dans l'enseignement des mathématiques en CE1. [RISS : dumas-05106961]",
+            content:
+              "Valide l'usage du QCM et du Vrai/Faux en différenciation pédagogique. L'étude montre que la génération d'exercices différenciés par IA réduit la charge de préparation sans réduire l'efficacité pédagogique, à condition de maintenir le jugement professionnel dans la boucle.",
+          },
+          {
+            citation: "Cai, B. & al. (2025). L'IA générative au service de l'éducation : entre opportunités et défis. [RISS : hal-05328870]",
+            content:
+              "Valide la génération automatique d'exercices de complétion (texte à trous) par IA. La référence distingue explicitement la génération d'activités (validée) de la correction automatique (plus nuancée) — distinction qu'ActiActif opérationnalise par son éditeur inline post-génération.",
+          },
+          {
+            citation: "Tabuenca, C. (2021). L'évaluation formative et la différenciation pédagogique dans l'enseignement des langues. [RISS : dumas-03373267]",
+            content:
+              "Valide les questions ouvertes et la production guidée en différenciation. L'évaluation formative est plus efficace quand les activités proposées correspondent à la zone proximale de développement de l'élève — ce qu'ActiActif vise par le champ 'besoin actuel'.",
+          },
+          {
+            citation: "Rusconi, L. (2025). La conception universelle de l'apprentissage (CUA) dans la formation des enseignants. [RISS : W4414205903]",
+            content:
+              "Valide les activités de mise en ordre et d'appariement dans un cadre CUA. Le principe de flexibilité des modalités d'action/expression préconise de varier les formats d'activités pour réduire les obstacles — ce qu'ActiActif formalise par ses 8 types.",
+          },
+          {
+            citation: "Thomazet, S. & Mérini, C. (2017). Différenciation pédagogique et hétérogénéité des élèves. [RISS : dumas-01753333]",
+            content:
+              "Valide le résumé guidé comme outil de différenciation pour les élèves en difficulté. Fournir un cadre structurant réduit la charge cognitive et permet à l'élève de se concentrer sur le sens plutôt que sur la forme.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Préparer le corpus",
+            items: [
+              "Collez directement votre leçon ou texte support dans la zone 'Corpus'.",
+              "Ou importez un fichier PDF, DOCX ou image — le texte est extrait automatiquement.",
+              "Un avertissement s'affiche si le corpus dépasse 3 000 mots (risque de troncature dans le prompt).",
+            ],
+          },
+          {
+            title: "2. Décrire l'élève",
+            items: [
+              "Renseignez le champ 'Qu'est-ce que cet élève ne sait pas encore faire ?' — c'est le champ le plus important.",
+              "Cochez les caractéristiques complémentaires si pertinent (DYS, TDAH, allophone…).",
+              "Ajoutez en texte libre ce que vous seul savez : contexte, progrès récents, blocages.",
+            ],
+          },
+          {
+            title: "3. Choisir et paramétrer",
+            items: [
+              "Sélectionnez un type d'activité selon la fonction pédagogique visée (pas seulement le format).",
+              "Ajustez la fonction (découverte / entraînement / remédiation / évaluation), la difficulté et la longueur.",
+              "Cliquez 'Générer'.",
+            ],
+          },
+          {
+            title: "4. Éditer et exporter",
+            items: [
+              "Le résultat est directement éditable — c'est votre point de départ, pas votre copie finale.",
+              "Ajoutez une note personnelle confidentielle (imprimée en bas du .docx).",
+              "Exportez en .docx et sauvegardez dans Google Drive ou OneDrive.",
+            ],
+          },
+        ],
+        tip: "Commencez par décrire le besoin de l'élève avant de choisir le type d'activité — ce champ structure toute la génération. Une activité de remédiation sur un obstacle précis sera toujours plus utile qu'une activité 'standard' bien formatée.",
+      },
+    },
+  },
   // CorpusActif
   {
     id: 'corpusactif',
