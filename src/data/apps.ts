@@ -2044,6 +2044,72 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'utilactif',
+    name: 'UtilActif',
+    description: "Suite de 6 utilitaires de classe pour TBI — Timer TDAH, Dés multiformat, Roue de tirage, Afficheur de consigne, Grille de nombres, Gestionnaire de tours. Un profil de classe adapte automatiquement tous les outils (DYS, TDAH, contraste, taille).",
+    url: 'https://utilactif.jfb4plai.com',
+    emoji: '🧰',
+    category: 'Utilitaires de classe',
+    status: 'disponible',
+    color: 'teal',
+    section: 'utilitaires',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary: "UtilActif repose sur deux principes validés : (1) la réduction de la charge cognitive extrinsèque — un profil de classe unique évite la reconfiguration répétée et libère l'attention de l'enseignant pour l'acte pédagogique ; (2) les signaux visuels renforcés (barre de progression, indicateurs colorés) compensent les déficits d'autorégulation temporelle et attentionnelle chez les élèves TDAH. L'usage du TBI comme surface partagée maximise l'engagement collectif à condition que les zones tactiles soient suffisamment grandes (72px minimum) et que les interactions ne soient pas hover-dépendantes.",
+        references: [
+          {
+            id: 'tel-04137370',
+            citation: "Redouani, A. (2022). L'impact de l'usage pédagogique du Tableau Blanc Interactif (TBI) sur l'engagement scolaire des élèves.",
+            content: "L'usage du TBI en classe augmente significativement l'engagement comportemental et cognitif des élèves, à condition que l'outil soit intégré dans une démarche participative et que les zones interactives soient accessibles au toucher.",
+          },
+          {
+            id: 'dumas-03052674',
+            citation: "Keller, J. (2020). Évaluation d'une stratégie d'apprentissage par récupération chez des adolescents avec TDAH : une étude observationnelle.",
+            content: "Les élèves TDAH bénéficient de signaux visuels extrinsèques (retour coloré, progression temporelle visible) pour compenser les déficits d'autorégulation. Les minuteurs avec barre de progression colorée vert→orange→rouge répondent à ce besoin documenté.",
+          },
+          {
+            id: 'hal-03962468',
+            citation: "Coffin, M., Goulet, C. & Piquard-Kipffer, A. (2023). L'accessibilité numérique au service des étudiants dyslexiques.",
+            content: "La modification de la typographie (interligne augmenté, police sans empattement, espaces interlettres et intermots augmentés) permet d'accéder plus facilement au sens d'un texte. UtilActif applique ces principes automatiquement via le profil DYS : police Arial, interligne 1.8.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Configurer le profil de classe',
+            items: [
+              "Première visite → remplissez le nom de la classe, le niveau, l'année scolaire",
+              "Activez les options d'accessibilité : Mode DYS (Arial, interligne), Mode TDAH (signaux visuels renforcés), Contraste élevé, Animations réduites, Taille du texte",
+              "Ajoutez les prénoms ou codes anonymes de vos élèves (utilisés par la Roue et le Gestionnaire de tours)",
+              "Sauvegardez — le profil est chargé automatiquement à chaque visite",
+            ],
+          },
+          {
+            title: 'Utiliser les 6 utilitaires',
+            items: [
+              "⏱ Timer : choisissez une durée (1, 2, 5, 10, 15, 20 min) ou saisissez la vôtre. En mode TDAH : barre verte→orange→rouge + flash visuel à l'expiration",
+              "🎲 Dés : lancez 1 à 4 dés. Chaque face affiche les points, le chiffre et le mot. En mode DYS : espacement augmenté",
+              "🎡 Roue : tirage au sort parmi vos élèves. Historique des 5 derniers tirages visible",
+              "📋 Afficheur de consigne : collez une consigne → plein écran. Bouton 'Simplifier' : phrases longues découpées, connecteurs complexes remplacés. En mode DYS : Arial + interligne 1.8",
+              "🔢 Grille de nombres : grilles 1-50, 1-100, 1-200. Clic = surlignage. En mode DYS : surbrillance de ligne au survol",
+              "🗣️ Tours de parole : file d'attente depuis vos élèves, mode aléatoire ou manuel. En mode TDAH : chrono par élève visible en grand",
+            ],
+          },
+          {
+            title: 'Modifier le profil en cours de séance',
+            items: [
+              "L'icône ⚙️ (coin de l'écran) ouvre ClassSetup sans quitter l'outil actif",
+              "Modifiez accessibilité ou liste d'élèves → les changements s'appliquent immédiatement",
+            ],
+          },
+        ],
+        tip: "Configurez le profil une seule fois en début d'année scolaire. Les 6 outils s'adaptent automatiquement — pas besoin de reconfigurer à chaque utilisation. Idéal pour TBI : toutes les zones interactives font 72px minimum.",
+      },
+    },
+  },
 ];
 
 export default apps;
