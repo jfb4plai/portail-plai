@@ -2048,13 +2048,14 @@ const apps: AppItem[] = [
     id: 'utilactif',
     name: 'UtilActif',
     description: "Suite de 6 utilitaires de classe pour TBI — Timer TDAH, Dés multiformat, Roue de tirage, Afficheur de consigne, Grille de nombres, Gestionnaire de tours. Un profil de classe adapte automatiquement tous les outils (DYS, TDAH, contraste, taille).",
-    url: 'https://util-actif.vercel.app',
+    url: 'https://utilactif.jfb4plai.com',
     emoji: '🧰',
     category: 'Utilitaires de classe',
     status: 'disponible',
     color: 'teal',
     section: 'utilitaires',
     isNew: true,
+    devBanner: true,
     guide: {
       scientific: {
         summary: "UtilActif repose sur deux principes validés : (1) la réduction de la charge cognitive extrinsèque — un profil de classe unique évite la reconfiguration répétée et libère l'attention de l'enseignant pour l'acte pédagogique ; (2) les signaux visuels renforcés (barre de progression, indicateurs colorés) compensent les déficits d'autorégulation temporelle et attentionnelle chez les élèves TDAH. L'usage du TBI comme surface partagée maximise l'engagement collectif à condition que les zones tactiles soient suffisamment grandes (72px minimum) et que les interactions ne soient pas hover-dépendantes.",
