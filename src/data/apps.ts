@@ -2054,7 +2054,6 @@ const apps: AppItem[] = [
     status: 'disponible',
     color: 'teal',
     section: 'utilitaires',
-    isNew: true,
     devBanner: true,
     guide: {
       scientific: {
