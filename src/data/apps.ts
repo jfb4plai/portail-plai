@@ -2048,7 +2048,7 @@ const apps: AppItem[] = [
     id: 'utilactif',
     name: 'UtilActif',
     description: "Suite de 6 utilitaires de classe pour TBI — Timer TDAH, Dés multiformat, Roue de tirage, Afficheur de consigne, Grille de nombres, Gestionnaire de tours. Un profil de classe adapte automatiquement tous les outils (DYS, TDAH, contraste, taille).",
-    url: 'https://utilactif.jfb4plai.com',
+    url: 'https://util-actif.vercel.app',
     emoji: '🧰',
     category: 'Utilitaires de classe',
     status: 'disponible',
