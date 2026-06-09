@@ -103,8 +103,7 @@ export default function VoixActif() {
           Texte dicté
         </label>
         <textarea
-          className="w-full border rounded-lg p-3 text-base resize-y min-h-[120px] focus:outline-none focus:ring-2"
-          style={{ focusRingColor: '#0a9370' } as React.CSSProperties}
+          className="w-full border rounded-lg p-3 text-base resize-y min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#0a9370]"
           placeholder="Collez ici votre texte dicté..."
           value={texte}
           onChange={(e) => setTexte(e.target.value)}
@@ -176,12 +175,18 @@ export default function VoixActif() {
           placeholder={profil.champLibrePlaceholder}
           value={contexte}
           onChange={(e) => setContexte(e.target.value)}
+          maxLength={1000}
         />
-        {!contexte.trim() && (
-          <p className="text-xs text-red-400 mt-1">
-            Ce champ est obligatoire pour activer la reformulation.
-          </p>
-        )}
+        <div className="flex justify-between items-center mt-1">
+          {!contexte.trim() ? (
+            <p className="text-xs text-red-400">
+              Ce champ est obligatoire pour activer la reformulation.
+            </p>
+          ) : (
+            <span />
+          )}
+          <p className="text-xs text-gray-400">{contexte.length}/1000</p>
+        </div>
       </div>
 
       {/* Bouton reformuler */}

@@ -77,8 +77,8 @@ export default async function handler(req, res) {
   }
 
   const champsValidated = validateChamps(profilId, champs);
-  if (typeof champsValidated === 'string') {
-    return res.status(400).json({ error: champsValidated });
+  if (!champsValidated || typeof champsValidated === 'string') {
+    return res.status(400).json({ error: champsValidated || 'Validation des champs échouée.' });
   }
 
   const systemPrompt = systemPromptFn(champsValidated);
