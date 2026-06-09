@@ -77,16 +77,16 @@ export default function VoixActif() {
       {onboardingVisible && (
         <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 text-sm text-teal-800 flex justify-between items-start gap-4">
           <span>
-            Nouveau ?{' '}
+            Nouveau ? Installez{' '}
             <a
-              href="https://github.com/cjpais/Handy"
+              href="https://handy.computer/"
               target="_blank"
               rel="noreferrer"
               className="underline font-medium"
             >
-              Installez Handy
+              Handy
             </a>{' '}
-            pour dicter directement dans cette zone via un raccourci clavier (offline, gratuit).
+            pour dicter directement dans cette zone via un raccourci clavier (offline, gratuit). Choisissez le modèle <strong>Whisper Turbo</strong> lors de l'installation.
           </span>
           <button
             onClick={dismissOnboarding}
