@@ -2110,6 +2110,88 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'socraactif',
+    name: 'SocraActif',
+    description: "Parcours séquentiel de remédiation socratique. L'IA classifie l'erreur (faute / erreur de technique / erreur de technologie) avant d'engager un dialogue socratique multi-tours calibré. L'enseignant fixe le point de rupture, le type d'étayage et le seuil. Mode autonomie (code élève) et mode projection (tableau collectif).",
+    url: 'https://socraactif.vercel.app',
+    emoji: '🧭',
+    category: 'Remédiation',
+    status: 'en-développement',
+    color: 'teal',
+    section: 'applications',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary:
+          "SocraActif repose sur une taxonomie des erreurs à 3 niveaux issue de la didactique des mathématiques (Fouchet-Isambard & Millon Faure, 2025 — RISS hal-05361521) : la faute (inattention, non reproductible), l'erreur de technique (procédure mal appliquée de façon systématique) et l'erreur de technologie (concept sous-jacent incompris). Cette distinction — héritée de la TAD de Chevallard — est essentielle : une même réponse incorrecte peut relever de causes radicalement différentes et appeler des remédiations opposées. Le dialogue socratique est déclenché uniquement pour les erreurs de processus (technique ou technologie), avec un niveau d'étayage configurable (explicite ou inductif). Le seuil de validation est laissé à la discrétion de l'enseignant (défaut : 70 %) — une adaptation aux réalités du terrain FWB, le seuil de 80 % de Bloom étant documenté mais absent du corpus RISS et potentiellement inadapté au public avec besoins spécifiques.",
+        references: [
+          {
+            id: 'hal-05361521',
+            citation:
+              'Fouchet-Isambard, A. & Millon Faure, K. (2025). Feedback adaptatif et taxonomie des erreurs en mathématiques. HAL.',
+            content:
+              "Distingue faute (écart ponctuel, non reproductible), erreur de technique (procédure erronée appliquée systématiquement) et erreur de technologie (concept sous-jacent incompris). Cette taxonomie est le cœur du moteur de classification de SocraActif.",
+          },
+          {
+            id: 'hal-04925060',
+            citation:
+              'Fanton-Bayrou, C. & Lafont, L. (2023). Étayage contingent et guidage dans les situations d\'apprentissage. HAL.',
+            content:
+              "L'étayage contingent — adapter le degré d'aide à l'état réel de l'apprenant — est plus efficace qu'un guidage uniforme. SocraActif propose deux niveaux d'étayage configurables par l'enseignant : explicite (guidage vers la micro-étape suivante) et inductif (question ouverte).",
+          },
+          {
+            id: 'tel-01737805',
+            citation:
+              'Schwartz, C. (2017). Mémoire procédurale et apprentissage des mathématiques chez les élèves dyscalculiques. Thèse, Université de Lorraine.',
+            content:
+              "La distinction procédure / concept est particulièrement saillante pour les élèves avec troubles de la cognition mathématique : un élève dyscalculique peut maîtriser une procédure sans en comprendre le sens — ou l'inverse. SocraActif rend cette distinction opérationnelle pour l'enseignant.",
+          },
+          {
+            id: 'dumas-04390536',
+            citation:
+              'Hofseth, C. (2022). Remédiation comme nouvelle médiation : ancrage dans la théorie des situations didactiques de Brousseau. DUMAS.',
+            content:
+              "La remédiation n'est pas une répétition à l'identique mais une re-médiation : une nouvelle mise en scène didactique qui crée les conditions d'un obstacle franchissable. Le dialogue socratique de SocraActif vise précisément à recréer cette situation sans donner la réponse.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer un parcours (enseignant)',
+            items: [
+              "Se connecter → 'Nouveau parcours' : titre, matière, mode (autonomie ou projection), seuil de validation, blocage (strict ou souple), nombre de tours socratiques (2–6).",
+              "Ajouter des étapes : énoncé + résultat attendu + étapes clés de procédure.",
+              "Pour chaque étape, renseigner le champ obligatoire '20%' : le point de rupture typique (ex. : 'Les élèves oublient de réduire au même dénominateur avant d'additionner').",
+              "Optionnel : erreurs de distraction fréquentes, indice explicite, hypothèse sur le type d'erreur, niveau d'étayage.",
+              "Générer le code de session → distribuer aux élèves sur papier (code anonyme, pas de compte nécessaire).",
+            ],
+          },
+          {
+            title: 'Mode autonomie (élève)',
+            items: [
+              "L'élève saisit son code anonyme + le code de session → accède au parcours.",
+              "Soumet sa réponse → l'IA classifie : faute (nudge léger, retente), technique ou technologie (dialogue socratique), correct (validation).",
+              "Le dialogue socratique pose une question à la fois, sans jamais donner la réponse directement.",
+              "Après N tours sans succès → indice (rédigé par l'enseignant ou généré par l'IA).",
+              "Mode strict : l'étape suivante est bloquée jusqu'à résolution. Mode souple : avertissement, l'élève peut continuer.",
+            ],
+          },
+          {
+            title: 'Mode projection (tableau collectif)',
+            items: [
+              "Afficher le parcours sur le tableau via l'URL + code de session.",
+              "L'enseignant saisit une réponse représentative d'un élève → l'IA classifie discrètement (panneau enseignant en bas à droite).",
+              "La question socratique s'affiche en grand pour la classe.",
+              "L'enseignant pilote les tours : 'Tour suivant' / 'Dévoiler l'indice'. Aucun compte élève requis.",
+            ],
+          },
+        ],
+        tip: "Le champ 'point de rupture' est la clé du split 80/20 : plus il est précis et ancré dans vos élèves réels (ex. : 'Ils multiplient les deux numérateurs mais oublient de multiplier les dénominateurs'), plus les questions socratiques générées seront pertinentes. Un point de rupture vague produit un dialogue générique.",
+      },
+    },
+  },
 ];
 
 export default apps;
