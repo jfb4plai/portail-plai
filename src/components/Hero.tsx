@@ -46,6 +46,16 @@ export default function Hero() {
           Chaque outil est ancré dans la recherche scientifique francophone (corpus RISS, 522&nbsp;627 articles).
         </p>
 
+        {/* Note identifiants partagés */}
+        <div className="mt-3 rounded-xl border border-teal-100 bg-teal-50 px-5 py-3 max-w-2xl flex gap-3 items-start">
+          <span style={{ fontSize: 18, marginTop: 1 }}>🔑</span>
+          <p className="text-sm text-teal-800 leading-relaxed">
+            <strong>Un seul compte pour toutes les apps.</strong>{' '}
+            Les mêmes identifiants (email + mot de passe) donnent accès à RetroActif, DiffActif, SocraActif et toutes les futures applications PLAI.
+            Si vous avez déjà un compte sur l'une d'elles, utilisez-le directement sur les autres.
+          </p>
+        </div>
+
         {/* Invitation enseignants */}
         <div className="mt-4 rounded-xl border-2 border-teal-200 bg-white px-6 py-4 max-w-2xl">
           <p className="text-base font-semibold text-gray-800 mb-1">
