@@ -2200,6 +2200,7 @@ const apps: AppItem[] = [
     emoji: '🔒',
     category: 'Protection des données',
     status: 'en-développement',
+    devBanner: true,
     color: 'teal',
     section: 'utilitaires',
     guide: {
