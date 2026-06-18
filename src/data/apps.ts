@@ -2199,7 +2199,7 @@ const apps: AppItem[] = [
     url: '/anonymiseur-fwb.html',
     emoji: '🔒',
     category: 'Protection des données',
-    status: 'disponible',
+    status: 'en-développement',
     color: 'teal',
     section: 'utilitaires',
     guide: {
