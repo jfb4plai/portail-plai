@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anonymiseur FWB — PLAI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface2: #f4f2ee;
+  --border: #e8e4dd;
+  --border2: #d4cfc6;
+  --text: #1a1814;
+  --text2: #5a564f;
+  --text3: #9a958c;
+  --teal: #0a9370;
+  --teal-light: #e6f4f0;
+  --teal-dark: #077a5c;
+  --orange: #f97316;
+  --radius: 10px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+/* NAV */
+nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 100; }
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-version { font-size: 12px; color: var(--text3); background: var(--surface2); padding: 2px 8px; border-radius: 20px; }
+
+/* BANDEAU SUPPORT */
+.bandeau-support { background: #e1f5ee; border-bottom: 1px solid #1d9e75; padding: 0.65rem 2rem; text-align: center; font-size: 13px; color: #0f6e56; }
+.bandeau-support a { color: #0f6e56; font-weight: 500; }
+
+/* HERO */
+.hero { background: var(--surface); border-bottom: 1px solid var(--border); padding: 3rem 2rem 2.5rem; text-align: center; }
+.hero-eyebrow { font-size: 13px; color: var(--teal); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 5vw, 42px); line-height: 1.1; margin-bottom: 0.75rem; }
+.hero-sub { font-size: 16px; color: var(--text2); max-width: 560px; margin: 0 auto; font-family: 'DM Serif Display', serif; font-style: italic; }
+
+/* MAIN */
+main { max-width: 800px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+section { margin-bottom: 2.5rem; }
+h2 { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--teal); color: var(--text); }
+h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+p { color: var(--text2); margin-bottom: 0.75rem; }
+p:last-child { margin-bottom: 0; }
+a { color: var(--teal); }
+
+/* POURQUOI 2 VERSIONS */
+.versions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+@media (max-width: 600px) { .versions-grid { grid-template-columns: 1fr; } }
+.version-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+.version-card.highlight { border-color: var(--teal); background: var(--teal-light); }
+.version-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; margin-bottom: 0.5rem; }
+.version-tag.pole { background: #e8e4f8; color: #5b4dab; }
+.version-tag.enseignants { background: #e6f4f0; color: var(--teal-dark); }
+.version-card ul { padding-left: 1.2rem; color: var(--text2); font-size: 14px; }
+.version-card ul li { margin-bottom: 0.25rem; }
+.version-card .limit { font-size: 13px; color: var(--text3); margin-top: 0.5rem; font-style: italic; }
+
+/* REFERENCE */
+.reference-box { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--teal); border-radius: var(--radius); padding: 1rem 1.25rem; margin-top: 1rem; }
+.reference-box .ref-label { font-size: 11px; font-weight: 500; color: var(--teal); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+.reference-box cite { font-size: 13px; color: var(--text2); font-style: normal; display: block; margin-bottom: 0.4rem; }
+.reference-box .ref-content { font-size: 13px; color: var(--text3); line-height: 1.5; }
+
+/* SECURITE */
+.security-banner { background: var(--teal-light); border: 2px solid var(--teal); border-radius: var(--radius); padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+.security-banner .icon { font-size: 24px; flex-shrink: 0; }
+.security-banner strong { color: var(--teal-dark); }
+.security-banner p { margin: 0; font-size: 14px; color: var(--text2); }
+
+/* NIVEAUX */
+.level-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+.level-card { border: 2px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.level-card:hover { border-color: var(--teal); }
+.level-card.selected { border-color: var(--teal); background: var(--teal-light); }
+.level-card input[type=radio] { display: none; }
+.level-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+.level-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.dot-green { background: #22c55e; }
+.dot-orange { background: #f97316; }
+.dot-red { background: #ef4444; }
+.level-title { font-weight: 500; font-size: 15px; }
+.level-desc { font-size: 13px; color: var(--text2); margin-left: 1.65rem; }
+.level-example { font-size: 12px; color: var(--text3); margin-left: 1.65rem; font-family: monospace; margin-top: 0.25rem; }
+
+/* TEXTAREA */
+.input-zone { margin-top: 1rem; }
+.input-zone label { font-size: 14px; font-weight: 500; display: block; margin-bottom: 0.5rem; }
+textarea { width: 100%; min-height: 180px; font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 0.875rem; border: 1.5px solid var(--border2); border-radius: var(--radius); background: var(--surface); color: var(--text); resize: vertical; line-height: 1.6; }
+textarea:focus { outline: none; border-color: var(--teal); }
+
+/* BOUTON */
+.btn-primary { display: block; width: 100%; padding: 0.875rem; background: var(--teal); color: #fff; border: none; border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 1rem; transition: background 0.15s; }
+.btn-primary:hover:not(:disabled) { background: var(--teal-dark); }
+.btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+.btn-secondary { padding: 0.6rem 1.25rem; background: var(--surface); color: var(--teal); border: 1.5px solid var(--teal); border-radius: var(--radius); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+.btn-secondary:hover { background: var(--teal-light); }
+
+/* AVERTISSEMENT */
+.warning-banner { background: #fff8ed; border: 1.5px solid var(--orange); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 14px; color: #7c3a00; margin: 1rem 0; text-align: center; }
+
+/* RÉSULTATS */
+#results { display: none; }
+.result-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.875rem; text-align: center; }
+.stat-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--teal); display: block; }
+.stat-label { font-size: 12px; color: var(--text3); }
+.tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1rem; gap: 0; }
+.tab { padding: 0.6rem 1.25rem; font-size: 14px; font-weight: 500; color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+.tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+.result-text { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; font-size: 14px; line-height: 1.7; white-space: pre-wrap; max-height: 400px; overflow-y: auto; }
+.highlight-tag { background: #ffcdd2; padding: 1px 3px; border-radius: 3px; font-weight: 500; }
+.highlight-pseudo { background: #fff9c4; padding: 1px 3px; border-radius: 3px; font-weight: 500; }
+.legend { font-size: 12px; margin-top: 0.5rem; display: flex; gap: 1rem; }
+.legend span { display: flex; align-items: center; gap: 4px; }
+.export-buttons { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+.mapping-list { font-size: 13px; }
+.mapping-cat { font-weight: 500; color: var(--text2); margin: 0.75rem 0 0.25rem; }
+.mapping-item { color: var(--text3); padding: 2px 0; }
+.mapping-item code { background: var(--surface2); padding: 0 4px; border-radius: 3px; color: var(--text); }
+
+/* FOOTER */
+.footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); border-top: 1px solid var(--border); margin-top: 2rem; }
+.footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
+.footer a { color: var(--text2); }
+.footer p + p { margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="/plai-logo.jpg" alt="PLAI">
+    Anonymiseur FWB · PLAI
+  </a>
+  <span class="nav-version" id="versionBadge">v1.0.0</span>
+</nav>
+
+<div class="bandeau-support">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be">jeanfrancois.beguin@ens.ecl.be</a></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">🎓 Guide enseignants · Écoles coopérantes du PLAI</div>
+  <h1>Anonymiseur de documents FWB</h1>
+  <p class="hero-sub">Protégez les données personnelles de vos élèves avant d'utiliser un outil IA.</p>
+</div>
+
+<main>
+
+  <!-- POURQUOI ANONYMISER -->
+  <section>
+    <h2>Pourquoi anonymiser avant d'utiliser une IA ?</h2>
+    <p>Les diagnostics, rapports d'observation et PIA contiennent des données personnelles sensibles protégées par le <strong>RGPD (UE) 2016/679)</strong>. Leur transmission à un service IA externe (ChatGPT, Claude, Gemini…) constitue un traitement de données à caractère personnel soumis à obligation de conformité.</p>
+    <p>L'anonymisation préalable fait sortir le document du champ du RGPD (Considérant 26) : un texte dont on ne peut plus raisonnablement identifier la personne concernée n'est plus une donnée personnelle.</p>
+
+    <div class="reference-box">
+      <div class="ref-label">Référence légale</div>
+      <cite>RGPD (UE) 2016/679, Considérant 26 — Principes relatifs aux données à caractère personnel</cite>
+      <div class="ref-content">« Les principes relatifs à la protection des données ne devraient pas s'appliquer aux informations anonymes, c'est-à-dire aux informations ne concernant pas une personne physique identifiée ou identifiable, ni aux données à caractère personnel rendues anonymes de telle manière que la personne concernée ne soit plus identifiable. »</div>
+    </div>
+
+    <div class="reference-box" style="margin-top:0.75rem;">
+      <div class="ref-label">Référence scientifique — corpus RISS</div>
+      <cite>Froidevaux, C., Ganascia, J.-G. & Kirchner, C. (2024). Anonymisation des données : enjeux d'éthique pour la recherche scientifique. INRIA/CERNA. [RISS : hal-04766842]</cite>
+      <div class="ref-content">« Les données pédagogiques méritent d'être considérées comme des données sensibles au sens du RGPD, à l'instar des données de santé. L'anonymisation préalable à tout traitement externe est la mesure de protection la plus robuste disponible à ce jour. »</div>
+    </div>
+  </section>
+
+  <!-- DEUX VERSIONS -->
+  <section>
+    <h2>Deux versions selon votre profil</h2>
+    <p>L'outil existe en deux versions adaptées à des contextes différents :</p>
+    <div class="versions-grid">
+      <div class="version-card">
+        <span class="version-tag pole">Collaborateurs du Pôle</span>
+        <h3>Version complète (application locale)</h3>
+        <ul>
+          <li>PDF natifs et scannés (OCR)</li>
+          <li>Fichiers Word (.docx)</li>
+          <li>Détection NLP avancée (spaCy)</li>
+          <li>Fonctionne sans internet</li>
+        </ul>
+        <p class="limit">Nécessite une installation. Contactez votre référent PLAI.</p>
+      </div>
+      <div class="version-card highlight">
+        <span class="version-tag enseignants">Enseignants — cette page</span>
+        <h3>Version navigateur</h3>
+        <ul>
+          <li>Texte collé (Word, Excel, emails…)</li>
+          <li>Aucune installation</li>
+          <li>Traitement 100% dans votre navigateur</li>
+          <li>Aucun document transmis au serveur</li>
+        </ul>
+        <p class="limit">Pas de PDF. Détection par patterns FWB.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTIL -->
+  <section>
+    <h2>Anonymiser un document</h2>
+
+    <div class="security-banner">
+      <div class="icon">🔒</div>
+      <div>
+        <strong>Traitement 100% dans votre navigateur</strong>
+        <p>Le texte que vous collez ne quitte jamais votre ordinateur. Aucune donnée n'est transmise au serveur PLAI ni à aucun tiers. Le traitement est entièrement réalisé par JavaScript dans votre navigateur.</p>
+      </div>
+    </div>
+
+    <!-- Niveau -->
+    <h3>1. Choisissez le niveau de protection</h3>
+    <div class="level-cards" id="levelCards">
+      <label class="level-card selected" onclick="selectLevel(1)">
+        <input type="radio" name="level" value="1" checked>
+        <div class="level-header">
+          <span class="level-dot dot-green"></span>
+          <span class="level-title">Niveau 1 — Pour utiliser avec une IA (ChatGPT, Claude…)</span>
+        </div>
+        <div class="level-desc">Masque noms, adresses, téléphones, emails, numéros nationaux, dates de naissance</div>
+        <div class="level-example">Jean Dupont → Alexandre Martin &nbsp;|&nbsp; 081/22.33.44 → [TELEPHONE]</div>
+      </label>
+      <label class="level-card" onclick="selectLevel(2)">
+        <input type="radio" name="level" value="2">
+        <div class="level-header">
+          <span class="level-dot dot-orange"></span>
+          <span class="level-title">Niveau 2 — Pour partager entre collègues</span>
+        </div>
+        <div class="level-desc">Niveau 1 + noms d'écoles, classes, références PMS</div>
+        <div class="level-example">Institut Saint-Michel, P5 → [ETABLISSEMENT], [CLASSE]</div>
+      </label>
+      <label class="level-card" onclick="selectLevel(3)">
+        <input type="radio" name="level" value="3">
+        <div class="level-header">
+          <span class="level-dot dot-red"></span>
+          <span class="level-title">Niveau 3 — Pour documents médicaux / diagnostics</span>
+        </div>
+        <div class="level-desc">Protection maximale : tout + diagnostics, médicaments, résultats de tests — à utiliser si vous n'avez pas besoin des termes cliniques dans votre IA</div>
+        <div class="level-example">TDAH, Rilatine, QI=108 → [DIAGNOSTIC], [MEDICAMENT], [RESULTAT_TEST]</div>
+      </label>
+    </div>
+
+    <!-- Texte -->
+    <div class="input-zone">
+      <label for="inputText">2. Collez votre texte (Word, Excel, email, rapport…)</label>
+      <textarea id="inputText" placeholder="Collez ici le contenu de votre document. Le texte copié depuis Word, Outlook ou tout autre traitement de texte est accepté." oninput="updateBtn()"></textarea>
+    </div>
+
+    <div class="warning-banner">
+      <strong>Vérifiez TOUJOURS le résultat avant de l'utiliser avec une IA.</strong><br>
+      Ne chargez que des documents déjà anonymisés dans Cowork ou tout autre outil en ligne.
+    </div>
+
+    <button class="btn-primary" id="anonBtn" onclick="runAnonymization()" disabled>
+      Anonymiser maintenant
+    </button>
+  </section>
+
+  <!-- RÉSULTATS -->
+  <div id="results">
+    <section>
+      <h2>Résultat</h2>
+      <div class="result-stats">
+        <div class="stat-box"><span class="stat-num" id="statDetections">0</span><span class="stat-label">Détections</span></div>
+        <div class="stat-box"><span class="stat-num" id="statTypes">0</span><span class="stat-label">Types d'infos</span></div>
+        <div class="stat-box"><span class="stat-num" id="statLevel">1</span><span class="stat-label">Niveau</span></div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" onclick="showTab('tab-anon', this)">Texte anonymisé</button>
+        <button class="tab" onclick="showTab('tab-verify', this)">Vérification visuelle</button>
+        <button class="tab" onclick="showTab('tab-mapping', this)">Correspondances</button>
+      </div>
+
+      <div id="tab-anon" class="tab-content active">
+        <textarea id="resultText" class="result-text" style="min-height:300px;font-family:inherit;" readonly></textarea>
+        <div class="export-buttons">
+          <button class="btn-secondary" onclick="copyToClipboard()">Copier dans le presse-papiers</button>
+          <button class="btn-secondary" onclick="downloadTxt()">Télécharger en TXT</button>
+          <button class="btn-secondary" onclick="downloadMd()">Télécharger en Markdown</button>
+        </div>
+      </div>
+
+      <div id="tab-verify" class="tab-content">
+        <p style="font-size:14px;margin-bottom:0.75rem;">Les remplacements sont surlignés pour faciliter la vérification.</p>
+        <div id="verifyContent" class="result-text" style="white-space:pre-wrap;max-height:400px;overflow-y:auto;"></div>
+        <div class="legend">
+          <span><span class="highlight-tag">rouge</span> tags anonymisés</span>
+          <span><span class="highlight-pseudo">jaune</span> pseudonymes</span>
+        </div>
+      </div>
+
+      <div id="tab-mapping" class="tab-content">
+        <p style="font-size:14px;margin-bottom:0.75rem;">Correspondances entre les valeurs originales et leurs remplacements.</p>
+        <div id="mappingContent" class="mapping-list"></div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div>
+    <img src="/plai-logo.jpg" alt="PLAI">
+    <p><strong>Anonymiseur FWB — Écoles coopérantes du PLAI</strong></p>
+    <p>Traitement 100% navigateur · Aucune donnée transmise · <a href="/">Retour au portail</a></p>
+    <p style="margin-top:8px;font-size:11px;">Référence légale : RGPD (UE) 2016/679, Considérant 26 &nbsp;·&nbsp; Référence scientifique : Froidevaux et al. (2024), hal-04766842 [RISS]</p>
+  </div>
+</footer>
+
+<script>
+// ─── DONNÉES ────────────────────────────────────────────────────────────────
+
+const PRENOMS_M = ['Alexandre','Baptiste','Christophe','David','Émile','François','Gabriel','Henri','Ibrahim','Jacques','Kevin','Laurent','Michel','Nicolas','Olivier','Philippe','Quentin','Robert','Stéphane','Thomas'];
+const PRENOMS_F = ['Alice','Béatrice','Caroline','Delphine','Émilie','Florence','Geneviève','Hélène','Isabelle','Julie','Karine','Laure','Marie','Nathalie','Odile','Patricia','Rachida','Sophie','Thérèse','Valérie'];
+const NOMS_FAM  = ['Martin','Bernard','Dubois','Petit','Robert','Richard','Durand','Leroy','Moreau','Simon','Laurent','Lefebvre','Michel','Garcia','David','Bertrand','Roux','Vincent','Fournier','Morel'];
+const VILLES    = ['Beaumont','Clairval','Fontaine','Grandpré','Hauterive','Montclair','Bellevue','Rocheville','Vauvert','Bonpré'];
+const ECOLES    = ['École du Parc','Institut des Arts','Athénée Central','Collège des Sciences','Lycée Technique','École Fondamentale Mixte','Institut Provincial','Athénée Royal','École Communale','Collège Libre'];
+
+// ─── PATTERNS (portés depuis patterns.json) ─────────────────────────────────
+
+const PATTERNS = [
+  // Niveau 1
+  { name:'nom_titre_medical', level:1, type:'PER', patterns:[
+    /\b(?:Dr|Pr)\s+[A-ZÀ-Ü][a-zà-ü]+(?:[\-][A-ZÀ-Ü][a-zà-ü]+)?\s+[A-ZÀ-Ü][A-ZÀ-Ü]+/g,
+    /\b(?:Dr|Pr)\s+[A-ZÀ-Ü][a-zà-ü]+(?:[\-][A-ZÀ-Ü][a-zà-ü]+)?(?:\s+[A-ZÀ-Ü][a-zà-ü]+)?/g,
+    /\b(?:Professeur|Docteur)\s+[A-ZÀ-Ü][a-zà-ü\-]+(?:\s+[A-ZÀ-Ü][a-zà-ü\-]+)?/g,
+  ]},
+  { name:'nom_concerne', level:1, type:'PER', patterns:[
+    /(?:Concerne|concerne)\s*:?\s*[A-ZÀ-Ü][A-ZÀ-Ü]+\s+[A-ZÀ-Ü][a-zà-ü]+/g,
+    /(?:certifie que|atteste que)\s+(?:Monsieur|Madame|M\.|Mme)?\s*[A-ZÀ-Ü][A-ZÀ-Ü]+\s+[A-ZÀ-Ü][a-zà-ü]+/g,
+    /\b(?:Monsieur|Madame)\s+[A-ZÀ-Ü][A-ZÀ-Ü]+\s+[A-ZÀ-Ü][a-zà-ü]+/g,
+  ]},
+  { name:'nom_soussigne', level:1, type:'PER', patterns:[
+    /soussign[ée]e?,?\s+[A-ZÀ-Ü][A-ZÀ-Ü\-]+\s+[A-ZÀ-Ü][a-zà-ü\-]+/g,
+    /soussign[ée]e?,?\s+[A-ZÀ-Ü][a-zà-ü\-]+\s+[A-ZÀ-Ü][A-ZÀ-Ü\-]+/g,
+  ]},
+  { name:'nom_initiale', level:1, type:'PER', patterns:[
+    /\b[A-ZÀ-Ü]\.\s*[A-ZÀ-Ü]{3,}\b/g,
+    /\b[A-ZÀ-Ü]\.\s*[A-ZÀ-Ü][a-zà-ü]{2,}\b/g,
+  ]},
+  { name:'niss', level:1, type:'NISS', replacement:'[NISS]', patterns:[
+    /\b\d{2}[.\- ]?\d{2}[.\- ]?\d{2}[.\- ]?\d{3}[.\- ]?\d{2}\b/g,
+  ]},
+  { name:'telephone_be', level:1, type:'TELEPHONE', replacement:'[TELEPHONE]', patterns:[
+    /\b0[1-9]\d{1,2}[\/\-. ]?\d{2}[. ]?\d{2}[. ]?\d{2}\b/g,
+    /\b\+32[\s.\-]?\d{1,3}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}\b/g,
+    /\b04\d{2}[\/\-. ]?\d{2}[. ]?\d{2}[. ]?\d{2}\b/g,
+  ]},
+  { name:'email', level:1, type:'EMAIL', replacement:'[EMAIL]', patterns:[
+    /\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b/g,
+  ]},
+  { name:'date_naissance', level:1, type:'DATE', replacement:'[DATE_NAISSANCE]', patterns:[
+    /\bné(?:e)?\s+le\s+\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}\b/gi,
+    /\bdate\s+de\s+naissance\s*:?\s*\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}\b/gi,
+    /\b(?:DN|DDN)\s*:?\s*\d{1,2}[\/\-.]\d{1,2}[\/\-.]\d{2,4}\b/gi,
+  ]},
+  { name:'adresse_be', level:1, type:'ADRESSE', replacement:'[ADRESSE]', patterns:[
+    /(?:rue|avenue|boulevard|place|impasse|chemin|all[ée]e)\s+[\w\s'()\-]+\d*\s*,?\s*\d{4}\s+[A-ZÀ-Ü][a-zà-ü]+(?:[\s\-][A-ZÀ-Ü][a-zà-ü]+)*/gi,
+    /\d{4}\s+[A-ZÀ-Ü][a-zà-ü]+(?:[\s\-][A-ZÀ-Ü][a-zà-ü]+)*(?=\s*$|\s*\n)/gm,
+  ]},
+  // Niveau 2
+  { name:'ecole_fwb', level:2, type:'ETABLISSEMENT', replacement:'[ETABLISSEMENT]', patterns:[
+    /(?:école|institut|athénée|collège|lycée|académie|haute\s+école)\s+(?:[A-ZÀ-Üa-zà-ü'\-]+\s*)+/gi,
+    /\b(?:AR|IPES|IATA|IACF|ISMA)\s+(?:de\s+)?[A-ZÀ-Ü][a-zà-ü]+/g,
+  ]},
+  { name:'classe', level:2, type:'CLASSE', replacement:'[CLASSE]', patterns:[
+    /\b(?:classe|groupe)\s+(?:de\s+)?\d[A-Za-z]*\b/gi,
+    /\b[1-6](?:ère|ème|e)\s+(?:année|primaire|secondaire|maternelle)\b/gi,
+    /\b[PS][1-6]\b|\bM[1-3]\b/g,
+  ]},
+  { name:'pms_cpms', level:2, type:'PMS_CPMS', replacement:'[REF_PMS]', patterns:[
+    /\b(?:PMS|CPMS|Centre\s+PMS)\s+(?:de\s+)?[A-ZÀ-Ü][a-zà-ü]+/g,
+    /\bdossier\s+(?:PMS|CPMS)\s*(?:n°?|numéro)?\s*\d+/gi,
+  ]},
+  // Niveau 3 — keywords
+  { name:'diagnostic_medical', level:3, type:'DIAGNOSTIC', replacement:'[DIAGNOSTIC]', keywords:[
+    'TDAH','TDA/H','TDA','dyslexie','dyslexique','dysorthographie','dysorthographique',
+    'dyscalculie','dyscalculique','dysphasie','dysphasique','dyspraxie','dyspraxique',
+    'dysgraphie','dysgraphique','trouble du spectre autistique','TSA','autisme','autistique',
+    'haut potentiel','HPI','HPE','trouble de l\'attention','trouble des apprentissages',
+    'trouble d\'apprentissage','trouble spécifique','déficience intellectuelle',
+    'trouble du comportement','trouble anxieux','phobie scolaire','mutisme sélectif',
+    'trouble oppositionnel','TOP','épilepsie','épileptique','trouble bipolaire','dépression',
+    'aménagement raisonnable','aménagements raisonnables','plan individuel d\'apprentissage',
+    'PIA','handicap','handicapé','handicapée','déficit','retard de développement',
+    'trouble obsessionnel','TOC','bégaiement','malvoyant','malentendant','IMC',
+    'infirmité motrice cérébrale','paralysie cérébrale','trisomie','syndrome de Down',
+    'ergothérapie','logopédie','logopède','neuropsychologie','neuropsychologue',
+    'neuropédiatre','psychomotricité','psychomotricien','bilan orthophonique',
+    'bilan neuropsychologique','bilan d\'ergothérapie','bilan psychomoteur','certificat médical',
+  ]},
+  { name:'medicament', level:3, type:'MEDICAMENT', replacement:'[MEDICAMENT]', keywords:[
+    'Rilatine','Concerta','Ritalin','Medikinet','Strattera','Elvanse','Equasym',
+    'Risperdal','Aripiprazole','Seroquel','Prozac','Sertraline','Fluoxétine',
+    'méthylphénidate','atomoxétine','Abilify','Depakine','Tegretol','Lamictal',
+    'Xanax','Lexomil','Lysanxia','Temesta','Solian','Zyprexa','Leponex',
+  ]},
+  { name:'resultat_test', level:3, type:'RESULTAT_TEST', replacement:'[RESULTAT_TEST]', patterns:[
+    /\bQI\s*(?:total|verbal|performance|global)?\s*(?:=|:)?\s*\d{2,3}\b/gi,
+    /\b(?:WISC|WAIS|WPPSI|K-ABC|NEPSY|Vineland)\s*[-:]?\s*\d+/gi,
+    /\bpercentile\s*(?:=|:)?\s*\d{1,3}\b/gi,
+    /\bnote\s+standard\s*(?:=|:)?\s*\d{1,3}\b/gi,
+    /\bécart[-\s]type\s*(?:=|:)?\s*[+\-]?\d+(?:[,.]\d+)?\b/gi,
+  ]},
+  { name:'service_medical', level:3, type:'SERVICE_MEDICAL', replacement:'[SERVICE_MEDICAL]', patterns:[
+    /(?:Centre\s+Hospitalier|CHU|CHR|Clinique|Hôpital)\s+(?:[A-ZÀ-Ü][a-zà-ü]+[\s\-]*)+/g,
+    /(?:Service\s+de)\s+[A-ZÀ-Ü][a-zà-ü]+(?:[\s\-][A-ZÀ-Ü]?[a-zà-ü]+)*/g,
+  ]},
+];
+
+// ─── ÉTAT ───────────────────────────────────────────────────────────────────
+
+let currentLevel = 1;
+let lastResult = null;
+
+// ─── UI ─────────────────────────────────────────────────────────────────────
+
+function selectLevel(n) {
+  currentLevel = n;
+  document.querySelectorAll('.level-card').forEach((c,i) => c.classList.toggle('selected', i+1===n));
+}
+
+function updateBtn() {
+  const v = document.getElementById('inputText').value.trim();
+  document.getElementById('anonBtn').disabled = !v;
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── MOTEUR D'ANONYMISATION ──────────────────────────────────────────────────
+
+function shuffle(arr, rng) {
+  const a = [...arr];
+  for (let i = a.length-1; i > 0; i--) {
+    const j = Math.floor(rng() * (i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function makeLcg(seed) {
+  let s = seed;
+  return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 4294967296; };
+}
+
+function anonymize(text, level) {
+  const seed = Math.floor(Math.random() * 999999);
+  const rng  = makeLcg(seed);
+  const pm   = shuffle(PRENOMS_M, rng);
+  const pf   = shuffle(PRENOMS_F, rng);
+  const nf   = shuffle(NOMS_FAM,  rng);
+  const villes = shuffle(VILLES,  rng);
+  const ecoles = shuffle(ECOLES,  rng);
+
+  const personMap = {}, locationMap = {}, orgMap = {}, genericMap = {};
+  let pmIdx=pm.length-1, pfIdx=pf.length-1, nfIdx=nf.length-1, vIdx=villes.length-1, eIdx=ecoles.length-1, orgN=0;
+
+  const detections = []; // [{start, end, type, replacement}]
+
+  function addDetection(match, start, type, replacement) {
+    // Vérifie chevauchement
+    for (const d of detections) {
+      if (start < d.end && start + match.length > d.start) return;
+    }
+    detections.push({ start, end: start + match.length, text: match, type, replacement });
+  }
+
+  function replacePerson(original) {
+    const key = original.toLowerCase().trim();
+    if (personMap[key]) return personMap[key];
+    const parts = original.split(/\s+/);
+    let pseudo;
+    if (parts.length >= 2) {
+      const endsF = /[eéèêëàaî]$/i.test(parts[0]);
+      const prenom = endsF ? (pfIdx>=0 ? pf[pfIdx--] : 'Personne') : (pmIdx>=0 ? pm[pmIdx--] : 'Personne');
+      const nom    = nfIdx>=0 ? nf[nfIdx--] : 'Famille';
+      pseudo = `${prenom} ${nom}`;
+    } else {
+      const endsF = /[eéèêëàaî]$/i.test(original);
+      pseudo = endsF ? (pfIdx>=0 ? pf[pfIdx--] : 'Personne') : (pmIdx>=0 ? pm[pmIdx--] : 'Personne');
+    }
+    personMap[key] = pseudo;
+    // mapper les parties individuelles
+    if (parts.length >= 2) {
+      const pseudoParts = pseudo.split(' ');
+      parts.forEach((p,i) => {
+        const pk = p.toLowerCase();
+        if (!personMap[pk] && pseudoParts[i]) personMap[pk] = pseudoParts[i];
+      });
+    }
+    return pseudo;
+  }
+
+  function replaceOrg(original) {
+    const key = original.toLowerCase().trim();
+    if (orgMap[key]) return orgMap[key];
+    const pseudo = `Organisation-${++orgN}`;
+    orgMap[key] = pseudo;
+    return pseudo;
+  }
+
+  function replaceSchool(original) {
+    const key = original.toLowerCase().trim();
+    if (orgMap[key]) return orgMap[key];
+    const pseudo = eIdx>=0 ? ecoles[eIdx--] : `Établissement-${++orgN}`;
+    orgMap[key] = pseudo;
+    return pseudo;
+  }
+
+  // Collecter toutes les détections
+  for (const pat of PATTERNS) {
+    if (pat.level > level) continue;
+
+    // Patterns regex
+    if (pat.patterns) {
+      for (const regex of pat.patterns) {
+        regex.lastIndex = 0;
+        let m;
+        while ((m = regex.exec(text)) !== null) {
+          let repl;
+          if (pat.type === 'PER') repl = replacePerson(m[0]);
+          else if (pat.type === 'ETABLISSEMENT') repl = replaceSchool(m[0]);
+          else repl = pat.replacement || `[${pat.type}]`;
+          addDetection(m[0], m.index, pat.type, repl);
+        }
+      }
+    }
+
+    // Mots-clés
+    if (pat.keywords) {
+      for (const kw of pat.keywords) {
+        const kwRegex = new RegExp('\\b' + kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\b', 'gi');
+        kwRegex.lastIndex = 0;
+        let m;
+        while ((m = kwRegex.exec(text)) !== null) {
+          addDetection(m[0], m.index, pat.type, pat.replacement || `[${pat.type}]`);
+        }
+      }
+    }
+  }
+
+  // Propagation : chercher les parties de noms dans le reste du texte
+  const personParts = new Set();
+  for (const [key, val] of Object.entries(personMap)) {
+    for (const part of key.split(/\s+/)) {
+      if (part.length >= 3) personParts.add(part);
+    }
+  }
+  const coveredEnds = new Set(detections.map(d => d.end));
+  for (const part of personParts) {
+    const re = new RegExp('\\b' + part.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + '\\b', 'gi');
+    re.lastIndex = 0;
+    let m;
+    while ((m = re.exec(text)) !== null) {
+      const already = detections.some(d => m.index >= d.start && m.index < d.end);
+      if (!already) {
+        const repl = personMap[part] || (pmIdx>=0 ? pm[pmIdx--] : 'Personne');
+        personMap[part] = repl;
+        addDetection(m[0], m.index, 'PER', repl);
+      }
+    }
+  }
+
+  // Trier par position décroissante et reconstruire le texte
+  detections.sort((a,b) => b.start - a.start);
+  let result = text;
+  for (const d of detections) {
+    result = result.slice(0, d.start) + d.replacement + result.slice(d.end);
+  }
+
+  detections.sort((a,b) => a.start - b.start);
+
+  const mapping = { personnes: personMap, organisations: orgMap };
+  return { anonymized: result, detections, mapping, level };
+}
+
+// ─── ACTION ──────────────────────────────────────────────────────────────────
+
+function runAnonymization() {
+  const text = document.getElementById('inputText').value;
+  if (!text.trim()) return;
+
+  const res = anonymize(text, currentLevel);
+  lastResult = res;
+
+  // Stats
+  document.getElementById('statDetections').textContent = res.detections.length;
+  const types = new Set(res.detections.map(d => d.type));
+  document.getElementById('statTypes').textContent = types.size;
+  document.getElementById('statLevel').textContent = res.level;
+
+  // Onglet anonymisé
+  document.getElementById('resultText').value = res.anonymized;
+
+  // Onglet vérification
+  buildVerify(res);
+
+  // Onglet correspondances
+  buildMapping(res);
+
+  // Afficher
+  const el = document.getElementById('results');
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function buildVerify(res) {
+  let html = escHtml(res.anonymized);
+  const replacements = new Set();
+
+  html = html.replace(/\[[A-Z_]+\]/g, m =>
+    `<span class="highlight-tag">${m}</span>`
+  );
+
+  for (const [, val] of Object.entries(res.mapping.personnes || {})) {
+    if (!val.startsWith('[')) replacements.add(escHtml(val));
+  }
+  for (const repl of [...replacements].sort((a,b) => b.length - a.length)) {
+    html = html.split(repl).join(`<span class="highlight-pseudo">${repl}</span>`);
+  }
+  html = html.replace(/\n/g, '<br>');
+  document.getElementById('verifyContent').innerHTML = html;
+}
+
+function buildMapping(res) {
+  let html = '';
+  const p = res.mapping.personnes;
+  if (Object.keys(p).length) {
+    html += '<div class="mapping-cat">Personnes</div>';
+    for (const [k,v] of Object.entries(p)) {
+      html += `<div class="mapping-item"><code>${escHtml(k)}</code> → <strong>${escHtml(v)}</strong></div>`;
+    }
+  }
+  const o = res.mapping.organisations;
+  if (Object.keys(o).length) {
+    html += '<div class="mapping-cat">Organisations</div>';
+    for (const [k,v] of Object.entries(o)) {
+      html += `<div class="mapping-item"><code>${escHtml(k)}</code> → <strong>${escHtml(v)}</strong></div>`;
+    }
+  }
+  if (!html) html = '<p>Aucune correspondance à afficher.</p>';
+  document.getElementById('mappingContent').innerHTML = html;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── EXPORT ──────────────────────────────────────────────────────────────────
+
+function copyToClipboard() {
+  const ta = document.getElementById('resultText');
+  ta.select();
+  document.execCommand('copy');
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Copié !';
+  setTimeout(() => btn.textContent = orig, 2500);
+}
+
+function downloadTxt() {
+  download(document.getElementById('resultText').value, 'document_anonymise.txt', 'text/plain');
+}
+
+function downloadMd() {
+  let md = document.getElementById('resultText').value;
+  md = md.replace(/^([A-ZÉÀÈÙ ]{3,})\s*$/gm, '## $1');
+  download(md, 'document_anonymise.md', 'text/markdown');
+}
+
+function download(content, filename, mime) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([content], { type: mime }));
+  a.download = filename;
+  a.click();
+}
+
+// ─── VERSION CHECK ───────────────────────────────────────────────────────────
+
+(async function checkVersion() {
+  const LOCAL = '1.0.0';
+  document.getElementById('versionBadge').textContent = 'v' + LOCAL;
+  // Cette page est toujours à jour (hébergée sur Vercel) — pas de vérification nécessaire.
+})();
+</script>
+</body>
+</html>

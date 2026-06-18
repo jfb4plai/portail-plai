@@ -2192,6 +2192,64 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'anonymiseur-fwb',
+    name: 'Anonymiseur FWB',
+    description: "Protégez les données personnelles de vos élèves avant d'utiliser une IA. Deux versions : navigateur (texte collé, aucune installation) pour les enseignants — application locale complète (PDF, Word, OCR) pour les collaborateurs du Pôle. Traitement 100% local ou dans votre navigateur, aucune donnée transmise.",
+    url: '/anonymiseur-fwb.html',
+    emoji: '🔒',
+    category: 'Protection des données',
+    status: 'disponible',
+    color: 'teal',
+    section: 'utilitaires',
+    guide: {
+      scientific: {
+        summary:
+          "Les documents pédagogiques (diagnostics, PIA, rapports d'observation) contiennent des données personnelles sensibles soumises au RGPD (UE) 2016/679. L'anonymisation préalable à tout traitement par un service IA externe est la mesure de protection la plus robuste : un texte dont on ne peut plus raisonnablement identifier la personne concernée sort du champ d'application du règlement (Considérant 26). Les données pédagogiques méritent d'être traitées avec le même niveau de précaution que les données de santé.",
+        references: [
+          {
+            citation:
+              'RGPD (UE) 2016/679, Considérant 26 — Principes relatifs aux données à caractère personnel. Réel, hors corpus RISS (référence légale).',
+            content:
+              "« Les principes relatifs à la protection des données ne devraient pas s'appliquer aux informations anonymes, c'est-à-dire aux informations ne concernant pas une personne physique identifiée ou identifiable, ni aux données à caractère personnel rendues anonymes de telle manière que la personne concernée ne soit plus identifiable. »",
+          },
+          {
+            id: 'hal-04766842',
+            citation:
+              'Froidevaux, C., Ganascia, J.-G. & Kirchner, C. (2024). Anonymisation des données : enjeux d\'éthique pour la recherche scientifique. INRIA/CERNA. [RISS : hal-04766842]',
+            content:
+              "Les données pédagogiques méritent d'être considérées comme des données sensibles au sens du RGPD, à l'instar des données de santé. L'anonymisation préalable à tout traitement externe est la mesure de protection la plus robuste disponible à ce jour. L'article distingue anonymisation (irréversible, hors RGPD) et pseudonymisation (réversible, toujours dans le champ du RGPD) — distinction fondamentale pour les enseignants qui utilisent des outils IA.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Version navigateur (enseignants)',
+            items: [
+              "Ouvrir l'Anonymiseur FWB depuis le portail — aucune installation requise.",
+              "Choisir le niveau de protection : Niveau 1 (pour IA), Niveau 2 (partage entre collègues), Niveau 3 (documents médicaux).",
+              "Copier-coller le texte de votre document Word, email ou rapport d'observation.",
+              "Cliquer 'Anonymiser maintenant' — le traitement se fait entièrement dans votre navigateur.",
+              "Vérifier le résultat dans l'onglet 'Vérification visuelle' — les remplacements sont surlignés.",
+              "Copier ou télécharger le texte anonymisé (TXT ou Markdown) avant de l'utiliser avec une IA.",
+            ],
+          },
+          {
+            title: 'Version application locale (collaborateurs du Pôle)',
+            items: [
+              "Contacter le référent numérique PLAI pour recevoir le fichier d'installation.",
+              "Lancer installer.bat — détection automatique de Python, installation des dépendances, création du raccourci bureau.",
+              "Utiliser le raccourci 'Anonymiseur FWB' sur le bureau pour lancer l'application.",
+              "L'application gère les PDF, les fichiers Word (.docx) et le texte collé avec détection NLP avancée.",
+              "Utiliser update.bat pour mettre à jour les dépendances si une nouvelle version est disponible.",
+            ],
+          },
+        ],
+        tip: "Vérifiez TOUJOURS le résultat de l'anonymisation avant de coller le texte dans une IA. Certains noms peu courants ou orthographes atypiques peuvent ne pas être détectés — parcourez l'onglet 'Vérification visuelle' et corrigez manuellement si nécessaire. Ne chargez que des documents déjà anonymisés dans Cowork ou tout autre outil PLAI en ligne.",
+      },
+    },
+  },
 ];
 
 export default apps;
