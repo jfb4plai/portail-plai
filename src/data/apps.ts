@@ -2326,7 +2326,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Utilisez JuryActif 1 à 2 semaines avant la défense officielle — pas le veille. L'objectif n'est pas la note, c'est d'identifier les angles morts de la préparation : les passages que l'élève a copiés sans les comprendre, les arguments qu'il ne peut pas défendre, les pièges classiques de son sujet. Le rapport est une boussole pour l'accompagnant, pas une sanction.",
+        tip: "Utilisez JuryActif 1 à 2 semaines avant la défense officielle — pas la veille. L'objectif n'est pas la note, c'est d'identifier les angles morts de la préparation : les passages que l'élève a copiés sans les comprendre, les arguments qu'il ne peut pas défendre, les pièges classiques de son sujet. Le rapport est une boussole pour l'accompagnant, pas une sanction.\n\n⚠ Limite technique : PDF jusqu'à 80 pages, mais seuls les 40 000 premiers caractères sont transmis au jury IA. Pour un TFE long (>60 pages denses), les questions porteront principalement sur l'introduction et le développement — rarement sur la conclusion ou les annexes. Alternative : mode \"Coller le texte\" pour sélectionner les parties clés.",
       },
     },
   },
