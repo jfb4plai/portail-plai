@@ -2260,7 +2260,7 @@ const apps: AppItem[] = [
     category: 'Évaluation',
     status: 'disponible',
     color: 'orange',
-    section: 'sensibilisation',
+    section: 'applications',
     isNew: true,
     guide: {
       scientific: {
