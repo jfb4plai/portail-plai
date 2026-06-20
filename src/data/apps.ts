@@ -2251,6 +2251,85 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'juryactif',
+    name: 'JuryActif',
+    description: "Simule une défense orale de TFE CESS. Le jury IA lit le document réel de l'élève et pose des questions stratégiques (paternité, compréhension, maîtrise, pièges). Rapport d'accompagnement exportable pour les équipes PAR et d'intégration. 3 modes : A (élève seul), B (enseignant + élève), C (banque de questions pour l'enseignant).",
+    url: 'https://juryactif.jfb4plai.com',
+    emoji: '⚖',
+    category: 'Évaluation',
+    status: 'disponible',
+    color: 'orange',
+    section: 'sensibilisation',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary:
+          "JuryActif repose sur trois constats de la recherche. Premièrement, l'usage de l'IA générative crée une zone d'ombre autour de la paternité des travaux : Zollinger (2024) montre que 55 % des étudiants déclarent utiliser un modèle d'IA au moins occasionnellement, et que 76 % des enseignants estiment que cette utilisation pour les devoirs est problématique. Une défense orale fondée sur le document réel de l'élève reste le test de paternité le plus robuste. Deuxièmement, l'évaluation formative par simulation (questions stratégiques sur le contenu) révèle les lacunes de compréhension mieux qu'un examen écrit — Soubre et al. (2023) montrent que l'évaluation-soutien d'apprentissage met à disposition des ressources visant à améliorer la réussite à travers la gestion de l'erreur et les régulations aux moments-clés. Troisièmement, le rapport d'accompagnement produit par JuryActif est conçu pour les équipes PAR et d'intégration : des signaux factuels (sans jugement moral), des extraits de transcription, et des pistes d'investigation pour l'entretien. L'outil ne se substitue pas au jury officiel — il prépare l'élève et outille l'accompagnant.",
+        references: [
+          {
+            citation:
+              "Zollinger, A. (2024). L'utilisation académique d'IA générative : vers une réponse juridique ou éthique? DOI: 10.56240/irafpa.cm.v2n1/zol. [RISS : W4408043741]",
+            content:
+              "55% des étudiants déclarent utiliser un modèle d'IA générative au moins occasionnellement pour leurs travaux académiques, et 76% des enseignants jugent cette utilisation problématique pour les devoirs. La défense orale fondée sur le document réel reste le test de paternité le plus fiable — c'est exactement le cœur de JuryActif.",
+          },
+          {
+            citation:
+              "Soubre, V. et al. (2023). L'évaluation en tant que soutien d'apprentissage. Synergies France n° 17. DOI: 10.5281/zenodo.12506545. [RISS : hal-04621117]",
+            content:
+              "L'évaluation-soutien d'apprentissage met à disposition des ressources visant à améliorer la réussite : perception des objectifs, gestion de l'erreur, régulations aux moments-clés. Pour l'enseignant, la posture de l'ami-critique — qui encourage un retour réflexif — est la fonction dans laquelle son professionnalisme peut se révéler. JuryActif simule exactement cette posture : des questions qui poussent l'élève à expliciter, défendre, nuancer.",
+          },
+          {
+            citation:
+              "Bossoto, A. (2024). Perception de l'utilisation de l'Intelligence Artificielle par les enseignants : cas de ChatGPT. Université Marien Ngouabi. [RISS : hal-05090033]",
+            content:
+              "L'abus de l'IA expose les étudiants à une forme de dépendance qui compromet le développement de leurs compétences propres. Disposer d'un outil de vérification par la défense orale — ancré dans le document de l'élève et non dans un détecteur de probabilité — est une réponse pédagogique plus robuste que les détecteurs automatiques.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Mode A — Élève seul (entraînement autonome)',
+            items: [
+              "L'élève ouvre JuryActif et télécharge son TFE (PDF) ou colle le texte.",
+              "Il configure la durée (15, 25 ou 40 min) et l'intensité (standard ou approfondi).",
+              "Le jury IA lit le document, génère des questions stratégiques et les pose une à une.",
+              "L'élève répond à l'écrit — le temps de réflexion avant réponse est mesuré (signal de maîtrise).",
+              "À la fin, un rapport est généré : 4 dimensions (paternité, compréhension, maîtrise, pièges) avec extraits de transcription.",
+            ],
+          },
+          {
+            title: 'Mode B — Enseignant + élève (session guidée)',
+            items: [
+              "L'enseignant configure la session et reste présent via le Panneau Enseignant (panneau latéral discret).",
+              "Le panneau affiche le type de question prévu et permet d'injecter une question personnalisée, de passer une question, ou d'annoter une réponse pour le rapport.",
+              "L'enseignant peut interrompre, orienter, ou noter ses observations sans que l'élève voit le panneau.",
+              "Le rapport final intègre les annotations de l'enseignant — direct au PAR ou à l'équipe d'intégration.",
+            ],
+          },
+          {
+            title: 'Mode C — Banque de questions (enseignant seul)',
+            items: [
+              "L'enseignant télécharge le TFE sans lancer de défense.",
+              "JuryActif génère 12 questions stratégiques réparties selon la séquence optimale (compréhension d'abord, pièges au milieu, maîtrise en fin).",
+              "L'enseignant peut tout copier en un clic pour préparer une défense orale classique, un jury collégial, ou une grille d'observation.",
+            ],
+          },
+          {
+            title: 'Rapport et partage',
+            items: [
+              "Le rapport affiche les signaux (alerte / partiel / ok) pour les 4 dimensions et des extraits de transcription commentés.",
+              "L'enseignant peut éditer les observations globales avant d'enregistrer (split 80/20 : IA propose, enseignant valide).",
+              "Un lien de partage anonymisé permet de transmettre le rapport à l'accompagnant PAR ou à l'équipe d'intégration, sans compte requis pour la lecture.",
+              "Export PDF disponible pour les dossiers d'accompagnement.",
+            ],
+          },
+        ],
+        tip: "Utilisez JuryActif 1 à 2 semaines avant la défense officielle — pas le veille. L'objectif n'est pas la note, c'est d'identifier les angles morts de la préparation : les passages que l'élève a copiés sans les comprendre, les arguments qu'il ne peut pas défendre, les pièges classiques de son sujet. Le rapport est une boussole pour l'accompagnant, pas une sanction.",
+      },
+    },
+  },
 ];
 
 export default apps;
