@@ -2255,7 +2255,7 @@ const apps: AppItem[] = [
     id: 'juryactif',
     name: 'JuryActif',
     description: "Simule une défense orale de TFE CESS. Le jury IA lit le document réel de l'élève et pose des questions stratégiques (paternité, compréhension, maîtrise, pièges). Rapport d'accompagnement exportable pour les équipes PAR et d'intégration. 3 modes : A (élève seul), B (enseignant + élève), C (banque de questions pour l'enseignant).",
-    url: 'https://juryactif.jfb4plai.com',
+    url: 'https://jury-actif.vercel.app',
     emoji: '⚖',
     category: 'Évaluation',
     status: 'disponible',
