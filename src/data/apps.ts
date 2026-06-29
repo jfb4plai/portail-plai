@@ -2330,6 +2330,92 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'mathactif',
+    name: 'MathActif',
+    description:
+      "Transforme un document Word de maths (S3–S6 FWB) en version avec Aménagements Universels : police Arial, interlignes élargis, numérotation complète, zones de travail, mise en page respiration. Un seul fichier redistribuable à toute la classe.",
+    url: 'https://math-actif.vercel.app/adapter',
+    emoji: '📐',
+    category: 'Mathématiques',
+    status: 'en-développement',
+    color: 'teal',
+    devBanner: true,
+    section: 'applications',
+    guide: {
+      scientific: {
+        summary:
+          "MathActif applique automatiquement les aménagements universels (AU) validés pour les élèves présentant une dyscalculie, une dyslexie ou un TDAH : police sans empattement, interlignes élargis, espacement augmenté, zones de travail explicites. Ces adaptations typographiques et structurelles réduisent la charge cognitive extrinsèque et libèrent des ressources pour l'activité mathématique elle-même. Produire un seul document redistribuable à toute la classe concrétise le principe CUA (Conception Universelle de l'Apprentissage) : ce qui bénéficie aux élèves DYS bénéficie à tous.",
+        references: [
+          {
+            id: 'dumas-01302521',
+            citation:
+              'Klein, V. (2010). Influence de la typographie sur l\'aisance de lecture d\'une population d\'enfants dyslexiques.',
+            content:
+              "Une police sans empattement (type Arial), un corps augmenté et un interligne élargi réduisent significativement les erreurs de lecture chez les élèves dyslexiques. Ces critères microtypographiques sont directement transposés dans les documents générés par MathActif.",
+          },
+          {
+            id: 'hal-01842446',
+            citation:
+              "Gisonna, A. & Gras-Crapart, E. (2014). Partenariat entre les orthophonistes et les enseignants du secondaire : vers un aménagement pédagogique réussi.",
+            content:
+              "Les élèves DYS identifient comme prioritaires l'adaptation des supports (taille, police, couleurs) et la réduction de la quantité d'écriture requise. Les enseignants du secondaire expriment un besoin fort d'outils leur permettant de produire ces adaptations sans surcharge de travail.",
+          },
+          {
+            id: 'W4402615789',
+            citation:
+              'Rusconi, L. & Gäng-Pacifico, D. (2024). Universal Design for Learning Observation – Measurement Tool.',
+            content:
+              "La Conception Universelle de l'Apprentissage (CUA) offre un cadre pour améliorer l'accès de l'ensemble des élèves — pas seulement ceux en difficulté. Un document adapté dès sa conception est plus efficace qu'une adaptation individuelle a posteriori.",
+          },
+          {
+            id: 'dumas-04562654',
+            citation:
+              "Fournier, M. (2024). Les adaptations pédagogiques de l'enseignant pour les élèves ayant des troubles « dys ».",
+            content:
+              "L'adaptation des supports écrits (police, espacement, quantité d'écriture) est l'une des pratiques les plus fréquemment citées par les enseignants pour accompagner les élèves DYS — et l'une des plus chronophages à produire manuellement.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Importer le document',
+            items: [
+              "Connectez-vous → glissez votre fichier Word (.docx) ou image de feuille dans la zone d'import",
+              "MathActif extrait le texte et les formules mathématiques (OCR si image)",
+              "Vérifiez l'aperçu du texte extrait — corrigez si nécessaire avant de continuer",
+            ],
+          },
+          {
+            title: 'Renseigner le contexte',
+            items: [
+              "Indiquez le chapitre (ex. : intégrales, dérivées, 2e degré, trigonométrie…)",
+              "Choisissez le niveau (S3–S6) — ajuste les formules de rappel proposées",
+              "Activez « Section Méthode garantie » si le chapitre comporte un template de méthode disponible",
+            ],
+          },
+          {
+            title: 'Générer les Aménagements Universels',
+            items: [
+              "Cliquez « Générer » — l'IA (Claude Haiku) applique les AU : numérotation complète, zones de travail (3 lignes ___), mise en page respiration, [RAPPEL] de formules",
+              "Relisez la version générée dans l'aperçu — modifiez si nécessaire (zone éditable)",
+              "Le résultat est votre point de départ, pas une version finale automatique",
+            ],
+          },
+          {
+            title: 'Exporter',
+            items: [
+              "Cliquez « Exporter Word » → téléchargement d'un .docx redistribuable",
+              "Le document applique : police Arial, corps 13, interligne 1,5, espacement inter-paragraphe, formules Word natif (OMML)",
+              "Distribuez ce fichier à toute la classe — un seul document pour tous les profils",
+            ],
+          },
+        ],
+        tip: "Commencez par un exercice court pour vérifier la qualité de l'extraction OCR avant de traiter un document complet. La section Méthode garantie (template fixe) évite toute variation de l'IA sur les étapes clés — activez-la systématiquement pour les chapitres couverts.",
+      },
+    },
+  },
 ];
 
 export default apps;
