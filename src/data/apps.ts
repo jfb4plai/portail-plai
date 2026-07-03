@@ -2429,6 +2429,209 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'immersactif',
+    name: 'ImmersActif',
+    description:
+      "Sensibilisation TSA pour équipes éducatives. Trois scènes (sensoriel, consignes implicites, imprévisibilité) en posture « approcher pour ajuster » — jamais « vivre comme ». Micro-débriefings, fiche synthèse 80/20 imprimable.",
+    url: 'https://immersactif.vercel.app',
+    emoji: '🎚️',
+    category: 'TSA',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'sensibilisation',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary:
+          "ImmersActif refuse la simulation incarnée (« vivre comme un élève TSA ») : les simulations de handicap mal cadrées induisent de la pitié plutôt qu'un changement de pratique. L'app fait plutôt approcher des situations (surcharge sensorielle, implicites de consignes, imprévisibilité) pour faire émerger des ajustements concrets de la pratique enseignante. Chaque scène se conclut par un micro-débriefing distinguant ce que le participant a vécu de ce que vit l'élève, et la fiche synthèse impose la personnalisation avant impression (split 80/20).",
+        references: [
+          {
+            id: 'tel-03795280',
+            citation:
+              "Schuhl, J. (2020). Réduire la stigmatisation de la maladie mentale : du contact imaginé au contact incarné. Thèse, Psychologie.",
+            content:
+              "Les actions de sensibilisation par simulation de handicap (surdité, dyslexie, trouble moteur) peuvent accroître le sentiment de pitié plutôt que l'empathie utile. D'où la posture d'ImmersActif : approcher des situations pour ajuster sa pratique, jamais prétendre vivre le trouble.",
+          },
+          {
+            id: 'dumas-03279190',
+            citation:
+              "Adrian, S. (2021). Dimension psychoaffective des enfants présentant des troubles des apprentissages et effets de la sensibilisation par la simulation en classe en ergothérapie.",
+            content:
+              "La sensibilisation expérientielle permet aux enseignants de comprendre de l'intérieur une réalité scolaire souvent décrite comme éprouvante — bien au-delà d'un exposé théorique — à condition d'un cadrage éthique strict.",
+          },
+          {
+            id: 'hal-02388518',
+            citation:
+              "Aubineau, M. (2019). Inclusion scolaire des adolescents présentant une condition du spectre autistique et prise en compte de leur point de vue : un état des lieux.",
+            content:
+              "La prise en compte du point de vue des élèves TSA eux-mêmes est indispensable pour penser leur inclusion au secondaire. Les cartes de lecture d'ImmersActif sont ancrées dans ce vécu documenté, pas dans des stéréotypes.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Mode Découverte (une matinée narrative)',
+            items: [
+              "Choisissez le niveau : fondamental ou secondaire (chaque scène a sa variante).",
+              "Les trois scènes s'enchaînent : sensoriel, consignes implicites, imprévisibilité.",
+              "La jauge d'énergie ne remonte jamais — c'est le point clé du débriefing.",
+              "Après chaque scène : micro-débriefing (ce que vous venez de vivre / ce que vit l'élève / ce que vous pouvez ajuster) avec gestes concrets à cocher.",
+            ],
+          },
+          {
+            title: 'Mode Animateur (formation)',
+            items: [
+              "Accès direct à chaque scène, pour construire votre déroulé de formation.",
+              "Le volet social est en lecture seule — jamais simulé, pour éviter la caricature.",
+            ],
+          },
+          {
+            title: 'Fiche synthèse 80/20',
+            items: [
+              "L'app propose une fiche de gestes d'ajustement — l'enseignant reformule avec ses mots.",
+              "L'impression est bloquée tant qu'aucun geste n'est personnalisé : pas de fiche générique.",
+            ],
+          },
+        ],
+        tip: "En formation d'équipe : mode Découverte projeté collectivement (30 min), puis chacun personnalise sa fiche individuellement. La jauge d'énergie qui ne remonte pas est le meilleur déclencheur de débat sur la fatigue cumulative des élèves TSA.",
+      },
+    },
+  },
+  {
+    id: 'entiers-relatifs',
+    name: 'Entiers Relatifs',
+    description:
+      "Addition et soustraction d'entiers relatifs sur droite numérique interactive, avec remédiation socratique en cas d'erreur et tableau de bord enseignant en temps réel.",
+    url: 'https://entiers-plai.vercel.app',
+    emoji: '🌡️',
+    category: 'Mathématiques',
+    status: 'disponible',
+    color: 'blue',
+    section: 'applications',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary:
+          "Entiers Relatifs combine trois appuis validés : la droite numérique comme représentation fondamentale du nombre (y compris négatif), des feedbacks adaptés au type d'erreur plutôt qu'un simple correct/incorrect, et un guidage progressif qui questionne l'élève au lieu de donner la réponse (remédiation socratique). La représentation visuelle est particulièrement indispensable pour les élèves présentant des troubles de la cognition mathématique.",
+        references: [
+          {
+            id: 'hal-05188689',
+            citation:
+              "Hirsch, M. & Roditi, E. (2023). Quand les neurosciences analysent les apprentissages et en tirent des conséquences pour l'enseignement.",
+            content:
+              "Le placement des nombres sur la droite numérique est fondamental et déterminant pour leur apprentissage — y compris pour l'extension aux nombres négatifs, où la droite donne un support spatial au signe.",
+          },
+          {
+            id: 'hal-01570674',
+            citation:
+              "Barrouillet, P. et al. (2007). Dyslexie, dysorthographie, dyscalculie : bilan des données scientifiques. Expertise collective Inserm.",
+            content:
+              "Le bilan Inserm documente les troubles de l'apprentissage de l'arithmétique et l'importance des supports de représentation du nombre pour les élèves présentant une dyscalculie : la représentation visuelle n'est pas un luxe, c'est un accès.",
+          },
+          {
+            id: 'hal-05361521',
+            citation:
+              "Fouchet-Isambard, K. & Millon Faure, K. (2025). Élaboration d'une typologie des erreurs en mathématiques pour concevoir des feedbacks adaptatifs.",
+            content:
+              "Un feedback efficace dans un environnement numérique d'apprentissage se conçoit à partir d'une typologie des erreurs : chaque famille d'erreur appelle une rétroaction différente. C'est le principe de la remédiation socratique d'Entiers Relatifs, qui questionne l'erreur au lieu de la corriger.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Configurer une activité',
+            items: [
+              "Connectez-vous → choisissez le type d'opérations (additions, soustractions, mixte) et la plage numérique.",
+              "Partagez l'accès aux élèves (URL ou code) — pas de compte élève requis.",
+            ],
+          },
+          {
+            title: 'Côté élève',
+            items: [
+              "L'élève résout l'opération en se déplaçant sur la droite numérique interactive.",
+              "En cas d'erreur, la remédiation socratique pose une question ciblée selon le type d'erreur — elle ne donne jamais la réponse.",
+            ],
+          },
+          {
+            title: 'Côté enseignant',
+            items: [
+              "Le tableau de bord temps réel montre la progression et les types d'erreurs de chaque élève.",
+              "Repérez les erreurs récurrentes (signe, sens du déplacement, passage par zéro) pour cibler la reprise collective.",
+            ],
+          },
+        ],
+        tip: "Commencez par des additions de nombres positifs sur la droite pour installer le geste, puis introduisez les négatifs. Le passage par zéro est l'obstacle le plus fréquent — le tableau de bord vous le montrera.",
+      },
+    },
+  },
+  {
+    id: 'lireactif',
+    name: 'LireActif',
+    description:
+      "Entraînement à la fluence de lecture par présentation sérielle (RSVP), réglages individualisés par profil élève, gestion d'école et accès élève par jeton. Export PDF des réglages.",
+    url: 'https://lire-actif.vercel.app',
+    emoji: '👓',
+    category: 'Lecture',
+    status: 'en-développement',
+    color: 'green',
+    section: 'applications',
+    devBanner: true,
+  },
+  {
+    id: 'narrateur-dys',
+    name: 'Narration DYS',
+    description:
+      "Lecture à voix haute de n'importe quel texte (jusqu'à 3 000 caractères) en 8 langues dont le français de Belgique. Pour élèves DYS, allophones ou toute situation où l'audio compense le décodage.",
+    url: 'https://narrateur-dys-plai.vercel.app',
+    emoji: '🔊',
+    category: 'Lecture audio',
+    status: 'en-développement',
+    color: 'purple',
+    section: 'utilitaires',
+    devBanner: true,
+  },
+  {
+    id: 'adaptateur-aus',
+    name: 'Adaptateur AUs',
+    description:
+      "Convertit un document de cours en version conforme aux Aménagements Universels FWB : import PDF ou photo, adaptation AU, score d'accessibilité déterministe, options pictogrammes, rapport de conversion.",
+    url: 'https://adaptateur-aus.vercel.app',
+    emoji: '📄',
+    category: 'Accessibilité documentaire',
+    status: 'en-développement',
+    color: 'teal',
+    section: 'applications',
+    devBanner: true,
+  },
+  {
+    id: 'accessactif',
+    name: 'AccessActif',
+    description:
+      "Suivi des aménagements raisonnables par élève : checklists d'AR par enseignant, définitions de référence, tableau de bord d'équipe. Accès enseignant par lien-jeton, codes élèves anonymes.",
+    url: 'https://access-actif.vercel.app',
+    emoji: '📋',
+    category: 'Aménagements raisonnables',
+    status: 'en-développement',
+    color: 'orange',
+    section: 'applications',
+    devBanner: true,
+  },
+  {
+    id: 'feedback-adapt',
+    name: 'Feed-Back Adapt',
+    description:
+      "Feedback pédagogique adaptatif pour les mathématiques : sessions d'exercices avec rétroactions ajustées aux réponses de l'élève, tableau de bord enseignant.",
+    url: 'https://feed-back-adapt.vercel.app',
+    emoji: '📈',
+    category: 'Mathématiques',
+    status: 'en-développement',
+    color: 'blue',
+    section: 'applications',
+    devBanner: true,
+  },
 ];
 
 export default apps;
