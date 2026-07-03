@@ -205,7 +205,7 @@ const apps: AppItem[] = [
   {
     id: 'picto-lecture',
     name: 'Picto Lecture',
-    description: 'Convertit un texte en pictogrammes ARASAAC pour faciliter la lecture et la compréhension. Export PDF et Word.',
+    description: 'Convertit un texte en pictogrammes ARASAAC pour faciliter la lecture et la compréhension, avec simplification optionnelle inspirée du FALC. Export PDF et Word.',
     url: 'https://picto-lecture.vercel.app',
     emoji: '🖼️',
     category: 'Lecture',
@@ -231,6 +231,11 @@ const apps: AppItem[] = [
             citation: 'Fouré, L. (2023). Influence des Tableaux de Langage Assisté sur les compétences pronominales chez des enfants présentant un TSA.',
             content: "L'image-symbole (pictogramme) constitue un pont cognitif entre le langage oral et le sens, particulièrement bénéfique pour les élèves présentant un TSA ou un retard de langage.",
           },
+          {
+            id: 'tel-04807443',
+            citation: 'Balssa, F. (2024). Facile à Lire et à Comprendre (FALC) et école inclusive : questionnements et applications des règles FALC en école élémentaire.',
+            content: "Le FALC officiel exige une relecture participative par une personne porteuse de déficience intellectuelle. Picto Lecture s'inspire de règles FALC pour une simplification syntaxique ponctuelle (phrases courtes, une idée par phrase), sans se substituer à une traduction FALC certifiée — l'exposition à des phrases de complexité croissante reste nécessaire à l'apprentissage de la lecture.",
+          },
         ],
       },
       howto: {
@@ -241,6 +246,14 @@ const apps: AppItem[] = [
               'Connectez-vous → "Nouvelle histoire"',
               'Donnez un titre au texte',
               'Tapez ou collez votre texte — ou importez un fichier .docx / .txt',
+            ],
+          },
+          {
+            title: 'Simplifier le texte (optionnel)',
+            items: [
+              'Cliquez "Simplifier (inspiré du FALC) avant génération" si la syntaxe elle-même fait obstacle (déficience intellectuelle, dyslexie sévère, allophone)',
+              'Le texte simplifié reste éditable — relisez et ajustez avant de continuer',
+              "Ce n'est pas du FALC certifié : à réserver aux cas ponctuels, pas à utiliser pour chaque histoire",
             ],
           },
           {
