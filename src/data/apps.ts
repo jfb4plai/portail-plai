@@ -2571,7 +2571,7 @@ const apps: AppItem[] = [
     id: 'lireactif',
     name: 'LireActif',
     description:
-      "Entraînement à la fluence de lecture par présentation sérielle (RSVP), réglages individualisés par profil élève, gestion d'école et accès élève par jeton. Export PDF des réglages.",
+      "Entraînement à la fluence de lecture par présentation sérielle (RSVP), réglages individualisés par profil élève, testable sans compte en mode découverte. Accès élève par jeton, export PDF des réglages.",
     url: 'https://lire-actif.vercel.app',
     emoji: '👓',
     category: 'Lecture',
