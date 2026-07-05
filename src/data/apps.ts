@@ -2594,19 +2594,6 @@ const apps: AppItem[] = [
     devBanner: true,
   },
   {
-    id: 'adaptateur-aus',
-    name: 'Adaptateur AUs',
-    description:
-      "Convertit un document de cours en version conforme aux Aménagements Universels FWB : import PDF ou photo, adaptation AU, score d'accessibilité déterministe, options pictogrammes, rapport de conversion.",
-    url: 'https://adaptateur-aus.vercel.app',
-    emoji: '📄',
-    category: 'Accessibilité documentaire',
-    status: 'en-développement',
-    color: 'teal',
-    section: 'applications',
-    devBanner: true,
-  },
-  {
     id: 'accessactif',
     name: 'AccessActif',
     description:
