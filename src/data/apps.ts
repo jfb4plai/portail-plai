@@ -2610,10 +2610,10 @@ const apps: AppItem[] = [
     id: 'feedback-adapt',
     name: 'Feed-Back Adapt',
     description:
-      "Feedback pédagogique adaptatif pour les mathématiques : sessions d'exercices avec rétroactions ajustées aux réponses de l'élève, tableau de bord enseignant.",
+      "Remédiation mathématique par feedback immédiat : chaque mauvaise réponse porte un type d'erreur et un obstacle pré-encodés (typologie de Brousseau), l'IA formule la rétroaction — le diagnostic reste humain. Items trilingues FR/NL/EN, accès élève par code anonyme.",
     url: 'https://feed-back-adapt.vercel.app',
     emoji: '📈',
-    category: 'Mathématiques',
+    category: 'Remédiation maths',
     status: 'en-développement',
     color: 'blue',
     section: 'applications',
