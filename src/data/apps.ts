@@ -2705,6 +2705,109 @@ const apps: AppItem[] = [
     section: 'applications',
     devBanner: true,
   },
+  {
+    id: 'dans-la-peau',
+    name: 'Dans la peau · PLAI',
+    description:
+      "Sensibilisation aux Aménagements Universels et Raisonnables : trois épreuves chronométrées (lecture, consignes, calcul) vécues avec et sans aménagement, cinq objections de salle des profs à démonter, un tri AU/AR de 15 situations et une carte d'engagement personnalisée pour tester un AU dès cette semaine.",
+    url: 'https://dans-la-peau-plai.vercel.app',
+    emoji: '🎭',
+    category: 'AU / AR',
+    status: 'disponible',
+    color: 'purple',
+    section: 'sensibilisation',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary:
+          "L'app distingue deux logiques souvent confondues : l'Aménagement Universel (offert à toute la classe, d'office, sans condition d'accès — logique CUA) et l'Aménagement Raisonnable (réponse à un besoin individuel attesté, encadré par le décret FWB du 7/12/2017). Les trois épreuves vécues montrent que l'aménagement ne fait jamais disparaître le trouble — il change seulement le support. Le tri final est volontairement mélangé et contient des situations pièges (un AU né d'un besoin individuel puis généralisé, un AR formulé au pluriel sans prénom) pour empêcher de répondre juste sans avoir compris le critère réel : la condition d'accès, pas la formulation de surface.",
+        references: [
+          {
+            id: 'dumas-03361167',
+            citation:
+              "Anné, M. (2021). La conception universelle de l'apprentissage comme pédagogie inclusive dans le cadre de la lecture de consignes.",
+            content:
+              "La lisibilité d'un support implique une police sans empattement (Arial, Verdana ou Helvetica) en caractères de taille 12 minimum, interligne 1,5 — ces critères facilitent la lecture chez tous les élèves, pas seulement ceux à besoins spécifiques.",
+          },
+          {
+            id: 'dumas-01491336',
+            citation:
+              "Fauquembergue, P. (2016). Quelles adaptations pédagogiques peut-on mettre en place pour les élèves dyslexiques ?",
+            content:
+              "Les polycopiés aérés, avec une police adaptée, aident le regard de l'élève dyslexique sans le stigmatiser lorsqu'ils sont distribués à toute la classe.",
+          },
+          {
+            id: 'dumas-03008164',
+            citation:
+              "Lachgar, J. (2020). Dyslexie : la place de l'orthoptie dans la prise en charge.",
+            content:
+              "Un déficit des capacités visuo-attentionnelles est une des origines documentées des troubles dyslexiques — ce qui justifie d'agir sur le support visuel (police, espacement) plutôt que sur l'élève.",
+          },
+          {
+            id: 'W4414205903',
+            citation:
+              "Rusconi, L. (2025). La Conception Universelle de l'Apprentissage (CUA) dans la formation des enseignants. Thèse, Université de Fribourg.",
+            content:
+              "La formation à la CUA agit sur le Profil de l'Enseignant Inclusif via trois réseaux : représentation, action/expression, engagement — offrir plusieurs moyens d'accès dès la conception du cours, pour tous.",
+          },
+          {
+            id: 'dumas-04903104',
+            citation:
+              "Bourgeois, C. (2024). École inclusive et TDAH.",
+            content:
+              "La structuration du temps et des tâches (plan de leçon affiché, étapes cochées) améliore l'engagement comportemental des élèves TDAH — un aménagement de structuration profite à toute la classe.",
+          },
+          {
+            id: 'tel-01735371',
+            citation:
+              "Puma, S. (2016). Optimisation des apprentissages : modèles et mesures de la charge cognitive. Thèse, Université Toulouse Jean Jaurès.",
+            content:
+              "La théorie de la charge cognitive montre qu'un exemple résolu avant une série d'exercices réduit la charge extrinsèque et libère des ressources pour l'apprentissage réel.",
+          },
+          {
+            id: 'W4413909670',
+            citation:
+              "Latini, N., Lampugnani, G., Rusconi, L. & Pasqualotto, A. (2025). Inclusion et Troubles spécifiques des Apprentissages.",
+            content:
+              "Les enseignants du secondaire II appliquent globalement bien les mesures de compensation, mais regrettent des procédures perçues comme mécaniques et peu ancrées dans l'observation de l'élève — d'où l'intérêt d'un aménagement raisonnable planifié et documenté plutôt qu'attribué à distance.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Vivez-le (3 épreuves chronométrées)',
+            items: [
+              "Lire avec des lettres qui bougent, décoder une consigne-mur, calculer sous distraction — chaque épreuve se joue d'abord sans aménagement, puis avec.",
+              "Le trouble simulé reste identique dans les deux versions : seul le support change (police, mise en page, structuration).",
+              'Épreuve 3 : changement de posture, d\'un trouble de la lecture vers un profil TDAH — pour éviter de réduire "l\'aménagement" à la seule dyslexie.',
+            ],
+          },
+          {
+            title: 'La salle des profs (objections)',
+            items: [
+              "Cinq objections entendues en équipe (\"c'est de la triche\", \"ça nivelle par le bas\"...) à trier : choisissez votre réplique, la recherche RISS arbitre.",
+            ],
+          },
+          {
+            title: 'AU ou AR ? (le tri)',
+            items: [
+              '15 situations de classe mélangées aléatoirement à chaque partie — impossible de répondre juste en alternant sans lire.',
+              "Certaines situations sont des pièges volontaires : un aménagement né d'un besoin individuel mais généralisé sans condition (AU), un aménagement conditionné à une attestation mais formulé au pluriel sans prénom (AR).",
+            ],
+          },
+          {
+            title: 'Mon premier pas (engagement)',
+            items: [
+              "Choisissez UN aménagement universel à tester cette semaine, dans votre classe.",
+              "Le contexte de classe (minimum 20 caractères, vos mots) est obligatoire avant de générer la carte imprimable — split 80/20.",
+            ],
+          },
+        ],
+        tip: "Utilisez 'Vivez-le' en ouverture de réunion d'équipe (8 min), puis enchaînez sur le tri AU/AR en collectif avant de demander à chacun de repartir avec sa propre carte d'engagement — la personnalisation individuelle vient après la compréhension collective.",
+      },
+    },
+  },
 ];
 
 export default apps;
