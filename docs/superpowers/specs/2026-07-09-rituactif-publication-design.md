@@ -22,7 +22,7 @@ Emplacement : `src/data/apps.ts`, ajoutée à la suite des entrées existantes (
   emoji: '📋',
   category: 'Ritualisation',
   status: 'disponible',
-  color: 'green',
+  color: 'purple',
   section: 'applications',
   guide: {
     scientific: {
@@ -103,7 +103,7 @@ Emplacement : `src/data/apps.ts`, ajoutée à la suite des entrées existantes (
 
 **Choix validés avec l'utilisateur** :
 - Emoji `📋` (presse-papier — met en avant le rendu grille TLA/mémo-consigne).
-- Couleur `green`, alignée sur LireActif (`lireactif`, id `src/data/apps.ts:2571`) car les deux apps partagent des mécanismes proches (double codage image/mot, accessibilité lecture). Note : `green` est également utilisée par DéfiniFWB — les couleurs se répètent déjà ailleurs dans le portail (ex. `amber` 3×), ce n'est pas bloquant.
+- Couleur `purple`, alignée sur Picto Lecture (`picto-lecture`, `src/data/apps.ts:213`) — les deux apps partagent le même mécanisme central (recherche/validation de pictogrammes ARASAAC, simplification inspirée du FALC). C'est actuellement la seule app en `purple` sur le portail.
 - `section: 'applications'` — RituActif est un outil d'usage quotidien en classe (comme LireActif, Picto Lecture, DéfiniFWB, Dictée Interactive), pas une simulation de sensibilisation.
 - `status: 'disponible'` — déjà en ligne.
 
