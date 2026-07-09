@@ -2206,6 +2206,109 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'volubilactif',
+    name: 'VolubilActif',
+    description:
+      "Dictée vocale 100 % locale : l'élève parle, le texte s'insère dans n'importe quelle application (Word, navigateur, messagerie). Outil de compensation dysgraphie/dyslexie — la voix ne quitte jamais l'ordinateur, aucun compte, aucun abonnement. Windows et Mac. Adaptation PLAI de Volubil-IA (A.-C. Le Dain).",
+    url: 'https://github.com/jfb4plai/VolubilActif/releases/latest',
+    emoji: '🎙️',
+    category: 'Dictée vocale',
+    status: 'disponible',
+    isNew: true,
+    color: 'teal',
+    section: 'utilitaires',
+    browserNote:
+      "Application à installer (Windows / Mac Apple Silicon), pas une web-app. Windows affichera un avertissement « application non signée » : la procédure de déblocage pas à pas est dans le mode d'emploi (README du lien).",
+    guide: {
+      scientific: {
+        summary:
+          "La dictée vocale est une aide technique documentée pour les troubles du langage écrit : elle contourne le geste graphique et l'obstacle orthographique pour libérer l'expression des idées. C'est un outil de compensation (pas de remédiation) qui relève des aménagements raisonnables en FWB. Deux points de vigilance issus de la recherche : le sous-usage du matériel par les élèves équipés (l'accompagnement fait la différence), et la baisse de précision de la reconnaissance sur les voix d'enfants — d'où le choix du modèle « Turbo » et le test préalable avec l'élève.",
+        references: [
+          {
+            id: 'hal-01842212',
+            citation:
+              "Chaufournais, M. & Koquert, A. (2014). L'utilisation des logiciels de compensation dans la prise en charge de l'expression écrite d'adolescents porteurs de troubles spécifiques du langage écrit.",
+            content:
+              "La dictée vocale — analyse de la parole transcrite en texte numérique — figure parmi les outils de compensation de référence pour l'expression écrite des adolescents porteurs de troubles spécifiques du langage écrit, aux côtés des logiciels de retour vocal.",
+          },
+          {
+            id: 'dumas-05497857',
+            citation:
+              "Davodeau, C. (2023). Apports et limites de l'outil informatique comme moyen de compensation pour les élèves de 8 à 14 ans présentant un trouble spécifique du langage écrit.",
+            content:
+              "L'outil informatique reste un bon outil de compensation de la dysgraphie mais pas de la dysorthographie — et la surcharge cognitive peut affecter les capacités attentionnelles des élèves TSLA. D'où l'importance d'expliciter ce que l'outil compense (le geste, pas l'orthographe apprise).",
+          },
+          {
+            id: 'tel-01449610',
+            citation:
+              "Daspet, V. (2016). Lire et écrire avec des outils informatiques : le tissage d'un projet de compensation pour des adolescents dyslexiques.",
+            content:
+              "Les élèves qui n'utilisent pas du tout leur matériel de compensation ont majoritairement un logiciel de reconnaissance vocale. Le sous-usage est le premier risque : l'appropriation accompagnée compte plus que l'équipement.",
+          },
+          {
+            id: 'tel-01989866',
+            citation:
+              "Laurent, M. (2017). Recherche et développement du Logiciel Intelligent de Cartographie Inversée, pour l'aide à la compréhension de texte par un public dyslexique.",
+            content:
+              "La dictée vocale est suffisamment performante pour être utilisée dans un contexte d'examen scolaire (87 % d'exactitude de reconnaissance des mots prononcés) et permet de gommer les inégalités entre les élèves.",
+          },
+          {
+            id: 'hal-02798545',
+            citation:
+              "Gelin, L., Daniel, M., Pellegrini, T. & Pinquier, J. (2020). Reconnaissance de phones fondée sur du Transfer Learning pour des enfants apprenants lecteurs en environnement de classe.",
+            content:
+              "Les différences morphologiques et phonologiques des voix d'enfants sont les principales causes des faibles performances des systèmes de reconnaissance automatique de la parole. Tester l'outil avec l'élève avant d'en faire un outil du quotidien.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Installer',
+            items: [
+              "Télécharger l'installateur depuis la page GitHub (bouton Ouvrir) : fichier .exe (Windows) ou .dmg (Mac Apple Silicon).",
+              "Windows bloquera l'application non signée : « Conserver quand même », puis « Informations complémentaires » → « Exécuter quand même ».",
+              "Sur un parc scolaire géré, demander l'installation au technicien (droits administrateur requis).",
+            ],
+          },
+          {
+            title: 'Premier lancement',
+            items: [
+              "Choisir le mode de nettoyage : Simple (recommandé en classe, aucune dépendance) ou Amélioré (machine personnelle avec Ollama).",
+              "Choisir le modèle de transcription : Turbo (574 Mo) conseillé pour un élève — voix jeune, accent et bruit pardonnent moins.",
+              "Le téléchargement du modèle se fait une seule fois. Ensuite, plus rien ne transite par internet.",
+            ],
+          },
+          {
+            title: 'Dicter',
+            items: [
+              "Placer le curseur là où le texte doit s'écrire (Word, formulaire, mail...).",
+              "Appuyer sur le raccourci (Ctrl+Space), parler, appuyer à nouveau : le texte s'insère.",
+              "Après chaque dictée, le bouton « Corriger » reste 10 secondes : l'élève relit et garde la main sur son texte.",
+            ],
+          },
+          {
+            title: 'Préparer le vocabulaire de la classe',
+            items: [
+              "Onglet Dictionnaire : ajouter les mots techniques et noms propres que la reconnaissance déforme.",
+              "Exporter le dictionnaire (JSON) et le distribuer aux élèves : l'import fusionne sans rien écraser.",
+              "Chaque correction d'élève peut enrichir son dictionnaire en un clic.",
+            ],
+          },
+          {
+            title: 'Réglages pour la classe',
+            items: [
+              "Mode privé : sur un ordinateur partagé, aucune dictée n'est conservée sur la machine.",
+              "Mode examen : transcription brute sans passage par un modèle d'IA — l'outil compense le geste d'écriture, pas la rédaction.",
+              "Prénom ou code personnel : utiliser un code (EL07) sur machine partagée.",
+            ],
+          },
+        ],
+        tip: "Avant d'en faire un outil du quotidien, tester 15 minutes avec l'élève dans un endroit calme, avec le modèle Turbo et si possible un micro-casque. La dictée expose le texte à voix haute : prévoir un espace adapté (local à part, coin calme), jamais une première fois devant toute la classe.",
+      },
+    },
+  },
+  {
     id: 'anonymiseur-fwb',
     name: 'Anonymiseur FWB',
     description: "Protégez les données personnelles de vos élèves avant d'utiliser une IA. Deux versions : navigateur (texte collé, aucune installation) pour les enseignants — application locale complète (PDF, Word, OCR) pour les collaborateurs du Pôle. Traitement 100% local ou dans votre navigateur, aucune donnée transmise.",
