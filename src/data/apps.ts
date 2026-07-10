@@ -2292,8 +2292,9 @@ const apps: AppItem[] = [
           {
             title: 'Préparer le vocabulaire de la classe',
             items: [
-              "Onglet Dictionnaire : ajouter les mots techniques et noms propres que la reconnaissance déforme.",
-              "Exporter le dictionnaire (JSON) et le distribuer aux élèves : l'import fusionne sans rien écraser.",
+              "Onglet Dictionnaire : ajouter les mots techniques et noms propres que la reconnaissance déforme, un par un via le formulaire.",
+              "Plus rapide pour une longue liste : préparer le vocabulaire directement dans Excel ou Google Sheets, sans jamais ouvrir VolubilActif au préalable — une ligne par mot (le mot correct, puis ses erreurs de transcription connues séparées par des virgules), enregistré au format CSV, puis « Charger un fichier de vocabulaire » dans l'app.",
+              "Autre option : « Enregistrer dans un fichier » depuis VolubilActif et le distribuer aux élèves (mail, clé USB...). Dans tous les cas, charger un fichier fusionne avec le dictionnaire existant, sans jamais rien écraser.",
               "Chaque correction d'élève peut enrichir son dictionnaire en un clic.",
             ],
           },
