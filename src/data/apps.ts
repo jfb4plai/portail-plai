@@ -2283,8 +2283,10 @@ const apps: AppItem[] = [
             title: 'Dicter',
             items: [
               "Placer le curseur là où le texte doit s'écrire (Word, formulaire, mail...).",
-              "Appuyer sur le raccourci (Ctrl+Space), parler, appuyer à nouveau : le texte s'insère.",
+              "Appuyer sur le raccourci, parler, appuyer à nouveau : le texte s'insère (ou maintenir la touche enfoncée si ce mode est activé dans les réglages).",
+              "Dicter la ponctuation : « virgule » → , · « point » → . · « point d'interrogation » → ? · « point d'exclamation » → ! · « deux points » → : · « point-virgule » → ; · « à la ligne » → saut de ligne · « nouveau paragraphe » → double saut de ligne · « ouvrez/fermez les guillemets » → « ». Fonctionne même en mode examen, sans IA.",
               "Après chaque dictée, le bouton « Corriger » reste 10 secondes : l'élève relit et garde la main sur son texte.",
+              "Enregistrement limité à 5 minutes en continu (coupure automatique) : c'est un outil de dictée courte, pas un enregistreur de réunion. Aucune reconnaissance des différents locuteurs : une seule voix à la fois.",
             ],
           },
           {
