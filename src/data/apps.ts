@@ -2690,8 +2690,8 @@ const apps: AppItem[] = [
     id: 'rituactif',
     name: 'RituActif',
     description:
-      "Générateur de séquentiels visuels, emplois du temps et grilles de pictogrammes (TLA / mémo-consigne) pour ritualiser le quotidien de classe. Simplification de consigne inspirée du FALC en amont, validation humaine obligatoire de chaque pictogramme, audio par synthèse vocale. Codes élève anonymes.",
-    url: 'https://rituactif.jfb4plai.com',
+      "Générateur de supports visuels pour ritualiser le quotidien de classe (séquentiels, emplois du temps, grilles TLA / mémo-consigne) et planches de communication alternative où l'élève compose lui-même une courte phrase en pictogrammes, dite par synthèse vocale. Simplification de consigne inspirée du FALC en amont, validation humaine obligatoire de chaque pictogramme. Codes élève anonymes.",
+    url: 'https://rituactif.vercel.app',
     emoji: '📋',
     category: 'Ritualisation',
     status: 'disponible',
@@ -2700,7 +2700,7 @@ const apps: AppItem[] = [
     guide: {
       scientific: {
         summary:
-          "RituActif s'appuie sur quatre piliers validés : la ritualisation par supports visuels (emploi du temps, séquentiels) qui structure le temps et réduit l'anxiété face à l'implicite ; la primauté du canal visuel chez l'élève TSA, qui justifie le pictogramme comme entrée par défaut et le texte comme réglage optionnel ; l'allègement de la mémoire de travail par décomposition d'une consigne complexe en étapes courtes, inspirée des règles FALC ; et le tableau de langage assisté (TLA) comme grille de communication thématique ou mémo-consigne permanent. Un seul moteur d'items validés par l'enseignant alimente les trois rendus (séquentiel, emploi du temps, grille) — jamais de sélection automatique du pictogramme.",
+          "RituActif s'appuie sur quatre piliers validés : la ritualisation par supports visuels (emploi du temps, séquentiels) qui structure le temps et réduit l'anxiété face à l'implicite ; la primauté du canal visuel chez l'élève TSA, qui justifie le pictogramme comme entrée par défaut et le texte comme réglage optionnel ; l'allègement de la mémoire de travail par décomposition d'une consigne complexe en étapes courtes, inspirée des règles FALC ; et le tableau de langage assisté (TLA) comme grille de communication thématique ou mémo-consigne permanent. Un seul moteur d'items validés par l'enseignant alimente les trois rendus (séquentiel, emploi du temps, grille) — jamais de sélection automatique du pictogramme. Un mode expressif complète l'ensemble : l'élève compose lui-même une phrase courte en pictogrammes organisés par catégorie grammaticale (code couleur Fitzgerald), sans correction automatique de la grammaire par l'IA — la littérature CAA situe la progression syntaxique dans la modélisation humaine de l'enseignant, pas dans une réécriture logicielle de l'énoncé de l'élève.",
         references: [
           {
             id: 'dumas-01927713',
@@ -2726,6 +2726,21 @@ const apps: AppItem[] = [
             id: 'dumas-05065053',
             citation: "Lopez, L. (2024). Mise en place d'outils de communication alternative et améliorée (CAA) pour enfants non oralisants ou peu oralisants porteurs d'une déficience visuelle. Mémoire d'orthophonie.",
             content: "Les tableaux de langage assisté (TLA) sont des grilles de communication à base de pictogrammes, organisées sur une seule page, destinées à une activité ou un contexte spécifique. C'est exactement le rendu grille de RituActif, utilisable en planche de communication thématique ou en mémo-consigne permanent.",
+          },
+          {
+            id: 'dumas-03696073',
+            citation: "Gaufrès Schotté, Y. (2021). Un outil novateur au secours des compétences en langage oral chez des élèves de classe préélémentaire : le tableau de langage assisté (TLA). Mémoire.",
+            content: "Justifie le choix des catégories fixes du mode expressif « Je m'exprime » : le code couleur Fitzgerald (catégorisation des mots par fonction grammaticale — personnes, actions, descriptifs, petits mots sociaux, objets/lieux, sentiments) plutôt qu'une taxonomie inventée.",
+          },
+          {
+            id: 'dumas-04390420',
+            citation: "Fouré, L. (2023). Influence des Tableaux de Langage Assisté sur les compétences pronominales : étude de cas auprès d'enfants présentant un trouble du spectre autistique. Mémoire d'orthophonie.",
+            content: "Les tableaux de langage assisté organisés pour respecter l'ordre naturel de la phrase favorisent le développement syntaxique — pourquoi la bande de phrase du mode expressif concatène dans l'ordre de composition, sans réordonnancement ni correction grammaticale automatique.",
+          },
+          {
+            id: 'hal-04544863',
+            citation: "da Silva-Genest, C. & Masson, C. (2024). Langage et communication dans les troubles du spectre de l'autisme.",
+            content: "Confirme le motif standard de communication alternative et augmentée (CAA) — grille de pictogrammes par catégorie surmontée d'une bande de phrase — repris tel quel dans le mode expressif de RituActif.",
           },
         ],
       },
@@ -2765,6 +2780,16 @@ const apps: AppItem[] = [
               "Exportez en PDF/PNG pour l'impression",
               "À l'écran : cases à cocher de progression (séquentiel/emploi du temps) ou pictos cliquables avec audio, sans notion de progression (grille)",
               'La planche est sauvegardée automatiquement dans votre compte',
+            ],
+          },
+          {
+            title: 'Planche de communication (mode expressif « Je m\'exprime »)',
+            items: [
+              'Depuis le tableau de bord, section « Communication » : entrez un code élève anonyme → une planche vide (6 catégories) est créée',
+              "Remplissez chaque catégorie (Personnes, Actions, Descriptifs, Petits mots sociaux, Objets/lieux, Sentiments) avec des pictogrammes ARASAAC ou une image perso, comme pour une planche classique",
+              "Cliquez « Vue élève » : un bandeau RGPD s'affiche une seule fois par planche — les phrases composées peuvent contenir des informations sensibles, conservées jusqu'à la fin de l'année scolaire, visibles par vous seul",
+              "L'élève touche jusqu'à 4 pictos pour composer une phrase courte : chaque tap est dit à voix haute individuellement",
+              "« Dire la phrase » lit la phrase complète et vide la bande — aucune correction grammaticale automatique : la phrase reste exactement celle composée par l'élève (voir ancrage scientifique)",
             ],
           },
         ],
