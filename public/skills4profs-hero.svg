@@ -1,0 +1,38 @@
+<svg width="800" height="280" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="t d">
+<title id="t">Un enseignant au centre d'un rayonnement d'énergie</title>
+<desc id="d">Illustration symbolisant les Skills PLAI : un enseignant lève le bras, entouré de rayons et de trois badges représentant les outils pédagogiques disponibles.</desc>
+<rect width="800" height="280" fill="#faf9f7"/>
+<circle cx="400" cy="150" r="128" fill="#e6f1fb"/>
+<circle cx="400" cy="150" r="92" fill="#eaf3de"/>
+<g stroke="#ef9f27" stroke-width="3" stroke-linecap="round" opacity="0.85">
+<line x1="400" y1="150" x2="400" y2="18"/>
+<line x1="400" y1="150" x2="487" y2="45"/>
+<line x1="400" y1="150" x2="546" y2="103"/>
+<line x1="400" y1="150" x2="546" y2="197"/>
+<line x1="400" y1="150" x2="487" y2="255"/>
+<line x1="400" y1="150" x2="313" y2="45"/>
+<line x1="400" y1="150" x2="254" y2="103"/>
+<line x1="400" y1="150" x2="254" y2="197"/>
+<line x1="400" y1="150" x2="313" y2="255"/>
+</g>
+<ellipse cx="400" cy="250" rx="42" ry="9" fill="#d4cfc6" opacity="0.5"/>
+<rect x="378" y="150" width="44" height="90" rx="20" fill="#185fa5"/>
+<circle cx="400" cy="112" r="26" fill="#f4dfc4"/>
+<path d="M375 108 C375 90 386 78 400 78 C414 78 425 90 425 108 L425 98 C425 98 415 88 400 88 C385 88 375 98 375 98 Z" fill="#5a564f"/>
+<rect x="416" y="118" width="20" height="66" rx="10" fill="#185fa5" transform="rotate(-32 416 118)"/>
+<circle cx="450" cy="70" r="11" fill="#f4dfc4"/>
+<rect x="366" y="150" width="18" height="60" rx="9" fill="#185fa5"/>
+<circle cx="374" cy="212" r="10" fill="#f4dfc4"/>
+<g>
+<rect x="430" y="30" width="60" height="60" rx="12" fill="#ffffff" stroke="#639922" stroke-width="2"/>
+<text x="460" y="65" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="500" fill="#3b6d11">plan</text>
+</g>
+<g>
+<rect x="86" y="150" width="60" height="60" rx="12" fill="#ffffff" stroke="#378add" stroke-width="2"/>
+<text x="116" y="185" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="500" fill="#185fa5">diff.</text>
+</g>
+<g>
+<rect x="654" y="150" width="60" height="60" rx="12" fill="#ffffff" stroke="#7f77dd" stroke-width="2"/>
+<text x="684" y="185" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" font-weight="500" fill="#534ab7">qualité</text>
+</g>
+</svg>

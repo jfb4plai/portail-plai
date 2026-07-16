@@ -1601,6 +1601,17 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'skills4profs',
+    name: 'Skills4profs — 3 skills prêts à installer',
+    description: "Guide pas à pas pour installer 3 skills PLAI sur votre propre compte Claude.ai gratuit : plan de séance FWB, séance différenciée en 3 niveaux, rubrique qualité d'output. RGPD, 4 étapes d'installation, exemples concrets.",
+    url: '/guide-skills4profs-plai.html',
+    emoji: '⚡',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'indigo',
+    section: 'claude',
+  },
+  {
     id: 'import-skill-partage',
     name: 'Importer un skill partagé',
     description: 'Mode d\'emploi pour activer un fichier .skill reçu d\'un collègue : procédure d\'import, vérifications de sécurité et checklist avant activation.',
