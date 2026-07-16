@@ -8,7 +8,7 @@ const ORANGE = '#f97316';
 const GREETING: ChatMessage = {
   role: 'assistant',
   content:
-    "Bonjour, je suis Copernic 🧭. Décrivez ce que vous cherchez — une difficulté d'élève, une matière, un objectif — et je vous oriente vers l'application PLAI adaptée. Si je ne trouve pas, je vous le dirai directement.",
+    "Bonjour, je suis Copernic 🧭. Décrivez ce que vous cherchez — précisez le niveau scolaire et/ou la matière et la difficulté rencontrée — et je vous oriente vers l'application PLAI adaptée. Si je ne trouve pas, je vous le dirai directement.",
 };
 
 export default function BoussoleChat() {
