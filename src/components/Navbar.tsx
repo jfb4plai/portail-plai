@@ -22,6 +22,12 @@ export default function Navbar() {
           </div>
         </div>
         <nav className="flex gap-4">
+          <a
+            href="/#guides-claude"
+            className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors text-white/80 hover:text-white hover:bg-white/10"
+          >
+            Guides
+          </a>
           <Link
             to="/voixactif"
             className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${

@@ -331,7 +331,7 @@ export default function Home() {
 
         {/* Claude */}
         {claudeItems.length > 0 && (
-          <section className="mb-14">
+          <section id="guides-claude" className="mb-14">
             <SectionHeader
               label="Guides Claude"
               count={claudeItems.length}
