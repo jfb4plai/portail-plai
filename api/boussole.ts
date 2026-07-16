@@ -25,7 +25,7 @@ const RGPD_NOTE =
 let appsCache = null;
 async function getApps() {
   if (!appsCache) {
-    const mod = await import('../src/data/apps');
+    const mod = await import('../src/data/apps.js');
     appsCache = mod.default;
   }
   return appsCache;
@@ -181,7 +181,6 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ reply: finalize(apps, OUT_OF_SCOPE_MESSAGE) });
   } catch (err) {
-    // TEMPORAIRE (diagnostic) : message d'erreur réel exposé pour identifier la cause du 500 en prod.
-    return res.status(500).json({ error: 'Erreur diagnostic: ' + (err?.stack || err?.message || String(err)) });
+    return res.status(500).json({ error: 'Erreur lors de la génération de la réponse.' });
   }
 }
