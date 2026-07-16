@@ -1,6 +1,5 @@
-// api/boussole.js — Copernic, l'assistant d'orientation du portail PLAI
+// api/boussole.ts — Copernic, l'assistant d'orientation du portail PLAI
 import Anthropic from '@anthropic-ai/sdk';
-import apps from '../src/data/apps';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -23,6 +22,15 @@ const RGPD_NOTE =
   "\n\n---\n🔒 RGPD : aucune donnée d'élève ne doit être saisie dans ce chat. " +
   "Les applis PLAI utilisent des codes anonymes pour les élèves, jamais de nom.";
 
+let appsCache = null;
+async function getApps() {
+  if (!appsCache) {
+    const mod = await import('../src/data/apps');
+    appsCache = mod.default;
+  }
+  return appsCache;
+}
+
 function statusBadge(app) {
   const parts = [];
   if (app.isNew) parts.push('🆕 Nouveau');
@@ -31,7 +39,7 @@ function statusBadge(app) {
   return parts.length ? ` (${parts.join(' · ')})` : '';
 }
 
-function buildIndex() {
+function buildIndex(apps) {
   return apps.map((a) => ({
     id: a.id,
     nom: a.name,
@@ -42,7 +50,7 @@ function buildIndex() {
   }));
 }
 
-function finalize(text, appIds = []) {
+function finalize(apps, text, appIds = []) {
   const badgeLine = appIds
     .map((id) => apps.find((a) => a.id === id))
     .filter(Boolean)
@@ -60,11 +68,11 @@ function sanitizeHistory(messages) {
   return trimmed;
 }
 
-async function routeQuery(messages) {
+async function routeQuery(apps, messages) {
   const system = `Tu es le module d'orientation de Copernic, l'assistant du portail PLAI (Pôle Liégeois d'Accompagnement vers une École Inclusive). Ton rôle : orienter l'enseignant vers la bonne application parmi celles listées ci-dessous — jamais en dehors de cette liste.
 
 Applications disponibles (JSON) :
-${JSON.stringify(buildIndex())}
+${JSON.stringify(buildIndex(apps))}
 
 Règles :
 - Si la demande est trop vague pour identifier une application, pose une question de clarification courte et concrète (propose 2-3 pistes si possible).
@@ -119,7 +127,7 @@ ${g?.howto?.tip ? `Astuce : ${g.howto.tip}` : ''}`;
     .join('\n\n');
 }
 
-async function answerFromGuides(messages, appIds) {
+async function answerFromGuides(apps, messages, appIds) {
   const selected = appIds.map((id) => apps.find((a) => a.id === id)).filter(Boolean);
   if (!selected.length) return null;
 
@@ -157,21 +165,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const decision = await routeQuery(trimmed);
+    const apps = await getApps();
+    const decision = await routeQuery(apps, trimmed);
 
     if (decision.action === 'apps') {
-      const answer = await answerFromGuides(trimmed, decision.appIds);
+      const answer = await answerFromGuides(apps, trimmed, decision.appIds);
       if (answer) {
-        return res.status(200).json({ reply: finalize(answer, decision.appIds) });
+        return res.status(200).json({ reply: finalize(apps, answer, decision.appIds) });
       }
     }
 
     if (decision.action === 'clarify') {
-      return res.status(200).json({ reply: finalize(decision.question) });
+      return res.status(200).json({ reply: finalize(apps, decision.question) });
     }
 
-    return res.status(200).json({ reply: finalize(OUT_OF_SCOPE_MESSAGE) });
+    return res.status(200).json({ reply: finalize(apps, OUT_OF_SCOPE_MESSAGE) });
   } catch (err) {
-    return res.status(500).json({ error: 'Erreur lors de la génération de la réponse.' });
+    // TEMPORAIRE (diagnostic) : message d'erreur réel exposé pour identifier la cause du 500 en prod.
+    return res.status(500).json({ error: 'Erreur diagnostic: ' + (err?.stack || err?.message || String(err)) });
   }
 }
