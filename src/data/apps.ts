@@ -1610,6 +1610,85 @@ const apps: AppItem[] = [
     status: 'disponible',
     color: 'indigo',
     section: 'claude',
+    guide: {
+      scientific: {
+        summary:
+          "Les 3 skills Skills4profs s'appuient sur trois piliers de la recherche en pédagogie : la structuration explicite d'une séance (taxonomie de Bloom, enseignement explicite), la différenciation par paliers sans réduction des exigences (ZPD, UDL/CUA), et la rétroaction formative pour fiabiliser la production IA avant usage en classe (Hattie & Timperley, Black & Wiliam).",
+        references: [
+          {
+            citation: 'Bloom, B. S. & Krathwohl, D. R. (2001). A Taxonomy for Learning, Teaching, and Assessing — taxonomie révisée des objectifs pédagogiques.',
+            content:
+              "Les 6 niveaux cognitifs révisés (mémoriser → créer) structurent la formulation d'objectifs observables. Le skill /plan-seance-fwb s'en sert pour exiger un verbe d'action mesurable dans chaque objectif de séance.",
+          },
+          {
+            citation: 'Rosenshine, B. (2012). Principles of Instruction. American Educator. Réel, hors corpus RISS.',
+            content:
+              "Les principes d'enseignement explicite (petits pas, vérification de la compréhension, pratique guidée puis autonome) inspirent la structuration en 5 phases temporisées du skill /plan-seance-fwb et la vérification de compréhension du skill /rubrique-qualite-output.",
+          },
+          {
+            citation: 'Vygotsky, L. S. (1978). Mind in Society — Zone Proximale de Développement. [RISS : dumas-02418837]',
+            content:
+              "L'étayage dans la ZPD justifie la logique des 3 niveaux du skill /seance-differenciee : chaque palier reste dans une zone d'apprentissage accessible avec soutien, sans jamais réduire l'objectif de compétence visé.",
+          },
+          {
+            citation: 'Tomlinson, C. A. (1999/2014). The Differentiated Classroom. Réel, hors corpus RISS.',
+            content:
+              "Le principe central — différencier la forme sans réduire le fond — structure les 3 versions (A/B/C) produites par /seance-differenciee : même objectif de compétence, accès et niveau d'approfondissement différents.",
+          },
+          {
+            citation: "Rose, D. H. & Meyer, A. (2002). Teaching Every Student in the Digital Age — UDL / CUA. [RISS : 1121570ar]",
+            content:
+              "La Conception Universelle de l'Apprentissage — base des Aménagements Universels FWB — fonde la version A (accès sécurisé, AU intégrés) générée par /seance-differenciee.",
+          },
+          {
+            citation: 'Black, P. & Wiliam, D. (1998/2009). Assessment and Classroom Learning / Developing the theory of formative assessment. [RISS : 1113588ar]',
+            content:
+              "L'évaluation formative n'a d'effet que si l'apprenant dispose de critères transparents. Le skill /rubrique-qualite-output applique ce principe à la production de l'enseignant lui-même : critères explicites, score justifié, verdict actionnable avant tout usage en classe.",
+          },
+          {
+            citation: 'Hattie, J. & Timperley, H. (2007). The Power of Feedback. Review of Educational Research. [RISS : hal-05348650]',
+            content:
+              "Un feedback efficace répond à 3 questions (Où vais-je ? Où en suis-je ? Comment progresser ?). Le skill /rubrique-qualite-output structure son verdict 🟢/🟠/🔴 et ses corrections concrètes selon ce modèle.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer un compte et un Projet Claude.ai',
+            items: [
+              "claude.ai → « Commencer gratuitement » → inscription email ou Google, pas de carte bancaire.",
+              "Juste après l'inscription : Paramètres → Confidentialité → désactiver « Améliorer Claude pour tous ».",
+              "Barre de gauche → « Projets » → « + Nouveau projet » → nommer (ex. « Skills pédagogiques PLAI »).",
+            ],
+          },
+          {
+            title: 'Installer un skill',
+            items: [
+              "Ouvrir le lien SKILL.md du skill choisi sur github.com/jfb4plai/Skills4profs.",
+              "Copier tout le contenu → « Modifier les instructions du projet » → coller → « Enregistrer ».",
+              "Répéter pour chaque skill souhaité, séparés par une ligne vide et un titre « SKILL : nom-du-skill ».",
+            ],
+          },
+          {
+            title: 'Utiliser les 3 skills',
+            items: [
+              "/plan-seance-fwb — « /plan » ou « prépare-moi une séance sur [sujet] pour [niveau] » → plan en 5 phases temporisées.",
+              "/seance-differenciee — « différencie », « /diff », « 3 niveaux » → 3 versions A/B/C sur le même objectif de compétence.",
+              "/rubrique-qualite-output — « /qualite » + [output d'un autre skill collé] → score, verdict 🟢/🟠/🔴, corrections.",
+            ],
+          },
+          {
+            title: 'RGPD — à chaque utilisation',
+            items: [
+              "Aucune donnée d'élève identifiable (nom, date de naissance, établissement) : utiliser « Élève A » ou un prénom fictif.",
+              "Relire systématiquement avant distribution aux élèves — vérifier l'alignement sur enseignement.be.",
+            ],
+          },
+        ],
+        tip: "Commencez par /plan-seance-fwb sur une séance que vous préparez déjà cette semaine — c'est le skill le plus rapide à valider dans votre propre pratique avant d'installer les deux autres.",
+      },
+    },
   },
   {
     id: 'import-skill-partage',
