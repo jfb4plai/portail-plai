@@ -87,6 +87,21 @@ Réponds UNIQUEMENT par un objet JSON strict, sans aucun texte autour :
     max_tokens: 300,
     system,
     messages,
+    output_config: {
+      format: {
+        type: 'json_schema',
+        schema: {
+          type: 'object',
+          properties: {
+            action: { type: 'string', enum: ['clarify', 'apps', 'none'] },
+            question: { type: 'string' },
+            appIds: { type: 'array', items: { type: 'string' } },
+          },
+          required: ['action', 'question', 'appIds'],
+          additionalProperties: false,
+        },
+      },
+    },
   });
 
   const raw = response.content[0]?.text || '{}';
