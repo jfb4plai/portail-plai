@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import BoussoleChat from './components/BoussoleChat';
 import Home from './pages/Home';
 import VoixActif from './pages/VoixActif';
 
@@ -16,6 +17,7 @@ export default function App() {
           </Routes>
         </div>
         <Footer />
+        <BoussoleChat />
       </div>
     </BrowserRouter>
   );
