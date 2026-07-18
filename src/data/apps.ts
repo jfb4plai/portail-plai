@@ -3029,6 +3029,74 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'focusactif',
+    name: 'FocusActif',
+    description:
+      "Outil d'auto-organisation exécutive pour élèves : filtrage par contexte de vie (école, maison, devoirs...), une seule tâche affichée à la fois, décomposition en sous-étapes, capture rapide avec dictée vocale en secours. Mode sans compte (données sur l'appareil) ou avec compte (synchronisé, liaison enseignant-élève par code pour verrouiller certains contextes). Codes anonymes, pas de nom d'élève stocké.",
+    url: 'https://focusactif.vercel.app',
+    emoji: '🎯',
+    category: 'Fonctions exécutives',
+    status: 'disponible',
+    color: 'teal',
+    section: 'applications',
+    isNew: true,
+    guide: {
+      scientific: {
+        summary:
+          "FocusActif s'appuie sur la remédiation des fonctions exécutives chez les élèves avec TDAH ou TSA : la littérature valide un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H, et des programmes structurés de type CRT/RECOS/RC2S pour la flexibilité, la planification et l'organisation en autisme. FocusActif transpose ce principe — un support numérique qui réduit la charge cognitive en ne montrant qu'une seule tâche à la fois, filtrée par contexte — dans un outil d'usage quotidien plutôt qu'un protocole de séance. Complémentaire à PlanBot (jeu de remédiation en séance clinique) : FocusActif couvre l'auto-organisation au quotidien, pas l'entraînement structuré. Aucune étude propre n'a validé cet outil spécifique ; les références ci-dessous valident le terrain (bénéfice d'un support numérique structurant pour des fonctions exécutives déficitaires), pas l'application elle-même.",
+        references: [
+          {
+            id: 'dumas-01302572',
+            citation:
+              "Minary, K. (2010). Remédiation cognitive des fonctions exécutives chez l'enfant avec TDA/H : étude contrôlée d'un protocole informatisé. Mémoire d'orthophonie, Université Victor Segalen - Bordeaux 2.",
+            content:
+              "Étude contrôlée d'un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H — précédent direct pour un outil numérique visant les mêmes fonctions (planification, inhibition, organisation) chez ce public.",
+          },
+          {
+            id: 'hal-04457967',
+            citation:
+              "Grandgeorge, M. & Hausberger, M. (2022). Éthologie animale et humaine. Apports de l'éthologie dans la compréhension des TSA. Bulletin scientifique de l'Arapi, 49, 17-25.",
+            content:
+              "Mentionne les programmes structurés CRT/RECOS/RC2S de remédiation cognitive et psychosociale (flexibilité, planification, organisation, interactions sociales) déployés en autisme — le terrain que FocusActif vise à outiller au quotidien, pas en séance de remédiation dédiée.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Premier lancement',
+            items: [
+              "Choisissez « Continuer sans compte » (données sur cet appareil uniquement) ou « Créer un compte / Se connecter » (synchronisé, permet la liaison avec un enseignant)",
+              "En mode compte, un enseignant et un élève peuvent se lier par un code généré par l'un et saisi par l'autre — dans les deux sens",
+            ],
+          },
+          {
+            title: 'Créer un contexte',
+            items: [
+              "Nommez un domaine de vie (ex. « Devoirs », « Maison », « École ») — chaque contexte regroupe ses propres tâches",
+              "Un enseignant lié peut verrouiller un contexte pour un élève : celui-ci peut alors exécuter les tâches mais pas en ajouter ni en supprimer",
+            ],
+          },
+          {
+            title: 'Capturer et décomposer',
+            items: [
+              "Ajoutez une tâche par texte ou dictée vocale (micro affiché seulement si le navigateur le supporte)",
+              "Décomposez une tâche large en sous-étapes courtes — une seule étape s'affiche à la fois, la tâche complète redevient visible une fois toutes les sous-étapes terminées",
+            ],
+          },
+          {
+            title: 'Une seule tâche à la fois',
+            items: [
+              "Le tableau de bord n'affiche jamais qu'une tâche ou sous-étape — jamais de liste complète — pour réduire la charge cognitive au moment de l'action",
+              'Marquez « Fait » pour passer à la tâche suivante du contexte',
+            ],
+          },
+        ],
+        tip: "Proposez le mode sans compte à un élève qui veut essayer seul, et réservez le mode compte + verrouillage de contexte aux situations où vous voulez poser un cadre (ex. routine de devoirs) sans lui laisser la charge de tout structurer seul au départ.",
+      },
+    },
+  },
 ];
 
 export default apps;
