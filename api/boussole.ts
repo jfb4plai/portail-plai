@@ -44,6 +44,7 @@ function buildIndex(apps) {
     id: a.id,
     nom: a.name,
     categorie: a.category,
+    public: a.audience || 'non précisé',
     description: a.description,
     statut: a.status,
     nouveau: !!a.isNew,
@@ -78,6 +79,7 @@ Règles :
 - Si la demande est trop vague pour identifier une application, pose une question de clarification courte et concrète (propose 2-3 pistes si possible).
 - Si une ou plusieurs applications correspondent clairement, indique leurs id (1 à 2 maximum).
 - Si la demande ne correspond à aucune application listée, indique-le.
+- Le champ "public" indique qui utilise réellement l'application : "élève" (l'élève seul, en autonomie, sans adulte), "enseignant" (outil de préparation/formation/sensibilisation, jamais utilisé directement par l'élève), ou "enseignant + élève" (les deux interagissent avec l'outil). Si la demande précise le public visé (ex. "un outil pour l'élève seul", "que je peux utiliser sans l'élève"), filtre strictement sur ce champ avant de répondre.
 
 Réponds UNIQUEMENT par un objet JSON strict, sans aucun texte autour :
 {"action": "clarify" | "apps" | "none", "question": "...", "appIds": ["..."]}`;
