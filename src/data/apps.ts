@@ -150,7 +150,7 @@ const apps: AppItem[] = [
     emoji: '🃏',
     category: 'Mémorisation',
     status: 'disponible',
-    color: 'blue',
+    color: 'indigo',
     section: 'applications',
     guide: {
       scientific: {
@@ -298,7 +298,7 @@ const apps: AppItem[] = [
     emoji: '📖',
     category: 'Vocabulaire',
     status: 'disponible',
-    color: 'green',
+    color: 'purple',
     section: 'applications',
     guide: {
       scientific: {
@@ -366,7 +366,7 @@ const apps: AppItem[] = [
     emoji: '📏',
     category: 'Numération',
     status: 'disponible',
-    color: 'pink',
+    color: 'blue',
     section: 'applications',
     guide: {
       scientific: {
@@ -428,7 +428,7 @@ const apps: AppItem[] = [
     emoji: '✍️',
     category: 'Orthographe',
     status: 'disponible',
-    color: 'orange',
+    color: 'purple',
     section: 'applications',
     guide: {
       scientific: {
@@ -502,7 +502,7 @@ const apps: AppItem[] = [
     emoji: '🧠',
     category: 'Dyslexie',
     status: 'disponible',
-    color: 'amber',
+    color: 'purple',
     section: 'sensibilisation',
     browserNote: 'Recommandé dans Microsoft Edge : voix neuronales (fr-BE) disponibles + surlignage mot par mot synchronisé avec la lecture audio.',
     guide: {
@@ -577,7 +577,7 @@ const apps: AppItem[] = [
     emoji: '🏺',
     category: 'Dyscalculie',
     status: 'disponible',
-    color: 'pink',
+    color: 'blue',
     section: 'sensibilisation',
     guide: {
       scientific: {
@@ -643,7 +643,7 @@ const apps: AppItem[] = [
     emoji: '🔁',
     category: 'Rétroaction',
     status: 'disponible',
-    color: 'teal',
+    color: 'green',
     section: 'sensibilisation',
     guide: {
       scientific: {
@@ -792,7 +792,7 @@ const apps: AppItem[] = [
     emoji: '🔄',
     category: 'Rétroaction',
     status: 'disponible',
-    color: 'amber',
+    color: 'green',
     section: 'sensibilisation',
     guide: {
       scientific: {
@@ -856,7 +856,7 @@ const apps: AppItem[] = [
     emoji: '🪐',
     category: 'Sciences',
     status: 'disponible',
-    color: 'blue',
+    color: 'teal',
     guide: {
       scientific: {
         summary: "La visualisation dynamique des proportions planétaires mobilise la pensée spatiale et la mémoire à long terme. Voir les tailles relatives et les révolutions en temps réel ancre des représentations que le texte seul ne peut pas construire.",
@@ -918,7 +918,7 @@ const apps: AppItem[] = [
     emoji: '🔵',
     category: 'Mathématiques',
     status: 'disponible',
-    color: 'purple',
+    color: 'blue',
     guide: {
       scientific: {
         summary: "La compréhension des fractions nécessite de multiplier les registres de représentation : aucune représentation seule ne suffit à révéler toutes les caractéristiques de l'objet mathématique.",
@@ -972,7 +972,7 @@ const apps: AppItem[] = [
     emoji: '➗',
     category: 'Mathématiques',
     status: 'disponible',
-    color: 'purple',
+    color: 'blue',
     guide: {
       scientific: {
         summary: "Rendre visibles les étapes intermédiaires d'une opération sur les fractions permet à l'élève d'identifier précisément l'obstacle et de construire un raisonnement procédural solide.",
@@ -1026,7 +1026,7 @@ const apps: AppItem[] = [
     emoji: '🔢',
     category: 'Mathématiques',
     status: 'disponible',
-    color: 'indigo',
+    color: 'blue',
     guide: {
       scientific: {
         summary: "Les erreurs sur les règles des puissances sont souvent liées à une incompréhension de la signification des exposants. Un support visuel procédural (logigramme) réduit la charge cognitive et ancre les règles avant leur automatisation.",
@@ -1194,7 +1194,7 @@ const apps: AppItem[] = [
     emoji: '📏',
     category: 'Mathématiques',
     status: 'disponible',
-    color: 'teal',
+    color: 'blue',
     guide: {
       scientific: {
         summary: "L'abaque des unités sans affichage explicite des relations multiplicatives crée des malentendus durables. La relation ×10 (ou ×1000 pour les volumes cubiques) doit être visible dans la structure même de l'outil.",
@@ -1248,7 +1248,7 @@ const apps: AppItem[] = [
     emoji: '🎯',
     category: 'Évaluation formative',
     status: 'disponible',
-    color: 'indigo',
+    color: 'green',
     guide: {
       scientific: {
         summary: "PLAI-Quiz s'appuie sur l'effet test (testing effect) : le fait de se rappeler activement une information consolide la trace mémorielle bien plus efficacement que la relecture passive. Combiné à un feedback immédiat et à des adaptations d'accessibilité, le quiz formatif devient un outil de différenciation à part entière.",
@@ -1496,7 +1496,7 @@ const apps: AppItem[] = [
     emoji: '🎙️',
     category: 'Langues',
     status: 'disponible',
-    color: 'teal',
+    color: 'purple',
     devBanner: true,
     guide: {
       scientific: {
@@ -1587,7 +1587,7 @@ const apps: AppItem[] = [
     emoji: '📚',
     category: 'Guide',
     status: 'disponible',
-    color: 'purple',
+    color: 'teal',
     section: 'claude',
   },
   {
@@ -1611,7 +1611,7 @@ const apps: AppItem[] = [
     emoji: '🎨',
     category: 'Guide',
     status: 'disponible',
-    color: 'orange',
+    color: 'teal',
     section: 'claude',
   },
   {
@@ -1623,7 +1623,7 @@ const apps: AppItem[] = [
     emoji: '⚡',
     category: 'Guide',
     status: 'disponible',
-    color: 'indigo',
+    color: 'teal',
     section: 'claude',
   },
   {
@@ -1635,7 +1635,7 @@ const apps: AppItem[] = [
     emoji: '⚡',
     category: 'Guide',
     status: 'disponible',
-    color: 'indigo',
+    color: 'teal',
     section: 'claude',
     guide: {
       scientific: {
@@ -1726,7 +1726,7 @@ const apps: AppItem[] = [
     emoji: '📥',
     category: 'Guide',
     status: 'disponible',
-    color: 'indigo',
+    color: 'teal',
     section: 'claude',
   },
   {
@@ -1738,7 +1738,7 @@ const apps: AppItem[] = [
     emoji: '✍️',
     category: 'Guide',
     status: 'disponible',
-    color: 'indigo',
+    color: 'teal',
     section: 'claude',
   },
   {
@@ -1750,7 +1750,7 @@ const apps: AppItem[] = [
     emoji: '🧭',
     category: 'Guide',
     status: 'disponible',
-    color: 'amber',
+    color: 'teal',
     section: 'ia',
   },
   {
@@ -1786,7 +1786,7 @@ const apps: AppItem[] = [
     emoji: '🚀',
     category: 'Guide',
     status: 'disponible',
-    color: 'indigo',
+    color: 'teal',
     section: 'claude-code',
   },
   {
@@ -1985,7 +1985,7 @@ const apps: AppItem[] = [
     emoji: '✏️',
     category: 'Différenciation',
     status: 'en-développement',
-    color: 'pink',
+    color: 'orange',
     devBanner: true,
     guide: {
       scientific: {
@@ -2068,7 +2068,7 @@ const apps: AppItem[] = [
     emoji: '📚',
     category: 'IA pédagogique',
     status: 'en-développement',
-    color: 'teal',
+    color: 'amber',
     devBanner: true,
     guide: {
       scientific: {
@@ -2260,7 +2260,7 @@ const apps: AppItem[] = [
     emoji: '🧭',
     category: 'Remédiation',
     status: 'en-développement',
-    color: 'teal',
+    color: 'blue',
     section: 'applications',
     devBanner: true,
     guide: {
@@ -2345,7 +2345,7 @@ const apps: AppItem[] = [
     category: 'Dictée vocale',
     status: 'disponible',
     isNew: true,
-    color: 'teal',
+    color: 'purple',
     section: 'utilitaires',
     browserNote:
       "Application à installer (Windows / Mac Apple Silicon), pas une web-app. Windows affichera un avertissement « application non signée » : la procédure de déblocage pas à pas est dans le mode d'emploi (README du lien).",
@@ -2510,7 +2510,7 @@ const apps: AppItem[] = [
     emoji: '⚖',
     category: 'Évaluation',
     status: 'disponible',
-    color: 'orange',
+    color: 'green',
     section: 'applications',
     isNew: true,
     guide: {
@@ -2591,7 +2591,7 @@ const apps: AppItem[] = [
     emoji: '📐',
     category: 'Mathématiques',
     status: 'en-développement',
-    color: 'teal',
+    color: 'blue',
     devBanner: true,
     section: 'applications',
     guide: {
@@ -2818,7 +2818,7 @@ const apps: AppItem[] = [
     emoji: '👓',
     category: 'Lecture',
     status: 'en-développement',
-    color: 'green',
+    color: 'purple',
     section: 'applications',
     devBanner: true,
   },
@@ -2832,7 +2832,7 @@ const apps: AppItem[] = [
     emoji: '📋',
     category: 'Ritualisation',
     status: 'disponible',
-    color: 'purple',
+    color: 'teal',
     section: 'applications',
     guide: {
       scientific: {
@@ -2986,7 +2986,7 @@ const apps: AppItem[] = [
     emoji: '🎭',
     category: 'AU / AR',
     status: 'disponible',
-    color: 'purple',
+    color: 'orange',
     section: 'sensibilisation',
     isNew: true,
     guide: {
@@ -3090,7 +3090,7 @@ const apps: AppItem[] = [
     emoji: '🎯',
     category: 'Fonctions exécutives',
     status: 'disponible',
-    color: 'teal',
+    color: 'indigo',
     section: 'applications',
     isNew: true,
     guide: {
