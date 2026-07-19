@@ -11,6 +11,8 @@ export type GuideContent = {
   howto: { steps: StepGroup[]; tip?: string };
 };
 
+export type Audience = 'élève' | 'enseignant' | 'enseignant + élève';
+
 export type AppItem = {
   id: string;
   name: string;
@@ -18,6 +20,7 @@ export type AppItem = {
   url: string;
   emoji: string;
   category: string;
+  audience?: Audience;
   status: AppStatus;
   color: string;
   section?: AppSection;

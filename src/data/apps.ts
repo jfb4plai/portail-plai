@@ -3,6 +3,7 @@ import type { AppItem } from '../types';
 const apps: AppItem[] = [
   {
     id: 'planbot',
+    audience: 'enseignant + élève',
     name: 'PlanBot',
     description: "Jeu de rééducation des fonctions exécutives : planification, inhibition, mémoire de travail, métacognition. Pour logopèdes, psychomotriciens et enseignants spécialisés FWB. 6 niveaux progressifs, 11 paramètres cliniques configurables.",
     url: 'https://planbot-plai.vercel.app',
@@ -142,6 +143,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'flashfwb',
+    audience: 'enseignant + élève',
     name: 'FlashPLAI',
     description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (texte, image, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte.",
     url: 'https://flashfwb.vercel.app',
@@ -204,6 +206,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'picto-lecture',
+    audience: 'enseignant',
     name: 'Picto Lecture',
     description: 'Convertit un texte en pictogrammes ARASAAC pour faciliter la lecture et la compréhension, avec simplification optionnelle inspirée du FALC. Export PDF et Word.',
     url: 'https://picto-lecture.vercel.app',
@@ -288,6 +291,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'definifwb',
+    audience: 'enseignant + élève',
     name: 'DéfiniFWB',
     description: 'Séances interactives de vocabulaire pour TBI. Six modes de jeu, import CSV/PDF, pictogrammes ARASAAC, QR code élève.',
     url: 'https://definifwb.vercel.app',
@@ -355,6 +359,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'droite-graduee',
+    audience: 'enseignant + élève',
     name: 'Droite Graduée',
     description: "Activités interactives sur la droite graduée. Estimation, apprentissage multi-droites et mix. Configurations sauvegardées par l'enseignant.",
     url: 'https://droite-graduee.vercel.app',
@@ -416,6 +421,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'dictation',
+    audience: 'enseignant + élève',
     name: 'Dictée Interactive',
     description: "Séances de dictée interactives avec code d'accès élève. Mode clavier ou lettres mélangées, résultats en temps réel pour l'enseignant.",
     url: 'https://plai-french-interactive-dictation.vercel.app',
@@ -489,6 +495,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'atelier-dyslexie',
+    audience: 'enseignant',
     name: 'Atelier Dyslexie',
     description: "Simulation de lecture dyslexique. Plonge l'enseignant dans les chaussures d'un élève porteur de dyslexie pour faire émerger — de l'intérieur — les aménagements universels.",
     url: 'https://atelier-dyslexie-plai.vercel.app',
@@ -563,6 +570,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'chaussures-de-maya',
+    audience: 'enseignant',
     name: 'Atelier Maya',
     description: "Activité de sensibilisation : placez des chiffres mayas sur une droite graduée. Les enseignants vivent l'expérience d'un élève dyscalculique privé de la représentation habituelle du nombre.",
     url: 'https://atelier-maya.vercel.app',
@@ -628,6 +636,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'retroactif',
+    audience: 'enseignant + élève',
     name: 'RetroActif',
     description: "Constructeur de rétroaction structurée (Carless & Boud). Logigramme interactif, suivi par élève, dialogue apprenant, bibliothèque. IA 80/20 : l'enseignant personnalise, jamais de rétroaction automatique. Connexion directe depuis Corpus Actif.",
     url: 'https://retroactif.jfb4plai.com',
@@ -704,6 +713,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'glissement',
+    audience: 'enseignant',
     name: "Glissement à l'IA",
     description: "Fiction interactive sur la délégation cognitive à l'IA. On confie ses tâches à Pl'ai — et on glisse. 15 mécanismes sourcés en psychologie cognitive. 3 actes, 3 fins. Mode facilitation pour formateurs.",
     url: 'https://glissement-plai.vercel.app',
@@ -775,6 +785,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'laboucle',
+    audience: 'enseignant + élève',
     name: 'La Boucle',
     description: "Fiction interactive sur la littératie à la rétroaction. Alex reçoit une copie corrigée — et doit apprendre à fermer la boucle entre les remarques de l'enseignant et une vraie progression. 3 fins. Mode facilitation pour formateurs.",
     url: 'https://laboucle-plai.vercel.app',
@@ -838,6 +849,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'systeme-solaire',
+    audience: 'enseignant + élève',
     name: 'Système Solaire',
     description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Zoom, noms, orbites et vitesse réglables. Idéal pour ancrer les proportions et les durées de révolution.",
     url: 'https://systeme-solaire-plai.vercel.app',
@@ -899,6 +911,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'fractions-visuelles',
+    audience: 'enseignant + élève',
     name: 'Fractions — Représentations',
     description: "Visualisez une fraction sous 4 formes : disque, barre, droite numérique, collection. Idéal pour ancrer le sens de la fraction avant toute opération.",
     url: 'https://fractions-visuelles-plai.vercel.app',
@@ -952,6 +965,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'fractions-operations',
+    audience: 'enseignant + élève',
     name: 'Fractions — Opérations',
     description: "Calculs sur les fractions (+, −, ×, ÷) décomposés étape par étape avec représentations visuelles. Chaque étape est expliquée et illustrée.",
     url: 'https://fractions-operations-plai.vercel.app',
@@ -1005,6 +1019,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'puissances',
+    audience: 'enseignant + élève',
     name: 'Puissances — Règles de calcul',
     description: "Règles des puissances (produit, quotient, puissance d'une puissance, exposant nul/négatif) avec logigramme aide-mémoire, exercices interactifs et clavier TBI.",
     url: 'https://puissances-plai.vercel.app',
@@ -1058,6 +1073,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'complements-puissances',
+    audience: 'enseignant + élève',
     name: 'Compléments des Puissances de 10',
     description: "Calcul mental des compléments à une puissance de 10. Abaque coloré par rang, addition posée rang par rang, clavier TBI. Exemple résolu optionnel pour l'enseignant.",
     url: 'https://complements-puissances-plai.vercel.app',
@@ -1111,6 +1127,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'grammaire-3d',
+    audience: 'enseignant + élève',
     name: 'Grammaire 3D Interactive',
     description: "Analyse de phrase en Grammaire 3D (FWB) : assiettes colorées (fonctions), formes géométriques (nature), pictogrammes ARASAAC (sémantique). Manipulations syntaxiques sur TBI. Images personnalisées.",
     url: 'https://grammaire-3d-plai.vercel.app',
@@ -1170,6 +1187,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'abaque-unites',
+    audience: 'enseignant + élève',
     name: 'Abaque des Unités',
     description: "Conversions d'unités (longueur, masse, volume, surface) sur abaque interactif. Relation ×10 visible entre cases, flèches de direction, pont dm³=L. Exercices générés avec clavier TBI.",
     url: 'https://abaque-unites-plai.vercel.app',
@@ -1223,6 +1241,7 @@ const apps: AppItem[] = [
   // PLAI-Quiz
   {
     id: 'plai-quiz',
+    audience: 'enseignant + élève',
     name: 'PLAI-Quiz',
     description: "Quiz accessible pour la classe inclusive. QCM, QR code, mode papier, tiers-temps, feedback enrichi. Résultats consultables par l'enseignant.",
     url: 'https://plai-quiz.vercel.app',
@@ -1292,6 +1311,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'transcripteur-plai',
+    audience: 'enseignant',
     name: 'Transcripteur PLAI',
     description: "Convertit audio et vidéo en texte (MP3, M4A, MP4…). 100 % local — aucune donnée envoyée. Export TXT, Word, PDF, SRT. Fonctionne sur clé USB ou installation locale.",
     url: 'http://localhost:8000',
@@ -1366,6 +1386,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'mathipulatifs',
+    audience: 'enseignant + élève',
     name: 'Mathipulatifs PLAI',
     description:
       "6 manipulables mathématiques interactifs pour la classe inclusive : blocs base 10, droite numérique, fractions, réglettes Cuisenaire, cadres à 10, grille des 100. Profils élèves adaptatifs (dyscalculie, TDAH, dyslexie). Galerie FWB partagée entre enseignants.",
@@ -1468,6 +1489,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'dialogue-audio',
+    audience: 'enseignant',
     name: 'Dialogue Audio',
     description: "Génère des dialogues audio multivoix (2 à 4 locuteurs) via l'assistant IA contextuel. Langues : NL, FR, FR(BE), DE, EN, ES, IT — voix génératives IA — profils de personnages — QR code imprimable intégré.",
     url: 'https://dialogue-audio-plai.vercel.app',
@@ -1558,6 +1580,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude101',
+    audience: 'enseignant',
     name: 'Claude l\'assistant pédagogique',
     description: 'Guide progressif en 5 niveaux : des premières conversations à l\'automatisation. Exemples ancrés dans le quotidien des enseignants FWB, zéro jargon technique.',
     url: '/claude101-fwb.html',
@@ -1569,6 +1592,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude-parametrer',
+    audience: 'enseignant',
     name: 'Paramétrer Claude',
     description: 'Mode d\'emploi pour configurer Claude : choisir le bon modèle, rédiger ses instructions système, gérer les projets et la mémoire. Pour un usage professionnel ancré dans ton contexte d\'enseignant.',
     url: '/guide-parametrer-claude-plai.html',
@@ -1580,6 +1604,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude-design',
+    audience: 'enseignant',
     name: 'Claude Design',
     description: 'Mode d\'emploi pour créer des visuels professionnels (affiches, decks, pages web) sans toucher à du code. Scénarios concrets pour le fondamental et le secondaire FWB.',
     url: '/guide-claude-design-enseignants-fwb.html',
@@ -1591,6 +1616,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude-skills',
+    audience: 'enseignant',
     name: 'Claude Skills',
     description: 'Mode d\'emploi pour activer et utiliser les Skills Claude : des commandes pédagogiques contextualisées pour le terrain PLAI (simplification, évaluation adaptée, FALC, quiz iPad...).',
     url: '/guide-skills-claude-plai.html',
@@ -1602,6 +1628,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'skills4profs',
+    audience: 'enseignant',
     name: 'Skills4profs — 3 skills prêts à installer',
     description: "Guide pas à pas pour installer 3 skills PLAI sur votre propre compte Claude.ai gratuit : plan de séance FWB, séance différenciée en 3 niveaux, rubrique qualité d'output. RGPD, 4 étapes d'installation, exemples concrets.",
     url: '/guide-skills4profs-plai.html',
@@ -1692,6 +1719,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'import-skill-partage',
+    audience: 'enseignant',
     name: 'Importer un skill partagé',
     description: 'Mode d\'emploi pour activer un fichier .skill reçu d\'un collègue : procédure d\'import, vérifications de sécurité et checklist avant activation.',
     url: '/guide-import-skill-partage.html',
@@ -1703,6 +1731,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'bien-ecrire-claude',
+    audience: 'enseignant',
     name: 'Bien écrire à Claude',
     description: 'Guide pratique pour formuler des prompts efficaces dans Claude (particulièrement pour Opus 4.7) : structure d\'une bonne demande, exemples par type de tâche pédagogique, erreurs fréquentes et astuces PLAI.',
     url: '/guide-bien-ecrire-claude-plai.html',
@@ -1714,6 +1743,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'ia-enseignants-plai',
+    audience: 'enseignant',
     name: 'Quelle IA pour quoi faire ?',
     description: 'Portraits de 5 IA (Gemini, ChatGPT, Claude, Kimi, DeepSeek) ancrés dans le contexte FWB : forces, angles morts, prompts qui fonctionnent, combinaisons multi-IA. Choisir le bon outil pour chaque tâche pédagogique.',
     url: '/guide-ia-enseignants-plai.html',
@@ -1725,6 +1755,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude-cowork',
+    audience: 'enseignant',
     name: 'Claude Cowork — Automatiser ses tâches',
     description: 'Créer des workflows qui automatisent les tâches répétitives (ranger des copies, préparer des comptes rendus, trier des fichiers) avec Claude Cowork. Aucun code requis — tu décris en français, Claude exécute.',
     url: '/guide-cowork-automatismes-plai.html',
@@ -1736,6 +1767,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'claude-code-guide',
+    audience: 'enseignant',
     name: 'Claude Code — Construire ses outils pédagogiques',
     description: 'De l\'idée à l\'URL en production sans être développeur. Galerie de 12 apps pédagogiques avec profils RGPD, trilogie claude-workspace/GitHub/Vercel, tutoriel fil rouge QCM generator et extension Supabase.',
     url: '/guide-claude-code-plai.html',
@@ -1747,6 +1779,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'superpowers-guide',
+    audience: 'enseignant',
     name: 'Donner des supers pouvoirs à Claude Code',
     description: 'Comprendre et installer le plugin Superpowers : pourquoi Claude Code a besoin de discipline, ce que le plugin garantit concrètement, les 14 commandes disponibles et le guide d\'installation Windows testé.',
     url: '/superpowers-guide.html',
@@ -1758,6 +1791,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'ytdl-plai',
+    audience: 'enseignant',
     name: 'YT-DL PLAI',
     emoji: '📥',
     category: 'Outil local',
@@ -1854,6 +1888,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'diffactif',
+    audience: 'enseignant',
     name: 'DiffActif',
     description: "Différenciation pédagogique par Aménagements Universels (AUs) : cartographie les profils de besoins (DYS, TDAH, HPI, allophone, décrocheur), génère des variantes d'activités adaptées par profil via IA (split 80/20), planifie des séquences différenciées avec AUs intégrés, suit la progression de la pratique. Codes anonymes. 8 références RISS vérifiées.",
     url: 'https://diffactif.vercel.app',
@@ -1943,6 +1978,7 @@ const apps: AppItem[] = [
   // ActiActif
   {
     id: 'actiactif',
+    audience: 'enseignant',
     name: 'ActiActif',
     description: "Générateur d'activités différenciées à partir de votre corpus. Collez votre leçon ou importez un fichier (PDF, DOCX, image) — l'IA génère en un clic une activité pédagogique adaptée au besoin actuel de l'élève et à la fonction visée (découverte, entraînement, remédiation, évaluation). 8 types d'activités : QCM, Vrai/Faux, texte à trous, questions ouvertes, mise en ordre, appariement, résumé guidé, production guidée. Split 80/20 : l'IA propose, vous éditez. Export .docx. Pas de compte requis.",
     url: 'https://acti-actif.vercel.app',
@@ -2025,6 +2061,7 @@ const apps: AppItem[] = [
   // CorpusActif
   {
     id: 'corpusactif',
+    audience: 'enseignant + élève',
     name: 'CorpusActif',
     description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Templates de curriculum réutilisables. Dashboard des questions bloquées classées par fréquence. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
@@ -2149,6 +2186,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'utilactif',
+    audience: 'enseignant + élève',
     name: 'UtilActif',
     description: "Suite de 6 utilitaires de classe pour TBI — Timer TDAH, Dés multiformat, Roue de tirage, Afficheur de consigne, Grille de nombres, Gestionnaire de tours. Un profil de classe adapte automatiquement tous les outils (DYS, TDAH, contraste, taille).",
     url: 'https://util-actif.vercel.app',
@@ -2215,6 +2253,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'socraactif',
+    audience: 'enseignant + élève',
     name: 'SocraActif',
     description: "Remédiation socratique en mathématiques. L'IA classifie l'erreur (faute / erreur de technique / erreur de technologie — taxonomie RISS) avant d'engager un dialogue socratique multi-tours. L'enseignant fixe le point de rupture, le type d'étayage et le seuil. Mode autonomie (code élève) et mode projection (tableau collectif). Palette de symboles mathématiques intégrée.",
     url: 'https://socraactif.vercel.app',
@@ -2297,6 +2336,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'volubilactif',
+    audience: 'enseignant + élève',
     name: 'VolubilActif',
     description:
       "Dictée vocale 100 % locale : l'élève parle, le texte s'insère dans n'importe quelle application (Word, navigateur, messagerie). Outil de compensation dysgraphie/dyslexie — la voix ne quitte jamais l'ordinateur, aucun compte, aucun abonnement. Windows et Mac. Adaptation PLAI de Volubil-IA (A.-C. Le Dain).",
@@ -2403,6 +2443,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'anonymiseur-fwb',
+    audience: 'enseignant',
     name: 'Anonymiseur FWB',
     description: "Protégez les données personnelles de vos élèves avant d'utiliser une IA. Deux versions : navigateur (texte collé, aucune installation) pour les enseignants — application locale complète (PDF, Word, OCR) pour les collaborateurs du Pôle. Traitement 100% local ou dans votre navigateur, aucune donnée transmise.",
     url: '/anonymiseur-fwb.html',
@@ -2462,6 +2503,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'juryactif',
+    audience: 'enseignant + élève',
     name: 'JuryActif',
     description: "Simule une défense orale de TFE CESS. Le jury IA lit le document réel de l'élève et pose des questions stratégiques (paternité, compréhension, maîtrise, pièges). Rapport d'accompagnement exportable pour les équipes PAR et d'intégration. 3 modes : A (élève seul), B (enseignant + élève), C (banque de questions pour l'enseignant).",
     url: 'https://jury-actif.vercel.app',
@@ -2541,6 +2583,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'mathactif',
+    audience: 'enseignant',
     name: 'MathActif',
     description:
       "Transforme un document Word de maths (S3–S6 FWB) en version avec Aménagements Universels : police Arial, interlignes élargis, numérotation complète, zones de travail, mise en page respiration. Un seul fichier redistribuable à toute la classe.",
@@ -2627,6 +2670,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'immersactif',
+    audience: 'enseignant',
     name: 'ImmersActif',
     description:
       "Sensibilisation TSA pour équipes éducatives. Trois scènes (sensoriel, consignes implicites, imprévisibilité) en posture « approcher pour ajuster » — jamais « vivre comme ». Micro-débriefings, fiche synthèse 80/20 imprimable.",
@@ -2697,6 +2741,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'entiers-relatifs',
+    audience: 'enseignant + élève',
     name: 'Entiers Relatifs',
     description:
       "Addition et soustraction d'entiers relatifs sur droite numérique interactive, avec remédiation socratique en cas d'erreur et tableau de bord enseignant en temps réel.",
@@ -2765,6 +2810,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'lireactif',
+    audience: 'enseignant + élève',
     name: 'LireActif',
     description:
       "Entraînement à la fluence de lecture par présentation sérielle (RSVP), réglages individualisés par profil élève, testable sans compte en mode découverte. Accès élève par jeton, export PDF des réglages.",
@@ -2778,6 +2824,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'rituactif',
+    audience: 'enseignant + élève',
     name: 'RituActif',
     description:
       "Générateur de supports visuels pour ritualiser le quotidien de classe (séquentiels, emplois du temps, grilles TLA / mémo-consigne) et planches de communication alternative où l'élève compose lui-même une courte phrase en pictogrammes, dite par synthèse vocale. Simplification de consigne inspirée du FALC en amont, validation humaine obligatoire de chaque pictogramme. Codes élève anonymes.",
@@ -2889,6 +2936,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'narrateur-dys',
+    audience: 'élève',
     name: 'Narration DYS',
     description:
       "Lecture à voix haute de n'importe quel texte (jusqu'à 3 000 caractères) en 8 langues dont le français de Belgique. Pour élèves DYS, allophones ou toute situation où l'audio compense le décodage.",
@@ -2902,6 +2950,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'accessactif',
+    audience: 'enseignant',
     name: 'AccessActif',
     description:
       "Suivi des aménagements raisonnables par élève : checklists d'AR par enseignant, définitions de référence, tableau de bord d'équipe. Accès enseignant par lien-jeton, codes élèves anonymes.",
@@ -2915,6 +2964,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'feedback-adapt',
+    audience: 'enseignant + élève',
     name: 'Feed-Back Adapt',
     description:
       "Remédiation mathématique par feedback immédiat : chaque mauvaise réponse porte un type d'erreur et un obstacle pré-encodés (typologie de Brousseau), l'IA formule la rétroaction — le diagnostic reste humain. Items trilingues FR/NL/EN, accès élève par code anonyme.",
@@ -2928,6 +2978,7 @@ const apps: AppItem[] = [
   },
   {
     id: 'dans-la-peau',
+    audience: 'enseignant',
     name: 'Dans la peau · PLAI',
     description:
       "Sensibilisation aux Aménagements Universels et Raisonnables : trois épreuves chronométrées (lecture, consignes, calcul) vécues avec et sans aménagement, cinq objections de salle des profs à démonter, un tri AU/AR de 15 situations et une carte d'engagement personnalisée pour tester un AU dès cette semaine.",
@@ -3031,9 +3082,10 @@ const apps: AppItem[] = [
   },
   {
     id: 'focusactif',
+    audience: 'élève',
     name: 'FocusActif',
     description:
-      "Outil d'auto-organisation exécutive pour élèves : filtrage par contexte de vie (école, maison, devoirs...), une seule tâche affichée à la fois, décomposition en sous-étapes, capture rapide avec dictée vocale en secours. Mode sans compte (données sur l'appareil) ou avec compte (synchronisé, liaison enseignant-élève par code pour verrouiller certains contextes). Codes anonymes, pas de nom d'élève stocké.",
+      "Outil utilisé directement par l'élève, en autonomie — pas une séance animée par un adulte. Filtrage par contexte de vie (école, maison, devoirs...), une seule tâche affichée à la fois, décomposition en sous-étapes. Toute action se corrige : renommer, supprimer, annuler un « Fait » accidentel, sans minuteur. Rappels par raccourcis relatifs (+15 min, ce soir, demain matin) ou heure précise. Pictogramme ARASAAC optionnel par tâche, activé ou non par l'élève lui-même. Mode sans compte (données sur l'appareil) ou avec compte (synchronisé entre appareils). Codes anonymes, pas de nom d'élève stocké.",
     url: 'https://focusactif.vercel.app',
     emoji: '🎯',
     category: 'Fonctions exécutives',
@@ -3044,14 +3096,14 @@ const apps: AppItem[] = [
     guide: {
       scientific: {
         summary:
-          "FocusActif s'appuie sur la remédiation des fonctions exécutives chez les élèves avec TDAH ou TSA : la littérature valide un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H, et des programmes structurés de type CRT/RECOS/RC2S pour la flexibilité, la planification et l'organisation en autisme. FocusActif transpose ce principe — un support numérique qui réduit la charge cognitive en ne montrant qu'une seule tâche à la fois, filtrée par contexte — dans un outil d'usage quotidien plutôt qu'un protocole de séance. Complémentaire à PlanBot (jeu de remédiation en séance clinique) : FocusActif couvre l'auto-organisation au quotidien, pas l'entraînement structuré. Aucune étude propre n'a validé cet outil spécifique ; les références ci-dessous valident le terrain (bénéfice d'un support numérique structurant pour des fonctions exécutives déficitaires), pas l'application elle-même.",
+          "FocusActif s'appuie sur la remédiation des fonctions exécutives chez les élèves avec TDAH ou TSA : la littérature valide un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H, et des programmes structurés de type CRT/RECOS/RC2S pour la flexibilité, la planification et l'organisation en autisme. FocusActif transpose ce principe — un support numérique qui réduit la charge cognitive en ne montrant qu'une seule tâche à la fois, filtrée par contexte — dans un outil d'usage quotidien plutôt qu'un protocole de séance. Le pictogramme optionnel par tâche s'inscrit dans la même logique que l'emploi du temps visuel structuré (approche TEACCH) : un support visuel que l'élève active lui-même, jamais imposé. Complémentaire à PlanBot (jeu de remédiation en séance clinique) : FocusActif couvre l'auto-organisation au quotidien, pas l'entraînement structuré. Aucune étude propre n'a validé cet outil spécifique ; les références ci-dessous valident le terrain (bénéfice d'un support numérique structurant pour des fonctions exécutives déficitaires, et d'un support visuel optionnel), pas l'application elle-même.",
         references: [
           {
             id: 'dumas-01302572',
             citation:
               "Minary, K. (2010). Remédiation cognitive des fonctions exécutives chez l'enfant avec TDA/H : étude contrôlée d'un protocole informatisé. Mémoire d'orthophonie, Université Victor Segalen - Bordeaux 2.",
             content:
-              "Étude contrôlée d'un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H — précédent direct pour un outil numérique visant les mêmes fonctions (planification, inhibition, organisation) chez ce public.",
+              "Étude contrôlée d'un protocole informatisé de remédiation cognitive des fonctions exécutives chez l'enfant TDA/H — précédent direct pour un outil numérique visant les mêmes fonctions (planification, inhibition, organisation) chez ce public. Le protocole utilise aussi le renforcement positif immédiat pour soutenir la motivation — logique reprise par la bannière d'annulation d'un « Fait » sans pression temporelle.",
           },
           {
             id: 'hal-04457967',
@@ -3060,6 +3112,13 @@ const apps: AppItem[] = [
             content:
               "Mentionne les programmes structurés CRT/RECOS/RC2S de remédiation cognitive et psychosociale (flexibilité, planification, organisation, interactions sociales) déployés en autisme — le terrain que FocusActif vise à outiller au quotidien, pas en séance de remédiation dédiée.",
           },
+          {
+            id: 'dumas-02393649',
+            citation:
+              "Boudara, J. M. (2019). Prise en charge buccodentaire de l'enfant atteint d'autisme : les différents moyens de communication. Mémoire, Sciences du Vivant.",
+            content:
+              "Décrit l'emploi du temps visuel structuré (approche TEACCH) dont l'objectif explicite est l'usage autonome par l'enfant — même logique que la tâche unique affichée et le pictogramme optionnel de FocusActif : un support visuel que l'élève s'approprie, pas une consigne imposée par un adulte.",
+          },
         ],
       },
       howto: {
@@ -3067,22 +3126,24 @@ const apps: AppItem[] = [
           {
             title: 'Premier lancement',
             items: [
-              "Choisissez « Continuer sans compte » (données sur cet appareil uniquement) ou « Créer un compte / Se connecter » (synchronisé, permet la liaison avec un enseignant)",
-              "En mode compte, un enseignant et un élève peuvent se lier par un code généré par l'un et saisi par l'autre — dans les deux sens",
+              "Choisissez « Continuer sans compte » (données sur cet appareil uniquement) ou « Créer un compte / Se connecter » (synchronisé entre appareils)",
+              "Une checklist de mise en route (2 étapes) guide les tout premiers pas, puis disparaît définitivement une fois la première tâche créée",
             ],
           },
           {
             title: 'Créer un contexte',
             items: [
               "Nommez un domaine de vie (ex. « Devoirs », « Maison », « École ») — chaque contexte regroupe ses propres tâches",
-              "Un enseignant lié peut verrouiller un contexte pour un élève : celui-ci peut alors exécuter les tâches mais pas en ajouter ni en supprimer",
+              "Un contexte mal nommé se corrige à tout moment : « Gérer mes contextes » permet de renommer ou supprimer (avec confirmation explicite)",
             ],
           },
           {
-            title: 'Capturer et décomposer',
+            title: 'Capturer, décomposer, corriger',
             items: [
               "Ajoutez une tâche par texte ou dictée vocale (micro affiché seulement si le navigateur le supporte)",
               "Décomposez une tâche large en sous-étapes courtes — une seule étape s'affiche à la fois, la tâche complète redevient visible une fois toutes les sous-étapes terminées",
+              "Chaque tâche ou sous-étape reste modifiable (« Modifier cette tâche ») — une erreur de saisie n'est jamais définitive",
+              "Un « Fait » cliqué par erreur s'annule via une bannière qui reste affichée sans minuteur, tant que l'élève n'a pas enchaîné une autre action",
             ],
           },
           {
@@ -3092,8 +3153,15 @@ const apps: AppItem[] = [
               'Marquez « Fait » pour passer à la tâche suivante du contexte',
             ],
           },
+          {
+            title: 'Rappels et pictogrammes (optionnels)',
+            items: [
+              "Un rappel se programme par raccourci relatif (+15 min, ce soir, demain matin) ou par heure précise — vibration uniquement, jamais de son",
+              "Depuis « Mes contextes », l'élève peut activer les pictogrammes ARASAAC : une fois activés, chaque tâche propose une recherche de pictogramme à afficher à côté du titre — désactivé par défaut, à activer seulement si ça aide",
+            ],
+          },
         ],
-        tip: "Proposez le mode sans compte à un élève qui veut essayer seul, et réservez le mode compte + verrouillage de contexte aux situations où vous voulez poser un cadre (ex. routine de devoirs) sans lui laisser la charge de tout structurer seul au départ.",
+        tip: "Proposez le mode sans compte à un élève qui veut essayer seul. Le mode compte n'apporte que la synchronisation entre appareils — aucune fonctionnalité de configuration à distance par un enseignant n'existe à ce jour dans l'application.",
       },
     },
   },

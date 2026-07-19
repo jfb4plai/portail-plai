@@ -71,7 +71,16 @@ function GuideModal({ app, onClose }: { app: AppItem; onClose: () => void }) {
             <span className="text-3xl">{app.emoji}</span>
             <div>
               <h2 className="text-lg font-bold text-gray-800">{app.name}</h2>
-              <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${c.badge}`}>{app.category}</span>
+              <div className="flex items-center gap-1.5">
+                <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${c.badge}`}>{app.category}</span>
+                {app.audience && (
+                  <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                    {app.audience === 'élève' ? '🧑‍🎓 Élève'
+                      : app.audience === 'enseignant' ? '👩‍🏫 Enseignant'
+                      : '👩‍🏫 + 🧑‍🎓 Enseignant + élève'}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -210,11 +219,20 @@ function AppCard({
       <div className="flex flex-col flex-1 p-6">
         <div className="flex items-start justify-between mb-3">
           <span className="text-4xl">{app.emoji}</span>
-          {app.category && (
-            <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
-              {app.category}
-            </span>
-          )}
+          <div className="flex flex-col items-end gap-1">
+            {app.category && (
+              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
+                {app.category}
+              </span>
+            )}
+            {app.audience && (
+              <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                {app.audience === 'élève' ? '🧑‍🎓 Élève'
+                  : app.audience === 'enseignant' ? '👩‍🏫 Enseignant'
+                  : '👩‍🏫 + 🧑‍🎓 Enseignant + élève'}
+              </span>
+            )}
+          </div>
         </div>
         <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
         <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
