@@ -2063,7 +2063,7 @@ const apps: AppItem[] = [
     id: 'corpusactif',
     audience: 'enseignant + élève',
     name: 'CorpusActif',
-    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Templates de curriculum réutilisables. Dashboard des questions bloquées classées par fréquence. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Suivi de l'acquisition par notion : le tableau de bord signale les notions à réaborder — dont celles acquises par aucun élève — avec vue classe (thermomètre par notion), vue par élève pour l'accompagnement PLAI (obstacles fonctionnels + acquisition individuelle), questions bloquées classées par fréquence, et export CSV / impression pour le conseil de classe ou le PIA. Côté élève : parcours guidé par notions, barre de progression et valorisation pour soutenir l'envie d'apprendre. Templates de curriculum réutilisables. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
     emoji: '📚',
     category: 'IA pédagogique',
@@ -2174,6 +2174,9 @@ const apps: AppItem[] = [
             items: [
               "Onglet Tableau de bord → vue agrégée : questions totales, taux hors-base, apprenants actifs.",
               "Section « Questions bloquées » : liste des questions ayant systématiquement déclenché un indice, classées par fréquence. Ce sont les points durs de votre corpus — signal direct pour enrichir vos ressources ou adapter votre enseignement.",
+              "Section « Notions à réaborder en classe » (en tête) : les notions acquises par aucun élève — ou par moins que le seuil que vous fixez — sont signalées d'emblée. Le point à reprendre collectivement, sans éplucher chaque élève.",
+              "Suivi d'acquisition par notion : vue classe (thermomètre maîtrisée / avec indice / en cours / jamais abordée) et matrice notion × élève. La fiche par apprenant croise ses obstacles fonctionnels et ses notions acquises — pour l'accompagnement PLAI individuel.",
+              "Export CSV / Imprimer (codes anonymes) : sortez le suivi pour le conseil de classe ou le PIA.",
               "Vue par code anonyme : questions posées, blocages identifiés, taux « Utile ». Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas.",
               "Bouton « → RetroActif » : en un clic, génère un diagnostic (acquis, blocages, synthèse Claude) et ouvre RetroActif Module6 pré-rempli pour construire la rétroaction individualisée.",
               "Bouton « Créer le deck FlashFWB » (dans les paramètres de l'espace) : génère un deck de cartes mémoire Leitner à partir du curriculum, des questions bloquantes et des termes-clés du corpus. Les mises à jour ajoutent des cartes sans effacer la progression Leitner.",
