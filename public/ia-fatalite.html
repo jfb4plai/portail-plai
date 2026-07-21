@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'IA à l'école : la mauvaise question d'abord · PLAI</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: #faf9f7; font-family: 'DM Sans', Georgia, sans-serif; color: #1a1814; min-height: 100vh; }
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --green-bg: #eaf3de; --green-mid: #639922; --green-text: #3b6d11;
+  --blue-bg: #e6f1fb;  --blue-mid: #378add;  --blue-text: #185fa5;
+  --amber-bg: #faeeda; --amber-mid: #ef9f27; --amber-text: #854f0b;
+  --red-bg: #fcebeb;   --red-mid: #e24b4a;   --red-text: #a32d2d;
+  --purple-bg: #eeedfe;--purple-mid: #7f77dd;--purple-text: #534ab7;
+  --border: #e8e4dd;
+  --muted: #9a958c;
+  --body-text: #5a564f;
+  --max-w: 720px;
+}
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,249,247,0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+}
+.nav-logo { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; padding: 0; text-decoration: none; }
+.nav-logo-text { font-family: Georgia, serif; font-style: italic; font-size: 16px; color: #1a1814; }
+.nav-links { display: flex; gap: 3px; flex-wrap: wrap; }
+.nav-btn {
+  font-size: 12px; font-weight: 500; padding: 5px 9px; border-radius: 6px;
+  background: transparent; color: var(--body-text); border: none; cursor: pointer;
+  transition: background 0.15s; font-family: inherit; text-decoration: none;
+}
+.nav-btn:hover { background: #f4f2ee; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+
+.banner {
+  background: #e1f5ee; border-bottom: 1px solid #1d9e75;
+  padding: 0.65rem 2rem; text-align: center;
+  font-size: 13px; color: #0f6e56;
+}
+.banner a { color: #0f6e56; font-weight: 500; }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+.hero { text-align: center; padding: 3.5rem 0 2.5rem; }
+.hero-logo {
+  display: block; width: 100%; max-width: 260px; height: auto;
+  margin: 0 auto 1.5rem; mix-blend-mode: multiply;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); border: 1px solid #d4cfc6; padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: Georgia, serif; font-size: clamp(28px,5vw,44px); line-height: 1.2;
+  letter-spacing: -0.5px; margin-bottom: 0.9rem; font-weight: normal;
+}
+.hero-sub {
+  font-size: 17px; color: var(--body-text); max-width: 560px; margin: 0 auto;
+  font-family: Georgia, serif; font-style: italic; line-height: 1.5;
+}
+.hero-meta { margin-top: 1.5rem; font-size: 12px; color: var(--muted); }
+
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+.section-label {
+  font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.7px;
+  color: var(--muted); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::after { content:''; flex: 1; height: 1px; background: var(--border); }
+
+.article { padding-bottom: 3rem; }
+.section-block { margin-bottom: 2.4rem; }
+.section-h {
+  font-family: Georgia, serif; font-weight: normal;
+  font-size: 21px; margin-bottom: 0.9rem; color: #1a1814;
+}
+.prose { font-size: 16px; color: var(--body-text); line-height: 1.75; }
+.prose p { margin-bottom: 0.95rem; }
+.prose strong { color: #1a1814; font-weight: 500; }
+
+.pull-quote {
+  font-family: Georgia, serif; font-style: italic; font-size: 20px; line-height: 1.5;
+  color: #1a1814; border-left: 4px solid #0a9370; padding: 0.3rem 0 0.3rem 1.2rem;
+  margin: 1.6rem 0;
+}
+
+.box, .warn-box, .ok-box, .danger-box, .purple-box {
+  border-radius: 0 8px 8px 0; padding: 0.9rem 1.1rem; margin: 1.3rem 0;
+}
+.box-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+.box-content { font-size: 15px; line-height: 1.6; }
+.box       { background: var(--blue-bg);   border-left: 3px solid var(--blue-mid); }
+.box .box-label   { color: #0c447c; }
+.box .box-content { color: var(--blue-text); }
+.warn-box  { background: var(--amber-bg);  border-left: 3px solid var(--amber-mid); }
+.warn-box .box-label   { color: #633806; }
+.warn-box .box-content { color: var(--amber-text); }
+.ok-box    { background: var(--green-bg);  border-left: 3px solid var(--green-mid); }
+.ok-box .box-label   { color: #27500a; }
+.ok-box .box-content { color: var(--green-text); }
+.danger-box{ background: var(--red-bg);    border-left: 3px solid var(--red-mid); }
+.danger-box .box-label   { color: #501313; }
+.danger-box .box-content { color: var(--red-text); }
+.purple-box{ background: var(--purple-bg); border-left: 3px solid var(--purple-mid); }
+.purple-box .box-label   { color: #3c3489; }
+.purple-box .box-content { color: var(--purple-text); }
+
+.closing {
+  font-family: Georgia, serif; font-style: italic; font-size: 19px; line-height: 1.6;
+  text-align: center; color: #1a1814; padding: 2rem 0; border-top: 1px solid var(--border);
+  margin-top: 1rem;
+}
+
+.ref-item { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: .9rem 1.1rem; margin-bottom: 8px; }
+.ref-title { font-size: 14px; font-weight: 500; line-height: 1.45; }
+.ref-meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.ref-id { font-family: monospace; font-size: 11px; background: #f4f2ee; padding: 1px 7px; border-radius: 4px; color: var(--body-text); }
+
+.footer { text-align: center; padding: 1rem 0 3rem; font-size: 13px; color: var(--muted); font-family: Georgia, serif; font-style: italic; }
+.footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
+
+@media print {
+  nav, .banner, .footer { display: none !important; }
+  body { background: #fff; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#top">
+    <img src="/plai-logo.jpg" alt="PLAI" style="height:32px;object-fit:contain;" onerror="this.style.display='none'">
+    <span class="nav-logo-text">PLAI · Tribune</span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-btn" href="#texte">Le texte</a>
+    <a class="nav-btn" href="#biblio">Sources</a>
+  </div>
+</nav>
+
+<div class="banner">
+  Pour toute question ou discussion sur ce texte, contacte le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be">jeanfrancois.beguin@ens.ecl.be</a>
+</div>
+
+<div class="container" id="top">
+  <div class="hero">
+    <img src="/plai-logo.jpg" alt="PLAI — Pôle Liégeois d'Accompagnement vers une École Inclusive" class="hero-logo" onerror="this.style.display='none'">
+    <div class="hero-badge">🎓 Tribune · Écoles coopérantes du PLAI</div>
+    <h1>L'IA à l'école :<br><em>la mauvaise question d'abord</em></h1>
+    <p class="hero-sub">« L'IA est là, il faut l'apprivoiser. » Un piège habillé en évidence — et si on posait les questions dans le bon ordre ?</p>
+    <p class="hero-meta">Jean-François Beguin · Pôle Liégeois d'Accompagnement vers une École Inclusive</p>
+  </div>
+
+  <div class="purple-box">
+    <div class="box-label">Ceci est une opinion, pas une vérité établie</div>
+    <div class="box-content">Ce texte engage son auteur, pas le PLAI ni la recherche citée comme un verdict définitif. Certaines références sont vérifiées dans le corpus RISS, d'autres en sont explicitement absentes (voir la section Sources) — dans tous les cas, elles nourrissent un argumentaire, elles ne le concluent pas. Si vous n'êtes pas d'accord, ou si vous voyez les choses autrement : cette discussion m'intéresse, sincèrement. Écrivez à <a href="mailto:jeanfrancois.beguin@ens.ecl.be">jeanfrancois.beguin@ens.ecl.be</a>, j'en serais ravi.</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="article" id="texte">
+    <div class="section-label">Le piège de l'évidence</div>
+    <div class="section-block prose">
+      <p>« L'IA est là, il faut l'apprivoiser. » On entend cette phrase dans les cabinets ministériels, dans les salles des profs, dans la bouche de gens qui n'ont, pour la plupart, jamais remis les pieds dans une classe depuis vingt ans. C'est un piège habillé en évidence. Il ne décrit rien, il ferme un débat avant qu'il commence. Il dit : ne discutez pas de la direction, discutez seulement de la vitesse d'exécution.</p>
+      <p>Toute l'histoire de la pédagogie tient dans un refus de ce genre de phrase. Instruire, ce n'est pas s'ajuster à ce qui arrive. C'est décider ce qu'on transmet, à qui, et pourquoi.</p>
+    </div>
+
+    <div class="section-label">Frankenstein pédagogue</div>
+    <div class="section-block prose">
+      <p>Philippe Meirieu avait nommé cette tentation, il y a trente ans, à propos de la pédagogie par objectifs : Frankenstein pédagogue. Le rêve d'un maître qui fabriquerait un élève sur mesure, entièrement pilotable, et qui découvrirait à la fin que ce qu'il a construit lui échappe — parce qu'un être humain n'est pas une addition de comportements programmés. L'IA générative reprend ce vieux rêve avec une puissance de calcul que personne n'avait alors. Un parcours ajusté élève par élève, une réponse instantanée à chaque erreur, une correction sans délai. On appelle ça une révolution. C'est la resucée, plus efficace, du fantasme démiurgique que la pédagogie nouvelle combat depuis Freinet et Decroly. Fabriquer un élève n'a jamais été éduquer un sujet.</p>
+
+      <div class="box">
+        <div class="box-label">Dresser ≠ éduquer</div>
+        <div class="box-content">Dresser, c'est obtenir d'un être la réponse attendue, le plus vite possible, avec le moins de résistance possible. Éduquer, c'est autre chose : mettre quelqu'un face à un obstacle qu'il n'a pas choisi, le laisser s'y frotter, en sortir changé. Une machine qui livre la bonne réponse en trois secondes ne dresse même plus, elle dispense de l'obstacle. Elle retire à l'élève ce qui fait de lui un sujet apprenant plutôt qu'un guichet de sortie : la résistance du réel, le temps du détour, le droit à l'erreur féconde.</div>
+      </div>
+
+      <p>Ce n'est pas une intuition isolée. Gilles Deleuze décrivait déjà, en 1990, le passage d'un régime disciplinaire — où l'on s'adresse à un individu à l'identité stable — à un régime de contrôle continu, où l'on traite des « dividuels » : des personnes décomposées en données, en flux, en scores mesurables. Une école qui personnalise un parcours à partir de données comportementales ne différencie pas, elle profile. Elle range chaque enfant dans la trajectoire que ses réponses passées laissent prévoir. C'est l'exact inverse du pari sur lequel toute pédagogie digne de ce nom doit se tenir : le pari de l'éducabilité de Meirieu, cette conviction jamais démontrable et pourtant nécessaire que n'importe quel enfant peut apprendre ce qu'on croyait hors de sa portée. Un algorithme ne parie pas. Il calcule des probabilités à partir du passé. Confier à des systèmes prédictifs le soin d'ajuster les parcours scolaires, c'est faire rentrer par la fenêtre technologique un déterminisme social que l'école s'était donné pour mission de combattre.</p>
+    </div>
+
+    <div class="section-label">Ce que la vitesse retire</div>
+    <div class="section-block prose">
+      <p>Une étude du MIT Media Lab (Kosmyna et al., 2025) a suivi par électroencéphalogramme des groupes rédigeant un essai avec ChatGPT, avec un moteur de recherche classique, ou sans aucun outil. Résultat : la connectivité cérébrale diminue avec le niveau d'assistance externe, et le groupe assisté par IA se montre incapable, dans une large proportion, de citer son propre texte quelques minutes après l'avoir écrit. Ce n'est pas une anecdote. C'est la version mesurable de ce que Meirieu dit autrement : sans obstacle, pas d'appropriation.</p>
+
+      <div class="warn-box">
+        <div class="box-label">Vérification RISS</div>
+        <div class="box-content">Étude réelle, absente du corpus RISS (522 627 articles francophones). À traiter comme une source à recouper plutôt qu'une vérité établie.</div>
+      </div>
+
+      <p>Il y a enfin ce que Daniel Goleman appelle la maîtrise de soi — apprendre à différer une réaction, à tolérer une frustration. Un système conçu pour répondre sans jamais opposer de résistance réelle supprime précisément l'occasion d'apprendre ça. Le jugement, même désagréable, est constitutif d'une relation éducative authentique. Une IA qui valide sans résistance produit un miroir, pas un interlocuteur. Et ce miroir a un coût qu'on ne mesure pas encore : moins de tolérance à l'ambiguïté, moins d'entraînement à recevoir un regard humain imparfait sans s'effondrer.</p>
+
+      <div class="warn-box">
+        <div class="box-label">Vérification RISS</div>
+        <div class="box-content">Référence réelle, absente du corpus RISS elle aussi.</div>
+      </div>
+    </div>
+
+    <div class="section-label">Ce qui ne se délègue pas</div>
+    <div class="section-block prose">
+      <p>On promet aux enseignants qu'ils vont devenir des « passeurs », enfin libérés des tâches répétitives. Joli mot. Il évite de poser la vraie question : qu'est-ce qui, dans le métier d'enseigner, ne peut structurellement pas se déléguer ? Pas la correction d'une copie. L'autorité éducative — non le pouvoir de sanctionner, mais la capacité de faire reconnaître à un élève que ce qu'on lui demande vaut la peine, précisément parce que celui qui le demande y engage quelque chose de lui-même. Une IA simule la bienveillance très bien. Elle ne peut pas l'engager : elle n'a rien à y perdre.</p>
+    </div>
+
+    <div class="section-label">Souveraineté et légitimité — deux batailles distinctes</div>
+    <div class="section-block prose">
+      <p>Reste une confusion qu'il faut dissiper avant toute chose, parce qu'elle structure une bonne partie du débat actuel : la question de l'usage pédagogique de l'IA et la question de la souveraineté technologique n'ont rien à voir l'une avec l'autre, et il ne faut surtout pas les mélanger.</p>
+      <p>Qu'un modèle soit développé par Microsoft, par OpenAI ou par une entreprise européenne ne change rien à ce qui précède. Un modèle souverain reste, structurellement, un système qui prédit le mot suivant à partir de régularités statistiques et qui répond sans opposer de résistance. La dette cognitive, l'absence de friction, le profilage par les données : rien de tout ça ne dépend de l'adresse du serveur. Ce sont des propriétés du paradigme — le chatbot conversationnel optimisé pour l'engagement — pas des propriétés du propriétaire.</p>
+
+      <div class="purple-box">
+        <div class="box-label">Le raccourci à ne pas faire</div>
+        <div class="box-content">« Il faut une IA souveraine » → « donc l'IA a sa place à l'école » : ce raisonnement présuppose la conclusion de la première question — faut-il déléguer une part de l'effort d'apprendre à une machine qui répond sans délai — pour ne débattre que de la seconde : quel fournisseur. La souveraineté résout de vrais problèmes (exploitation commerciale des données, engagement publicitaire, absence d'auditabilité des biais). Elle ne résout pas la question de savoir si répondre à un enfant en trois secondes, sans jamais le confronter à l'obstacle, sert son apprentissage.</div>
+      </div>
+
+      <p>L'ordre logique est donc celui-ci : trancher d'abord la légitimité pédagogique, indépendamment du fournisseur — à quel âge, pour quelles tâches, dans quelles conditions un outil de génération automatique de texte sert ou dessert un apprentissage. Ensuite, seulement si la réponse est oui pour certains usages précis, poser la question de l'infrastructure : quel modèle, développé par qui, avec quelles garanties sur les données.</p>
+    </div>
+
+    <div class="section-label">Inverser l'ordre des questions</div>
+    <div class="section-block prose">
+      <p>Je ne demande pas qu'on bannisse ces outils des écoles : ce serait aussi vain que d'avoir voulu bannir la télévision dans les années soixante. Je demande qu'on inverse l'ordre des questions qu'on pose actuellement.</p>
+
+      <div class="pull-quote">Avant de demander comment intégrer l'IA, demandons ce qu'elle empêche si on l'introduit trop tôt : la lenteur, l'obstacle, l'erreur, la relation.</div>
+
+      <p>Demandons qui décide de son déploiement, et au bénéfice de qui. Demandons ce qu'elle fait à l'autorité du maître, et ce qu'elle fait au pari que chaque enfant, quel que soit son profil de données, peut apprendre ce qu'on ne l'attendait pas d'apprendre.</p>
+    </div>
+
+    <div class="closing">
+      L'école n'est pas un service qui s'adapte à la demande. C'est un lieu qui résiste, obstinément, pour que chaque enfant devienne un sujet — et non un produit bien ajusté.<br><br>
+      Et si, finalement, c'était cet aspect-là qui gênait certains ambitieux.
+    </div>
+  </div>
+
+  <div class="section-label" id="biblio">Sources</div>
+  <div class="section-block">
+    <div class="ref-item">
+      <div class="ref-title">Corteel, M. (2015). <em>Prospecter et punir : étude critique des logiciels Blue Crush et PredPol.</em></div>
+      <div class="ref-meta"><span class="ref-id">hal-01479923</span> · cite directement la notion deleuzienne du « dividuel » — appui RISS pour la lecture Deleuze de ce texte.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-title">Sondo, S. (2023). <em>Le pari de l'éducabilité à l'épreuve de la liberté en éducation.</em></div>
+      <div class="ref-meta"><span class="ref-id">hal-04381127</span> · mobilise le pari de l'éducabilité de Meirieu — appui RISS pour cette notion.</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-title">Lakel, A. (2025). <em>Ne dites plus LLM : Larges Discours Models (LDM) et Agent Discursif Artificiel (ADA) ?</em></div>
+      <div class="ref-meta"><span class="ref-id">hal-05421232</span> · traite explicitement de la dette cognitive liée aux grands modèles génératifs.</div>
+    </div>
+
+    <div class="warn-box">
+      <div class="box-label">Hors corpus RISS — vérifié</div>
+      <div class="box-content">Kosmyna et al. (2025), étude EEG du MIT Media Lab sur la connectivité cérébrale — réelle, absente du corpus RISS. Goleman, D., sur la maîtrise de soi — réelle, absente du corpus RISS. Meirieu et Deleuze eux-mêmes (textes primaires) ne sont pas indexés au corpus RISS ; leurs concepts y sont cependant repris et discutés par les sources ci-dessus.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <img src="/plai-logo.jpg" alt="PLAI" onerror="this.style.display='none'">
+    Pôle Liégeois d'Accompagnement vers une École Inclusive — toutes les références scientifiques sont vérifiées dans le corpus RISS.
+  </div>
+</div>
+
+</body>
+</html>

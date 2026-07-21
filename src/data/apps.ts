@@ -1754,6 +1754,18 @@ const apps: AppItem[] = [
     section: 'ia',
   },
   {
+    id: 'ia-fatalite',
+    audience: 'enseignant',
+    name: "L'IA à l'école : la mauvaise question d'abord",
+    description: "Tribune personnelle sur l'ordre dans lequel poser les questions sur l'IA en classe — légitimité pédagogique d'abord, souveraineté du fournisseur ensuite. Une opinion assumée, pas une vérité établie : l'auteur invite au débat.",
+    url: '/ia-fatalite.html',
+    emoji: '💬',
+    category: 'Tribune',
+    status: 'disponible',
+    color: 'teal',
+    section: 'ia',
+  },
+  {
     id: 'claude-cowork',
     audience: 'enseignant',
     name: 'Claude Cowork — Automatiser ses tâches',
