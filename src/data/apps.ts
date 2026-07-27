@@ -1129,13 +1129,13 @@ const apps: AppItem[] = [
     id: 'grammaire-3d',
     audience: 'enseignant + élève',
     name: 'Grammaire 3D Interactive',
-    description: "Analyse de phrase en Grammaire 3D (FWB) : assiettes colorées (fonctions), formes géométriques (nature), pictogrammes ARASAAC (sémantique). Manipulations syntaxiques sur TBI. Images personnalisées.",
+    description: "Analyse de phrase en Grammaire 3D (FWB) : assiettes colorées (fonctions), formes géométriques (nature), pictogrammes ARASAAC (sémantique), manipulations syntaxiques (déplacement, effacement, substitution). Mode TBI. Sauvegarde de scènes par enseignant, accessible sur tout appareil. Initie et corrige la manipulation en classe — ne remplace pas la manipulation physique par les élèves.",
     url: 'https://grammaire-3d-plai.vercel.app',
     emoji: '🍽️',
     category: 'Français',
-    status: 'en-développement',
+    status: 'disponible',
     color: 'purple',
-    devBanner: true,
+    devBanner: false,
     guide: {
       scientific: {
         summary: "L'approche manipulatoire de la Grammaire 3D (assiettes + formes géométriques) réduit la charge cognitive déclarative et favorise l'identification fonctionnelle des groupes syntaxiques — particulièrement efficace pour les élèves dyslexiques et TDAH.",
