@@ -26,7 +26,7 @@ export default function DecodeurPia() {
   const [translateError, setTranslateError] = useState<string | null>(null);
 
   const tooLong = texte.length > MAX_INPUT_CHARS;
-  const canSubmit = confirmed && texte.trim().length > 0 && !tooLong && !loading;
+  const canSubmit = confirmed && texte.trim().length > 0 && !tooLong && !loading && !translating;
 
   async function decoder() {
     if (!canSubmit) return;
@@ -157,6 +157,7 @@ export default function DecodeurPia() {
                 key={l.id}
                 onClick={() => traduireEn(l.id)}
                 disabled={translating}
+                aria-pressed={langue === l.id}
                 className={`text-sm font-semibold px-4 py-2 rounded-full border transition disabled:opacity-40 ${
                   langue === l.id ? 'bg-[#134e4a] text-white border-[#134e4a]' : 'bg-white text-[#134e4a] border-[#134e4a]'
                 }`}
