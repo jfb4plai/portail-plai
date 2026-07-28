@@ -23,6 +23,7 @@ export default function ParentsFiche() {
         </Link>
         <button
           onClick={() => setFalc(v => !v)}
+          aria-pressed={falc}
           className={`text-sm font-semibold px-4 py-2 rounded-full border transition ${
             falc ? 'bg-[#134e4a] text-white border-[#134e4a]' : 'bg-white text-[#134e4a] border-[#134e4a]'
           }`}
