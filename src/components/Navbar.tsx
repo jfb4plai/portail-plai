@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const location = useLocation();
+  const isParentsZone = location.pathname.startsWith('/parents');
 
   return (
     <header className="shadow-md" style={{ backgroundColor: '#134e4a' }}>
@@ -13,35 +14,43 @@ export default function Navbar() {
             className="h-12 object-contain rounded-sm flex-shrink-0"
           />
           <div>
-            <Link to="/" className="text-xl font-bold text-white leading-tight hover:underline">
-              Applications Pédagogiques PLAI
-            </Link>
+            {isParentsZone ? (
+              <span className="text-xl font-bold text-white leading-tight">Applications Pédagogiques PLAI</span>
+            ) : (
+              <Link to="/" className="text-xl font-bold text-white leading-tight hover:underline">
+                Applications Pédagogiques PLAI
+              </Link>
+            )}
             <p className="text-sm text-white/70">
               Pôle Liégeois d'Accompagnement vers une École Inclusive
             </p>
           </div>
         </div>
         <nav className="flex gap-4">
-          <a
-            href="/#guides-claude"
-            className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors text-white/80 hover:text-white hover:bg-white/10"
-          >
-            Guides
-          </a>
-          <Link
-            to="/voixactif"
-            className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-              location.pathname === '/voixactif'
-                ? 'bg-white/20 text-white'
-                : 'text-white/80 hover:text-white hover:bg-white/10'
-            }`}
-          >
-            VoixActif
-          </Link>
+          {!isParentsZone && (
+            <>
+              <a
+                href="/#guides-claude"
+                className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors text-white/80 hover:text-white hover:bg-white/10"
+              >
+                Guides
+              </a>
+              <Link
+                to="/voixactif"
+                className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
+                  location.pathname === '/voixactif'
+                    ? 'bg-white/20 text-white'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                VoixActif
+              </Link>
+            </>
+          )}
           <Link
             to="/parents"
             className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
-              location.pathname.startsWith('/parents')
+              isParentsZone
                 ? 'bg-white/20 text-white'
                 : 'text-white/80 hover:text-white hover:bg-white/10'
             }`}
