@@ -37,3 +37,26 @@ export type ColorScheme = {
   btn: string;
   light: string;
 };
+
+// ===== Espace Parents =====
+
+export type ParentFicheBlock = {
+  clair: string;
+  falc: string;
+};
+
+export type ParentFicheSource = {
+  id: string;
+  citation: string;
+  content: string;
+};
+
+export type ParentFiche = {
+  id: string;
+  emoji: string;
+  titre: string;
+  cEstQuoi: ParentFicheBlock;
+  ceQueCaChange: ParentFicheBlock;
+  commentAider: ParentFicheBlock;
+  sources: ParentFicheSource[];
+};
