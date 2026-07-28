@@ -78,3 +78,8 @@ export type GuideDroits = {
   sections: GuideSection[];
   sources: SourceOfficielle[];
 };
+
+export type DecodeurResponse = {
+  clair: string;
+  falc: string;
+};
