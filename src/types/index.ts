@@ -83,3 +83,5 @@ export type DecodeurResponse = {
   clair: string;
   falc: string;
 };
+
+export type LangueDecodeur = 'turc' | 'arabe' | 'albanais' | 'ukrainien';
