@@ -22,13 +22,20 @@ export default function ParentsHome() {
         ))}
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Link
           to="/parents/droits"
           className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 text-lg font-semibold text-amber-900 hover:bg-amber-100 transition"
         >
           <span className="text-2xl">⚖️</span>
           Le guide des droits
+        </Link>
+        <Link
+          to="/parents/decodeur"
+          className="flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 text-lg font-semibold text-blue-900 hover:bg-blue-100 transition"
+        >
+          <span className="text-2xl">🔍</span>
+          Le Décodeur PIA / bulletin
         </Link>
       </div>
     </div>
