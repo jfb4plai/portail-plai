@@ -16,7 +16,7 @@ export default function DecodeurPia() {
   const tooLong = texte.length > MAX_INPUT_CHARS;
   const canSubmit = confirmed && texte.trim().length > 0 && !tooLong && !loading;
 
-  async function traduire() {
+  async function decoder() {
     if (!canSubmit) return;
     setLoading(true);
     setError(null);
@@ -32,7 +32,7 @@ export default function DecodeurPia() {
       setResult({ clair: data.clair, falc: data.falc });
       setFalc(false);
     } catch {
-      setError("Le Décodeur n'a pas pu traduire ce texte. Réessayez dans un instant.");
+      setError("Le Décodeur n'a pas pu décoder ce texte. Réessayez dans un instant.");
     } finally {
       setLoading(false);
     }
@@ -53,7 +53,7 @@ export default function DecodeurPia() {
       </div>
 
       <div className="text-sm text-blue-900 bg-blue-50 border border-blue-200 rounded-lg px-4 py-3 mb-4">
-        Collez un extrait de PIA, de bulletin ou de rapport scolaire ci-dessous. <strong>Remplacez le nom de votre enfant par « [enfant] »</strong> avant de coller le texte — rien n'est conservé après la traduction, mais mieux vaut ne jamais envoyer de nom réel.
+        Collez un extrait de PIA, de bulletin ou de rapport scolaire ci-dessous. <strong>Remplacez le nom de votre enfant par « [enfant] »</strong> avant de coller le texte — rien n'est conservé après le décodage, mais mieux vaut ne jamais envoyer de nom réel.
       </div>
 
       <label htmlFor="decodeur-checkbox" className="flex items-start gap-2 mb-4 text-sm text-gray-700">
@@ -68,7 +68,7 @@ export default function DecodeurPia() {
       </label>
 
       <label htmlFor="decodeur-textarea" className="sr-only">
-        Texte à traduire
+        Texte à décoder
       </label>
       <textarea
         id="decodeur-textarea"
@@ -83,12 +83,12 @@ export default function DecodeurPia() {
       </div>
 
       <button
-        onClick={traduire}
+        onClick={decoder}
         disabled={!canSubmit}
         className="rounded-lg px-5 py-2.5 text-white font-semibold text-sm disabled:opacity-40 mb-8"
         style={{ backgroundColor: '#134e4a' }}
       >
-        {loading ? 'Traduction en cours…' : 'Traduire'}
+        {loading ? 'Décodage en cours…' : 'Décoder'}
       </button>
 
       {error && <div className="text-sm text-red-600 mb-6">{error}</div>}
@@ -96,7 +96,7 @@ export default function DecodeurPia() {
       {result && (
         <div>
           <div className="flex items-center justify-between gap-4 mb-3">
-            <h2 className="text-xl font-bold text-[#134e4a]">Traduction</h2>
+            <h2 className="text-xl font-bold text-[#134e4a]">Décodage</h2>
             <button
               onClick={() => setFalc((v) => !v)}
               aria-pressed={falc}

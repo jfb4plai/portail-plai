@@ -1,4 +1,4 @@
-// api/decodeur.ts — Décodeur PIA/bulletin, traducteur pour l'Espace Parents
+// api/decodeur.ts — Décodeur PIA/bulletin, assistant de décodage pour l'Espace Parents
 import Anthropic from '@anthropic-ai/sdk';
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   try {
     const guideDroits = await getGuideDroits();
 
-    const system = `Tu es le Décodeur, l'assistant de traduction de l'Espace Parents du portail PLAI. Un parent te soumet un extrait de PIA, de bulletin ou de rapport scolaire déjà rédigé par l'école. Ta tâche : le traduire en langage clair, puis en version FALC (Facile à Lire et à Comprendre), sans jamais inventer d'information absente du texte fourni.
+    const system = `Tu es le Décodeur, l'assistant de décodage de l'Espace Parents du portail PLAI. Un parent te soumet un extrait de PIA, de bulletin ou de rapport scolaire déjà rédigé par l'école. Ta tâche : le décoder en langage clair, puis en version FALC (Facile à Lire et à Comprendre), sans jamais inventer d'information absente du texte fourni.
 
 Règles strictes :
 - Ne jamais ajouter d'information ou d'interprétation qui ne figure pas explicitement dans le texte fourni.
@@ -85,6 +85,6 @@ Réponds UNIQUEMENT par un objet JSON strict, sans aucun texte autour :
       falc: parsed.falc + RGPD_NOTE,
     });
   } catch (err) {
-    return res.status(500).json({ error: 'Erreur lors de la traduction.' });
+    return res.status(500).json({ error: 'Erreur lors du décodage.' });
   }
 }
