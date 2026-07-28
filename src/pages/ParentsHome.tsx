@@ -21,6 +21,16 @@ export default function ParentsHome() {
           </Link>
         ))}
       </div>
+
+      <div className="mt-8">
+        <Link
+          to="/parents/droits"
+          className="flex items-center gap-3 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 text-lg font-semibold text-amber-900 hover:bg-amber-100 transition"
+        >
+          <span className="text-2xl">⚖️</span>
+          Le guide des droits
+        </Link>
+      </div>
     </div>
   );
 }
