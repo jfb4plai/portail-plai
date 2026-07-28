@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import VoixActif from './pages/VoixActif';
 import ParentsHome from './pages/ParentsHome';
 import ParentsFiche from './pages/ParentsFiche';
+import GuideDroits from './pages/GuideDroits';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/voixactif" element={<VoixActif />} />
             <Route path="/parents" element={<ParentsHome />} />
+            <Route path="/parents/droits" element={<GuideDroits />} />
             <Route path="/parents/:troubleId" element={<ParentsFiche />} />
           </Routes>
         </div>
