@@ -38,6 +38,16 @@ export default function Navbar() {
           >
             VoixActif
           </Link>
+          <Link
+            to="/parents"
+            className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${
+              location.pathname.startsWith('/parents')
+                ? 'bg-white/20 text-white'
+                : 'text-white/80 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            🏠 Espace Parents
+          </Link>
         </nav>
       </div>
     </header>
