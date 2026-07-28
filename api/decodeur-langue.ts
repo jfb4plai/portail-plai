@@ -12,6 +12,7 @@ const LANGUES = {
   albanais: 'albanais',
   ukrainien: 'ukrainien',
 };
+const LANGUES_VALIDES = Object.keys(LANGUES);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -25,7 +26,7 @@ export default async function handler(req, res) {
   if (texte.length > MAX_INPUT_CHARS) {
     return res.status(400).json({ error: `Texte trop long (max ${MAX_INPUT_CHARS} caractères).` });
   }
-  if (typeof langue !== 'string' || !LANGUES[langue]) {
+  if (typeof langue !== 'string' || !LANGUES_VALIDES.includes(langue)) {
     return res.status(400).json({ error: 'Langue non prise en charge.' });
   }
 
