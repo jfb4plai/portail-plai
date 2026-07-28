@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BANDEAU_INDIVIDUALISATION } from '../data/parentsFiches';
-import type { DecodeurResponse } from '../types';
+import { BANDEAU_INDIVIDUALISATION, FALC_DISCLAIMER } from '../data/parentsFiches';
+import type { DecodeurResponse, LangueDecodeur } from '../types';
 
 const MAX_INPUT_CHARS = 4000;
+
+const LANGUES_DECODEUR: { id: LangueDecodeur; label: string }[] = [
+  { id: 'turc', label: 'Türkçe' },
+  { id: 'arabe', label: 'العربية' },
+  { id: 'albanais', label: 'Shqip' },
+  { id: 'ukrainien', label: 'Українська' },
+];
 
 export default function DecodeurPia() {
   const [texte, setTexte] = useState('');
@@ -13,6 +20,11 @@ export default function DecodeurPia() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [langue, setLangue] = useState<LangueDecodeur | null>(null);
+  const [traduction, setTraduction] = useState<string | null>(null);
+  const [translating, setTranslating] = useState(false);
+  const [translateError, setTranslateError] = useState<string | null>(null);
+
   const tooLong = texte.length > MAX_INPUT_CHARS;
   const canSubmit = confirmed && texte.trim().length > 0 && !tooLong && !loading;
 
@@ -21,6 +33,9 @@ export default function DecodeurPia() {
     setLoading(true);
     setError(null);
     setResult(null);
+    setLangue(null);
+    setTraduction(null);
+    setTranslateError(null);
     try {
       const res = await fetch('/api/decodeur', {
         method: 'POST',
@@ -35,6 +50,29 @@ export default function DecodeurPia() {
       setError("Le Décodeur n'a pas pu décoder ce texte. Réessayez dans un instant.");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function traduireEn(cible: LangueDecodeur) {
+    if (!result || translating) return;
+    setLangue(cible);
+    setTranslating(true);
+    setTranslateError(null);
+    setTraduction(null);
+    try {
+      const texteAffiche = falc ? result.falc : result.clair;
+      const res = await fetch('/api/decodeur-langue', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texte: texteAffiche, langue: cible }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erreur inconnue.');
+      setTraduction(data.traduction);
+    } catch {
+      setTranslateError("La traduction n'a pas pu aboutir. Réessayez dans un instant.");
+    } finally {
+      setTranslating(false);
     }
   }
 
@@ -107,9 +145,35 @@ export default function DecodeurPia() {
               🔤 Version FALC {falc ? '(activée)' : ''}
             </button>
           </div>
-          <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap">
+          <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-2">
             {falc ? result.falc : result.clair}
           </p>
+          <div className="text-xs text-gray-500 mb-6">{FALC_DISCLAIMER}</div>
+
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="text-sm text-gray-600 mr-1">Traduire en :</span>
+            {LANGUES_DECODEUR.map((l) => (
+              <button
+                key={l.id}
+                onClick={() => traduireEn(l.id)}
+                disabled={translating}
+                className={`text-sm font-semibold px-4 py-2 rounded-full border transition disabled:opacity-40 ${
+                  langue === l.id ? 'bg-[#134e4a] text-white border-[#134e4a]' : 'bg-white text-[#134e4a] border-[#134e4a]'
+                }`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+
+          {translating && <div className="text-sm text-gray-500 mb-6">Traduction en cours…</div>}
+          {translateError && <div className="text-sm text-red-600 mb-6">{translateError}</div>}
+
+          {traduction && !translating && (
+            <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-8" dir="auto">
+              {traduction}
+            </p>
+          )}
         </div>
       )}
     </div>
