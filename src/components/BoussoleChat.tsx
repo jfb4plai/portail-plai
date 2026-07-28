@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 type ChatMessage = { role: 'user' | 'assistant'; content: string };
 
@@ -12,6 +13,7 @@ const GREETING: ChatMessage = {
 };
 
 export default function BoussoleChat() {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
   const [input, setInput] = useState('');
@@ -22,6 +24,10 @@ export default function BoussoleChat() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, loading]);
+
+  // Copernic ne connaît que les applications enseignants (src/data/apps.ts) —
+  // pas les fiches de l'Espace Parents. Absent tant qu'il n'est pas adapté à ce public.
+  if (location.pathname.startsWith('/parents')) return null;
 
   async function sendMessage() {
     const text = input.trim();
