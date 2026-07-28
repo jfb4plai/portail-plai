@@ -195,6 +195,230 @@ const parentsFiches: ParentFiche[] = [
       },
     ],
   },
+  {
+    id: 'troubles-visuo-spatiaux',
+    emoji: '🗺️',
+    titre: 'Comprendre les troubles visuo-spatiaux',
+    cEstQuoi: {
+      clair:
+        "Les troubles visuo-spatiaux touchent la façon dont le cerveau organise et interprète l'espace : se repérer sur une page, organiser un cahier, copier une figure géométrique ou évaluer des distances peut être difficile, alors que le langage et le raisonnement verbal sont souvent bien préservés. On les retrouve parfois associés à la dyspraxie ou regroupés sous le terme de trouble d'apprentissage non-verbal.",
+      falc:
+        "Les troubles visuo-spatiaux touchent le repérage dans l'espace. Se repérer sur une page peut être difficile. Copier un dessin peut être difficile. Le langage, lui, va souvent bien. Ce trouble est parfois lié à la dyspraxie.",
+    },
+    ceQueCaChange: {
+      clair:
+        "En classe, votre enfant peut avoir du mal à s'organiser sur une feuille (marges, alignement), à lire un tableau à double entrée, ou à se repérer sur une carte ou un plan. Un enfant très à l'aise à l'oral peut sembler en difficulté 'sans raison' dès qu'un exercice demande de l'organisation visuelle — ce décalage surprend souvent l'entourage.",
+      falc:
+        "Écrire droit sur une feuille peut être difficile. Lire un tableau peut être difficile. Se repérer sur une carte peut être difficile. Votre enfant peut très bien parler et comprendre. Ce décalage est normal pour ce trouble.",
+    },
+    commentAider: {
+      clair:
+        "Des repères visuels simples (feuilles avec marges pré-tracées, tableaux agrandis et espacés) réduisent la charge liée à l'organisation spatiale. Laissez du temps supplémentaire pour les tâches de copie ou de mise en page, et privilégiez l'explication verbale des consignes spatiales plutôt que la seule démonstration visuelle.",
+      falc:
+        "Utilisez des feuilles avec des repères déjà tracés. Donnez plus de temps pour copier. Expliquez les consignes à voix haute, pas seulement en montrant. Cela aide votre enfant à s'organiser.",
+    },
+    sources: [
+      {
+        id: 'dumas-01026293',
+        citation: "Claveloux, E. (2014). Étude des habiletés sociales chez l'enfant dyspraxique visuospatial.",
+        content:
+          "Les enfants présentant un trouble du traitement visuospatial montrent des difficultés de discrimination et de perception sociale liées à ce trouble spécifique.",
+      },
+      {
+        id: 'dumas-05139935',
+        citation:
+          "Gruel, M. (2025). Le syndrôme de dysfonction non verbale (SDNV) ou trouble d'apprentissage non-verbal : contribution à l'identification de critères diagnostiques d'un trouble du neurodéveloppement fréquent et méconnu.",
+        content:
+          "Le SDNV, ou trouble d'apprentissage non-verbal, est un trouble neurodéveloppemental fréquent et méconnu caractérisé par des troubles visuo-spatiaux avec préservation relative du langage.",
+      },
+      {
+        id: 'W4412454689',
+        citation:
+          "Joffroy-Frixons, A., Colas, P., Abed, K., Gruel, M. & Habib, M. (2025). Le syndrome de dysfonctions non verbales (SDNV) : actualisation des connaissances et analyse d'une cohorte de 89 patients.",
+        content:
+          "Cohorte clinique confirmant un trouble visuospatial ou constructif avéré comme critère diagnostique central, distinct des troubles sévères du langage oral.",
+      },
+    ],
+  },
+  {
+    id: 'langage-oral',
+    emoji: '🗣️',
+    titre: 'Comprendre les troubles du langage oral (dysphasie)',
+    cEstQuoi: {
+      clair:
+        "La dysphasie est un trouble sévère et durable du développement du langage oral : votre enfant peut avoir du mal à construire des phrases, à trouver ses mots, ou à comprendre des consignes complexes, alors que son intelligence non-verbale est préservée. Ce trouble s'accompagne souvent de difficultés associées (attention, mémoire) qui compliquent le repérage précoce.",
+      falc:
+        "La dysphasie touche le langage oral. Construire des phrases peut être difficile. Trouver ses mots peut être difficile. L'intelligence de l'enfant n'est pas touchée. C'est un trouble reconnu et pris en charge.",
+    },
+    ceQueCaChange: {
+      clair:
+        "En classe, votre enfant peut comprendre moins bien les consignes orales longues, avoir du mal à raconter un événement dans l'ordre, ou paraître en retrait dans les échanges de groupe — non par manque d'idées, mais par difficulté à les mettre en mots rapidement. Le jeu, notamment en maternelle, reste un vecteur d'apprentissage du langage important, y compris pour ces enfants.",
+      falc:
+        "Une consigne orale longue peut être difficile à suivre. Raconter un événement dans l'ordre peut être difficile. Votre enfant a des idées. Il a du mal à les dire vite. Le jeu aide à apprendre le langage.",
+    },
+    commentAider: {
+      clair:
+        "Un diagnostic et une prise en charge orthophonique précoces améliorent nettement l'évolution du trouble et l'apprentissage ultérieur de la lecture. À la maison, reformulez les consignes en phrases courtes, laissez du temps pour répondre, et valorisez la communication non-verbale (gestes, dessins) comme appui, pas comme substitut à corriger.",
+      falc:
+        "Un diagnostic précoce aide beaucoup. Une orthophoniste peut accompagner votre enfant. Donnez des consignes courtes. Laissez du temps pour répondre. Les gestes et les dessins peuvent aider à communiquer.",
+    },
+    sources: [
+      {
+        id: 'dumas-03936634',
+        citation: 'Liagre, C. (2021). La dysphasie dans les revues scientifiques traitant des besoins éducatifs particuliers.',
+        content:
+          "La dysphasie est présentée dans la littérature comme un trouble spécifique du langage oral, parfois associé à d'autres troubles complémentaires comme la dyspraxie.",
+      },
+      {
+        id: 'dumas-01513822',
+        citation:
+          "Andrieux, H. (2011). La prise en charge des enfants dysphasiques : analyse et recherche des bénéfices d'un diagnostic précoce, d'une prise en charge orthophonique intensive et d'un apprentissage de la lecture anticipé.",
+        content:
+          "Un diagnostic précoce et une prise en charge orthophonique intensive améliorent l'évolution du trouble et facilitent l'apprentissage ultérieur de la lecture.",
+      },
+      {
+        id: 'dumas-01696941',
+        citation: "Danton, M. (2017). Notion de jeu en maternelle chez l'enfant dysphasique.",
+        content:
+          "Le jeu en maternelle reste un vecteur essentiel du développement du langage, y compris pour les enfants présentant un trouble du langage oral.",
+      },
+    ],
+  },
+  {
+    id: 'dyspraxie',
+    emoji: '✋',
+    titre: 'Comprendre la dyspraxie',
+    cEstQuoi: {
+      clair:
+        "La dyspraxie, ou trouble développemental de la coordination (TDC), touche la planification et l'automatisation des gestes : s'habiller, faire du vélo, ou surtout écrire à la main peuvent demander à votre enfant un effort conscient que d'autres enfants automatisent rapidement. C'est un trouble neurologique reconnu par l'expertise collective de l'Inserm, distinct d'un simple manque d'entraînement.",
+      falc:
+        "La dyspraxie touche les gestes. Écrire à la main peut demander beaucoup d'effort. S'habiller peut demander beaucoup d'effort. Ce n'est pas un manque d'entraînement. C'est un trouble reconnu par la médecine.",
+    },
+    ceQueCaChange: {
+      clair:
+        "En classe, l'écriture manuscrite peut coûter tellement d'énergie à votre enfant qu'il lui reste moins de ressources pour réfléchir au contenu de ce qu'il écrit — un enfant dyspraxique peut avoir de bonnes idées et une écriture illisible ou très lente, sans lien avec son niveau de compréhension. La copie, le graphisme ou l'utilisation d'instruments de géométrie sont souvent particulièrement coûteux.",
+      falc:
+        "Écrire à la main peut fatiguer votre enfant très vite. Il peut avoir de bonnes idées et une écriture difficile à lire. Copier un texte peut être très fatigant. Utiliser une règle ou un compas peut être difficile.",
+    },
+    commentAider: {
+      clair:
+        "L'ordinateur ou la tablette pour écrire, quand c'est possible, libère l'attention de votre enfant pour le contenu plutôt que le geste. Réduisez la quantité de copie demandée à la maison, et valorisez ce qu'il sait, indépendamment de la qualité graphique de son écriture.",
+      falc:
+        "L'ordinateur peut aider votre enfant à écrire. Réduisez la copie à la maison si possible. Jugez ce que votre enfant sait. Pas seulement son écriture.",
+    },
+    sources: [
+      {
+        id: 'hal-03346364',
+        citation:
+          "Vaivre-Douret, L., Mazeau, M., Jolly, C., Huron, C., Arnaud, C., Gonzalez-Monge, S. & Assaiante, C. (2021). L'expertise collective de l'Inserm sur le trouble développemental de la coordination ou dyspraxie : état des principaux travaux et recommandations.",
+        content:
+          "Expertise collective de référence établissant le trouble développemental de la coordination (dyspraxie) comme un trouble neurologique reconnu, avec recommandations de prise en charge.",
+      },
+      {
+        id: 'dumas-04711962',
+        citation: "Boitelle, A. (2024). Écrire pour exister : rééducation de l'écriture et Trouble Développemental de la Coordination.",
+        content:
+          "L'écriture manuscrite représente un coût cognitif et moteur majeur pour l'enfant avec TDC, indépendant de son niveau de compréhension du contenu.",
+      },
+      {
+        id: 'hal-02408788',
+        citation:
+          "Albaret, J.-M., Arnaud, C., Assaiante, C., Gonzalez-Monge, S., Huron, C., Jolly, C., Kaiser, M.-L., Liotard, P., Mazeau, M., Tallet, J., Vaivre-Douret, L. & Woollven, M. (2019). Trouble développemental de la coordination ou dyspraxie.",
+        content:
+          "Consensus international sur la terminologie et le diagnostic du trouble développemental de la coordination, encore couramment désigné par le terme de dyspraxie.",
+      },
+    ],
+  },
+  {
+    id: 'haut-potentiel',
+    emoji: '💡',
+    titre: 'Comprendre le haut potentiel intellectuel',
+    cEstQuoi: {
+      clair:
+        "Le haut potentiel intellectuel (HPI) concerne environ 2 à 2,5 % des enfants d'âge scolaire. Ce n'est pas toujours synonyme de facilité scolaire : certains enfants HPI s'ennuient et décrochent, d'autres masquent leur potentiel pour s'intégrer, et une partie présente aussi des troubles des apprentissages associés qui peuvent retarder ou compliquer le repérage.",
+      falc:
+        "Le haut potentiel intellectuel touche environ 2 enfants sur 100. Ce n'est pas toujours facile à l'école. Certains enfants HPI s'ennuient. D'autres cachent leurs capacités. Certains ont aussi un autre trouble en même temps.",
+    },
+    ceQueCaChange: {
+      clair:
+        "En classe, votre enfant peut sembler distrait ou peu motivé alors qu'il s'ennuie faute de défi, ou au contraire multiplier les questions qui bousculent le rythme du groupe. Le parcours avant l'identification du haut potentiel est souvent vécu par les parents comme long et confus, avec des interprétations contradictoires du comportement de l'enfant selon les interlocuteurs.",
+      falc:
+        "Votre enfant peut sembler distrait s'il s'ennuie. Il peut poser beaucoup de questions. Le chemin avant un diagnostic est souvent long. Les avis peuvent être différents selon les personnes. Ce n'est pas facile pour les parents.",
+    },
+    commentAider: {
+      clair:
+        "Proposer des approfondissements plutôt que davantage du même exercice évite l'ennui sans accélérer artificiellement le programme. Si des difficultés d'apprentissage coexistent avec le haut potentiel, ne les minimisez pas au prétexte de l'intelligence de votre enfant — un trouble associé mérite le même accompagnement que chez tout autre enfant.",
+      falc:
+        "Proposez des activités plus profondes, pas juste plus d'exercices. Si votre enfant a aussi un autre trouble, ne le sous-estimez pas. Il a besoin d'aide comme un autre enfant.",
+    },
+    sources: [
+      {
+        id: 'hal-05195587',
+        citation:
+          'Martin, M.-A., Courtinat-Camps, A. & Guignard, J.-H. (2025). Points de vue de parents sur le parcours pré-identificatoire du haut potentiel intellectuel.',
+        content:
+          "Le parcours des parents avant l'identification du haut potentiel intellectuel de leur enfant est souvent décrit comme long et marqué par des interprétations divergentes.",
+      },
+      {
+        id: 'dumas-03641633',
+        citation:
+          "Manikom-Permal, A.-S. (2021). Étude qualitative de l'expérience de la parentalité d'enfant à haut potentiel intellectuel avec des difficultés comportementales.",
+        content:
+          "Les enfants à haut potentiel intellectuel peuvent présenter des difficultés comportementales associées, qui nécessitent un accompagnement spécifique au même titre qu'un autre enfant.",
+      },
+      {
+        id: 'dumas-01503726',
+        citation:
+          "Duhard, C. (2013). Recherche de particularités orthophoniques chez des enfants intellectuellement précoces présentant des troubles des apprentissages associés.",
+        content:
+          "La précocité intellectuelle s'associe parfois à des difficultés d'apprentissage du langage écrit, qui constituent une population à risque de repérage tardif et d'échec scolaire incompris.",
+      },
+    ],
+  },
+  {
+    id: 'anxiete-scolaire',
+    emoji: '😰',
+    titre: "Comprendre l'anxiété scolaire",
+    cEstQuoi: {
+      clair:
+        "L'anxiété scolaire va du simple stress avant une évaluation jusqu'au refus scolaire anxieux (parfois appelé « phobie scolaire ») : une détresse si intense à l'idée d'aller à l'école que l'enfant peut développer des symptômes physiques (maux de ventre, nausées) le matin. Ce n'est ni un caprice ni un simple refus d'obéir — c'est une réaction anxieuse qui échappe au contrôle volontaire de l'enfant.",
+      falc:
+        "L'anxiété scolaire va du simple stress à une vraie peur d'aller à l'école. Certains enfants ont mal au ventre le matin. Ce n'est pas un caprice. C'est une vraie détresse pour l'enfant.",
+    },
+    ceQueCaChange: {
+      clair:
+        "Cette détresse peut avoir plusieurs origines : anxiété de performance, anxiété de séparation, ou parfois harcèlement entre pairs — le harcèlement scolaire est associé à une anxiété significativement plus élevée et à une moins bonne qualité de vie. Le lien entre l'origine de l'anxiété et les symptômes observés n'est pas toujours évident depuis la maison.",
+      falc:
+        "Plusieurs causes sont possibles. La peur des évaluations. La peur d'être séparé de vous. Le harcèlement par d'autres élèves. Il n'est pas toujours facile de savoir laquelle, depuis la maison.",
+    },
+    commentAider: {
+      clair:
+        "Un retour progressif à l'école, plutôt qu'un évitement prolongé, améliore le pronostic à long terme — plus l'absence se prolonge, plus le retour devient difficile. Une prise en charge structurée (par exemple une thérapie cognitive et comportementale) montre des résultats positifs. Parlez-en tôt avec l'école et un professionnel de santé plutôt que d'attendre que la situation s'aggrave.",
+      falc:
+        "Un retour progressif à l'école aide plus qu'une longue absence. Plus l'enfant reste absent, plus c'est difficile de revenir. Une aide professionnelle peut vraiment aider. Parlez-en tôt à l'école et à un médecin.",
+    },
+    sources: [
+      {
+        id: 'dumas-01280251',
+        citation: 'Kheladi, J. (2015). La phobie scolaire ou refus anxieux scolaire.',
+        content:
+          "Distingue l'anxiété de performance ordinaire du refus scolaire anxieux, une détresse intense et non volontaire face à l'idée d'aller à l'école.",
+      },
+      {
+        id: 'dumas-02956190',
+        citation:
+          "Caron, E. (2018). Traitement du refus scolaire anxieux à l'adolescence : évaluation d'un programme de thérapie cognitive et comportementale en hospitalisation de jour.",
+        content:
+          "Un programme de thérapie cognitive et comportementale montre des résultats positifs dans le traitement du refus scolaire anxieux ; le retour progressif est corrélé à un meilleur pronostic.",
+      },
+      {
+        id: 'dumas-02887515',
+        citation: 'Levain, E. (2019). Harcèlement scolaire entre pairs, anxiété et qualité de vie : une étude transversale en population clinique.',
+        content:
+          "Le harcèlement scolaire entre pairs est associé à une anxiété significativement plus élevée et à une moins bonne qualité de vie chez les enfants concernés.",
+      },
+    ],
+  },
 ];
 
 export default parentsFiches;
