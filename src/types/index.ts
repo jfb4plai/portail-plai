@@ -60,3 +60,21 @@ export type ParentFiche = {
   commentAider: ParentFicheBlock;
   sources: ParentFicheSource[];
 };
+
+export type GuideSection = {
+  id: string;
+  titre: string;
+  clair: string;
+  falc: string;
+};
+
+export type SourceOfficielle = {
+  citation: string;
+  url: string;
+  note?: string;
+};
+
+export type GuideDroits = {
+  sections: GuideSection[];
+  sources: SourceOfficielle[];
+};
