@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import parentsFiches from '../data/parentsFiches';
+import TipTraductionNavigateur from '../components/TipTraductionNavigateur';
 
 export default function ParentsHome() {
   return (
@@ -38,6 +39,8 @@ export default function ParentsHome() {
           Le Décodeur PIA / bulletin
         </Link>
       </div>
+
+      <TipTraductionNavigateur />
     </div>
   );
 }

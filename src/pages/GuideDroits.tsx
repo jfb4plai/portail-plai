@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import guideDroits, { AVERTISSEMENT_DROITS } from '../data/guideDroits';
 import { BANDEAU_INDIVIDUALISATION } from '../data/parentsFiches';
+import TipTraductionNavigateur from '../components/TipTraductionNavigateur';
 
 export default function GuideDroits() {
   const [falc, setFalc] = useState(false);
@@ -53,6 +54,8 @@ export default function GuideDroits() {
           ))}
         </ul>
       </div>
+
+      <TipTraductionNavigateur />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BANDEAU_INDIVIDUALISATION, FALC_DISCLAIMER } from '../data/parentsFiches';
 import type { DecodeurResponse, LangueDecodeur } from '../types';
+import TipTraductionNavigateur from '../components/TipTraductionNavigateur';
 
 const MAX_INPUT_CHARS = 4000;
 
@@ -177,6 +178,8 @@ export default function DecodeurPia() {
           )}
         </div>
       )}
+
+      <TipTraductionNavigateur />
     </div>
   );
 }

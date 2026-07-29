@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams, Navigate } from 'react-router-dom';
 import parentsFiches, { BANDEAU_INDIVIDUALISATION, FALC_DISCLAIMER } from '../data/parentsFiches';
+import TipTraductionNavigateur from '../components/TipTraductionNavigateur';
 
 export default function ParentsFiche() {
   const { troubleId } = useParams<{ troubleId: string }>();
@@ -56,6 +57,8 @@ export default function ParentsFiche() {
           ))}
         </ul>
       </div>
+
+      <TipTraductionNavigateur />
     </div>
   );
 }
