@@ -302,9 +302,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "L'ordinateur ou la tablette pour écrire, quand c'est possible, libère l'attention de votre enfant pour le contenu plutôt que le geste. Réduisez la quantité de copie demandée à la maison, et valorisez ce qu'il sait, indépendamment de la qualité graphique de son écriture.",
+        "L'ordinateur ou la tablette pour écrire, quand c'est possible, libère l'attention de votre enfant pour le contenu plutôt que le geste. Réduisez la quantité de copie demandée à la maison, et valorisez ce qu'il sait, indépendamment de la qualité graphique de son écriture. La dyspraxie ne disparaît pas, mais l'ordinateur et moins de copie changent vraiment ce que votre enfant peut montrer de ses idées, indépendamment de son geste graphique.",
       falc:
-        "L'ordinateur peut aider votre enfant à écrire. Réduisez la copie à la maison si possible. Jugez ce que votre enfant sait. Pas seulement son écriture.",
+        "L'ordinateur peut aider votre enfant à écrire. Réduisez la copie à la maison si possible. Jugez ce que votre enfant sait. Pas seulement son écriture. La dyspraxie ne part pas. Mais l'ordinateur aide vraiment votre enfant à montrer ses idées.",
     },
     sources: [
       {
@@ -347,9 +347,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "Proposer des approfondissements plutôt que davantage du même exercice évite l'ennui sans accélérer artificiellement le programme. Si des difficultés d'apprentissage coexistent avec le haut potentiel, ne les minimisez pas au prétexte de l'intelligence de votre enfant — un trouble associé mérite le même accompagnement que chez tout autre enfant.",
+        "Proposer des approfondissements plutôt que davantage du même exercice évite l'ennui sans accélérer artificiellement le programme. Si des difficultés d'apprentissage coexistent avec le haut potentiel, ne les minimisez pas au prétexte de l'intelligence de votre enfant — un trouble associé mérite le même accompagnement que chez tout autre enfant. Le haut potentiel n'est pas un problème à corriger, mais un fonctionnement qui a besoin d'être nourri année après année — un enfant bien stimulé et bien accompagné, y compris sur ses éventuelles difficultés associées, s'épanouit durablement.",
       falc:
-        "Proposez des activités plus profondes, pas juste plus d'exercices. Si votre enfant a aussi un autre trouble, ne le sous-estimez pas. Il a besoin d'aide comme un autre enfant.",
+        "Proposez des activités plus profondes, pas juste plus d'exercices. Si votre enfant a aussi un autre trouble, ne le sous-estimez pas. Il a besoin d'aide comme un autre enfant. Le haut potentiel n'est pas un problème. C'est une façon de fonctionner qui a besoin d'attention chaque année. Un enfant bien accompagné va bien, sur la durée.",
     },
     sources: [
       {
