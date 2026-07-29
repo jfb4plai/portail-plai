@@ -16,9 +16,9 @@ const ateliersParents: AtelierParent[] = [
     url: 'https://atelier-dyslexie-plai.vercel.app/?public=parent',
     questions: {
       clair:
-        "Qu'avez-vous ressenti en essayant de lire ce texte déformé ? Beaucoup de parents décrivent de la fatigue, de la frustration, parfois de l'anxiété — c'est exactement ce que peut ressentir votre enfant face à un texte scolaire ordinaire. Qu'est-ce que ça change dans votre regard sur le temps qu'il met à faire ses devoirs de lecture ?",
+        "Qu'avez-vous ressenti en essayant de lire ce texte déformé ? Beaucoup de parents décrivent de la fatigue, de la frustration, parfois de l'anxiété — c'est exactement ce que peut ressentir votre enfant face à un texte scolaire ordinaire. Qu'est-ce que ça change dans votre regard sur le temps qu'il met à faire ses devoirs de lecture ? La dyslexie ne disparaît pas, mais ce que vous venez de ressentir montre à quel point de petits ajustements concrets (police, taille, lecture audio...) peuvent vraiment l'aider au quotidien.",
       falc:
-        "Comment vous êtes-vous senti en lisant ce texte difficile ? Fatigué ? Frustré ? C'est peut-être ce que ressent votre enfant à l'école. Ça change quelque chose dans votre regard sur ses devoirs ?",
+        "Comment vous êtes-vous senti en lisant ce texte difficile ? Fatigué ? Frustré ? C'est peut-être ce que ressent votre enfant à l'école. Ça change quelque chose dans votre regard sur ses devoirs ? La dyslexie ne part pas. Mais de petites aides peuvent vraiment changer son quotidien.",
     },
   },
   {
@@ -29,9 +29,9 @@ const ateliersParents: AtelierParent[] = [
     url: 'https://atelier-maya.vercel.app/?public=parent',
     questions: {
       clair:
-        "Qu'avez-vous ressenti face à ces chiffres mayas, avec le chronomètre qui tourne ? Beaucoup de parents décrivent un stress qui empêche de réfléchir clairement — c'est le mécanisme même de l'anxiété mathématique que peut vivre un enfant dyscalculique face à un exercice chronométré. Qu'est-ce que ça change dans votre regard sur la pression du temps lors des devoirs de mathématiques ?",
+        "Qu'avez-vous ressenti face à ces chiffres mayas, avec le chronomètre qui tourne ? Beaucoup de parents décrivent un stress qui empêche de réfléchir clairement — c'est le mécanisme même de l'anxiété mathématique que peut vivre un enfant dyscalculique face à un exercice chronométré. Qu'est-ce que ça change dans votre regard sur la pression du temps lors des devoirs de mathématiques ? La dyscalculie ne disparaît pas, mais réduire la pression du temps à la maison peut vraiment aider votre enfant à mieux montrer ce qu'il sait faire.",
       falc:
-        "Comment vous êtes-vous senti avec le chronomètre qui tourne ? Stressé ? C'est peut-être ce que ressent votre enfant en maths. Ça change quelque chose dans votre regard sur la pression du temps pendant les devoirs ?",
+        "Comment vous êtes-vous senti avec le chronomètre qui tourne ? Stressé ? C'est peut-être ce que ressent votre enfant en maths. Ça change quelque chose dans votre regard sur la pression du temps pendant les devoirs ? La dyscalculie ne part pas. Mais moins de pression peut vraiment aider votre enfant.",
     },
   },
 ];

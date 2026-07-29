@@ -1,7 +1,7 @@
 import type { ParentFiche } from '../types';
 
 export const BANDEAU_INDIVIDUALISATION =
-  "Un enfant n'est pas son trouble. Cette fiche donne des repères généraux — ce qui compte, c'est la réalité vécue par votre enfant en classe et à la maison, pas l'étiquette diagnostique.";
+  "Découvrir une difficulté durable chez son enfant n'est jamais simple à accepter — c'est normal d'avoir besoin de temps. Durable ne veut pas dire figé : des progrès concrets restent possibles. Un enfant n'est pas son trouble : cette page donne des repères généraux, ce qui compte est la réalité vécue par votre enfant, pas l'étiquette diagnostique.";
 
 export const FALC_DISCLAIMER =
   "Cette fiche s'inspire des règles du Facile à Lire et à Comprendre (FALC), mais n'est pas une traduction FALC certifiée — celle-ci exige une relecture par une personne porteuse de déficience intellectuelle.";
