@@ -387,15 +387,15 @@ const parentsFiches: ParentFiche[] = [
     },
     ceQueCaChange: {
       clair:
-        "Cette détresse peut avoir plusieurs origines : anxiété de performance, anxiété de séparation, ou parfois harcèlement entre pairs — le harcèlement scolaire est associé à une anxiété significativement plus élevée et à une moins bonne qualité de vie. Le lien entre l'origine de l'anxiété et les symptômes observés n'est pas toujours évident depuis la maison.",
+        "Cette détresse peut avoir plusieurs origines : la peur de ne pas réussir, l'anxiété de séparation (la peur d'être loin de vous, fréquente chez les plus jeunes), ou parfois le harcèlement entre pairs — associé à une anxiété significativement plus élevée et à une moins bonne qualité de vie. Le lien entre l'origine de l'anxiété et les symptômes observés n'est pas toujours évident depuis la maison.",
       falc:
         "Plusieurs causes sont possibles. La peur des évaluations. La peur d'être séparé de vous. Le harcèlement par d'autres élèves. Il n'est pas toujours facile de savoir laquelle, depuis la maison.",
     },
     commentAider: {
       clair:
-        "Un retour progressif à l'école, plutôt qu'un évitement prolongé, améliore le pronostic à long terme — plus l'absence se prolonge, plus le retour devient difficile. Une prise en charge structurée (par exemple une thérapie cognitive et comportementale) montre des résultats positifs. Parlez-en tôt avec l'école et un professionnel de santé plutôt que d'attendre que la situation s'aggrave.",
+        "Un retour progressif à l'école, plutôt qu'un évitement prolongé, améliore le pronostic à long terme — plus l'absence se prolonge, plus le retour devient difficile. Une prise en charge structurée (par exemple une thérapie cognitive et comportementale) montre des résultats positifs. Parlez-en tôt avec l'école et un professionnel de santé plutôt que d'attendre que la situation s'aggrave. Cette anxiété ne disparaît pas toujours du jour au lendemain, mais un retour progressif bien accompagné change vraiment la trajectoire de votre enfant — la grande majorité des enfants suivis tôt reprennent une scolarité stable.",
       falc:
-        "Un retour progressif à l'école aide plus qu'une longue absence. Plus l'enfant reste absent, plus c'est difficile de revenir. Une aide professionnelle peut vraiment aider. Parlez-en tôt à l'école et à un médecin.",
+        "Un retour progressif à l'école aide plus qu'une longue absence. Plus l'enfant reste absent, plus c'est difficile de revenir. Une aide professionnelle peut vraiment aider. Parlez-en tôt à l'école et à un médecin. Cette peur ne part pas toujours d'un coup. Mais un retour progressif bien accompagné aide vraiment votre enfant.",
     },
     sources: [
       {
