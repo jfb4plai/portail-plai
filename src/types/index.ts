@@ -85,3 +85,15 @@ export type DecodeurResponse = {
 };
 
 export type LangueDecodeur = 'turc' | 'arabe' | 'albanais' | 'ukrainien';
+
+export type AtelierParent = {
+  id: string;
+  emoji: string;
+  titre: string;
+  description: string;
+  url: string;
+  questions: {
+    clair: string;
+    falc: string;
+  };
+};
