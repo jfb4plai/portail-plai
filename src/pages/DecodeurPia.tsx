@@ -6,6 +6,12 @@ import TipTraductionNavigateur from '../components/TipTraductionNavigateur';
 
 const MAX_INPUT_CHARS = 4000;
 
+// Doit rester identique, caractère pour caractère, à RGPD_NOTE dans api/decodeur.ts.
+// Cette note est ajoutée côté serveur à `clair`/`falc` ; elle ne doit jamais être envoyée
+// à la traduction automatique (elle doit rester en français dans les deux versions).
+const RGPD_NOTE =
+  "\n\n---\n🔒 Ceci n'est pas une interprétation officielle. En cas de doute, vérifiez avec l'enseignant ou le CPMS. Aucune donnée n'est conservée après cette réponse.";
+
 const LANGUES_DECODEUR: { id: LangueDecodeur; label: string }[] = [
   { id: 'turc', label: 'Türkçe' },
   { id: 'arabe', label: 'العربية' },
@@ -62,10 +68,13 @@ export default function DecodeurPia() {
     setTraduction(null);
     try {
       const texteAffiche = falc ? result.falc : result.clair;
+      const texteATraduire = texteAffiche.endsWith(RGPD_NOTE)
+        ? texteAffiche.slice(0, -RGPD_NOTE.length)
+        : texteAffiche;
       const res = await fetch('/api/decodeur-langue', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ texte: texteAffiche, langue: cible }),
+        body: JSON.stringify({ texte: texteATraduire, langue: cible }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Erreur inconnue.');
@@ -137,7 +146,12 @@ export default function DecodeurPia() {
           <div className="flex items-center justify-between gap-4 mb-3">
             <h2 className="text-xl font-bold text-[#134e4a]">Décodage</h2>
             <button
-              onClick={() => setFalc((v) => !v)}
+              onClick={() => {
+                setFalc((v) => !v);
+                setLangue(null);
+                setTraduction(null);
+                setTranslateError(null);
+              }}
               aria-pressed={falc}
               className={`text-sm font-semibold px-4 py-2 rounded-full border transition ${
                 falc ? 'bg-[#134e4a] text-white border-[#134e4a]' : 'bg-white text-[#134e4a] border-[#134e4a]'
@@ -172,9 +186,12 @@ export default function DecodeurPia() {
           {translateError && <div className="text-sm text-red-600 mb-6">{translateError}</div>}
 
           {traduction && !translating && (
-            <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-8" dir="auto">
-              {traduction}
-            </p>
+            <>
+              <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-2" dir="auto">
+                {traduction}
+              </p>
+              <div className="text-xs text-gray-500 mb-8 whitespace-pre-wrap">{RGPD_NOTE.replace(/^\n\n---\n/, '')}</div>
+            </>
           )}
         </div>
       )}
