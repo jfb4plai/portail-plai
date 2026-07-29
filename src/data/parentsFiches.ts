@@ -213,9 +213,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "Des repères visuels simples (feuilles avec marges pré-tracées, tableaux agrandis et espacés) réduisent la charge liée à l'organisation spatiale. Laissez du temps supplémentaire pour les tâches de copie ou de mise en page, et privilégiez l'explication verbale des consignes spatiales plutôt que la seule démonstration visuelle.",
+        "Des repères visuels simples (feuilles avec marges pré-tracées, tableaux agrandis et espacés) réduisent la charge liée à l'organisation spatiale. Laissez du temps supplémentaire pour les tâches de copie ou de mise en page, et privilégiez l'explication verbale des consignes spatiales plutôt que la seule démonstration visuelle. Ce trouble ne disparaît pas, mais des repères visuels simples changent vraiment ce que votre enfant arrive à produire, sans lien avec ce qu'il comprend réellement.",
       falc:
-        "Utilisez des feuilles avec des repères déjà tracés. Donnez plus de temps pour copier. Expliquez les consignes à voix haute, pas seulement en montrant. Cela aide votre enfant à s'organiser.",
+        "Utilisez des feuilles avec des repères déjà tracés. Donnez plus de temps pour copier. Expliquez les consignes à voix haute, pas seulement en montrant. Cela aide votre enfant à s'organiser. Ce trouble ne part pas. Mais des repères simples aident vraiment votre enfant à s'organiser.",
     },
     sources: [
       {
@@ -258,9 +258,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "Un diagnostic et une prise en charge orthophonique précoces améliorent nettement l'évolution du trouble et l'apprentissage ultérieur de la lecture. À la maison, reformulez les consignes en phrases courtes, laissez du temps pour répondre, et valorisez la communication non-verbale (gestes, dessins) comme appui, pas comme substitut à corriger.",
+        "Un diagnostic et une prise en charge orthophonique précoces améliorent nettement l'évolution du trouble et l'apprentissage ultérieur de la lecture. À la maison, reformulez les consignes en phrases courtes, laissez du temps pour répondre, et valorisez la communication non-verbale (gestes, dessins) comme appui, pas comme substitut à corriger. La dysphasie ne disparaît pas d'un coup, mais une prise en charge orthophonique précoce et de la patience à la maison changent vraiment la trajectoire de votre enfant, y compris pour l'apprentissage futur de la lecture.",
       falc:
-        "Un diagnostic précoce aide beaucoup. Une orthophoniste peut accompagner votre enfant. Donnez des consignes courtes. Laissez du temps pour répondre. Les gestes et les dessins peuvent aider à communiquer.",
+        "Un diagnostic précoce aide beaucoup. Une orthophoniste peut accompagner votre enfant. Donnez des consignes courtes. Laissez du temps pour répondre. Les gestes et les dessins peuvent aider à communiquer. La dysphasie ne part pas d'un coup. Mais une aide précoce change vraiment beaucoup de choses pour votre enfant.",
     },
     sources: [
       {
