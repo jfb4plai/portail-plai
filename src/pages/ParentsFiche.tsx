@@ -49,7 +49,7 @@ export default function ParentsFiche() {
       ))}
 
       <div className="border-t border-gray-200 pt-4 mt-8">
-        <div className="text-xs text-gray-500 mb-2">{FALC_DISCLAIMER}</div>
+        {falc && <div className="text-xs text-gray-500 mb-2">{FALC_DISCLAIMER}</div>}
         <div className="text-xs font-semibold text-gray-400 uppercase mb-1">Sources (corpus RISS)</div>
         <ul className="text-xs text-gray-500 space-y-1">
           {fiche.sources.map(s => (

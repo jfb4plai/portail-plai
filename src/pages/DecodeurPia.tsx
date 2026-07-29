@@ -163,7 +163,7 @@ export default function DecodeurPia() {
           <p className="text-lg leading-relaxed text-gray-800 whitespace-pre-wrap mb-2">
             {falc ? result.falc : result.clair}
           </p>
-          <div className="text-xs text-gray-500 mb-6">{FALC_DISCLAIMER}</div>
+          {falc && <div className="text-xs text-gray-500 mb-6">{FALC_DISCLAIMER}</div>}
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="text-sm text-gray-600 mr-1">Traduire en :</span>
