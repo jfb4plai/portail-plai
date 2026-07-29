@@ -25,9 +25,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "Adapter la police (sans empattement, bien espacée), augmenter la taille du texte et l'interligne facilite la lecture. La synthèse vocale permet de séparer la compréhension du décodage — votre enfant peut comprendre une histoire complexe même s'il ne peut pas encore la lire seul. Valorisez ce qu'il comprend à l'oral, pas seulement ce qu'il déchiffre à l'écrit.",
+        "Adapter la police (sans empattement, bien espacée), augmenter la taille du texte et l'interligne facilite la lecture. La synthèse vocale permet de séparer la compréhension du décodage — votre enfant peut comprendre une histoire complexe même s'il ne peut pas encore la lire seul. Valorisez ce qu'il comprend à l'oral, pas seulement ce qu'il déchiffre à l'écrit. La dyslexie ne disparaît pas avec ces aménagements, mais elle cesse d'être un obstacle quotidien : beaucoup d'enfants dyslexiques bien accompagnés deviennent d'excellents lecteurs, à leur façon.",
       falc:
-        "Utilisez une police simple et un texte plus grand. Utilisez la lecture à voix haute par ordinateur. Votre enfant peut comprendre une histoire sans savoir la lire seul. Félicitez ce qu'il comprend. Pas seulement ce qu'il lit.",
+        "Utilisez une police simple et un texte plus grand. Utilisez la lecture à voix haute par ordinateur. Votre enfant peut comprendre une histoire sans savoir la lire seul. Félicitez ce qu'il comprend. Pas seulement ce qu'il lit. La dyslexie ne part pas avec ces aides. Mais elle dérange moins chaque jour. Beaucoup d'enfants dyslexiques bien aidés lisent très bien, à leur façon.",
     },
     sources: [
       {
@@ -72,15 +72,15 @@ const parentsFiches: ParentFiche[] = [
     },
     ceQueCaChange: {
       clair:
-        "L'anxiété mathématique — la peur de se tromper en maths — envahit la mémoire de travail et laisse peu de place au raisonnement : plus votre enfant est stressé par un exercice de calcul, moins il a de ressources cognitives pour le résoudre, même s'il en est capable. Cela peut créer un cercle vicieux où chaque évaluation chronométrée aggrave la difficulté réelle.",
+        "L'anxiété mathématique — la peur de se tromper en maths — envahit la mémoire de travail (la capacité à garder plusieurs informations « en tête » en même temps pour les manipuler) et laisse peu de place au raisonnement : plus votre enfant est stressé par un exercice de calcul, moins il a de ressources pour le résoudre, même s'il en est capable. Concrètement : il connaît sa table de 7 par cœur à la maison, mais le jour du contrôle chronométré, le stress lui fait tout oublier.",
       falc:
         "Les maths peuvent faire peur à votre enfant. La peur prend de la place dans sa tête. Il lui reste moins de place pour calculer. Plus il a peur, plus c'est difficile. Ce n'est pas parce qu'il ne comprend pas.",
     },
     commentAider: {
       clair:
-        "Entraîner le sens du nombre par la manipulation concrète et le placement sur une droite graduée améliore la représentation mentale des quantités, davantage que la répétition mécanique des tables. Réduisez la pression du chronomètre à la maison. Valorisez les stratégies de calcul, pas seulement le résultat final.",
+        "Entraîner le sens du nombre par la manipulation concrète et le placement sur une droite graduée améliore la représentation mentale des quantités, davantage que la répétition mécanique des tables. Réduisez la pression du chronomètre à la maison. Valorisez les stratégies de calcul, pas seulement le résultat final. La dyscalculie ne disparaît pas, mais réduire la pression du temps et valoriser la méthode plutôt que le résultat change vraiment ce que votre enfant peut montrer de ce qu'il sait faire.",
       falc:
-        "Faites manipuler des objets pour compter. Utilisez une droite graduée. Évitez le chronomètre à la maison. Un calcul juste sans stress vaut mieux qu'un calcul raté sous pression. Félicitez la méthode, pas seulement la bonne réponse.",
+        "Faites manipuler des objets pour compter. Utilisez une droite graduée. Évitez le chronomètre à la maison. Un calcul juste sans stress vaut mieux qu'un calcul raté sous pression. Félicitez la méthode, pas seulement la bonne réponse. La dyscalculie ne part pas. Mais moins de pression aide vraiment votre enfant à montrer ce qu'il sait faire.",
     },
     sources: [
       {
