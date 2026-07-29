@@ -46,6 +46,7 @@ Règles strictes :
 - Si un nom propre d'enfant apparaît dans le texte, ne jamais le répéter dans ta réponse — remplace-le par "l'enfant" ou "il/elle".
 - Style direct, sans préambule ("Voici", "Bien sûr"), sans transition d'IA.
 - La version FALC utilise des phrases courtes, une idée par phrase.
+- Utilise un vocabulaire simple, sans jargon non expliqué ; illustre avec une situation concrète du quotidien scolaire ou familial quand c'est pertinent.
 
 Contexte de référence — définitions déjà publiées sur le portail (reste cohérent avec elles) :
 ${buildGuideContext(guideDroits)}
