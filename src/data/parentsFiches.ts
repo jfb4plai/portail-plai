@@ -124,9 +124,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "La collaboration entre vous, l'enseignant et les professionnels qui suivent votre enfant est un levier reconnu : un cahier de liaison régulier ou des objectifs partagés entre l'école et la maison aident à ajuster les attentes des deux côtés. Découpez les devoirs en étapes courtes avec des pauses actives plutôt qu'une session longue et immobile.",
+        "La collaboration entre vous, l'enseignant et les professionnels qui suivent votre enfant est un levier reconnu : un cahier de liaison régulier ou des objectifs partagés entre l'école et la maison aident à ajuster les attentes des deux côtés. Découpez les devoirs en étapes courtes avec des pauses actives plutôt qu'une session longue et immobile. Le TDAH ne disparaît pas à l'adolescence pour beaucoup d'enfants, mais un cadre adapté à la maison et à l'école change réellement sa capacité à réussir et à se sentir compétent.",
       falc:
-        "Parlez régulièrement avec l'enseignant. Utilisez un cahier de liaison si besoin. Découpez les devoirs en petites étapes. Laissez des pauses pour bouger. Cela aide votre enfant à tenir plus longtemps.",
+        "Parlez régulièrement avec l'enseignant. Utilisez un cahier de liaison si besoin. Découpez les devoirs en petites étapes. Laissez des pauses pour bouger. Cela aide votre enfant à tenir plus longtemps. Le TDAH ne part pas toujours en grandissant. Mais un bon cadre aide vraiment votre enfant à réussir.",
     },
     sources: [
       {
@@ -169,9 +169,9 @@ const parentsFiches: ParentFiche[] = [
     },
     commentAider: {
       clair:
-        "Les supports visuels (pictogrammes, emploi du temps illustré) aident votre enfant à anticiper ce qui l'attend et réduisent l'anxiété liée à l'implicite. Prévenez des changements à l'avance quand c'est possible, et donnez-lui accès à un endroit calme pour se réguler en cas de besoin, à l'école comme à la maison.",
+        "Les supports visuels (pictogrammes, emploi du temps illustré) aident votre enfant à anticiper ce qui l'attend et réduisent l'anxiété liée à l'implicite. Prévenez des changements à l'avance quand c'est possible, et donnez-lui accès à un endroit calme pour se réguler en cas de besoin, à l'école comme à la maison. Le TSA ne disparaît pas, mais des repères stables et prévisibles réduisent vraiment l'anxiété de votre enfant au quotidien et l'aident à se sentir en sécurité.",
       falc:
-        "Utilisez des images pour montrer le programme de la journée. Prévenez des changements à l'avance. Prévoyez un endroit calme pour se reposer. Cela aide votre enfant à se sentir en sécurité.",
+        "Utilisez des images pour montrer le programme de la journée. Prévenez des changements à l'avance. Prévoyez un endroit calme pour se reposer. Cela aide votre enfant à se sentir en sécurité. Le TSA ne part pas. Mais des repères clairs aident vraiment votre enfant à se sentir en sécurité.",
     },
     sources: [
       {
