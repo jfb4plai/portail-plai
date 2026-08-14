@@ -635,6 +635,75 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'dyscalc-lisible',
+    audience: 'enseignant',
+    name: 'DyscalcLisible',
+    description: "Complément pratique à la sensibilisation dyscalculie : redécoupe visuellement un ou plusieurs énoncés (unités de sens, données séparées de la question) sans jamais toucher aux nombres. Met en application immédiate, à l'échelle d'un cahier d'exercices, un geste qu'un enseignant sensibilisé maîtrise déjà à la main.",
+    url: 'https://dyscalc-lisible.vercel.app',
+    emoji: '🧮',
+    category: 'Dyscalculie',
+    status: 'disponible',
+    color: 'blue',
+    section: 'sensibilisation',
+    guide: {
+      scientific: {
+        summary:
+          "DyscalcLisible met en pratique immédiate ce qu'une sensibilisation à la dyscalculie donne à voir : la première difficulté d'un énoncé mathématique est souvent une difficulté de repérage/lecture, distincte du raisonnement mathématique lui-même. L'outil redécoupe visuellement l'énoncé — sans jamais toucher aux nombres, aux unités ou aux opérations — un geste qu'un enseignant sensibilisé sait déjà faire à la main ; l'app en accélère simplement l'application sur plusieurs exercices à la fois.",
+        references: [
+          {
+            id: 'dumas-01549091',
+            citation:
+              'Le Cam, B. & Toussaint, É. (2017). Le raisonnement logique : sa place dans les apprentissages et son impact sur la réussite : handicap, difficultés scolaires et mathématiques. Mémoire, ESPE Saint-Germain-en-Laye.',
+            content:
+              "La résolution de problèmes mobilise à la fois la compréhension de l'énoncé (lecture, extraction des données) et le raisonnement logico-mathématique — deux compétences dissociables. Un élève peut échouer sur la première sans trouble du raisonnement lui-même, ce qui justifie un travail ciblé sur la lisibilité de l'énoncé, distinct du travail sur le calcul.",
+          },
+          {
+            id: 'dumas-03993984',
+            citation:
+              "Boiteault, O. & Percheminier, C. (2022). Aider les élèves dans la résolution de problèmes : développer des compétences pour schématiser. Mémoire.",
+            content:
+              "Face à un énoncé complexe, l'élève est en surcharge cognitive (Sweller) : redécouper ou schématiser permet de fixer les informations perçues pour libérer la mémoire de travail. La schématisation doit viser l'autonomie de l'élève, pas une dépendance — cohérent avec le garde-fou de l'app, qui ne résout jamais l'exercice à sa place.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Avant d\'ouvrir l\'outil',
+            items: [
+              "Outil pensé en complément d'une sensibilisation dyscalculie (ex. Atelier Maya) — pas comme solution indispensable en soi.",
+              "Ce que l'outil redécoupe visuellement, un enseignant sensibilisé sait déjà le faire à la main : l'app fait gagner du temps sur plusieurs exercices, elle ne débloque pas un geste hors de portée.",
+            ],
+          },
+          {
+            title: 'Reformater un ou plusieurs exercices',
+            items: [
+              "Choisir le niveau (fondamental ou secondaire) — calibre la finesse du découpage pour tout le lot.",
+              "Coller le premier énoncé, préciser le type de problème si utile (partage, comparaison...).",
+              '« + Ajouter un exercice » pour traiter tout un cahier d\'un coup — chaque exercice est numéroté et reformaté séparément.',
+              '« Reformater » lance un appel indépendant par exercice : une erreur sur l\'un n\'affecte pas les autres.',
+            ],
+          },
+          {
+            title: 'Relire et valider (split 80/20)',
+            items: [
+              "Chaque proposition s'affiche dans une zone éditable, à côté de l'énoncé original toujours visible.",
+              "Ajuster avec son contexte de classe avant impression — l'IA ne modifie jamais un nombre, une unité ou une opération, mais elle ne connaît pas les élèves.",
+              "Régénérer un exercice isolé si le découpage ne convient pas, sans relancer tout le lot.",
+            ],
+          },
+          {
+            title: 'Imprimer',
+            items: [
+              "Export PDF/impression avec numérotation conservée, énoncé original et version reformatée côte à côte.",
+            ],
+          },
+        ],
+        tip: "Idéal en suivi d'une sensibilisation dyscalculie (Atelier Maya) : montrer le geste de redécoupage en formation, puis l'appliquer en 2 minutes sur les exercices de la semaine plutôt qu'à la main un par un.",
+      },
+    },
+  },
+  {
     id: 'retroactif',
     audience: 'enseignant + élève',
     name: 'RetroActif',
