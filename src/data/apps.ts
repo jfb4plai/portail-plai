@@ -2056,6 +2056,75 @@ const apps: AppItem[] = [
       },
     },
   },
+  // ProgressActif
+  {
+    id: 'progressactif',
+    audience: 'enseignant',
+    name: 'ProgressActif',
+    description: "Différencie un exercice en 3 niveaux (soutien/cible/dépassement) ancrés sur les attendus officiels du tronc commun FWB — maths et français, P1 à P6. Chaque version cite l'attendu exact du référentiel ; une vérification a priori signale si l'exercice source ou un palier voisin s'écarte de l'année déclarée. Split 80/20 : chaque niveau reste éditable avant export (Word ou impression). Complémentaire à DiffActif : ProgressActif ajuste la difficulté par attendu, DiffActif ajuste la forme par profil (DYS, TDAH...). 3 références RISS vérifiées.",
+    url: 'https://progress-actif.vercel.app',
+    emoji: '🪜',
+    category: 'Différenciation',
+    status: 'en-développement',
+    color: 'teal',
+    devBanner: true,
+    guide: {
+      scientific: {
+        summary:
+          "ProgressActif ancre chaque niveau de différenciation sur un attendu précis du tronc commun FWB, pas sur une difficulté supposée : la traçabilité (quel attendu justifie ce niveau) est vérifiable par l'enseignant à chaque génération. La génération IA reste soumise au split 80/20 — la médiation enseignante est la condition de l'efficacité d'une différenciation générée par IA, pas une option. ProgressActif ne propose pas d'aménagement DYS générique : les troubles d'apprentissage relèvent de mécanismes cognitifs distincts, et cette fonction reste le rôle de DiffActif. La vérification/estimation intégrée aux niveaux avancés s'appuie sur des travaux montrant que cette compétence profite en priorité aux élèves en difficulté, pas seulement aux plus rapides.",
+        references: [
+          {
+            citation: "Mahi Haddad, S. & Beaud, M. (2025). L'IA au service de la différenciation pédagogique dans l'enseignement des mathématiques. [RISS : dumas-05106961]",
+            content:
+              "Une différenciation en 3 niveaux générée par IA améliore la réussite et l'engagement des élèves en difficulté, à condition que l'enseignant reste dans la boucle — ce que ProgressActif formalise par sa zone d'édition obligatoire avant tout export.",
+          },
+          {
+            citation: "Barrouillet, P., Billard, C. et al. (2007). Dyslexie, dysorthographie, dyscalculie : bilan des données scientifiques. [RISS : hal-01570674]",
+            content:
+              "Les troubles d'apprentissage relèvent de mécanismes cognitifs distincts (langagier, numérique...) : un aménagement de forme unique ne peut pas convenir à tous. C'est pourquoi ProgressActif renvoie vers DiffActif pour l'aménagement par profil, plutôt que d'en proposer un générique.",
+          },
+          {
+            citation: "Meyer, S. (2015). L'estimation numérique dans les apprentissages mathématiques. [RISS : tel-01179168]",
+            content:
+              "L'estimation numérique est un processus fondamental dont l'entraînement réduit les inégalités socio-économiques en mathématiques. ProgressActif l'intègre dès le niveau soutien quand le référentiel le permet, plutôt que de la réserver au dépassement.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: "1. Choisir la matière et l'année",
+            items: [
+              "Sélectionnez Maths ou Français, puis l'année de la classe pour laquelle l'exercice a été conçu (P1 à P6).",
+              "Choisissez le champ ou la rubrique du référentiel, puis le sous-point ou l'item exact que l'exercice mobilise.",
+            ],
+          },
+          {
+            title: "2. Générer les 3 niveaux",
+            items: [
+              "Collez le texte de l'exercice source — aucune donnée d'élève.",
+              "Cliquez 'Générer les 3 niveaux' : ProgressActif identifie l'attendu, vérifie qu'il correspond bien à l'année déclarée, puis produit soutien, cible et dépassement.",
+              "Une alerte s'affiche si l'exercice — ou l'un des paliers voisins — s'écarte de l'attendu du référentiel.",
+            ],
+          },
+          {
+            title: "3. Relire et ajuster",
+            items: [
+              "Chaque niveau reste dans une zone éditable : ajustez le vocabulaire, le contexte de vos élèves, ou corrigez avant tout usage.",
+              "Rien n'est exporté sans passer par cette relecture (split 80/20).",
+            ],
+          },
+          {
+            title: "4. Exporter",
+            items: [
+              "Téléchargez en Word, ou imprimez directement en PDF depuis le navigateur.",
+            ],
+          },
+        ],
+        tip: "Si vous partez d'une feuille scannée, passez d'abord par DiffActif pour obtenir sa version en Aménagements Universels — c'est elle qui sert de base ici, pas le scan brut.",
+      },
+    },
+  },
   // ActiActif
   {
     id: 'actiactif',
