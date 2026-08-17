@@ -494,6 +494,103 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'lexiactif',
+    audience: 'enseignant + élève',
+    name: 'LexiActif',
+    description: "Roue de lettres pour reconstituer des mots : structure orthographique et rappel lexical. Listes créées par l'enseignant en français, néerlandais/flamand, anglais ou allemand. Lettres distractrices et indices optionnels, lien/QR code de partage élève sans compte, suivi mot par mot.",
+    url: 'https://lexi-actif.vercel.app',
+    emoji: '🔤',
+    category: 'Orthographe',
+    status: 'disponible',
+    color: 'purple',
+    section: 'applications',
+    guide: {
+      scientific: {
+        summary:
+          "LexiActif distingue deux mécanismes selon que les lettres distractrices sont activées ou non. Sans distracteurs, la roue ne contient que les lettres du mot : l'élève retrouve seulement leur ordre, un travail proche des régularités graphotactiques (Pérez, 2013 ; Pacton, Fayol & Perruchet, cités dans ce travail). Avec distracteurs, l'élève doit aussi identifier lesquelles appartiennent réellement au mot — plus proche d'un rappel en mémoire orthographique lexicale, où la trace du mot se construit par traitement simultané des séquences visuelle et phonologique (Chaves, 2012 ; Chaves, Bosse & Largy, 2010). En cas d'erreur, la rétroaction est qualifiée (nombre de lettres bien placées, jamais lesquelles), conformément aux recommandations sur la rétroaction formative (Rey & Feyfant, 2014). Le score, les indices monnayés et le classement relèvent de la ludification — des éléments de jeu ajoutés à une tâche orthographique classique (Monterrat, 2015 ; Monterrat, Lavoué, George & Desmarais, 2017) — LexiActif est un outil pédagogique ludifié, pas un jeu au sens plein (pas de monde ni de narration), une nuance utile pour le situer correctement dans une séquence.",
+        references: [
+          {
+            id: 'tel-00728785',
+            citation:
+              "Chaves, N. (2012). Rôle du traitement visuel simultané dans l'acquisition des connaissances orthographiques lexicales. Thèse, Université de Toulouse.",
+            content:
+              "Le traitement visuel simultané intervient dans l'acquisition de l'orthographe lexicale, indépendamment de la mémoire de travail visuo-spatiale — la base théorique du mode distracteurs de LexiActif, qui vise ce traitement simultané plutôt qu'un simple ordonnancement.",
+          },
+          {
+            id: 'hal-00825972',
+            citation:
+              'Chaves, N., Bosse, M.-L. & Largy, P. (2010). Le traitement visuel est-il impliqué dans l\'acquisition de l\'orthographe lexicale ?',
+            content:
+              "Une trace-mot se construit quand les séquences orthographique et phonologique d'un mot sont traitées simultanément. C'est ce que vise l'association reconstitution visuelle (roue) + prononciation immédiate (🔊) dans LexiActif.",
+          },
+          {
+            id: 'tel-00979303',
+            citation:
+              "Pérez, M. (2013). L'apprentissage de l'orthographe lors de la dictée et la copie de mots manuscrits : effets des tâches et processus sous-jacents. Thèse, Université de Toulouse.",
+            content:
+              "Sans lettres distractrices, reconstituer l'ordre des lettres d'un mot déjà fourni relève de l'apprentissage implicite des régularités graphotactiques (Pacton, Fayol & Perruchet, cités dans ce travail) — un exercice distinct, mais complémentaire, du rappel lexical complet.",
+          },
+          {
+            id: 'ensl-01576226',
+            citation: 'Rey, O. & Feyfant, A. (2014). Évaluer pour (mieux) faire apprendre. Dossier de veille IFÉ.',
+            content:
+              "La rétroaction n'a d'effet formatif que si elle est orientée vers la tâche et le processus, pas seulement une note. LexiActif applique ce principe : un mot faux affiche « N lettres sur M bien placées », jamais un simple « faux ».",
+          },
+          {
+            id: 'tel-01255382',
+            citation:
+              "Monterrat, B. (2015). Un système de ludification adaptative d'environnements d'apprentissage fondé sur les profils de joueur des apprenants. Thèse, INSA Lyon.",
+            content:
+              "Un environnement d'apprentissage ludifié (score, indices, distracteurs) est un objet distinct d'un jeu sérieux — LexiActif est nommé et pensé comme tel : un outil pédagogique ludifié, pas un jeu au sens plein.",
+          },
+          {
+            id: 'hal-01643166',
+            citation:
+              "Monterrat, B., Lavoué, E., George, S. & Desmarais, M. (2017). Les effets d'une ludification adaptative sur l'engagement des apprenants.",
+            content:
+              "La ludification peut réduire l'amotivation, mais son effet sur l'engagement dépend des mécaniques choisies — d'où l'activation optionnelle (pas systématique) des distracteurs et indices dans LexiActif, laissée au jugement de l'enseignant selon l'objectif de la séance.",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer une liste de mots',
+            items: [
+              'Connectez-vous → section "Listes de mots" → donnez un nom et collez vos mots (un par ligne).',
+              "Choisissez la langue de la liste (français, néerlandais/flamand, anglais, allemand) : elle détermine la prononciation (synthèse vocale) et les lettres distractrices proposées — l'interface de l'app reste en français quelle que soit la langue choisie.",
+              "Un mot de plus de 10 lettres déclenche un avertissement de lisibilité sur la roue, sans jamais être rejeté silencieusement.",
+            ],
+          },
+          {
+            title: 'Régler la difficulté',
+            items: [
+              "Ordre aléatoire des mots (désactivé par défaut) : dans l'ordre respecté, placez les mots les plus courts/familiers en premier pour une difficulté progressive.",
+              'Lettres distractrices (ⓘ pourquoi ?) : +1 ou +2 lettres en plus dans la roue — bascule entre travail sur l\'ordre séquentiel et rappel lexical plus exigeant (voir le résumé scientifique).',
+              'Indices disponibles pour l\'élève : bouton 💡 en jeu, révèle la lettre suivante contre 5 points.',
+            ],
+          },
+          {
+            title: 'Partager avec les élèves',
+            items: [
+              'Bouton "Jouer" : test rapide depuis votre propre session enseignant.',
+              'Bouton "Partager" : génère un lien et un QR code dédiés à cette liste — l\'élève y accède sans jamais voir votre tableau de bord, quel que soit l\'appareil ou le moment.',
+              'Élèves gérés dans la section "Élèves" : toujours un code anonyme, jamais un prénom.',
+            ],
+          },
+          {
+            title: 'Suivre la progression',
+            items: [
+              'Onglet "Progression" par liste : score et mots réussis par élève.',
+              '"Voir le détail" affiche les mots réussis et les mots restants — particulièrement utile avec l\'ordre aléatoire, pour savoir précisément où en est chaque élève.',
+            ],
+          },
+        ],
+        tip: "Pour une liste en langue étrangère, encouragez l'élève à cliquer 🔊 dès qu'il trouve le mot : c'est le seul repère de prononciation native de l'exercice. Combinez distracteurs + indices pour une langue qui démarre, désactivez les deux pour consolider une liste déjà connue.",
+      },
+    },
+  },
+  {
     id: 'atelier-dyslexie',
     audience: 'enseignant',
     name: 'Atelier Dyslexie',
