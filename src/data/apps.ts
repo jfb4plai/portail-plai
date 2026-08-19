@@ -1017,7 +1017,7 @@ const apps: AppItem[] = [
     id: 'systeme-solaire',
     audience: 'enseignant + élève',
     name: 'Système Solaire',
-    description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Zoom, noms, orbites et vitesse réglables. Idéal pour ancrer les proportions et les durées de révolution.",
+    description: "Visualisation interactive des tailles relatives et des révolutions planétaires. Isolez ou comparez des planètes, zoomez, réglez la vitesse ou projetez l'animation sur une durée choisie (jusqu'à 10 ans). Idéal pour ancrer les proportions et les durées de révolution.",
     url: 'https://systeme-solaire-plai.vercel.app',
     emoji: '🪐',
     category: 'Sciences',
@@ -1050,8 +1050,16 @@ const apps: AppItem[] = [
             title: 'Découvrir les tailles relatives',
             items: [
               "Lancez l'animation → observez la différence de taille entre planètes telluriques et géantes gazeuses",
-              "Activez les noms des planètes pour identifier chacune",
+              "Activez « Tailles réelles (Terre = 1) » pour voir les vraies proportions — et pourquoi la vue par défaut les compresse (sinon Jupiter et Saturne écrasent tout l'écran)",
               "Utilisez le zoom pour mieux voir les petites planètes intérieures",
+            ],
+          },
+          {
+            title: 'Isoler ou comparer des planètes',
+            items: [
+              "Décochez les planètes non concernées dans la colonne de gauche pour isoler une seule planète (exercice ciblé)",
+              "Comparez deux planètes seules — ex. Terre et Mars pour discuter de la durée de leur année respective",
+              "« Toutes » remet l'affichage complet en un clic",
             ],
           },
           {
@@ -1063,15 +1071,22 @@ const apps: AppItem[] = [
             ],
           },
           {
+            title: 'Se projeter dans le temps',
+            items: [
+              "Fixez une durée (ex. 200 jours, ou 3 ans + 20 jours) dans « Durée fixée » et lancez : la lecture se met en pause automatiquement au terme choisi",
+              "Comparez la position des planètes avant/après pour discuter des révolutions à différentes échelles de temps",
+            ],
+          },
+          {
             title: 'Exploiter en classe',
             items: [
               "Posez la question : combien de fois la Terre tourne-t-elle pendant une révolution de Neptune ?",
-              "Faites observer les proportions : Jupiter est ≈ 11× plus grande que la Terre",
+              "Survolez chaque planète (et le Soleil) : l'infobulle affiche les vraies proportions à côté de celles montrées à l'écran — bon point de départ pour discuter des choix de représentation en vulgarisation scientifique",
               "Laissez les élèves explorer librement — le temps réel ancre les durées mieux qu'un tableau",
             ],
           },
         ],
-        tip: "Projetez l'animation en temps réel (vitesse ×1) pendant une séquence : les élèves voient concrètement ce que signifie « une année sur Neptune dure 165 ans terrestres ».",
+        tip: "Projetez l'animation en temps réel (vitesse ×1) pendant une séquence : les élèves voient concrètement ce que signifie « une année sur Neptune dure 165 ans terrestres ». Pour aller plus vite, utilisez « Durée fixée » et comparez directement deux instants choisis.",
       },
     },
   },
