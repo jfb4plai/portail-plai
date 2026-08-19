@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { AppItem, ColorScheme } from '../types';
 import Hero from '../components/Hero';
+import { useEcoleAccess, isAppUnlocked } from '../lib/ecoleAccess';
 
 const colorMap: Record<string, ColorScheme> = {
   blue:   { bg: 'bg-blue-50',   border: 'border-blue-200',   badge: 'bg-blue-100 text-blue-700',    btn: 'bg-blue-600 hover:bg-blue-700',    light: 'bg-blue-100' },
@@ -204,55 +205,64 @@ function AppCard({
     </a>
   );
 
+  const locked = Boolean(muted && app.gated && app.unlockHint);
+
   return (
-    <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden ${muted ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
-      {app.isNew && (
-        <div className="w-full text-xs font-bold text-center py-1 tracking-wide text-white" style={{ backgroundColor: '#FF3399' }}>
-          Nouveau
+    <div className="flex flex-col rounded-2xl overflow-hidden">
+      {locked && (
+        <div className="w-full bg-gray-700 text-white text-xs font-semibold text-center py-1.5 px-3 tracking-wide">
+          🔒 {app.unlockHint}
         </div>
       )}
-      {app.devBanner && !app.isNew && (
-        <div className="w-full bg-amber-400 text-amber-900 text-xs font-bold text-center py-1 tracking-wide">
-          En développement
-        </div>
-      )}
-      <div className="flex flex-col flex-1 p-6">
-        <div className="flex items-start justify-between mb-3">
-          <span className="text-4xl">{app.emoji}</span>
-          <div className="flex flex-col items-end gap-1">
-            {app.category && (
-              <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
-                {app.category}
-              </span>
-            )}
-            {app.audience && (
-              <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
-                {app.audience === 'élève' ? '🧑‍🎓 Élève'
-                  : app.audience === 'enseignant' ? '👩‍🏫 Enseignant'
-                  : '👩‍🏫 + 🧑‍🎓 Enseignant + élève'}
-              </span>
-            )}
-          </div>
-        </div>
-        <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
-        <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
-        {app.browserNote && (
-          <div className="flex items-start gap-2 mb-4 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
-            <p className="text-xs text-blue-700">{app.browserNote}</p>
+      <div className={`flex flex-col rounded-2xl border-2 ${c.border} ${c.bg} shadow-sm transition hover:shadow-md overflow-hidden ${muted ? 'opacity-50 grayscale pointer-events-none' : ''}`}>
+        {app.isNew && (
+          <div className="w-full text-xs font-bold text-center py-1 tracking-wide text-white" style={{ backgroundColor: '#FF3399' }}>
+            Nouveau
           </div>
         )}
-        <div className="flex gap-2">
-          {openButton}
-          {app.guide && (
-            <button
-              onClick={() => onGuide(app)}
-              className="px-3 py-2 rounded-lg border-2 border-current text-sm font-semibold transition hover:opacity-80"
-              style={{ color: 'inherit' }}
-              title="Guide d'utilisation"
-            >
-              Guide
-            </button>
+        {app.devBanner && !app.isNew && (
+          <div className="w-full bg-amber-400 text-amber-900 text-xs font-bold text-center py-1 tracking-wide">
+            En développement
+          </div>
+        )}
+        <div className="flex flex-col flex-1 p-6">
+          <div className="flex items-start justify-between mb-3">
+            <span className="text-4xl">{app.emoji}</span>
+            <div className="flex flex-col items-end gap-1">
+              {app.category && (
+                <span className={`text-xs font-semibold px-2 py-1 rounded-full ${c.badge}`}>
+                  {app.category}
+                </span>
+              )}
+              {app.audience && (
+                <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">
+                  {app.audience === 'élève' ? '🧑‍🎓 Élève'
+                    : app.audience === 'enseignant' ? '👩‍🏫 Enseignant'
+                    : '👩‍🏫 + 🧑‍🎓 Enseignant + élève'}
+                </span>
+              )}
+            </div>
+          </div>
+          <h2 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h2>
+          <p className="text-gray-600 text-sm flex-1 mb-3">{app.description}</p>
+          {app.browserNote && (
+            <div className="flex items-start gap-2 mb-4 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2">
+              <p className="text-xs text-blue-700">{app.browserNote}</p>
+            </div>
           )}
+          <div className="flex gap-2">
+            {openButton}
+            {app.guide && (
+              <button
+                onClick={() => onGuide(app)}
+                className="px-3 py-2 rounded-lg border-2 border-current text-sm font-semibold transition hover:opacity-80"
+                style={{ color: 'inherit' }}
+                title="Guide d'utilisation"
+              >
+                Guide
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -263,6 +273,7 @@ function AppCard({
 
 export default function Home() {
   const [guideApp, setGuideApp] = useState<AppItem | null>(null);
+  const { unlockedAppIds } = useEcoleAccess();
 
   const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
@@ -292,7 +303,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sensiItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -308,7 +319,7 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {available.map(app => (
-              <AppCard key={app.id} app={app} onGuide={setGuideApp} />
+              <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!isAppUnlocked(app, unlockedAppIds)} />
             ))}
           </div>
         </section>
@@ -341,7 +352,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {utilItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -358,7 +369,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" muted={!isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -375,7 +386,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeCodeItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="indigo" />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="indigo" muted={!isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -392,7 +403,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {iaItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
