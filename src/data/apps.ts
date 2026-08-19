@@ -599,6 +599,8 @@ const apps: AppItem[] = [
     emoji: '🧠',
     category: 'Dyslexie',
     status: 'disponible',
+    gated: true,
+    unlockHint: 'Disponible après la sensibilisation Atelier Dyslexie en présentiel.',
     color: 'purple',
     section: 'sensibilisation',
     browserNote: 'Recommandé dans Microsoft Edge : voix neuronales (fr-BE) disponibles + surlignage mot par mot synchronisé avec la lecture audio.',
