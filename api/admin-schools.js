@@ -26,6 +26,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  if (!process.env.ADMIN_PASSWORD) {
+    return res.status(500).json({ error: 'Configuration serveur invalide.' });
+  }
+
   const { action, password } = req.body || {};
 
   if (password !== process.env.ADMIN_PASSWORD) {
@@ -62,7 +66,12 @@ export default async function handler(req, res) {
 
     if (action === 'update') {
       const { code, apps_debloquees } = req.body || {};
-      if (typeof code !== 'string' || !Array.isArray(apps_debloquees)) {
+      if (
+        typeof code !== 'string' ||
+        !code.trim() ||
+        !Array.isArray(apps_debloquees) ||
+        !apps_debloquees.every((a) => typeof a === 'string')
+      ) {
         return res.status(400).json({ error: 'Paramètres invalides.' });
       }
       const { error } = await supabase
