@@ -273,7 +273,7 @@ function AppCard({
 
 export default function Home() {
   const [guideApp, setGuideApp] = useState<AppItem | null>(null);
-  const { unlockedAppIds } = useEcoleAccess();
+  const { unlockedAppIds, loading } = useEcoleAccess();
 
   const appItems    = apps.filter(a => (a.section ?? 'applications') === 'applications');
   const sensiItems  = apps.filter(a => a.section === 'sensibilisation');
@@ -303,7 +303,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {sensiItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!isAppUnlocked(app, unlockedAppIds)} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -319,7 +319,7 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {available.map(app => (
-              <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!isAppUnlocked(app, unlockedAppIds)} />
+              <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
             ))}
           </div>
         </section>
@@ -352,7 +352,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {utilItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!isAppUnlocked(app, unlockedAppIds)} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -369,7 +369,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" muted={!isAppUnlocked(app, unlockedAppIds)} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="purple" muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -386,7 +386,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {claudeCodeItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="indigo" muted={!isAppUnlocked(app, unlockedAppIds)} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="indigo" muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
@@ -403,7 +403,7 @@ export default function Home() {
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {iaItems.map(app => (
-                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!isAppUnlocked(app, unlockedAppIds)} />
+                <AppCard key={app.id} app={app} onGuide={setGuideApp} colorOverride="amber" muted={!loading && !isAppUnlocked(app, unlockedAppIds)} />
               ))}
             </div>
           </section>
