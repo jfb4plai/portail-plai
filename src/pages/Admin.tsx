@@ -50,8 +50,9 @@ export default function Admin() {
     try {
       await callApi({ action: 'update', password, code: ecole.code, apps_debloquees });
     } catch (err) {
-      setError((err as Error).message);
+      const message = (err as Error).message;
       await chargerEcoles(password);
+      setError(message);
     }
   }
 
