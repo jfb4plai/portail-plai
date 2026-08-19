@@ -27,6 +27,8 @@ export type AppItem = {
   browserNote?: string;
   devBanner?: boolean;   // affiche le bandeau "En développement" sur la vignette
   isNew?: boolean;       // affiche le badge "Nouveau" en orange PLAI
+  gated?: boolean;       // fait partie du système de verrouillage par école
+  unlockHint?: string;   // message affiché tant que l'app est verrouillée pour l'école courante
   guide?: GuideContent;
 };
 
