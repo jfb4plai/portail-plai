@@ -9,6 +9,7 @@ import ParentsFiche from './pages/ParentsFiche';
 import GuideDroits from './pages/GuideDroits';
 import DecodeurPia from './pages/DecodeurPia';
 import AteliersParents from './pages/AteliersParents';
+import Admin from './pages/Admin';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="/parents/decodeur" element={<DecodeurPia />} />
             <Route path="/parents/ateliers" element={<AteliersParents />} />
             <Route path="/parents/:troubleId" element={<ParentsFiche />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </div>
         <Footer />
