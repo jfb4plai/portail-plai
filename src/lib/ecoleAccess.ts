@@ -22,13 +22,19 @@ export function useEcoleAccess() {
       return;
     }
 
-    supabase
-      .from('portail_ecoles')
-      .select('apps_debloquees')
-      .eq('code', code)
-      .maybeSingle()
+    Promise.resolve(
+      supabase
+        .from('portail_ecoles')
+        .select('apps_debloquees')
+        .eq('code', code)
+        .maybeSingle()
+    )
       .then(({ data, error }: { data: { apps_debloquees: string[] } | null; error: unknown }) => {
         setUnlockedAppIds(!error && data ? data.apps_debloquees ?? [] : []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setUnlockedAppIds([]);
         setLoading(false);
       });
   }, []);
