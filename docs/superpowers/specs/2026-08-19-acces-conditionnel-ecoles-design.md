@@ -140,6 +140,19 @@ frontend) :
 - `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` si pas déjà présentes (nécessaires côté
   client pour la lecture publique des accès débloqués)
 
+## Déploiement / test — la version actuelle doit subsister
+
+Tout le développement se fait sur une branche dédiée (ex. `feat/acces-conditionnel-ecoles`),
+déployée par Vercel en preview sur une URL distincte de `portail-plai.vercel.app`. Le
+portail en production (branche `main`) n'est pas touché : Jean-François teste la
+fonctionnalité (verrouillage, admin, création d'école) sur l'URL de preview avant de
+décider s'il merge, et s'il l'utilise réellement pour ses écoles. Le merge vers `main`
+n'est pas inclus dans ce plan — il sera décidé séparément, une fois la solution validée.
+
+Les variables d'environnement Vercel (`SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`,
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) doivent être configurées pour l'environnement
+Preview de Vercel, pas seulement Production.
+
 ## Tests / vérification
 
 - `npx vite build` doit passer avant tout push (règle du projet).
