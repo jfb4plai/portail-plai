@@ -2521,7 +2521,7 @@ const apps: AppItem[] = [
     audience: 'enseignant + élève',
     name: 'SocraActif',
     description: "Remédiation socratique en mathématiques. L'IA classifie l'erreur (faute / erreur de technique / erreur de technologie — taxonomie RISS) avant d'engager un dialogue socratique multi-tours. L'enseignant fixe le point de rupture, le type d'étayage et le seuil. Mode autonomie (code élève) et mode projection (tableau collectif). Palette de symboles mathématiques intégrée.",
-    url: 'https://socraactif.vercel.app',
+    url: 'https://socra-actif.vercel.app',
     emoji: '🧭',
     category: 'Remédiation',
     status: 'en-développement',
