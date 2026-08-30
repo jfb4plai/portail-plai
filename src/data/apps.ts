@@ -2409,7 +2409,7 @@ const apps: AppItem[] = [
           {
             title: 'Créer un espace et uploader vos documents',
             items: [
-              "Connectez-vous sur corpus-actif.vercel.app (compte enseignant requis — contactez le référent PLAI pour l'accès).",
+              "Sur corpus-actif.vercel.app, créez un compte enseignant ou connectez-vous (compte PLAI partagé avec les autres apps).",
               "Cliquez « Créer un espace » — nommez-le avec le sujet pédagogique : ex. 'La photosynthèse', 'Les fractions CE2'. Ce nom est affiché à vos apprenants.",
               "Dans l'onglet Documents, uploadez vos fichiers (.pdf, .docx, .txt — max 10 MB) par dépôt local ou via un lien de partage OneDrive (réglé sur « Tout le monde peut afficher »). L'indexation est automatique : les documents sont découpés et vectorisés.",
               "Patientez quelques secondes. Un message confirme le nombre de fragments créés.",
@@ -2590,7 +2590,7 @@ const apps: AppItem[] = [
           {
             title: 'Créer un parcours (enseignant)',
             items: [
-              "Se connecter → 'Nouveau parcours' : titre, matière, mode (autonomie ou projection), seuil de validation, blocage (strict ou souple), nombre de tours socratiques (2–6).",
+              "Créer un compte ou se connecter → 'Nouveau parcours' : titre, matière, mode (autonomie ou projection), seuil de validation, blocage (strict ou souple), nombre de tours socratiques (2–6).",
               "Ajouter des étapes : énoncé + résultat attendu + étapes clés de procédure.",
               "Pour chaque étape, renseigner le champ obligatoire '20%' : le point de rupture typique (ex. : 'Les élèves oublient de réduire au même dénominateur avant d'additionner').",
               "Optionnel : erreurs de distraction fréquentes, indice explicite, hypothèse sur le type d'erreur, niveau d'étayage.",
