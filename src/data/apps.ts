@@ -2173,7 +2173,7 @@ const apps: AppItem[] = [
     id: 'progressactif',
     audience: 'enseignant',
     name: 'ProgressActif',
-    description: "Différencie un exercice en 3 niveaux (soutien/cible/dépassement) ancrés sur les attendus officiels du tronc commun FWB — maths et français, P1 à P6. Chaque version cite l'attendu exact du référentiel ; une vérification a priori signale si l'exercice source ou un palier voisin s'écarte de l'année déclarée. Split 80/20 : chaque niveau reste éditable avant export (Word ou impression). Complémentaire à DiffActif : ProgressActif ajuste la difficulté par attendu, DiffActif ajuste la forme par profil (DYS, TDAH...). 3 références RISS vérifiées.",
+    description: "Différencie un exercice en 3 niveaux (soutien/cible/dépassement) ancrés sur les attendus officiels du tronc commun FWB — maths et français, P1 à P6. La génération se fait en 3 étapes validées : l'IA propose d'abord le cadrage (quel attendu du référentiel ancre chaque niveau, quel levier de différenciation), l'enseignant l'édite et le valide, puis les énoncés et la grille d'évaluation sont générés dessus — le cadrage didactique ne peut pas être contourné. Une vérification a priori signale si l'exercice source ou un palier voisin s'écarte de l'année déclarée. Split 80/20 : chaque zone reste éditable avant export (Word, fiche imprimable au format Aménagements Universels, ou markdown). Complémentaire à DiffActif : ProgressActif ajuste la difficulté par attendu, DiffActif ajuste la forme par profil (DYS, TDAH...). 3 références RISS vérifiées.",
     url: 'https://progress-actif.vercel.app',
     emoji: '🪜',
     category: 'Différenciation',
@@ -2212,24 +2212,25 @@ const apps: AppItem[] = [
             ],
           },
           {
-            title: "2. Générer les 3 niveaux",
+            title: "2. Valider le cadrage",
             items: [
               "Collez le texte de l'exercice source — aucune donnée d'élève.",
-              "Cliquez 'Générer les 3 niveaux' : ProgressActif identifie l'attendu, vérifie qu'il correspond bien à l'année déclarée, puis produit soutien, cible et dépassement.",
-              "Une alerte s'affiche si l'exercice — ou l'un des paliers voisins — s'écarte de l'attendu du référentiel.",
+              "« Générer le cadrage » : l'IA propose, pour chaque niveau, l'attendu du référentiel sur lequel il s'ancre et le levier de différenciation. Une alerte signale si l'exercice — ou un palier voisin — s'écarte de l'attendu de l'année déclarée.",
+              "Ajustez : changez l'attendu de référence (menu déroulant limité aux attendus réels des années voisines), reformulez un levier avec le vocabulaire de vos élèves. C'est ce cadrage qui pilote la rédaction — impossible de générer les énoncés sans l'avoir vu.",
             ],
           },
           {
-            title: "3. Relire et ajuster",
+            title: "3. Générer les énoncés, puis la grille",
             items: [
-              "Chaque niveau reste dans une zone éditable : ajustez le vocabulaire, le contexte de vos élèves, ou corrigez avant tout usage.",
-              "Rien n'est exporté sans passer par cette relecture (split 80/20).",
+              "« Valider le cadrage → générer les énoncés » : les 3 énoncés sont rédigés sur la base du cadrage validé.",
+              "« Valider les énoncés → générer la grille » : une grille d'évaluation est dérivée de l'attendu cible.",
+              "Chaque zone (cadrage, énoncés, grille) reste éditable indépendamment. Modifier le cadrage efface les étapes suivantes — rien n'est perdu en silence.",
             ],
           },
           {
             title: "4. Exporter",
             items: [
-              "Téléchargez en Word, ou imprimez directement en PDF depuis le navigateur.",
+              "Téléchargez en Word ; imprimez la fiche au format Aménagements Universels (Arial 12, structure claire, sauts de page propres) ; ou téléchargez en markdown (.md) pour recoller dans Word, un LMS ou vos notes.",
             ],
           },
         ],
@@ -2325,7 +2326,7 @@ const apps: AppItem[] = [
     id: 'corpusactif',
     audience: 'enseignant + élève',
     name: 'CorpusActif',
-    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Suivi de l'acquisition par notion : le tableau de bord signale les notions à réaborder — dont celles acquises par aucun élève — avec vue classe (thermomètre par notion), vue par élève pour l'accompagnement PLAI (obstacles fonctionnels + acquisition individuelle), questions bloquées classées par fréquence, et export CSV / impression pour le conseil de classe ou le PIA. Côté élève : parcours guidé par notions, barre de progression et valorisation pour soutenir l'envie d'apprendre. Templates de curriculum réutilisables. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
+    description: "NotebookLM pour l'enseignant. Socrate pour l'apprenant. Créez des espaces IA bridés par vos ressources documentaires (dépôt local ou lien de partage OneDrive) : l'IA ne répond qu'à partir de votre corpus. Mode socratique avec mémoire inter-sessions : Claude guide par questions, se souvient des sessions précédentes et adapte son rythme (Rapide / Standard / Patient). Suivi de l'acquisition par notion : le tableau de bord signale les notions à réaborder — dont celles acquises par aucun élève — avec vue classe (thermomètre par notion), vue par élève pour l'accompagnement PLAI (obstacles fonctionnels + acquisition individuelle), questions bloquées classées par fréquence, et export CSV / impression pour le conseil de classe ou le PIA. Curriculum généré depuis vos documents : l'IA dégage l'ossature (chapitres et concepts), vous cochez et éditez avant de valider — un curriculum non vide débloque les bilans de session (rappel de progression, carte des notions, message personnalisé). Côté élève : parcours guidé par notions, barre de progression et valorisation pour soutenir l'envie d'apprendre. Défi de consolidation : à la fin d'un parcours socratique, l'apprenant peut se tester par un QCM court sur les notions vues — auto-corrigé, feedback immédiat, sans score ni classement ; le tableau de bord montre le taux de réussite par notion, signal distinct de l'acquisition en parcours. Templates de curriculum réutilisables. Connexion directe vers RetroActif (remédiation) et FlashFWB (révision espacée). Accès élèves par QR code, sans compte. Codes anonymes RGPD.",
     url: 'https://corpus-actif.vercel.app',
     emoji: '📚',
     category: 'IA pédagogique',
@@ -2334,7 +2335,7 @@ const apps: AppItem[] = [
     devBanner: true,
     guide: {
       scientific: {
-        summary: "CorpusActif repose sur quatre principes validés par la recherche. La génération augmentée par récupération (RAG) ancre chaque réponse dans les documents de l'enseignant, éliminant les hallucinations et garantissant la cohérence pédagogique. Le mode socratique s'inscrit dans la tradition du guidage par questionnement : l'IA ne donne pas la réponse — elle accompagne l'apprenant vers elle par une progression en trois niveaux (relances configurables → indice → réponse valorisante), avec mémoire des sessions précédentes pour éviter les redites et construire sur les acquis. Le signal de compréhension (« Utile / Pas clair ») s'appuie sur les principes de la rétroaction formative : l'enseignant dispose d'une mesure directe de l'utilité perçue par chaque apprenant, sans attendre une évaluation formelle. Enfin, la connexion avec RetroActif (remédiation ciblée) et FlashFWB (révision espacée Leitner) ferme la boucle pédagogique : diagnostic → rétroaction → consolidation. Toutes les références sont vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
+        summary: "CorpusActif repose sur cinq principes validés par la recherche. La génération augmentée par récupération (RAG) ancre chaque réponse dans les documents de l'enseignant, éliminant les hallucinations et garantissant la cohérence pédagogique. Le mode socratique s'inscrit dans la tradition du guidage par questionnement : l'IA ne donne pas la réponse — elle accompagne l'apprenant vers elle par une progression en trois niveaux (relances configurables → indice → réponse valorisante), avec mémoire des sessions précédentes pour éviter les redites et construire sur les acquis. Le signal de compréhension (« Utile / Pas clair ») s'appuie sur les principes de la rétroaction formative : l'enseignant dispose d'une mesure directe de l'utilité perçue par chaque apprenant, sans attendre une évaluation formelle. Le défi de consolidation — QCM optionnel en fin de parcours — mobilise l'effet de test : la récupération active en mémoire est l'un des leviers les mieux documentés pour la rétention à long terme. Il est proposé, jamais imposé (l'autonomie perçue soutient l'engagement), et n'affiche ni point ni classement pour éviter que l'objectif ne glisse de l'apprentissage vers l'accumulation de récompenses. Enfin, la connexion avec RetroActif (remédiation ciblée) et FlashFWB (révision espacée Leitner) ferme la boucle pédagogique : diagnostic → rétroaction → consolidation. Toutes les références sont vérifiées dans le corpus RISS (522 627 articles scientifiques francophones).",
         references: [
           {
             id: 'W4410332612',
@@ -2391,6 +2392,16 @@ const apps: AppItem[] = [
             citation: "Affene, N. (2021). Les cartes mémoires : évaluation de la satisfaction et de l'utilité d'une méthode pédagogique efficace. Sciences du vivant, Université de Bordeaux.",
             content: "Les flashcards associées à la révision active et à la répétition espacée (algorithme Anki/Leitner) produisent des effets significatifs sur la rétention à long terme. CorpusActif génère automatiquement ce deck depuis les questions bloquantes réelles des apprenants, garantissant que les cartes portent sur ce qui a effectivement résisté à la compréhension.",
           },
+          {
+            id: 'tel-02461323',
+            citation: "Latimier, A. (2019). Optimisation de l'apprentissage par récupération en mémoire pour promouvoir la rétention à long terme de nouvelles connaissances. Thèse de doctorat, sciences cognitives.",
+            content: "L'apprentissage par récupération en mémoire (effet de test) est l'un des effets les plus étudiés en psychologie de l'apprentissage : se tester sur une connaissance, plutôt que la relire, en améliore nettement la rétention durable. Le défi de consolidation de CorpusActif applique ce principe en fin de parcours socratique, en pondérant les questions vers les notions restées fragiles.",
+          },
+          {
+            id: 'hal-02166286',
+            citation: "Gernigon, C. (1998). Motivation et préparation à la performance sportive. Sciences humaines et sociales ; sciences cognitives.",
+            content: "Une récompense extrinsèque continue (points, badges, classements) risque de déplacer l'objectif de l'apprentissage vers l'accumulation de la récompense (effet de surjustification). Le défi de consolidation ne comptabilise aucun score visible et ne compare pas les apprenants : le bilan est purement factuel (« X sur N », notions à revoir).",
+          },
         ],
       },
       howto: {
@@ -2414,6 +2425,15 @@ const apps: AppItem[] = [
             ],
           },
           {
+            title: 'Définir le curriculum (mode socratique)',
+            items: [
+              "Onglet Curriculum → « Générer depuis les documents » : l'IA dégage une ossature (chapitres optionnels → concepts + définitions) à partir de vos fichiers indexés, affichée dans un panneau brouillon.",
+              "Cochez ce que vous gardez, éditez les définitions, déplacez un concept d'un chapitre à l'autre, puis « Ajouter au curriculum ». Votre curriculum existant n'est pas écrasé — les concepts s'ajoutent, groupés par chapitre.",
+              "Vous pouvez aussi tout saisir à la main, ou importer un modèle de curriculum sauvegardé.",
+              "Un curriculum non vide débloque automatiquement les bilans de session socratiques : rappel de progression à l'ouverture, carte des notions et message personnalisé en fin de parcours.",
+            ],
+          },
+          {
             title: 'Générer les QR codes',
             items: [
               "Onglet Codes & QR → générez des codes anonymes pour vos apprenants (ex. E01, E02 ou M01 pour maths). La correspondance code ↔ élève reste dans votre registre de classe.",
@@ -2429,6 +2449,7 @@ const apps: AppItem[] = [
               "Le message d'accueil lui rappelle le sujet de l'espace.",
               "En mode Direct : il pose ses questions, l'IA répond uniquement à partir des documents uploadés, avec indication des sources et du nombre de fragments consultés. Un signal « ✓ Utile / ✗ Pas clair » s'affiche après chaque réponse.",
               "En mode Socratique : l'IA guide par questions. Après le seuil configuré (3, 5 ou 7 relances) sans progression → indice. Après 2 nouveaux blocages → réponse complète valorisant les acquis. Claude se souvient des sessions précédentes sur cet espace : il ne repose pas les mêmes questions de base.",
+              "En fin de parcours (curriculum défini) : après le message de clôture, l'apprenant peut choisir de lancer un défi de consolidation — un QCM court sur les notions vues, plus de questions sur celles restées fragiles. Correction et explication immédiates par question, puis un bilan factuel (« X sur N », notions à revoir). Aucun point, aucun classement. Il peut aussi décliner.",
             ],
           },
           {
@@ -2438,6 +2459,7 @@ const apps: AppItem[] = [
               "Section « Questions bloquées » : liste des questions ayant systématiquement déclenché un indice, classées par fréquence. Ce sont les points durs de votre corpus — signal direct pour enrichir vos ressources ou adapter votre enseignement.",
               "Section « Notions à réaborder en classe » (en tête) : les notions acquises par aucun élève — ou par moins que le seuil que vous fixez — sont signalées d'emblée. Le point à reprendre collectivement, sans éplucher chaque élève.",
               "Suivi d'acquisition par notion : vue classe (thermomètre maîtrisée / avec indice / en cours / jamais abordée) et matrice notion × élève. La fiche par apprenant croise ses obstacles fonctionnels et ses notions acquises — pour l'accompagnement PLAI individuel.",
+              "Section « Défi de consolidation » : taux de réussite au QCM post-parcours, par notion (agrégat classe). Signal distinct de l'acquisition socratique — une notion « acquise » au parcours mais souvent ratée ici n'est pas encore consolidée.",
               "Export CSV / Imprimer (codes anonymes) : sortez le suivi pour le conseil de classe ou le PIA.",
               "Vue par code anonyme : questions posées, blocages identifiés, taux « Utile ». Les questions hors-base révèlent ce que vos apprenants cherchent et ne trouvent pas.",
               "Bouton « → RetroActif » : en un clic, génère un diagnostic (acquis, blocages, synthèse Claude) et ouvre RetroActif Module6 pré-rempli pour construire la rétroaction individualisée.",
