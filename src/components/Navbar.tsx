@@ -35,6 +35,12 @@ export default function Navbar() {
               >
                 Guides
               </a>
+              <a
+                href="/chantier-ia.html"
+                className="text-sm font-medium px-3 py-1.5 rounded-md transition-colors text-white/80 hover:text-white hover:bg-white/10"
+              >
+                Chantier IA
+              </a>
               <Link
                 to="/voixactif"
                 className={`text-sm font-medium px-3 py-1.5 rounded-md transition-colors ${

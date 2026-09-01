@@ -1424,7 +1424,7 @@ const apps: AppItem[] = [
     id: 'plai-quiz',
     audience: 'enseignant + élève',
     name: 'PLAI-Quiz',
-    description: "Quiz accessible pour la classe inclusive. QCM, QR code, mode papier, tiers-temps, feedback enrichi. Résultats consultables par l'enseignant.",
+    description: "Quiz formatif pour la classe inclusive, sans compte ni installation côté élève : les élèves rejoignent par QR code, code à six chiffres ou mode papier (façon Plickers). Tiers-temps, chrono masquable, lecture vocale des questions. Tableau de bord : questions ratées par plus de la moitié de la classe et demandes d'aide discrètes (bouton SOS).",
     url: 'https://plai-quiz.vercel.app',
     emoji: '🎯',
     category: 'Évaluation formative',
