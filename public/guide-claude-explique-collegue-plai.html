@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude expliqué à un·e collègue qui a peur de l'IA — Guide PLAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --teal: #0f6e56;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; display: flex; align-items: center; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link {
+    font-size: 12px; font-weight: 500; padding: 5px 10px;
+    border-radius: var(--radius-sm); text-decoration: none;
+    color: var(--text2); transition: background 0.15s, color 0.15s;
+  }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text3); border: 1px solid var(--border2);
+    padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(34px, 6vw, 52px); line-height: 1.12;
+    letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub {
+    font-size: 17px; color: var(--text2); max-width: 500px; margin: 0 auto 2.5rem;
+    font-family: 'DM Serif Display', serif; font-style: italic;
+  }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  .leitmotiv { background: var(--text); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .leitmotiv p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: #e8e5de; margin: 0; line-height: 1.6; }
+  .leitmotiv p strong { color: #ffffff; }
+
+  .eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--red-bg); color: var(--red); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .schema { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: var(--radius); margin: 1.5rem 0; background: var(--surface); }
+  .schema-cap { font-size: 12px; color: var(--text3); text-align: center; margin: -0.75rem 0 1.5rem; font-style: italic; }
+
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .callout p + p { margin-top: 0.5rem; }
+  .callout a { color: #0c447c; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  .ex-box { background: var(--surface2); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 1.25rem 0; }
+  .ex-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 0.6rem; }
+  .prompt { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.75rem 1rem; font-size: 13.5px; color: var(--text); line-height: 1.65; font-family: 'DM Serif Display', serif; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .cta-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--teal); text-decoration: none; border: 1px solid #9fd3c4; background: #e6f5f0; padding: 6px 14px; border-radius: 20px; margin-top: 0.5rem; }
+  .cta-link:hover { background: #d9efe7; }
+
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  .niveau-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: 10px; margin-right: 4px; }
+  .niv-sec { background: #d6eaf8; color: #1a527a; border: 1px solid #8ec6e8; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">Claude expliqué à un·e collègue · PLAI</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#comprendre">Ce n'est pas magique</a>
+    <a class="nav-link" href="#premier-prompt">Premier prompt</a>
+    <a class="nav-link" href="#brouillon">Un point de départ</a>
+    <a class="nav-link" href="#hallucinations">Les hallucinations</a>
+    <a class="nav-link" href="#choisir">Faut-il l'utiliser ?</a>
+  </div>
+</nav>
+<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
+
+<!-- HERO -->
+<section style="border-bottom: 1px solid var(--border); padding-bottom: 0;">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🫱 Guide enseignants · Écoles coopérantes du PLAI</div>
+    <h1>Claude, expliqué à un·e collègue<br><em>qui a peur de l'IA</em></h1>
+    <p class="hero-sub">Partir de la crainte, pas de la performance. Comprendre l'outil ne demande ni diplôme, ni vocabulaire technique.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">10&nbsp;min</span><span class="stat-label">à lire</span></div>
+      <div><span class="stat-num">0</span><span class="stat-label">jargon technique</span></div>
+      <div><span class="stat-num">3</span><span class="stat-label">réflexes à retenir</span></div>
+    </div>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Il ne s'agit pas de demander à chaque collègue de devenir un·e utilisateur·rice régulier·ère de l'IA. Il s'agit de <strong>retirer une partie de la peur</strong> en montrant, concrètement, ce que l'outil fait et ne fait pas — pour que le choix de l'utiliser, ou non, soit un choix informé plutôt qu'une réaction d'évitement. »</p>
+  </div>
+
+  <div class="eyebrow">Pour qui, pourquoi</div>
+  <div class="prose" style="margin-bottom:1.25rem;">
+    <p>Ce document s'adresse aux enseignant·es qui n'ont ni le temps ni l'envie de « devenir des experts en IA », mais qui entendent parler de Claude ou de ChatGPT et se demandent, légitimement, si cela les concerne. Il reprend une démarche décrite par Ruben Hassid — qui a appris à sa mère, retraitée sans appétence technique, à se servir de Claude — et la transpose à notre réalité de terrain : le secondaire, les élèves à besoins spécifiques, le cadre FWB.</p>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">🗣️</div><div class="card-t">« Prompt » = message</div><div class="card-d">Un prompt, c'est simplement le message que tu écris à Claude. Rien de plus.</div></div>
+    <div class="card"><div class="card-icon">🔄</div><div class="card-t">On peut recommencer</div><div class="card-d">Si la réponse ne va pas, tu le dis, Claude ajuste. Autant de fois que nécessaire.</div></div>
+    <div class="card"><div class="card-icon">🔒</div><div class="card-t">RGPD toujours</div><div class="card-d">Jamais de nom d'élève, de matricule ou de résultat nominatif. Cas fictifs ou initiales.</div></div>
+    <div class="card"><div class="card-icon">🖼️</div><div class="card-t">Schémas originaux</div><div class="card-d">Les illustrations sont réalisées pour ce document, pas reprises de l'article source (droit d'auteur).</div></div>
+  </div>
+</div>
+</section>
+
+<!-- 1. CE N'EST PAS MAGIQUE -->
+<section id="comprendre">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">1 · Comprendre</div>
+    <div class="guide-title">Ce n'est pas Google, et ce n'est pas magique</div>
+    <div class="guide-subtitle">Premier réflexe rassurant à transmettre : Claude ne « sait » rien au sens où un collègue sait quelque chose.</div>
+    <div class="guide-meta-row"><span class="gmeta">⏧ 3 minutes</span><span class="gmeta">👤 Tous niveaux</span></div>
+  </div>
+
+  <div class="prose">
+    <p>Claude ne consulte pas une base de données pour vous répondre. Il fonctionne plutôt comme la fonction de prédiction de votre téléphone, mais poussée à un niveau très sophistiqué : à partir de ce qui a été écrit, il estime quel mot a le plus de chances de venir ensuite, puis le suivant, et ainsi de suite.</p>
+    <p>Cette capacité vient d'un entraînement sur d'immenses quantités de textes existants — livres, sites, discussions. Les conditions dans lesquelles ces textes ont été collectés font débat, y compris juridiquement, et continuent d'évoluer selon les pays : ce n'est pas un point tranché, et il n'est pas nécessaire de le trancher pour se faire une idée de l'outil.</p>
+  </div>
+
+  <img class="schema" src="/guide-collegue-1-prediction.png" alt="Schéma : vous écrivez une phrase, Claude évalue les mots les plus probables pour continuer, il choisit mot après mot une suite plausible.">
+  <div class="schema-cap">Ce que fait Claude, en une phrase.</div>
+
+  <div class="callout">
+    <div class="callout-label">💡 Ce qu'il faut retenir pour la classe</div>
+    <p>Un outil qui « devine » la suite la plus plausible d'un texte peut se tromper avec beaucoup d'assurance. La vigilance ne porte donc pas sur « est-ce que je fais confiance à l'IA », mais sur « est-ce que je relis ce qu'elle produit avant de m'en servir » — exactement comme on relirait le travail d'un·e stagiaire compétent·e mais nouveau·elle dans l'équipe.</p>
+  </div>
+</div>
+</section>
+
+<!-- 2. PREMIER PROMPT -->
+<section id="premier-prompt">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">2 · Se lancer</div>
+    <div class="guide-title">Un premier prompt, avec une structure simple</div>
+    <div class="guide-subtitle">Trois phrases suffisent. La même structure fonctionne pour une question personnelle et pour une préparation de classe.</div>
+    <div class="guide-meta-row"><span class="gmeta">⏧ 3 minutes</span><span class="gmeta">🎯 L'essentiel</span></div>
+  </div>
+
+  <img class="schema" src="/guide-collegue-2-structure.png" alt="Schéma : objectif et critère de réussite, puis contexte (rôle, classe, situation), puis « si besoin, pose-moi des questions avant de répondre ».">
+  <div class="schema-cap">Trois briques, dans cet ordre. Rien de plus n'est nécessaire pour commencer.</div>
+
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div><div class="step-t">L'objectif et son critère de réussite</div><div class="step-d">« J'ai besoin de [objectif], que je considérerai réussi quand [critère] ». Le critère force Claude à viser juste plutôt qu'à produire du générique.</div></div></div>
+    <div class="step"><div class="step-n">2</div><div><div class="step-t">Le contexte : ton rôle, ta classe, la situation</div><div class="step-d">« Je suis enseignant·e en… », le profil réel des élèves, la contrainte du cadre FWB. Claude ne connaît pas ta réalité — c'est à toi de la poser.</div></div></div>
+    <div class="step"><div class="step-n">3</div><div><div class="step-t">« Si besoin, pose-moi des questions avant de répondre »</div><div class="step-d">Le réflexe le plus utile pour qui découvre l'outil : il évite d'avoir à deviner à l'avance tout ce que Claude aurait besoin de savoir, et déplace une partie du travail de formulation vers l'échange.</div></div></div>
+  </div>
+
+  <div class="ex-box">
+    <div class="ex-label"><span class="niveau-badge niv-sec">Sec.</span> Exemple ancré dans notre quotidien</div>
+    <div class="prompt">J'ai besoin d'adapter cette évaluation pour un élève avec un trouble de l'attention, que je considérerai réussie si les consignes tiennent en une phrase chacune et si le nombre de questions par page est réduit. Je suis enseignant·e en secondaire professionnel, l'élève a un PIA qui mentionne un besoin de supports allégés. Si nécessaire, pose-moi des questions avant de répondre.</div>
+  </div>
+
+  <div class="ok">
+    <div class="ok-label">✅ Pour aller plus loin</div>
+    <p>Le guide <a href="/guide-bien-ecrire-claude-plai.html" style="color:#27500a;font-weight:500;">Bien écrire à Claude</a> détaille 7 principes de formulation, avec des exemples pour le fondamental et le secondaire FWB.</p>
+  </div>
+</div>
+</section>
+
+<!-- 3. UN POINT DE DÉPART -->
+<section id="brouillon">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">3 · Ce que ça produit</div>
+    <div class="guide-title">Plus qu'une réponse : un point de départ à retravailler</div>
+    <div class="guide-subtitle">Claude ne se limite pas à répondre à une question ponctuelle : il peut produire un document de travail complet à partir d'une seule conversation.</div>
+    <div class="guide-meta-row"><span class="gmeta">⏧ 2 minutes</span><span class="gmeta">👤 Tous niveaux</span></div>
+  </div>
+
+  <div class="prose">
+    <p>Une trame, un plan, un premier jet. Pour un métier de l'enseignement, cela peut concerner un premier jet de grille d'observation, une ébauche de séquence différenciée, ou une reformulation d'un texte de cours en version plus accessible.</p>
+    <p>Dans tous les cas, il s'agit d'un brouillon de qualité variable, à examiner avec le même regard critique que n'importe quel document trouvé en ligne.</p>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ La limite à garder en tête</div>
+    <p>Cela fait gagner du temps sur la mise en forme — jamais sur la vérification. Le brouillon reste le vôtre à valider : c'est là que se joue votre part professionnelle, celle que l'outil ne peut pas produire.</p>
+  </div>
+</div>
+</section>
+
+<!-- 4. HALLUCINATIONS -->
+<section id="hallucinations">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">4 · Le point de vigilance</div>
+    <div class="guide-title">Les « hallucinations » : le mot pour « l'IA invente »</div>
+    <div class="guide-subtitle">Produire une information fausse avec la même assurance qu'une information vraie — une date inexacte, une référence légale qui n'existe pas, un chiffre inventé.</div>
+    <div class="guide-meta-row"><span class="gmeta">⏧ 3 minutes</span><span class="gmeta">🎯 À comprendre avant tout usage</span></div>
+  </div>
+
+  <div class="prose">
+    <p>C'est le point qui inquiète, à raison, la plupart des collègues prudent·es face à l'IA. Une piste concrète pour réduire ce risque consiste à contraindre explicitement les sources autorisées.</p>
+  </div>
+
+  <img class="schema" src="/guide-collegue-3-sources.png" alt="Schéma : consigne « Réponds uniquement à partir de enseignement.be / sources officielles. Cite la référence exacte et le lien. Si l'information n'y figure pas, dis non trouvé. Ne complète pas de mémoire. »">
+  <div class="schema-cap">Cette consigne ne supprime pas le risque — elle le rend visible et vérifiable.</div>
+
+  <div class="callout">
+    <div class="callout-label">📚 Zoom RISS — ce que dit la recherche francophone</div>
+    <p>Une étude a analysé un échantillon de références bibliographiques générées par ChatGPT sur six thématiques, en français et en anglais : les taux de références <em>fictives</em> sont élevés dans plusieurs domaines, et la situation reste particulièrement insatisfaisante en français. Conclusion des auteurs : vérifier attentivement chaque référence avant de l'utiliser.</p>
+    <p style="font-size:12px;color:var(--text3);">Las-Vergnas, O. (2024). <em>Les androïdes rêvent-ils de références fictives ?</em> Université Paris-Nanterre / Université de Lille — corpus RISS (HAL : hal-04416800).</p>
+  </div>
+
+  <div class="warn">
+    <div class="warn-label">⚠️ Hors corpus RISS — piste plausible, non vérifiée</div>
+    <p>L'article source (Ruben Hassid) cite une étude récente (arXiv, août 2026) selon laquelle un modèle pourrait faire davantage confiance à un graphique qui a l'apparence d'un document officiel, sans en vérifier le contenu. Cette référence n'a pas pu être confirmée dans le corpus RISS : à traiter comme une piste plausible, pas comme un fait établi.</p>
+  </div>
+
+  <div class="danger">
+    <div class="danger-label">🔒 La règle qui reste valable en toute circonstance</div>
+    <p>Rien qui concerne un élève identifié — un diagnostic, une orientation, une décision d'aménagement — ne devrait sortir d'une conversation avec une IA sans relecture humaine. Contraindre les sources réduit le risque ; cela ne le supprime pas.</p>
+  </div>
+</div>
+</section>
+
+<!-- 5. FAUT-IL L'UTILISER -->
+<section id="choisir">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">5 · Le choix</div>
+    <div class="guide-title">Faut-il « utiliser Claude » au quotidien ?</div>
+    <div class="guide-subtitle">Non — et c'est aussi le message de Ruben Hassid à sa mère.</div>
+    <div class="guide-meta-row"><span class="gmeta">⏧ 1 minute</span></div>
+  </div>
+
+  <div class="prose">
+    <p>Il ne s'agit pas de demander à chaque collègue de devenir un·e utilisateur·rice régulier·ère de l'IA. Il s'agit simplement de retirer une partie de la peur en montrant, concrètement, ce que l'outil fait et ne fait pas — pour que le choix de l'utiliser, ou non, soit un choix informé plutôt qu'une réaction d'évitement.</p>
+  </div>
+
+  <div class="ok">
+    <div class="ok-label">🤝 Un accompagnement individuel reste possible</div>
+    <p>Si une situation concrète se pose — accompagnement d'un élève à besoins spécifiques, PIA, différenciation à construire, ou doute sur l'usage de ces outils pour un élève en particulier — un accompagnement individualisé reste possible dans le cadre des missions du référent numérique du PLAI. Sollicitez-le directement plutôt que de rester seul·e face à l'outil ou face à l'hésitation à l'utiliser.</p>
+  </div>
+
+  <a class="cta-link" href="mailto:jeanfrancois.beguin@ens.ecl.be">✉️ Écrire au référent numérique du PLAI</a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p><img src="/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Claude expliqué à un·e collègue qui a peur de l'IA — Écoles coopérantes du PLAI</strong></p>
+    <p>Adaptation libre et contextualisée de l'article « My mother &amp; Claude » de Ruben Hassid (newsletter <em>How to AI</em>, 30 août 2026) — <a href="https://ruben.substack.com/p/my-mother-and-claude">ruben.substack.com/p/my-mother-and-claude</a>. Non une traduction intégrale.</p>
+    <p>Référence officielle FWB : <a href="https://enseignement.be">enseignement.be</a></p>
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>

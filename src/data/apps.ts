@@ -1923,6 +1923,18 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'claude-explique-collegue',
+    audience: 'enseignant',
+    name: "Claude expliqué à un·e collègue qui a peur de l'IA",
+    description: "Guide de mise en route pour dédramatiser l'IA auprès d'un·e collègue réticent·e : ce que Claude fait et ne fait pas, un premier prompt en 3 phrases, les hallucinations, pourquoi l'usage reste un choix. Adapté d'une idée de Ruben Hassid, ancré secondaire + besoins spécifiques FWB.",
+    url: '/guide-claude-explique-collegue-plai.html',
+    emoji: '🫱',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'teal',
+    section: 'claude',
+  },
+  {
     id: 'ia-enseignants-plai',
     audience: 'enseignant',
     name: 'Quelle IA pour quoi faire ?',
