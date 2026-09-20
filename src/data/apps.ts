@@ -3466,6 +3466,74 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'hubactif',
+    audience: 'enseignant + élève',
+    name: 'HubActif',
+    description: "Un seul endroit pour assigner des tâches issues de plusieurs apps PLAI et voir où en est chaque élève. L'élève retrouve ses tâches avec son code ou un QR code, sans compte. Aucun score : le suivi juxtapose les indicateurs de chaque app.",
+    url: 'https://hubactif-plai.vercel.app',
+    emoji: '🗂️',
+    category: 'Assignation et suivi',
+    status: 'en-développement',
+    devBanner: true,
+    color: 'teal',
+    section: 'applications',
+    browserNote: "Première version : les apps PLAI sont branchées une à une (Dictée interactive, LexiActif et FlashPLAI en premier). Vous pouvez déjà créer vos classes et vos codes élèves.",
+    guide: {
+      scientific: {
+        summary:
+          "HubActif est un outil de gestion et de suivi : il ne propose aucune activité d'apprentissage et ne revendique aucun effet pédagogique propre. Aucune référence scientifique n'est donc mobilisée ici. Ses choix de conception sont d'ordre éthique et pratique : aucun nom d'élève enregistré (codes anonymes), aucun score global ni classement, indicateurs affichés tels que chaque app les fournit, et décision toujours laissée à l'enseignant, qui annote ses propres observations. Ce que l'outil ne dit pas : ce que l'élève a compris. Cela reste à observer en classe.",
+        references: [],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer votre classe',
+            items: [
+              "Ouvrez « Espace enseignant », créez un compte avec votre adresse professionnelle, puis connectez-vous",
+              "Créez une classe : HubActif génère un code de classe à donner à vos élèves",
+              "Ajoutez les élèves : générez des codes anonymes, ou collez les codes que vos élèves utilisent déjà dans d'autres apps PLAI",
+              "HubActif n'enregistre aucun nom : imprimez la liste des codes et écrivez les prénoms à la main, sur papier",
+            ],
+          },
+          {
+            title: 'Assigner une tâche',
+            items: [
+              "Dans une app PLAI branchée, cliquez sur « Assigner via le hub » : la page Assigner s'ouvre avec le titre et le lien déjà remplis",
+              "Choisissez la classe entière ou seulement certains élèves (différenciation), une échéance facultative et un domaine (ex. Orthographe)",
+              "Le domaine regroupe, dans la fiche de l'élève, des tâches venues d'apps différentes : c'est votre intention pédagogique",
+            ],
+          },
+          {
+            title: "Donner accès aux élèves",
+            items: [
+              "Imprimez la feuille de l'assignation : un QR code et un lien court personnels par élève",
+              "Ou communiquez le code de classe et le code personnel : l'élève les saisit sur la page d'accueil de HubActif et retrouve toutes ses tâches",
+              "Le QR code de la classe préremplit le code de classe : l'élève n'a plus qu'à taper son code personnel",
+              "Un code perdu se remplace depuis la liste des élèves ; un lien perdu se remplace depuis la fiche de l'élève",
+            ],
+          },
+          {
+            title: 'Suivre',
+            items: [
+              "La grille classe × tâches montre qui n'a pas commencé, qui est en cours, qui a terminé et qui est en retard",
+              "La fiche d'un élève regroupe ses tâches par domaine, avec les indicateurs de chaque app tels quels (durée, essais, résultats) et un lien vers le détail dans l'app",
+              "Aucun score global n'est calculé : c'est votre lecture qui compte. Ajoutez vos notes (sans nom d'élève), visibles par vous seul",
+            ],
+          },
+          {
+            title: "En fin d'année",
+            items: [
+              "Dès le 15 juillet, un bandeau propose la remise à zéro de chaque classe (codes, assignations, suivis et notes supprimés ; la classe et son code restent)",
+              "Sans action de votre part, les classes non remises à zéro sont supprimées automatiquement à partir du 15 août",
+              "Un élève qui change de classe en cours d'année se retire sans perdre son historique et peut être réactivé",
+            ],
+          },
+        ],
+        tip: "Gardez sur papier la correspondance code et prénom, avec votre cahier de classe : c'est le seul endroit où elle existe. HubActif ne peut pas la retrouver pour vous. Côté élève, deux gestes suffisent : scanner le QR code de sa feuille ou saisir deux codes, sans mot de passe ni adresse e-mail.",
+      },
+    },
+  },
 ];
 
 export default apps;
