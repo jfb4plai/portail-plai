@@ -3478,7 +3478,7 @@ const apps: AppItem[] = [
     devBanner: true,
     color: 'teal',
     section: 'applications',
-    browserNote: "Première version : les apps PLAI sont branchées une à une (Dictée interactive, LexiActif et FlashPLAI en premier). Vous pouvez déjà créer vos classes et vos codes élèves.",
+    browserNote: "Première version : les apps PLAI sont branchées une à une. LexiActif l'est déjà ; Dictée interactive et FlashPLAI suivront. Vous pouvez déjà créer vos classes et vos codes élèves.",
     guide: {
       scientific: {
         summary:
@@ -3499,7 +3499,7 @@ const apps: AppItem[] = [
           {
             title: 'Assigner une tâche',
             items: [
-              "Dans une app PLAI branchée, cliquez sur « Assigner via le hub » : la page Assigner s'ouvre avec le titre et le lien déjà remplis",
+              "Dans une app PLAI branchée (pour l'instant LexiActif : panneau de partage d'une liste), cliquez sur « Assigner via HubActif » : la page Assigner s'ouvre avec le titre et le lien déjà remplis",
               "Choisissez la classe entière ou seulement certains élèves (différenciation), une échéance facultative et un domaine (ex. Orthographe)",
               "Le domaine regroupe, dans la fiche de l'élève, des tâches venues d'apps différentes : c'est votre intention pédagogique",
             ],
