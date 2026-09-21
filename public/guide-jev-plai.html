@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jev (TypeSafe) — Guide Claude Code · Écoles coopérantes du PLAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --surface: #ffffff;
+    --surface2: #f4f2ee;
+    --border: #e8e4dd;
+    --border2: #d4cfc6;
+    --text: #1a1814;
+    --text2: #5a564f;
+    --text3: #9a958c;
+    --green: #3b6d11; --green-bg: #eaf3de; --green-mid: #639922;
+    --blue: #185fa5; --blue-bg: #e6f1fb; --blue-mid: #378add;
+    --amber: #854f0b; --amber-bg: #faeeda; --amber-mid: #ef9f27;
+    --red: #a32d2d; --red-bg: #fcebeb; --red-mid: #e24b4a;
+    --purple: #534ab7; --purple-bg: #eeedfe; --purple-mid: #7f77dd;
+    --teal: #0f6e56; --teal-bg: #e1f5ee; --teal-mid: #1d9e75;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 52px;
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-link { font-size: 12px; font-weight: 500; padding: 5px 10px; border-radius: var(--radius-sm); text-decoration: none; color: var(--text2); transition: background 0.15s, color 0.15s; }
+  .nav-link:hover { background: var(--surface2); color: var(--text); }
+  .nav-link.active { background: var(--text); color: var(--bg); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+
+  .hero { padding: 5rem 0 4rem; text-align: center; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); border: 1px solid var(--border2); padding: 4px 14px; border-radius: 20px; margin-bottom: 1.5rem; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(34px, 6vw, 52px); line-height: 1.1; letter-spacing: -1px; margin-bottom: 1rem; }
+  .hero h1 em { font-style: italic; color: var(--text2); }
+  .hero-sub { font-size: 17px; color: var(--text2); max-width: 480px; margin: 0 auto 2.5rem; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .hero-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--text); display: block; }
+  .stat-label { font-size: 12px; color: var(--text3); }
+
+  .leitmotiv { background: var(--text); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .leitmotiv p { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: #e8e5de; margin: 0; line-height: 1.6; }
+  .leitmotiv p strong { color: #ffffff; }
+
+  .eyebrow { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: var(--text3); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .guide-header { margin-bottom: 2rem; }
+  .guide-level-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.6px; padding: 3px 12px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .tagv { background: var(--purple-bg); color: var(--purple); }
+  .tag1 { background: var(--green-bg); color: var(--green); }
+  .tag2 { background: var(--blue-bg); color: var(--blue); }
+  .tag3 { background: var(--amber-bg); color: var(--amber); }
+  .tag4 { background: var(--teal-bg); color: var(--teal); }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 30px; line-height: 1.2; margin-bottom: 0.5rem; }
+  .guide-subtitle { font-size: 15px; color: var(--text2); font-family: 'DM Serif Display', serif; font-style: italic; }
+  .guide-meta-row { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+  .gmeta { font-size: 12px; color: var(--text3); }
+
+  .section-h { font-size: 18px; font-weight: 500; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose { font-size: 15px; color: var(--text2); line-height: 1.75; }
+  .prose p { margin-bottom: 0.85rem; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  .callout { background: var(--blue-bg); border-left: 3px solid var(--blue-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .callout-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #0c447c; margin-bottom: 3px; }
+  .callout p { font-size: 14px; color: var(--blue); margin: 0; line-height: 1.6; }
+  .warn { background: var(--amber-bg); border-left: 3px solid var(--amber-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .warn-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #633806; margin-bottom: 3px; }
+  .warn p { font-size: 14px; color: var(--amber); margin: 0; line-height: 1.6; }
+  .ok { background: var(--green-bg); border-left: 3px solid var(--green-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .ok-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #27500a; margin-bottom: 3px; }
+  .ok p { font-size: 14px; color: var(--green); margin: 0; line-height: 1.6; }
+  .danger { background: var(--red-bg); border-left: 3px solid var(--red-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .danger-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #501313; margin-bottom: 3px; }
+  .danger p { font-size: 14px; color: var(--red); margin: 0; line-height: 1.6; }
+  .purple-box { background: var(--purple-bg); border-left: 3px solid var(--purple-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .purple-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #3c3489; margin-bottom: 3px; }
+  .purple-box p { font-size: 14px; color: var(--purple); margin: 0; line-height: 1.6; }
+  .teal-box { background: var(--teal-bg); border-left: 3px solid var(--teal-mid); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 0.85rem 1rem; margin: 1.25rem 0; }
+  .teal-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: #085041; margin-bottom: 3px; }
+  .teal-box p { font-size: 14px; color: var(--teal); margin: 0; line-height: 1.6; }
+
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 1.25rem 0; }
+  .step { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .step-n { min-width: 24px; height: 24px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text3); flex-shrink: 0; margin-top: 2px; }
+  .step-t { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .step-d { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+  code { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 12.5px; color: var(--text); }
+  .code-block { background: #1a1814; border-radius: var(--radius); padding: 0.85rem 1rem; margin: 1rem 0; font-family: 'DM Serif Display', serif; font-size: 13px; color: #e8e5de; line-height: 1.7; white-space: pre-wrap; }
+  .code-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 6px; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 1.25rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .card-icon { font-size: 20px; margin-bottom: 6px; }
+  .card-t { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .card-d { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1.25rem 0; }
+  .c-bad { background: var(--red-bg); border: 1px solid #f09595; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-good { background: var(--green-bg); border: 1px solid #c0dd97; border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-neutral { background: var(--surface2); border: 1px solid var(--border2); border-radius: var(--radius); padding: 0.9rem 1rem; }
+  .c-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 5px; }
+  .c-bad .c-label { color: var(--red); }
+  .c-good .c-label { color: var(--green); }
+  .c-neutral .c-label { color: var(--text3); }
+  .c-text { font-size: 13px; line-height: 1.55; font-family: 'DM Serif Display', serif; }
+  .c-bad .c-text { color: #791f1f; }
+  .c-good .c-text { color: #3b6d11; }
+  .c-neutral .c-text { color: var(--text2); }
+
+  /* ── TABLEAU COMPARATIF ── */
+  .cmp-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1.25rem 0; }
+  .cmp-head { display: grid; grid-template-columns: 170px 1fr 1fr; }
+  .cmp-h { padding: 10px 12px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cmp-h-empty { background: var(--surface2); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .cmp-h-sans { background: #f4f2ee; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--text3); }
+  .cmp-h-avec { background: var(--teal-bg); border-bottom: 1px solid var(--border); color: var(--teal); }
+  .cmp-h-title { font-size: 14px; font-weight: 500; }
+  .cmp-h-sub { font-size: 11px; font-weight: 400; margin-top: 1px; opacity: 0.8; }
+  .cmp-row { display: grid; grid-template-columns: 170px 1fr 1fr; border-top: 1px solid var(--border); }
+  .cmp-row:first-child { border-top: none; }
+  .cmp-cat { padding: 12px; background: var(--surface2); border-right: 1px solid var(--border); display: flex; align-items: flex-start; }
+  .cmp-cat-text { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text3); line-height: 1.4; }
+  .cmp-cell { padding: 12px; font-size: 13px; line-height: 1.55; border-right: 1px solid var(--border); }
+  .cmp-cell:last-child { border-right: none; }
+  .cmp-bad { color: #791f1f; }
+  .cmp-good { color: #3b6d11; }
+  .cmp-muted { color: var(--text3); font-style: italic; }
+  .cmp-verdict { display: grid; grid-template-columns: 170px 1fr 1fr; border-top: 1px solid var(--border); }
+  .cmp-v-empty { background: var(--surface2); border-right: 1px solid var(--border); padding: 12px; }
+  .cmp-v-sans { background: #f4f2ee; border-right: 1px solid var(--border); padding: 14px 12px; }
+  .cmp-v-avec { background: var(--teal-bg); padding: 14px 12px; }
+  .cmp-v-text { font-size: 13px; line-height: 1.6; font-family: 'DM Serif Display', serif; font-style: italic; }
+  .cmp-v-sans .cmp-v-text { color: #5f5e5a; }
+  .cmp-v-avec .cmp-v-text { color: var(--teal); }
+
+  /* ── TABLEAU COMMANDES ── */
+  .cmd-section { margin: 1.5rem 0; }
+  .cmd-section-title { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+  .cmd-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .cmd-row { display: grid; grid-template-columns: 1fr 60px; border-bottom: 1px solid var(--border); }
+  .cmd-row:last-child { border-bottom: none; }
+  .cmd-row-head { display: grid; grid-template-columns: 1fr 60px; background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .cmd-cell-code { padding: 10px 12px; border-right: 1px solid var(--border); }
+  .cmd-cell-auto { padding: 10px 8px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .cmd-name { font-family: 'DM Serif Display', serif; font-size: 13px; color: var(--teal); margin-bottom: 2px; }
+  .cmd-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .cmd-h { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); padding: 8px 12px; border-right: 1px solid var(--border); }
+  .cmd-h-auto { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); padding: 8px 8px; text-align: center; }
+  .badge-auto { font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 500; background: var(--teal-bg); color: var(--teal); }
+  .badge-man { font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 500; background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+
+  .accordion { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 1rem 0; }
+  .acc-head { background: var(--surface); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; border-bottom: 1px solid transparent; transition: background 0.15s; }
+  .acc-head:hover { background: var(--surface2); }
+  .acc-head.open { border-bottom-color: var(--border); }
+  .acc-emoji { font-size: 1.2rem; flex-shrink: 0; }
+  .acc-info { flex: 1; }
+  .acc-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .acc-meta { font-size: 12px; color: var(--text3); margin-top: 1px; }
+  .acc-toggle { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+  .acc-toggle.open { transform: rotate(180deg); }
+  .acc-body { padding: 1rem 1.1rem; display: none; }
+  .acc-body.visible { display: block; }
+
+  .checklist { display: flex; flex-direction: column; gap: 6px; margin: 1.25rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.7rem 0.9rem; cursor: pointer; transition: border-color 0.15s; }
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.done { background: var(--green-bg); border-color: #c0dd97; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border2); border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 11px; transition: all 0.15s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+  .check-label { font-size: 13px; color: var(--text2); line-height: 1.5; }
+  .check-item.done .check-label { color: var(--green); }
+
+  .recap-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .recap-row { display: flex; align-items: flex-start; gap: 12px; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-pill { font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 10px; white-space: nowrap; margin-top: 2px; }
+  .recap-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
+  .recap-text strong { color: var(--text); font-weight: 500; }
+
+  .footer { text-align: center; padding: 3rem 0 2.5rem; font-size: 13px; color: var(--text3); }
+  .footer a { color: var(--text2); }
+  .footer p + p { margin-top: 6px; }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 30px; }
+    .cmp-head, .cmp-row, .cmp-verdict { grid-template-columns: 110px 1fr 1fr; }
+    .cmp-cat { padding: 8px; }
+  }
+
+  /* ── Ajouts propres au guide Jev (composants absents du guide de référence) ── */
+  .pill { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 8px; font-weight: 500; white-space: nowrap; vertical-align: 1px; margin-left: 4px; }
+  .pill-green { background: var(--green-bg); color: var(--green); }
+  .pill-amber { background: var(--amber-bg); color: var(--amber); }
+  .pill-blue { background: var(--blue-bg); color: var(--blue); }
+  .pill-red { background: var(--red-bg); color: var(--red); }
+  .pill-gray { background: var(--surface2); color: var(--text3); border: 1px solid var(--border); }
+  .copy-btn { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-mid); border-radius: var(--radius-sm); padding: 6px 14px; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; }
+  .copy-btn:hover { background: var(--surface2); }
+  .recap-row .recap-text { min-width: 0; }
+  .recap-text .code-block { margin: 0.6rem 0 0; }
+  .step .code-block { margin: 0.5rem 0; }
+  .step > div:last-child { min-width: 0; }
+  @media print { nav { position: static; } .nav-links { display: none; } .accordion, .step, .recap-card, .warn, .ok, .callout { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">Jev · TypeSafe</a>
+  <div class="nav-links">
+    <a class="nav-link" href="#comprendre">Comprendre</a>
+    <a class="nav-link" href="#fonctionnement">Fonctionnement</a>
+    <a class="nav-link" href="#potentiel">Potentiel</a>
+    <a class="nav-link" href="#apps">Apps et RISS</a>
+    <a class="nav-link" href="#precautions">Précautions</a>
+    <a class="nav-link" href="#lancer">Démarrer</a>
+    <a class="nav-link" href="#reperes">Repères</a>
+  </div>
+</nav>
+<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
+
+
+<!-- HERO -->
+<section id="hero">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">🎯 Guide numérique · Écoles coopérantes du PLAI</div>
+    <h1>Jev<br><em>l'IA qui trie, sans rédiger</em></h1>
+    <p class="hero-sub">Un modèle qui reçoit une situation et une question à choix, puis renvoie un choix avec son niveau de certitude : pour trier vite, sous votre contrôle.</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">3</span><span class="stat-label">types de questions</span></div>
+      <div><span class="stat-num">2</span><span class="stat-label">commandes d'installation</span></div>
+      <div><span class="stat-num">1</span><span class="stat-label">clé API, créée avant le premier test</span></div>
+    </div>
+    <p class="gmeta" style="margin-top:1.5rem;">Informations vérifiées le 21 septembre 2026. Jev a été lancé le 15 septembre 2026, en accès anticipé : elles peuvent changer vite.</p>
+  </div>
+
+  <div class="leitmotiv">
+    <p>« Jev ne rédige pas : il trie. Il vous donne un choix et un niveau de certitude. <strong>La décision reste la vôtre.</strong> »</p>
+  </div>
+
+  <div class="eyebrow">Ce que ce guide contient</div>
+  <div class="grid2">
+    <div class="card"><div class="card-icon">🎯</div><div class="card-t">Comprendre Jev</div><div class="card-d">Ce qu'il fait, ce qu'il ne fait pas, et comment il répond : un choix et un niveau de certitude.</div></div>
+    <div class="card"><div class="card-icon">🧪</div><div class="card-t">Apps et RISS</div><div class="card-d">Où l'insérer dans vos applications, valider vos concepts par RISS, et la valeur ajoutée chiffrée, sans exagération.</div></div>
+    <div class="card"><div class="card-icon">⚠️</div><div class="card-t">Précautions</div><div class="card-d">Une réponse valide n'est pas une réponse juste, l'anglais, les données personnelles, un produit très récent.</div></div>
+    <div class="card"><div class="card-icon">🚀</div><div class="card-t">Démarrer</div><div class="card-d">Appeler le skill, placer la clé API au bon moment, modèles de demande à copier.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- COMPRENDRE -->
+<section id="comprendre">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">💡 Comprendre</div>
+    <div class="guide-title">Jev, une IA qui trie au lieu de rédiger</div>
+    <div class="guide-subtitle">Sans jargon : ce que c'est, et à quoi ça ne sert pas.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 2 minutes à lire</span>
+      <span class="gmeta">🎯 L'essentiel sans jargon</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem"><div class="section-h">Claude ou ChatGPT, et Jev : quelle différence ?</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">💬</div><div class="recap-text"><strong>Claude ou ChatGPT</strong> : vous écrivez, il rédige une réponse. On peut discuter, demander des variantes, demander pourquoi.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🎯</div><div class="recap-text"><strong>Jev</strong> : vous donnez une situation et une question avec des choix. Il répond par un choix et un niveau de certitude. On ne discute pas avec lui et il n'explique pas son choix.</div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Pourquoi c'est intéressant pour vous</div><div class="prose"><p>Quand vous avez beaucoup d'éléments à ranger selon vos critères (des exercices, des documents, des messages), Jev peut le faire très vite et pour un coût annoncé très bas. Pour 5 éléments, le faire à la main reste plus simple.</p></div><div class="ok"><div class="ok-label">Le principe fondamental</div><p>Jev trie, vous décidez. Les catégories et leurs critères, c'est vous qui les écrivez. C'est là que votre contexte de classe entre. Deux enseignants qui écrivent des critères différents obtiennent des tris différents.</p></div><div class="callout"><div class="callout-label">Si vous développez vos propres applications</div><p>La section « Apps et RISS » explique où Jev peut s'insérer dans votre travail et comment il peut aider à valider vos concepts par le corpus RISS.</p></div><div class="warn"><div class="warn-label">À savoir</div><p>Jev ne s'ouvre pas comme une page de chat. Il faut une petite application construite autour de lui, par exemple avec Claude Code.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Ce que Jev ne fait PAS</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il ne rédige pas.</strong> Pas de texte, pas de résumé, pas de reformulation, pas de calcul précis.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il lit seulement du texte.</strong> Pas d'image, d'audio ni de vidéo pour l'instant. Il faut d'abord transcrire ou décrire en texte.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il est meilleur en anglais.</strong> La documentation officielle indique que l'anglais est la langue où sa précision est la meilleure. Les autres langues sont traitées, mais moins bien. À tester sur vos propres textes en français.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il n'explique jamais pourquoi.</strong> Vous ne saurez pas quel détail a fait pencher le choix.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il ne prend pas de décision pédagogique.</strong> Évaluation, orientation, adaptation d'un élève : cela reste entre vos mains.</div></div></div></div>
+
+</div>
+</section>
+
+<!-- FONCTIONNEMENT -->
+<section id="fonctionnement">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag2">⚙️ Fonctionnement</div>
+    <div class="guide-title">Une situation, une question, des choix</div>
+    <div class="guide-subtitle">Trois types de questions, un exemple, et qui fait quoi.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 2 minutes à lire</span>
+      <span class="gmeta">🎯 Choix, oui ou non, échelle</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem"><div class="section-h">Les trois types de questions</div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>1. Choix</strong><span class="pill pill-green">Une option parmi une liste</span><br/>Vous écrivez la liste des catégories. Jev répond avec l'une d'elles et sa probabilité. Prévoyez toujours un choix « autre » ou « incertain » : Jev ne peut pas choisir une option que vous avez oubliée.</div></div><div class="recap-row"><div class="recap-text"><strong>2. Oui ou non</strong><span class="pill pill-blue">Une probabilité de « oui »</span><br/>Vous posez une affirmation, par exemple « Cette consigne demande une seule action ». Jev répond par la probabilité que ce soit vrai.</div></div><div class="recap-row"><div class="recap-text"><strong>3. Échelle</strong><span class="pill pill-amber">Un degré sur des niveaux décrits</span><br/>Vous décrivez chaque niveau par une situation concrète, par exemple de « pas du tout adapté » à « directement utilisable ». Jev répond par une position sur l'échelle.</div></div></div><div class="callout"><div class="callout-label">Lire une probabilité</div><p>Pour une question oui ou non, une valeur proche de 0,5 veut dire que « oui » et « non » sont aussi probables l'un que l'autre. Jev hésite. Ce n'est pas « moyennement vrai ».</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Un exemple</div><div class="warn"><div class="warn-label">Exemple inventé pour illustrer</div><p>Les nombres ne viennent d'aucun test.</p></div><div class="code-block">Situation :
+La consigne d'un exercice : « Souligne les verbes conjugués au présent dans le texte. »
+
+Question 1 (choix) :
+Quelle compétence cette consigne travaille-t-elle ?
+Options : conjugaison / orthographe d'usage / lecture / vocabulaire / autre
+
+Réponse : conjugaison, certitude 0,93
+
+Question 2 (oui ou non) :
+Cette consigne demande-t-elle une seule action ?
+
+Réponse : probabilité de « oui » = 0,90</div></div><div style="margin-bottom:2rem"><div class="section-h">Qui fait quoi ?</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🎯</div><div class="recap-text"><strong>Jev</strong> juge le sens d'un texte.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🖥️</div><div class="recap-text"><strong>Le code de l'application</strong> compte, calcule, range dans un tableau, applique les règles finales et met à part les réponses incertaines.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🧑‍🏫</div><div class="recap-text"><strong>Vous</strong> écrivez les catégories et les critères, fixez le niveau de certitude en dessous duquel vous vérifiez, et contrôlez les résultats.</div></div></div></div>
+
+</div>
+</section>
+
+<!-- POTENTIEL -->
+<section id="potentiel">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag1">🏫 Potentiel</div>
+    <div class="guide-title">Ce que Jev peut apporter</div>
+    <div class="guide-subtitle">Des exemples publics d'abord, puis des idées pour l'école.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 3 minutes à lire</span>
+      <span class="gmeta">📊 Exemples publics et idées</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem"><div class="section-h">Ce que montrent les exemples publics</div><div class="prose"><p>Ces exemples viennent d'une newsletter payante (« How to AI », 20 septembre 2026). Ils ne concernent pas l'école. Ils montrent le type de tâche que Jev sait faire.</p></div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>Trier des contacts LinkedIn</strong><span class="pill pill-gray">Source : newsletter</span><br/>Repérer quelques centaines de personnes utiles parmi 38 000 contacts et invitations.</div></div><div class="recap-row"><div class="recap-text"><strong>Nettoyer des adresses courriel</strong><span class="pill pill-gray">Source : newsletter</span><br/>Classer des milliers d'adresses (4 710 dans l'export réel décrit) en « garder », « à vérifier », « supprimer ». La newsletter décrit l'outil à construire, pas un résultat mesuré.</div></div><div class="recap-row"><div class="recap-text"><strong>Filtrer des articles scientifiques</strong><span class="pill pill-gray">Source : newsletter</span><br/>348 articles analysés pour 0,18 $ en 3 à 4 secondes, selon l'auteur.</div></div></div><div class="warn"><div class="warn-label">Attention</div><p>Ces résultats sont annoncés par une seule personne. Je ne les ai pas reproduits.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Idées pour l'école</div><div class="callout"><div class="callout-label">À savoir</div><p>Ce sont des <strong>transpositions proposées par moi</strong>. Je n'ai trouvé aucun usage scolaire documenté de Jev dans les sources consultées. Testez avant de vous y fier.</p></div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>Classer une banque d'exercices</strong><br/>Ranger des centaines d'exercices ou de ressources par compétence ou par niveau, selon vos catégories.</div></div><div class="recap-row"><div class="recap-text"><strong>Contrôler des consignes</strong><br/>Vérifier, selon une liste de critères, que chaque consigne demande une seule action ou qu'elle commence par un verbe.</div></div><div class="recap-row"><div class="recap-text"><strong>Vérifier une fiche par rapport à sa source</strong><br/>Repérer les affirmations d'une fiche qui ne sont pas appuyées par le texte source. Le guide de TypeSafe cite les « vérifications de citations » comme motif possible.</div></div><div class="recap-row"><div class="recap-text"><strong>Trier des messages du secrétariat</strong><span class="pill pill-amber">Données personnelles</span><br/>Absence, question, rendez-vous. Lisez d'abord la section Précautions.</div></div></div><div class="ok"><div class="ok-label">Point commun de ces idées</div><p>Beaucoup d'éléments, des catégories connues à l'avance, et une personne qui vérifie un échantillon.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Les chiffres annoncés</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⏱️</div><div class="recap-text"><strong>Vitesse et prix.</strong> Environ 100 millisecondes par appel selon TypeSafe (de 70 à 500 selon un guide de DEV Community). Des mesures indépendantes, relayées par la fiche d'un projet concurrent, donnent 236 à 276 millisecondes (valeur médiane). 0,042 $ par million de tokens en entrée, sortie gratuite. Un token est un petit morceau de mot. <span class="pill pill-amber">Chiffres de l'éditeur, non reproduits</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📊</div><div class="recap-text"><strong>Comparaison avec un grand chatbot.</strong> De 40 à 200 fois plus rapide et de 40 à 400 fois moins cher selon DataCamp. La newsletter cite 200 et 400. TypeSafe parle de « deux ordres de grandeur ». <span class="pill pill-amber">Varie selon les sources</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📉</div><div class="recap-text"><strong>Précision.</strong> Environ 68 % sur un banc d'essai conçu par l'éditeur, d'après DataCamp. À lire comme un ordre de grandeur, pas comme une garantie. <span class="pill pill-amber">Test de l'éditeur</span></div></div></div></div>
+
+</div>
+</section>
+
+<!-- APPS -->
+<section id="apps">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">🧪 Apps et RISS</div>
+    <div class="guide-title">Jev dans vos applications et avec RISS</div>
+    <div class="guide-subtitle">Pour les enseignants qui construisent des applications ou des skills avec Claude.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 11 minutes à lire</span>
+      <span class="gmeta">🧪 Pistes de conception, non testées</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout-label">Statut de cette section</div><p>Les faits techniques (installation du skill, clé API, langues, taille des textes) ont été vérifiés le 21 septembre 2026 dans la documentation officielle de TypeSafe. Les circuits proposés sont des pistes de conception : je n'ai testé aucune d'entre elles avec Jev. Le corpus RISS est décrit d'après nos échanges de mars 2026 (recherche plein texte, outil de lecture d'article). Vérifiez que votre installation y accède.</p></div><div style="margin-bottom:2rem"><div class="section-h">Trois endroits où Jev peut s'insérer</div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>1. Valider vos concepts par RISS</strong><span class="pill pill-green">Piste principale</span><br/>Trier des dizaines ou des centaines d'extraits du corpus pour voir lesquels soutiennent, nuancent ou contredisent un concept de votre application. Circuit détaillé plus bas.</div></div><div class="recap-row"><div class="recap-text"><strong>2. Contrôler ce que vos applications produisent</strong><span class="pill pill-blue">Fabrication</span><br/>Vos skills reposent sur des listes de critères (aménagements universels, FALC, procédures, évaluations adaptées). Une partie de ces critères porte sur le sens d'un texte : Jev peut les vérifier ligne par ligne, très vite.</div></div><div class="recap-row"><div class="recap-text"><strong>3. Faire un tri dans l'application livrée</strong><span class="pill pill-amber">Contrainte technique</span><br/>Une application pour enseignants qui range automatiquement ce que l'enseignant lui donne. C'est possible, mais cela demande un hébergement côté serveur (voir plus bas).</div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Valider un concept par RISS : le circuit</div><div class="prose"><p>L'idée : ne pas lire 200 extraits un par un. Jev fait le premier tri, vous lisez ce qui compte.</p></div><div class="steps"><div class="step"><div class="step-n">1</div><div><div class="step-t">Vous listez les concepts à valider</div><div class="step-d">Un concept par ligne, formulé comme une affirmation. Ce sont vos choix de conception : différenciation à plusieurs niveaux, une consigne par action, phases d'apprentissage, aménagements universels.</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-t">Claude cherche dans RISS</div><div class="step-d">Avec l'outil de recherche RISS ou avec un script sur la base. Prévoyez plusieurs requêtes par concept, avec des formulations différentes : une recherche plein texte ne retrouve que les documents qui contiennent les mots demandés.</div></div></div><div class="step"><div class="step-n">3</div><div><div class="step-t">Jev juge chaque extrait</div><div class="step-d">Pour chaque paire « concept + extrait », il choisit : soutient, nuance ou limite, contredit, sans rapport, incertain.</div></div></div><div class="step"><div class="step-n">4</div><div><div class="step-t">Le code compte et trie</div><div class="step-d">Tableau concept par sources, mise à part des cas incertains, liste des documents à lire en premier.</div></div></div><div class="step"><div class="step-n">5</div><div><div class="step-t">Claude et vous lisez les documents retenus en entier</div><div class="step-d">Jev n'explique pas et n'a vu qu'un extrait. Le texte complet se lit avec l'outil de lecture d'article de RISS. C'est ce texte lu qui autorise une citation, pas le jugement de Jev.</div></div></div><div class="step"><div class="step-n">6</div><div><div class="step-t">Ce qui n'est pas retrouvé est signalé</div><div class="step-d">Gardez la mention « réel, hors corpus RISS ». Elle veut dire « non retrouvé dans le corpus », pas « faux ».</div></div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Exemple de question : la forme réelle de l'appel</div><div class="warn"><div class="warn-label">Exemple de forme</div><p>La structure suit l'exemple de la documentation officielle (état, questions, options décrites). Les parties entre crochets sont à remplacer. Les valeurs de la réponse sont inventées et ne disent rien de la recherche en éducation.</p></div><div class="code-block">Ce que l'application envoie :
+{
+  "state": {
+    "concept": "[affirmation à valider]",
+    "extrait": "[passage du document RISS, collé tel quel]"
+  },
+  "model": "jev-latest",
+  "questions": {
+    "relation": {
+      "type": "choice",
+      "instructions": "Que dit l'extrait à propos du concept ?",
+      "criteria": {
+        "soutient": "L'extrait affirme ou montre que le concept est vrai.",
+        "nuance_ou_limite": "L'extrait le soutient sous conditions, ou signale une limite.",
+        "contredit": "L'extrait affirme ou montre le contraire.",
+        "sans_rapport": "L'extrait ne parle pas de ce concept.",
+        "incertain": "L'extrait ne permet pas de décider."
+      }
+    }
+  }
+}
+
+Ce que Jev répond (valeurs inventées) :
+"relation": {
+  "choice": "nuance_ou_limite",
+  "confidence": 0.71,
+  "probabilities": { "soutient": 0.28, "nuance_ou_limite": 0.71, "contredit": 0.0,
+                     "sans_rapport": 0.0, "incertain": 0.01 }
+}</div><div class="prose"><p>Avec 0,71, l'extrait va dans « à lire en entier ». Le code ne le compte ni comme soutien, ni comme contradiction. Le nom des options (« soutient », etc.) sert au code : la description, elle, dit à Jev ce que chaque option signifie.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">La valeur ajoutée de Jev, sans exagération</div><div class="prose"><p>Un chatbot répond en texte : il faut le relire ou le décoder. Jev renvoie directement un choix, une probabilité par option et un niveau de certitude, pour plusieurs questions en un seul appel.</p></div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📦</div><div class="recap-text"><strong>Le volume.</strong> Quand vous avez des centaines ou des milliers de jugements à faire, le coût annoncé (0,042 $ par million de tokens en entrée, sortie gratuite) et la vitesse rendent le tri automatique réaliste.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🎚️</div><div class="recap-text"><strong>La certitude exploitable.</strong> Sous un seuil que vous fixez, le cas part vers vous. Au-dessus, il est traité. C'est ce qui permet de garder la main sur les cas douteux.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Des questions relisibles.</strong> La documentation conseille de mettre les questions et les seuils dans un seul fichier. Pour vous qui ne lisez pas le code, ce fichier est la seule chose à relire.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🔁</div><div class="recap-text"><strong>La répétition.</strong> Chaque fois que vous modifiez une application ou un skill, vous relancez la même vérification pour un coût minime.</div></div></div><div class="warn"><div class="warn-label">Regard extérieur</div><p>Un blog technique (ChatMaxima) estime qu'à 2 000 conversations par mois avec cinq décisions chacune, un petit modèle de langage fait le même travail pour environ 15 $ par mois, et qu'ajouter un nouveau fournisseur n'en vaut alors pas la peine. C'est une estimation de tiers, mais elle rappelle que la valeur ajoutée de Jev dépend du volume.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Trois exemples chiffrés</div><div class="callout"><div class="callout-label">Méthode de calcul</div><p>Nombre d'appels × tokens par appel × 0,042 $ ÷ 1 000 000. Le nombre de tokens par appel est <strong>mon hypothèse</strong>. Le prix est celui annoncé par TypeSafe : vérifiez-le sur docs.typesafe.ai/models.</p></div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>A. Valider 10 concepts par RISS</strong><span class="pill pill-green">Valeur ajoutée réelle</span><br/>10 concepts × 60 extraits = 600 jugements. À environ 1 000 tokens par appel (extrait, concept, questions) : 600 000 tokens, soit environ <strong>0,025 $</strong> (2,5 centimes). À 0,25 seconde par appel, environ 2 à 3 minutes en séquence, moins en parallèle. Vous lisez ensuite les 20 extraits les plus utiles au lieu de 600. Condition : la précision de Jev sur vos textes en français est acceptable (voir plus bas).</div></div><div class="recap-row"><div class="recap-text"><strong>B. Contrôler 60 consignes d'un document</strong><span class="pill pill-green">Valeur ajoutée réelle si répétée</span><br/>3 questions oui ou non par consigne, posées en un seul appel : 60 appels, 180 réponses. À environ 300 tokens par appel : 18 000 tokens, soit <strong>moins d'un dixième de centime</strong>. Jev signale par exemple 7 consignes douteuses. Claude explique et corrige ces 7. L'intérêt grandit si vous contrôlez chaque nouveau document produit par vos skills.</div></div><div class="recap-row"><div class="recap-text"><strong>C. Un tri dans une application livrée</strong><span class="pill pill-amber">Dépend de l'hébergement</span><br/>Un enseignant décrit une activité, l'application propose une compétence du référentiel avec sa certitude. Un appel, un coût négligeable. La valeur ajoutée est la certitude affichée : sous votre seuil, l'application demande à l'enseignant de choisir lui-même. Elle exige une fonction côté serveur pour garder la clé secrète.</div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Un cas où Jev n'apporte presque rien</div><div class="prose"><p>Vous voulez vérifier <strong>5 concepts</strong> avec une douzaine d'extraits chacun. Claude, avec l'outil RISS, lit les documents, explique son raisonnement, cite précisément et discute avec vous. Jev n'explique pas et demande une mise en place. Pour ce volume, Claude seul est plus simple et plus utile.</p></div><div class="ok"><div class="ok-label">Règle pratique</div><p>Commencez par Claude. Ajoutez Jev quand le volume ou la répétition justifie l'effort, et seulement après un test sur vos textes en français.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Ce que Jev apporte ici, et ce qu'il n'apporte pas</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">✅</div><div class="recap-text"><strong>Trier vite.</strong> Des centaines d'extraits sont classés sans que vous les lisiez tous.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">✅</div><div class="recap-text"><strong>Repérer ce qui contredit.</strong> Une catégorie « contredit » évite de ne garder que les extraits qui vous donnent raison.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">✅</div><div class="recap-text"><strong>Mesurer la couverture.</strong> Un tableau chiffré montre quels concepts reposent sur beaucoup de sources et lesquels sur presque rien.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">✅</div><div class="recap-text"><strong>Refaire la vérification</strong> quand vous modifiez une application, avec les mêmes questions.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il ne dit pas si un concept est vrai.</strong> Il compare un extrait à une affirmation. Il ne connaît ni la qualité de l'étude ni l'état du débat.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text"><strong>Il n'a pas lu le document entier.</strong> Un extrait peut être pris hors contexte.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text"><strong>Aucun résultat ne prouve rien.</strong> Une recherche par mots peut manquer des documents pertinents. « Rien trouvé » n'est pas « rien n'existe ».</div></div></div><div class="warn"><div class="warn-label">Débats ouverts</div><p>En sciences de l'éducation, beaucoup de questions restent débattues. Un « soutient » à 0,9 n'est pas un consensus. N'affichez pas de certitude sur un débat encore ouvert.</p></div><div class="warn"><div class="warn-label">Langue (vérifié dans la documentation officielle)</div><p>L'anglais est la langue d'entraînement principale de Jev et celle où sa précision est la meilleure. Les autres langues sont traitées, mais moins bien : il faut tester sur votre propre contenu et regarder de près le niveau de certitude. Un blog technique note aussi qu'il n'existe pas d'évaluation multilingue publiée. Or vos textes et le corpus RISS sont en français.</p></div><div class="callout"><div class="callout-label">Test indispensable</div><p>Avant de construire, testez à la main dans le Playground de TypeSafe (section « Se lancer », étape 1) sur 10 à 20 paires « concept + extrait » que vous avez déjà jugées. Comparez ensuite avec des questions rédigées en anglais. Ce test vaut plus que n'importe quel chiffre de l'éditeur.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Contrôler ce que vos applications produisent</div><div class="prose"><p>Chaque critère d'une liste de contrôle se traite au meilleur endroit :</p></div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🎯</div><div class="recap-text"><strong>« Cette consigne demande-t-elle une seule action ? »</strong> Question oui ou non pour Jev. <span class="pill pill-green">Jev</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🎯</div><div class="recap-text"><strong>« Ce texte contient-il un mot abstrait non expliqué ? »</strong> Question oui ou non pour Jev. <span class="pill pill-green">Jev</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🖥️</div><div class="recap-text"><strong>Verbe en gras, taille de police, interligne, alignement.</strong> Vérification exacte : le code la fait mieux. <span class="pill pill-blue">Code</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🧠</div><div class="recap-text"><strong>« Tous les items de l'exercice sont-ils solubles avec la contrainte annoncée ? »</strong> Cela demande un raisonnement : Claude, pas Jev. <span class="pill pill-amber">Claude</span></div></div></div><div class="ok"><div class="ok-label">Le duo</div><p>Jev signale les lignes douteuses, très vite. Claude explique et corrige les lignes signalées, puisque Jev n'explique pas. Vous validez.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Dans une application livrée aux enseignants</div><div class="warn"><div class="warn-label">Contrainte technique</div><p>Jev s'appelle avec une clé API, un code secret. Un fichier HTML ouvert par double-clic, ou une page publiée comme artifact Claude, ne peut pas garder cette clé secrète, et un artifact ne peut appeler que l'API Anthropic. Le skill TypeSafe demande de garder la clé côté serveur. Il faut donc une petite fonction hébergée, par exemple sur Vercel comme le portail.</p></div><div class="prose"><p>Cela concerne vos applications du type « fichier index.html à ouvrir sur son ordinateur » : elles ne peuvent pas appeler Jev directement.</p></div><div class="recap-card"><div class="recap-row"><div class="recap-text"><strong>Idée : relier une activité à une compétence du référentiel</strong><span class="pill pill-amber">Idée non testée</span><br/>L'enseignant décrit une activité. L'application propose la compétence du référentiel qui correspond le mieux, avec un niveau de certitude. L'enseignant valide ou corrige.</div></div></div><div class="callout"><div class="callout-label">À savoir</div><p>Ce que l'enseignant saisit part vers un service externe. Voyez la section Précautions avant toute utilisation avec des données d'élèves.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Modèle de demande pour un circuit de validation par RISS</div><div class="prose"><p>À donner à Claude Code. Remplacez les parties entre crochets.</p></div><div class="code-block" id="prompt-riss">Utilise le skill TypeSafe pour concevoir les questions posées à Jev.
+Je ne lis pas le code : explique-moi tout en français simple.
+
+OBJECTIF : valider des concepts pédagogiques de mes applications par le corpus RISS.
+CONCEPTS À VALIDER : [liste, un par ligne, formulés comme des affirmations]
+SOURCE DES EXTRAITS : corpus RISS ([outil RISS ou chemin de la base]), recherche plein texte. Lance plusieurs requêtes par concept, avec des formulations différentes.
+CE QUE JEV JUGE : la relation entre chaque extrait et le concept : soutient / nuance ou limite / contredit / sans rapport / incertain.
+CE QUE LE CODE FAIT : les recherches, les comptages, le tableau concept par sources, la mise à part des cas incertains.
+RÈGLES : ne cite rien que je n'aie pas pu relire dans le document. Ce qui n'est pas retrouvé est marqué "réel, hors corpus RISS". Pas de certitude affichée sur un débat encore ouvert.
+LANGUE : mes textes sont en français. Jev est meilleur en anglais : compare, sur mes paires de test, des questions rédigées en français et en anglais avant de choisir.
+CLÉ API : je l'exporterai moi-même dans la variable TYPESAFE_API_KEY au moment du test. Ne l'écris jamais dans le code ni dans un fichier.
+AVANT DE CONSTRUIRE : montre-moi les questions et attends mon accord.
+TEST : voici [20 paires concept + extrait que j'ai déjà jugées]. Compare les réponses de Jev aux miennes avant tout usage.
+RÉSULTAT : un tableau, avec les documents à lire en entier en premier.</div><div style="margin-top:0.75rem;"><button class="copy-btn" onclick="copyPrompt(this,'prompt-riss')" type="button">Copier le modèle</button></div></div>
+
+</div>
+</section>
+
+<!-- PRECAUTIONS -->
+<section id="precautions">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag3">⚠️ Précautions</div>
+    <div class="guide-title">Ce qu'il faut savoir avant de s'y fier</div>
+    <div class="guide-subtitle">Ces précautions découlent de ce que Jev est réellement : un outil de tri, pas un expert.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 3 minutes à lire</span>
+      <span class="gmeta">⚠️ À lire avant de se lancer</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem"><div class="section-h">Une réponse valide n'est pas une réponse juste</div><div class="prose"><p>On lit que Jev « ne peut pas halluciner ». Cela veut dire que sa réponse respecte toujours le format prévu : elle appartient forcément à votre liste. Cela ne veut pas dire qu'elle est exacte.</p></div><div class="warn"><div class="warn-label">Exemple</div><p>Si les choix sont « secrétariat » et « direction », Jev répondra l'un des deux, même si le bon service est un troisième. Prévoyez toujours « autre / incertain ».</p></div></div><div style="margin-bottom:2rem"><div class="section-h">La certitude n'est pas une garantie</div><div class="prose"><p>Le niveau de certitude indique combien Jev penche vers un choix. Il ne prouve pas que le résultat est correct.</p></div><div class="callout"><div class="callout-label">Seuils</div><p>Les valeurs vues dans les exemples publics (0,5 ou 0,7) sont des exemples. Réglez les vôtres en testant sur vos propres cas, dont vous connaissez la bonne réponse.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Jev fonctionne mieux en anglais</div><div class="prose"><p>La documentation officielle indique que l'anglais est la langue d'entraînement principale et celle où la précision est la meilleure. Les autres langues sont traitées, mais pas aussi bien. TypeSafe recommande de tester sur votre propre contenu et de surveiller de près le niveau de certitude.</p><p>Je n'ai trouvé aucune évaluation publiée pour le français. Un blog technique fait le même constat pour les langues autres que l'anglais.</p></div><div class="warn"><div class="warn-label">Conséquence pour vous</div><p>Vos textes, vos exercices et le corpus RISS sont en français. Testez d'abord sur des exemples dont vous connaissez la réponse, et comparez des questions rédigées en français et en anglais. Pour un tri où la nuance compte, gardez Claude.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Données élèves et RGPD</div><div class="prose"><p>Chaque texte envoyé à Jev part vers un service externe.</p></div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text">Ne jamais envoyer de noms d'élèves, d'adresses courriel, de notes ou de bulletins.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">❌</div><div class="recap-text">Ne jamais envoyer d'éléments de dossiers PIA ou de messages de parents tels quels.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">✅</div><div class="recap-text">Envoyer des textes sans donnée personnelle : consignes, exercices, extraits de cours, textes anonymisés.</div></div></div><div class="callout"><div class="callout-label">Ce que dit TypeSafe (documentation officielle)</div><p>Jev n'est pas entraîné sur les requêtes et les réponses des clients. Un accord de traitement des données et une politique de confidentialité existent. La rétention zéro des données est proposée aux clients entreprise. Je n'ai trouvé ni le lieu d'hébergement, ni lu les conditions en détail. Consultez ces documents, les recommandations de l'APD (Autorité de protection des données) et l'avis de votre direction ou de votre pouvoir organisateur avant tout essai avec des données réelles.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Un produit très récent</div><div class="prose"><p>Jev est en accès anticipé depuis le 15 septembre 2026. Le nom de version <strong>jev-latest</strong> désigne « la dernière version » : il peut changer les réponses sans prévenir. Selon un guide de DEV Community, les limites de débit changent aussi sans préavis. Les prix et les conditions peuvent évoluer. Un blog technique (ChatMaxima) note que TypeSafe n'annonce aucun client nommé et que les conditions de l'accès anticipé peuvent changer.</p></div><div class="warn"><div class="warn-label">Contre-mesures</div><p>Notez la version utilisée pour chaque tri et fixez-la si vous avez réglé des seuils. Gardez une solution de repli (Claude, ou un tri à la main) : si Jev devient indisponible, votre travail continue.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Les décisions à conséquences restent humaines</div><div class="prose"><p>Notes, certification, orientation, sanctions, plans individualisés d'apprentissage : ne les confiez pas à Jev. Un tri d'exercices ou de documents a des conséquences légères. Une décision sur un élève n'en a pas.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Quand Jev n'est pas le bon outil</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">➡️</div><div class="recap-text"><strong>Pour écrire, résumer, reformuler, expliquer</strong> → Claude Chat suffit.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">➡️</div><div class="recap-text"><strong>Pour classer 5 ou 10 éléments</strong> → faites-le à la main.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">➡️</div><div class="recap-text"><strong>Pour comprendre pourquoi une réponse est fausse</strong> → Jev n'explique pas. Utilisez Claude Chat.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">➡️</div><div class="recap-text"><strong>Pour une décision sur un élève</strong> → c'est vous.</div></div></div></div>
+
+</div>
+</section>
+
+<!-- LANCER -->
+<section id="lancer">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tag4">🚀 Démarrer</div>
+    <div class="guide-title">Se lancer pas à pas</div>
+    <div class="guide-subtitle">Cette section concerne les enseignants qui utilisent déjà Claude Code.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 6 minutes à lire</span>
+      <span class="gmeta">🚀 Skill, clé API, modèles de demande</span>
+    </div>
+  </div>
+
+  <div class="callout"><div class="callout-label">À savoir</div><p>Le skill TypeSafe est une méthode que Claude Code suit : il lit la documentation en ligne de TypeSafe avant de construire, conçoit des questions étroites, puis teste. Il n'installe rien par lui-même. Les commandes de cette section ont été vérifiées le 21 septembre 2026 dans la documentation officielle.</p></div><div style="margin-bottom:2rem"><div class="section-h">Les 8 étapes</div><div class="steps"><div class="step"><div class="step-n">1</div><div><div class="step-t">Testez sans code dans le Playground</div><div class="step-d">Sur console.typesafe.ai/playground (connexion requise), collez un texte, ajoutez une question et lisez la réponse. Commencez par 10 exemples en français dont vous connaissez la bonne réponse. Je n'ai pas vérifié si le Playground est gratuit ni ce qu'il consomme.</div></div></div><div class="step"><div class="step-n">2</div><div><div class="step-t">Installez le skill dans Claude Code</div><div class="step-d">Deux commandes, l'une après l'autre. Une seule méthode d'installation à la fois, pour éviter les doublons. Si le skill est déjà importé, passez à l'étape 3.</div><div class="code-block">claude plugin marketplace add typesafe-ai/skills
+claude plugin install typesafe@typesafe-ai</div></div></div><div class="step"><div class="step-n">3</div><div><div class="step-t">Appelez le skill et décrivez votre besoin</div><div class="step-d">Tapez la commande <code>/typesafe:typesafe-ai</code>, ou écrivez « utilise le skill TypeSafe » dans votre demande. À ce stade, aucune clé API n'est nécessaire : Claude lit la documentation, propose un plan et des questions. Voir la carte « Appeler le skill » ci-dessous.</div></div></div><div class="step"><div class="step-n">4</div><div><div class="step-t">Relisez les questions et les seuils</div><div class="step-d">Les questions et les seuils doivent se trouver dans un seul fichier. La documentation prévient que les agents écrivent mal les questions : attendez-vous à les corriger avec lui. Ici s'expriment votre contexte de classe et vos critères.</div></div></div><div class="step"><div class="step-n">5</div><div><div class="step-t">Créez la clé API et exportez-la, juste avant le premier test</div><div class="step-d">Voir la carte « La clé API : où et quand » ci-dessous.</div></div></div><div class="step"><div class="step-n">6</div><div><div class="step-t">Testez sur un petit échantillon et fixez vos seuils</div><div class="step-d">Choisissez des éléments dont vous connaissez la bonne réponse, par exemple 20 à 50 (ma suggestion, pas une règle officielle). En dessous d'un certain niveau de certitude, l'élément va dans « à vérifier ». Si vous voulez seulement la meilleure option, la documentation conseille de prendre celle qui a la plus haute probabilité plutôt que de fixer un seuil partout.</div></div></div><div class="step"><div class="step-n">7</div><div><div class="step-t">Vérifiez vous-même</div><div class="step-d">Relisez tous les éléments « à vérifier » et un échantillon des autres.</div></div></div><div class="step"><div class="step-n">8</div><div><div class="step-t">Si vous publiez l'application, placez la clé chez l'hébergeur</div><div class="step-d">Dans les variables d'environnement de l'hébergeur (par exemple Vercel), jamais dans le code de la page.</div></div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Appeler le skill</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⌨️</div><div class="recap-text"><strong>Avec le plugin Claude Code :</strong> tapez <strong>/typesafe:typesafe-ai</strong>. La documentation officielle donne cette forme. La newsletter écrivait « /typesafe » : c'est une abréviation à ne pas retenir.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">💬</div><div class="recap-text"><strong>Dans n'importe quelle installation :</strong> écrivez « utilise le skill TypeSafe » dans votre demande. Cela fonctionne dans tous les agents, y compris si vous avez importé le skill autrement que par le plugin.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🔧</div><div class="recap-text"><strong>Il ne se charge pas :</strong> vérifiez que l'installation visait bien Claude Code, puis redémarrez Claude Code.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">🔄</div><div class="recap-text"><strong>Claude invente des champs qui n'existent pas :</strong> le skill est probablement périmé. Mettez-le à jour, puis relancez Claude Code ou tapez <code>/reload-plugins</code>.</div></div></div><div class="code-block">claude plugin marketplace update typesafe-ai
+claude plugin update typesafe@typesafe-ai</div><div class="prose"><p>Pour un premier essai sur une application existante, TypeSafe propose cette demande. Voici une adaptation en français :</p></div><div class="code-block" id="prompt-explore">Utilise le skill TypeSafe. Explore le projet et repère où un jugement intelligent pourrait remplacer du code fragile ou compliqué, par exemple une analyse de texte faite avec des règles.</div><div style="margin-top:0.75rem;"><button class="copy-btn" onclick="copyPrompt(this,'prompt-explore')" type="button">Copier la demande</button></div></div><div style="margin-bottom:2rem"><div class="section-h">La clé API : où et quand</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">1️⃣</div><div class="recap-text"><strong>Où la créer :</strong> sur console.typesafe.ai/keys, après connexion.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">2️⃣</div><div class="recap-text"><strong>Quand :</strong> après la conception (étapes 3 et 4), juste avant le premier test (étape 5). Ni pour installer le skill, ni pour concevoir les questions.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">3️⃣</div><div class="recap-text"><strong>Comment :</strong> dans votre terminal, enregistrez-la dans une variable nommée <strong>TYPESAFE_API_KEY</strong>, puis lancez Claude Code depuis ce même terminal. Le logiciel de TypeSafe la lit tout seul dans cette variable : elle n'apparaît alors dans aucun fichier.</div></div></div><div class="code-block">Mac et Linux :
+export TYPESAFE_API_KEY="votre-clé"
+
+Windows (PowerShell) :
+$env:TYPESAFE_API_KEY="votre-clé"</div><div class="prose"><p>Ces deux commandes sont des commandes générales de votre système, pas des commandes TypeSafe. Elles valent pour la session ouverte : refaites-les à chaque nouvelle session, ou demandez de l'aide à Claude pour une variable permanente.</p></div><div class="callout"><div class="callout-label">Une différence à connaître</div><p>La newsletter décrit un collage de la clé directement dans Claude Code. La documentation officielle propose plutôt de l'exporter dans la variable, puis de demander à l'agent de l'utiliser. Je recommande la variable : la clé ne passe pas par la conversation.</p></div><div class="warn"><div class="warn-label">Attention</div><p><strong>Jamais de clé</strong> dans un message, un fichier partagé, un dépôt GitHub, une page HTML ni un artifact Claude. Une clé visible peut être utilisée par n'importe qui, aux frais de votre compte.</p></div><div class="ok"><div class="ok-label">Pour une application en ligne</div><p>La clé se place dans les variables d'environnement de l'hébergeur, et Jev est appelé depuis une fonction côté serveur.</p></div></div><div style="margin-bottom:2rem"><div class="section-h">Modèle de demande à copier</div><div class="prose"><p>Remplacez les parties entre crochets.</p></div><div class="code-block" id="prompt">Utilise le skill TypeSafe pour concevoir toutes les questions posées à Jev.
+Je ne lis pas le code : explique-moi tout en français simple.
+
+OBJECTIF : [ce que je veux trier, en une phrase]
+ÉLÉMENTS À TRIER : [nature et nombre approximatif, sans nom d'élève]
+CHOIX POSSIBLES : [liste des catégories] + une catégorie "autre / incertain"
+CE QUE LE CODE FAIT : les comptages, les dates, le tableau final
+DONNÉES : aucune donnée personnelle. Rien n'est envoyé à un service autre que TypeSafe.
+CLÉ API : je l'exporterai moi-même dans la variable TYPESAFE_API_KEY au moment du test. Ne l'écris jamais dans le code ni dans un fichier.
+AVANT DE CONSTRUIRE : montre-moi les questions et attends mon accord.
+TEST : essaie d'abord sur 20 éléments et montre-moi chaque réponse avec sa certitude.
+RÉSULTAT : mets en évidence les cas incertains pour que je les vérifie.</div><div style="margin-top:0.75rem;"><button class="copy-btn" onclick="copyPrompt(this,'prompt')" type="button">Copier le modèle</button></div></div><div style="margin-bottom:2rem"><div class="section-h">Liste de contrôle avant de commencer</div><div class="checklist"><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Ma tâche consiste à <strong>choisir</strong> parmi des options connues.</div></div><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">J'ai <strong>beaucoup</strong> d'éléments à traiter (des dizaines ou plus).</div></div><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Je peux <strong>vérifier</strong> un échantillon des résultats.</div></div><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Mes textes sont <strong>sans donnée personnelle</strong>.</div></div><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Une erreur a des <strong>conséquences légères</strong>.</div></div><div class="check-item" onclick="chk(this)"><div class="check-box"></div><div class="check-label">Ma direction ou mon pouvoir organisateur est <strong>au courant</strong>.</div></div></div><div class="callout"><div class="callout-label">À savoir</div><p aria-live="polite" id="check-result" role="status">0 case cochée sur 6. Cochez chaque point qui est vrai pour votre projet.</p></div></div>
+
+</div>
+</section>
+
+<!-- REPERES -->
+<section id="reperes">
+<div class="container">
+  <div class="guide-header">
+    <div class="guide-level-tag tagv">📚 Repères</div>
+    <div class="guide-title">Repères et sources</div>
+    <div class="guide-subtitle">Les mots utiles, et d'où viennent les informations de ce guide.</div>
+    <div class="guide-meta-row">
+      <span class="gmeta">⏱ 3 minutes à lire</span>
+      <span class="gmeta">📚 Glossaire et sources</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem"><div class="section-h">Glossaire</div><div class="recap-card"><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Jev</span><div class="recap-text">Le premier modèle de TypeSafe. Il renvoie des décisions, pas des textes.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">System One</span><div class="recap-text">Le nom donné par TypeSafe à cette famille de modèles. Le nom vient de la pensée rapide et intuitive décrite par Kahneman.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Décision typée</span><div class="recap-text">Une réponse qui appartient forcément à une liste prévue : une catégorie, un oui ou non, un niveau.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Probabilité et certitude</span><div class="recap-text">Le degré avec lequel Jev penche vers une réponse. Ce n'est pas une preuve d'exactitude.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Seuil</span><div class="recap-text">Le niveau de certitude en dessous duquel un humain vérifie.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Hallucination</span><div class="recap-text">Une réponse inventée qui a l'air crédible. Jev ne produit pas de texte libre, donc pas d'invention de ce type. Il peut néanmoins se tromper de choix.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Clé API</span><div class="recap-text">Un code secret qui autorise votre application à appeler Jev. Elle se traite comme un mot de passe.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">RISS</span><div class="recap-text">Le corpus de documents scientifiques francophones que Claude peut interroger par recherche plein texte. Il sert à vérifier les affirmations pédagogiques et scientifiques avant de les citer.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Recherche plein texte</span><div class="recap-text">Une recherche qui retrouve les documents contenant les mots demandés. Elle ne comprend pas le sens : varier les formulations est nécessaire.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Playground</span><div class="recap-text">La page de test de TypeSafe : on y colle un texte, on ajoute des questions et on voit les réponses de Jev, sans écrire de code.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Variable d'environnement</span><div class="recap-text">Un réglage enregistré dans votre système ou chez l'hébergeur. On y range la clé API pour qu'elle ne soit écrite dans aucun fichier.</div></div><div class="recap-row"><span class="recap-pill" style="background:var(--teal-bg);color:var(--teal);white-space:normal;max-width:9.5rem;min-width:6rem;text-align:center;">Skill</span><div class="recap-text">Un guide de méthode chargé dans Claude Code. Le skill TypeSafe explique à Claude comment construire avec Jev.</div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Sources consultées le 21 septembre 2026</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Documentation et blog de TypeSafe</strong> (docs.typesafe.ai, typesafe.ai) : fonctionnement, texte seulement, annonce du 15 septembre 2026. <span class="pill pill-amber">Source de l'éditeur</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Documentation officielle de TypeSafe consultée le 21 septembre 2026</strong> : page de démarrage rapide, page « Agent skill » (installation, commande /typesafe:typesafe-ai, mise à jour), page « Models » (langues, taille des textes, données). <span class="pill pill-amber">Source de l'éditeur</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Dépôt GitHub typesafe-ai/skills</strong> : confirme l'invocation /typesafe:typesafe-ai. <span class="pill pill-amber">Source de l'éditeur</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>ChatMaxima (blog)</strong> : absence d'évaluation multilingue publiée, estimation de coût comparée à un petit modèle de langage. <span class="pill pill-gray">Source secondaire</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Fiche Hugging Face d'un projet concurrent (Laya)</strong> : mesures de latence de Jev par des tiers. <span class="pill pill-gray">Source secondaire, partie prenante</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Vercel</strong> (« What is Jev ») : une réponse peut respecter le format tout en interprétant mal les éléments. <span class="pill pill-blue">Partenaire technique</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>DataCamp, DEV Community, flaviocopes.com, TrueFoundry</strong> : articles de presse et blogs techniques, sans reproduction des tests. <span class="pill pill-gray">Sources secondaires</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Newsletter « How to AI » (Ruben Hassid), 20 septembre 2026</strong> : cas pratiques et commandes d'installation. Newsletter liée à une offre de formation payante. Mes idées scolaires ne figurent pas dans cette source. <span class="pill pill-amber">Source commerciale</span></div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Skill TypeSafe</strong> : méthode de conception et de test.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">📄</div><div class="recap-text"><strong>Échanges de mars 2026 sur RISS</strong> : description de l'outil (recherche plein texte, lecture d'article). Je ne l'ai pas réinterrogé aujourd'hui. <span class="pill pill-gray">Source interne</span></div></div></div></div><div style="margin-bottom:2rem"><div class="section-h">Ce que je n'ai pas pu vérifier</div><div class="recap-card"><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">Les conditions d'accès (gratuité, crédit de 5 $) et la gratuité du Playground.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">Le lieu d'hébergement des données et les conditions d'utilisation détaillées (accord de traitement, politique de confidentialité).</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">Tout usage scolaire réel de Jev.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">La précision de Jev sur vos textes en français et sur des extraits scientifiques. La documentation dit que l'anglais est meilleur ; je n'ai trouvé aucune évaluation publiée pour le français.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">Le circuit RISS et Jev décrit dans la section « Apps et RISS » : c'est une piste de conception, non testée.</div></div><div class="recap-row"><div style="font-size:18px;flex-shrink:0;line-height:1.4;">⚠️</div><div class="recap-text">L'accès de votre installation à RISS depuis un script.</div></div></div></div>
+
+</div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p><img src="/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Guide Jev · TypeSafe — Écoles coopérantes du PLAI</strong></p>
+    <p>Documentation officielle : <a href="https://docs.typesafe.ai">docs.typesafe.ai</a> · Guide rédigé le 21 septembre 2026, à valider avant diffusion</p>
+    <p>Pour imprimer : touches Ctrl et P (Cmd et P sur Mac).</p>
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-link');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+
+  function toggle(head) {
+    const body = head.nextElementSibling;
+    const t = head.querySelector('.acc-toggle');
+    const open = body.classList.contains('visible');
+    body.classList.toggle('visible', !open);
+    head.classList.toggle('open', !open);
+    t.classList.toggle('open', !open);
+  }
+
+  function chk(item) {
+    item.classList.toggle('done');
+    item.querySelector('.check-box').textContent = item.classList.contains('done') ? '✓' : '';
+    const items = document.querySelectorAll('.check-item');
+    const out = document.getElementById('check-result');
+    if (!out) return;
+    const n = document.querySelectorAll('.check-item.done').length;
+    if (n === items.length) out.textContent = n + ' cases cochées sur ' + items.length + '. Vous pouvez commencer par un petit test.';
+    else if (n === 0) out.textContent = '0 case cochée sur ' + items.length + '. Cochez chaque point qui est vrai pour votre projet.';
+    else out.textContent = n + (n > 1 ? ' cases cochées' : ' case cochée') + ' sur ' + items.length + '. Pour chaque case vide, commencez par en parler ou par régler le point avant de construire.';
+  }
+
+  function copyPrompt(btn, id) {
+    const node = document.getElementById(id || 'prompt');
+    const text = node.innerText;
+    const initial = btn.getAttribute('data-label') || btn.textContent;
+    btn.setAttribute('data-label', initial);
+    function fallback() {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      btn.textContent = 'Texte sélectionné : copiez avec Ctrl+C';
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = 'Copié';
+          setTimeout(() => { btn.textContent = initial; }, 2500);
+        }).catch(fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  }
+</script>
+
+</body>
+</html>
