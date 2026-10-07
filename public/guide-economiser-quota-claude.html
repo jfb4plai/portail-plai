@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Économiser son quota Claude — Guide pour les écoles coopérantes du PLAI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --surface2: #f4f2ee;
+  --border: #e8e4dd;
+  --bord2: #d4cfc6;
+  --text: #1a1814;
+  --texte-doux: #5a564f;
+  --texte-3: #6f6a62;
+  --border2: #d4cfc6;
+  --text2: #5a564f;
+  --text3: #6f6a62;
+  --plai-rose: #f63cab;      /* rose du logo */
+  --plai-rose-fonce: #b0116e; /* rose lisible pour du texte sur fond clair */
+  --plai-rose-light: #fdebf5;
+  --orange: #854f0b;
+  --orange-light: #faeeda;
+  --orange-mid: #ef9f27;
+  --vert: #3b6d11;
+  --vert-light: #eaf3de;
+  --vert-mid: #639922;
+  --bleu: #185fa5;
+  --bleu-light: #e6f1fb;
+  --bleu-mid: #378add;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+em, i, cite { font-style: normal; }
+
+/* Barre de navigation avec logo */
+.nav-principale {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(250,249,247,0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+  display: flex; align-items: center;
+  height: 56px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+.nav-logo img { height: 38px; width: auto; object-fit: contain; }
+.nav-logo-text { font-family: var(--serif); font-size: 16px; }
+
+/* En-tête de page */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+  background: var(--bg);
+}
+.header-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--plai-rose-fonce); border: 1px solid var(--plai-rose);
+  padding: 4px 14px; border-radius: 20px; margin-bottom: 1.25rem;
+}
+.header h1, h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: normal;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+}
+.header-sub { font-family: var(--serif); font-size: 17px; color: var(--texte-doux); max-width: 34rem; margin: 1rem auto 0; }
+
+/* Contenu */
+.container, main { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 3rem; display: flex; flex-direction: column; }
+section { padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+section:last-of-type { border-bottom: none; }
+h2 { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: normal; line-height: 1.2; text-wrap: balance; }
+h3 { font-size: 1rem; font-weight: 600; color: var(--text); }
+p { color: var(--texte-doux); max-width: 65ch; }
+p strong, strong { color: var(--text); font-weight: 600; }
+.lead { color: var(--texte-doux); font-family: var(--serif); font-size: 17px; }
+ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; color: var(--texte-doux); }
+li::marker { color: var(--plai-rose); }
+
+/* Cartes */
+.group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--plai-rose);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+  min-width: 0;
+}
+.group h3 { color: var(--text); }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 10px; }
+
+/* Prompt à copier */
+.prompt {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-width: 0;
+}
+.prompt p { flex: 1 1 auto; min-width: 0; font-family: var(--serif); color: var(--text); user-select: all; }
+button {
+  font: inherit; font-size: 14px; font-weight: 600;
+  color: #fff; background: var(--text);
+  border: 2px solid var(--text); border-radius: 20px;
+  padding: 0.3rem 0.9rem; cursor: pointer; flex: 0 0 auto;
+}
+button:hover { background: var(--plai-rose-fonce); border-color: var(--plai-rose-fonce); }
+button:focus-visible { outline: 3px solid var(--plai-rose); outline-offset: 2px; }
+
+/* Alerte (données d'élèves) */
+.warn {
+  background: var(--orange-light); color: var(--orange);
+  border-left: 3px solid var(--orange-mid);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.warn h2, .warn p, .warn ul, .warn strong { color: var(--orange); }
+.warn li::marker { color: var(--orange-mid); }
+
+.footer {
+  border-top: 1px solid var(--border);
+  text-align: center; font-size: 13px; color: var(--texte-3);
+  padding: 2rem 1.5rem 2.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.footer img { height: 44px; width: auto; }
+.footer p { color: var(--texte-3); max-width: 46rem; }
+@media (prefers-reduced-motion: no-preference) { button { transition: background 0.15s; } }
+</style>
+</head>
+<body>
+<nav class="nav-principale" aria-label="Navigation principale">
+  <a class="nav-logo" href="/">
+    <img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;vertical-align:middle;margin-right:8px;">
+    <span class="nav-logo-text">Économiser son quota · PLAI</span>
+  </a>
+</nav>
+<div style="background:#e1f5ee;border-bottom:1px solid #1d9e75;padding:0.65rem 2rem;text-align:center;font-size:13px;color:#0f6e56;">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be" style="color:#0f6e56;font-weight:500;">jeanfrancois.beguin@ens.ecl.be</a></div>
+<div class="header">
+  <div class="header-badge">🎓 Guide enseignants · Écoles coopérantes du PLAI</div>
+  <h1>Économiser son quota Claude</h1>
+  <p class="header-sub">Fiche pour les enseignants de nos écoles. Elle garde les règles utiles d'une newsletter du 7 octobre 2026 et laisse de côté le reste.</p>
+</div>
+<main>
+  
+
+  <section aria-labelledby="essentiel">
+    <h2 id="essentiel">Les 3 habitudes qui comptent le plus</h2>
+
+    <div class="group">
+      <h3>Un sujet, une conversation</h3>
+      <ul>
+        <li><strong>Ouvrir</strong> une nouvelle conversation pour chaque sujet (séance, mail aux parents, évaluation).</li>
+        <li><strong>Demander</strong> un résumé avant de quitter une longue conversation.</li>
+        <li><strong>Coller</strong> ce résumé au début de la nouvelle conversation.</li>
+      </ul>
+      <div class="prompt">
+        <p id="p1">Résume cette conversation en 10 lignes : ce que nous avons décidé, ce qui reste ouvert, la prochaine étape.</p>
+        <button type="button" data-copy="p1">Copier</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h3>Les documents dans un Projet</h3>
+      <ul>
+        <li><strong>Déposer</strong> une seule fois dans un Projet les documents que vous réutilisez (référentiels, grilles, fiches modèles).</li>
+        <li><strong>Convertir</strong> les PDF en texte avant de les envoyer (un PDF scanné coûte cher).</li>
+        <li><strong>Recadrer</strong> les captures d'écran sur la partie utile.</li>
+      </ul>
+    </div>
+
+    <div class="group">
+      <h3>Tout dans un seul message</h3>
+      <ul>
+        <li><strong>Regrouper</strong> toutes vos demandes dans un même message.</li>
+        <li><strong>Surligner</strong> la partie à changer, ou écrire « Refais seulement cette section, garde le reste ».</li>
+        <li><strong>Recommencer</strong> une conversation qui part de travers, avec un résumé de 3 lignes, plutôt que de corriger message après message.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="autres">
+    <h2 id="autres">Autres bons réflexes</h2>
+    <div class="group">
+      <ul>
+        <li><strong>Planifier</strong> en texte d'abord et <strong>demander</strong> le document final à la fin.</li>
+        <li><strong>Commencer</strong> par « Je veux [tâche] pour [résultat]. Pose-moi des questions avant de commencer » au lieu d'un très long prompt.</li>
+        <li><strong>Garder</strong> vos instructions personnelles courtes (la newsletter donne 2 000 mots comme maximum).</li>
+        <li><strong>Garder</strong> le même modèle pendant toute une conversation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="adapter">
+    <h2 id="adapter">À adapter chez nous</h2>
+    <div class="group">
+      <ul>
+        <li><strong>Garder</strong> la recherche web active quand la question porte sur un programme ou une règle FWB actuelle. La newsletter conseille de la couper pour les questions rapides.</li>
+        <li><strong>Vérifier</strong> votre compteur dans Paramètres, puis Usage. C'est la mesure fiable pour votre offre.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="ignorer">
+    <h2 id="ignorer">À ignorer</h2>
+    <div class="two">
+      <div class="group">
+        <h3>Réservé à l'offre à 100 $</h3>
+        <ul>
+          <li>Les comparaisons de prix avec ChatGPT.</li>
+          <li>Le choix du modèle et du niveau d'effort conseillé par la newsletter.</li>
+          <li>Le reset gratuit et les rythmes dimanche et lundi.</li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3>Pour développeurs</h3>
+        <ul>
+          <li>Claude Code et la commande /clear.</li>
+          <li>Les tâches planifiées.</li>
+          <li>Les images générées par code.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="warn" aria-labelledby="eleves">
+    <h2 id="eleves">Données d'élèves</h2>
+    <p>La newsletter n'en parle pas. Pour une école, cela passe avant toute économie de quota.</p>
+    <ul>
+      <li><strong>Remplacer</strong> les noms par « Élève A », « Élève B » avant de coller un texte.</li>
+      <li><strong>Retirer</strong> diagnostics, PIA, bulletins et coordonnées des documents envoyés.</li>
+      <li><strong>Demander</strong> à la direction les règles de l'école sur l'usage de l'IA avec des données d'élèves.</li>
+    </ul>
+  </section>
+
+  
+</main>
+<div class="footer">
+  <p><img src="/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;display:block;margin:0 auto 8px;"><strong>Économiser son quota Claude — Écoles coopérantes du PLAI</strong></p>
+  <p>Source : newsletter « Limits » de Ruben Hassid (How to AI), 7 octobre 2026. Elle se termine par la vente d'un abonnement payant.</p>
+  <p>Les chiffres (SemiAnalysis, valeur du plan à 100 $) et le fonctionnement du cache n'ont pas été vérifiés. Les conseils d'usage ci-dessus sont des habitudes de bon sens, à confirmer avec votre propre compteur.</p>
+</div>
+<script>
+(function () {
+  var buttons = document.querySelectorAll("button[data-copy]");
+  Array.prototype.forEach.call(buttons, function (btn) {
+    btn.addEventListener("click", function () {
+      var node = document.getElementById(btn.getAttribute("data-copy"));
+      var text = node.textContent;
+      function selectText() {
+        var range = document.createRange();
+        range.selectNodeContents(node);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        btn.textContent = "Texte sélectionné";
+      }
+      function done() {
+        btn.textContent = "Copié";
+        setTimeout(function () { btn.textContent = "Copier"; }, 2000);
+      }
+      try {
+        navigator.clipboard.writeText(text).then(done, selectText);
+      } catch (e) {
+        selectText();
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
