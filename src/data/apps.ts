@@ -1784,6 +1784,18 @@ const apps: AppItem[] = [
     section: 'claude',
   },
   {
+    id: 'claude-quota',
+    audience: 'enseignant',
+    name: 'Économiser son quota Claude',
+    description: "Mode d'emploi des habitudes qui font durer le quota : un sujet par conversation, documents dans un Projet, tout dans un seul message. Avec un rappel sur les données d'élèves.",
+    url: '/guide-economiser-quota-claude.html',
+    emoji: '🔋',
+    category: 'Guide',
+    status: 'disponible',
+    color: 'teal',
+    section: 'claude',
+  },
+  {
     id: 'claude-design',
     audience: 'enseignant',
     name: 'Claude Design',
