@@ -3559,6 +3559,57 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'imagactif',
+    audience: 'enseignant',
+    name: 'ImagActif',
+    description: "Créer une image pour un support de classe à partir d'une description structurée (sujet, style, palette, cadrage, lumière). Chaque image garde son JSON : on le copie, on en tire une variante ou un modèle dont certains champs sont verrouillés. Images supprimées après 30 jours, JSON conservé. Essai de 3 jours, puis clé personnelle BFL.",
+    url: 'https://imagactif.jfb4plai.com',
+    emoji: '🖼️',
+    category: "Création d'images",
+    status: 'en-développement',
+    devBanner: true,
+    color: 'orange',
+    section: 'applications',
+    browserNote: "Une même description donne une image proche, pas identique, et le texte dans l'image n'est pas fiable. Relisez chaque image avant de l'utiliser en classe.",
+    guide: {
+      scientific: {
+        summary:
+          "ImagActif est un outil de production d'images : il ne propose aucune activité d'apprentissage et ne revendique aucun effet pédagogique propre. Aucune référence scientifique n'est donc mobilisée ici. Ses choix de conception sont d'ordre éthique et pratique : aucune donnée d'élève (la description part chez BFL, serveur européen), images supprimées après 30 jours, clé personnelle chiffrée, export et suppression des données à tout moment. Ce que l'outil ne fait pas bien : il n'écrit pas de texte fiable dans les images, une même description ne redonne pas la même image, et une variante peut changer plus que prévu. La relecture de chaque image par l'enseignant est indispensable.",
+        references: [],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Créer une image',
+            items: [
+              "Créez un compte (ou connectez-vous avec votre compte PLAI), confirmez votre e-mail et acceptez les règles à la première connexion",
+              "Dans « Créer », décrivez le sujet (obligatoire) puis, si vous le souhaitez, le style, la palette, le cadrage et la lumière : une aide sous chaque champ explique son effet",
+              "Gardez « pas de texte dans l'image » dans « À éviter », cliquez sur « Créer l'image » et patientez 10 à 40 secondes",
+              "Relisez l'image avant tout usage : l'IA peut se tromper. N'écrivez jamais le nom d'un élève dans la description",
+            ],
+          },
+          {
+            title: 'Réutiliser une image',
+            items: [
+              "« Faire une variante » préremplit le formulaire avec la description de l'image : changez ce que vous voulez et relancez",
+              "« Enregistrer comme modèle » garde la description ; dans « Modèles », verrouillez les champs qui ne doivent pas changer (le style, par exemple)",
+              "« Copier le JSON » place la description dans votre presse-papiers pour la réutiliser ailleurs ; « Charger ce JSON » fait l'opération inverse",
+            ],
+          },
+          {
+            title: 'Durée de conservation et clé',
+            items: [
+              "Une image est supprimée automatiquement 30 jours après sa création : le compte à rebours passe en orange à 5 jours, et « Télécharger » permet de la garder",
+              "Le JSON reste dans l'historique : « Refaire une image » repart de la même description (l'image sera proche, pas identique)",
+              "Après l'essai de 3 jours, ajoutez votre clé BFL dans « Mes données » : elle est chiffrée et supprimable à tout moment",
+            ],
+          },
+        ],
+        tip: "Plus votre description est concrète (objets, couleurs, cadrage), moins le résultat est générique. C'est votre vocabulaire et votre relecture qui donnent à l'image sa singularité.",
+      },
+    },
+  },
 ];
 
 export default apps;
