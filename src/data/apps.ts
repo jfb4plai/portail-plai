@@ -3601,7 +3601,7 @@ const apps: AppItem[] = [
             title: 'Durée de conservation et clé',
             items: [
               "Une image est supprimée automatiquement 30 jours après sa création : le compte à rebours passe en orange à 5 jours, et « Télécharger » permet de la garder",
-              "Le JSON reste dans l'historique : « Refaire une image » repart de la même description (l'image sera proche, pas identique)",
+              "Le JSON reste dans l'historique un an au maximum après sa création (alerte 30 jours avant) : « Refaire une image » repart de la même description (l'image sera proche, pas identique)",
               "Après l'essai de 3 jours, ajoutez votre clé BFL dans « Mes données » : elle est chiffrée et supprimable à tout moment",
             ],
           },
