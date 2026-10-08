@@ -3575,7 +3575,7 @@ const apps: AppItem[] = [
     guide: {
       scientific: {
         summary:
-          "ImagActif est un outil de production d'images : il ne propose aucune activité d'apprentissage et ne revendique aucun effet pédagogique propre. Aucune référence scientifique n'est donc mobilisée ici. Ses choix de conception sont d'ordre éthique et pratique : aucune donnée d'élève (la description part chez BFL, serveur européen), images supprimées après 30 jours, clé personnelle chiffrée, export et suppression des données à tout moment. Ce que l'outil ne fait pas bien : il n'écrit pas de texte fiable dans les images, une même description ne redonne pas la même image, et une variante peut changer plus que prévu. La relecture de chaque image par l'enseignant est indispensable.",
+          "ImagActif est un outil de production d'images : il ne propose aucune activité d'apprentissage et ne revendique aucun effet pédagogique propre. Aucune référence scientifique n'est donc mobilisée ici. Ses choix de conception sont d'ordre éthique et pratique : aucune donnée d'élève (la description part chez BFL, société allemande, point d'accès européen ; BFL indique pouvoir réutiliser les contenus pour améliorer ses modèles sauf demande d'exclusion), images supprimées après 30 jours, clé personnelle chiffrée, export et suppression des données à tout moment. Ce que l'outil ne fait pas bien : il n'écrit pas de texte fiable dans les images, une même description ne redonne pas la même image, et une variante peut changer plus que prévu. La relecture de chaque image par l'enseignant est indispensable.",
         references: [],
       },
       howto: {
