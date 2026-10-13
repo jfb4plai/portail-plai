@@ -3563,7 +3563,7 @@ const apps: AppItem[] = [
     id: 'imagactif',
     audience: 'enseignant',
     name: 'ImagActif',
-    description: "Créer une image pour un support de classe à partir d'une description structurée (sujet, style, palette, cadrage, lumière). Chaque image garde son JSON : on le copie, on en tire une variante ou un modèle dont certains champs sont verrouillés. Images supprimées après 30 jours, JSON conservé. Essai de 3 jours, puis clé personnelle BFL.",
+    description: "Créer une image pour un support de classe à partir d'une description structurée (sujet, style, palette, cadrage, lumière), seule ou en série de 12 images au même style depuis une liste de sujets. Chaque image garde son JSON : on le copie, on en tire une variante, une retouche ou un modèle dont certains champs sont verrouillés. Images supprimées après 30 jours, JSON conservé. Essai de 3 jours, puis clé personnelle BFL.",
     url: 'https://imagactif.jfb4plai.com',
     emoji: '🖼️',
     category: "Création d'images",
@@ -3571,7 +3571,7 @@ const apps: AppItem[] = [
     devBanner: true,
     color: 'orange',
     section: 'applications',
-    browserNote: "Une même description donne une image proche, pas identique, et le texte dans l'image n'est pas fiable. Relisez chaque image avant de l'utiliser en classe.",
+    browserNote: "Une même description donne une image proche, pas identique (en série, le style est commun mais la composition varie), et le texte dans l'image n'est pas fiable. Relisez chaque image avant de l'utiliser en classe.",
     guide: {
       scientific: {
         summary:
@@ -3590,9 +3590,18 @@ const apps: AppItem[] = [
             ],
           },
           {
+            title: 'Créer une série d\'images',
+            items: [
+              "Réglez d'abord le style dans le formulaire, puis ouvrez « Série d'images » et listez un sujet par ligne (12 au maximum) ; vous pouvez coller des cellules depuis Excel ou LibreOffice",
+              "Chaque image compte dans votre quota d'essai : si le quota ne suffit pas, la série s'arrête, et « Créer les images restantes » reprend plus tard sans recréer les images déjà faites",
+              "Le style est commun mais la composition peut varier d'une image à l'autre : relisez chaque image, et n'écrivez aucun nom d'élève dans les sujets",
+            ],
+          },
+          {
             title: 'Réutiliser une image',
             items: [
               "« Faire une variante » préremplit le formulaire avec la description de l'image : changez ce que vous voulez et relancez",
+              "« Retoucher cette image » renvoie l'image existante à BFL avec une consigne de changement : le reste devrait rester identique, sans garantie ; à éviter sur une image contenant des données d'élève",
               "« Enregistrer comme modèle » garde la description ; dans « Modèles », verrouillez les champs qui ne doivent pas changer (le style, par exemple)",
               "« Copier le JSON » place la description dans votre presse-papiers pour la réutiliser ailleurs ; « Charger ce JSON » fait l'opération inverse",
             ],
