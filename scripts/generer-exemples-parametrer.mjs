@@ -40,8 +40,7 @@ const EXEMPLES = [
       'Durée : une séance de 50 minutes.',
       'À produire : le déroulement de la séance avec le minutage, la consigne que je lirai aux élèves, et une trace écrite de trois lignes.',
       'Contrainte : une seule feuille, imprimable en noir et blanc.',
-    ].join('
-'),
+    ].join('\n'),
     reponses: [
       'Camille', 'P3', 'Herstal', '21',
       '4 élèves lisent en dessous du niveau P2, 3 élèves allophones arrivés cette année, 1 élève avec un PIA pour dyslexie, 2 élèves rapides qui s\'ennuient',
@@ -56,12 +55,11 @@ const EXEMPLES = [
     page: 'guide-parametrer-claude-secondaire.html',
     demande: [
       'Matière : français.',
-      'Objectif : vérifier que mes élèves savent conjuguer les verbes au présent de l'indicatif.',
+      'Objectif : vérifier que mes élèves savent conjuguer les verbes au présent de l\'indicatif.',
       'Durée : 30 minutes.',
       'À produire : une interrogation de 10 questions, le corrigé et une grille de correction sur 20.',
       'Contrainte : pas de question piège, une seule page recto.',
-    ].join('
-'),
+    ].join('\n'),
     reponses: [
       'Alix', 'français et histoire', 'S2 et S3', 'Herstal', 'générale',
       'S2 A avec 22 élèves, S3 B avec 18 élèves',
