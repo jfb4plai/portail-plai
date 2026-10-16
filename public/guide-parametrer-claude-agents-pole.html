@@ -98,6 +98,7 @@
     <a href="#avant">Avant de commencer</a>
     <a href="#exemple">Exemple</a>
     <a href="#etapes">Les étapes</a>
+    <a href="#projet">Circulaire</a>
     <a href="#limites">Limites</a>
     <a href="guide-parametrer-claude-primaire.html">Guide primaire</a>
   </div>
@@ -276,7 +277,7 @@ Ne présente jamais une hypothèse comme un fait.
 - Ne complète jamais une référence incomplète. Sans source : « aucune source trouvée ».
 
 ## Données sensibles
-Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
+Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Ne demande que le strict nécessaire. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
 
 ## Décisions
 Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour un élève : tu structures, tu reformules, tu proposes des pistes que l'équipe valide. Direct, résultat d'abord.</pre>
@@ -291,7 +292,7 @@ Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour u
     <div class="modele">
       <div class="modele-tete"><span>Module : PIA (objectifs SMART)</span><button type="button" class="copier" data-copier="m-pia">Copier</button></div>
       <pre id="m-pia" data-modele="pia">## PIA
-Trame utilisée : <span class="balise">[À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]</span>. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.</pre>
+Un PIA concerne un élève en IPT (sinon : protocole AR) : demande lequel s'applique. Trame : <span class="balise">[À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]</span>. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.</pre>
       <p class="avertissement" data-avertissement-pour="m-pia" role="status" hidden></p>
     </div>
     <div class="modele">
@@ -339,6 +340,28 @@ Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou ensei
   <p>Si une réponse échoue, relis le texte installé : une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente.</p>
 </section>
 
+<section id="projet">
+  <h2>Pour le cadre légal : un Projet avec la circulaire</h2>
+  <p>Les instructions restent courtes (350 mots). Le détail du cadre des pôles (AR, IPT, PIA, missions) n'y figure pas : il se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
+  <ol>
+    <li>Dans claude.ai, ouvre « Projets » puis clique sur « Nouveau projet ». Donne-lui un nom, par exemple « Circulaire de rentrée ».</li>
+    <li>Clique sur « Créer un projet ».</li>
+    <li>Ajoute les instructions du Projet : copie le texte ci-dessous.</li>
+    <li>Joins le PDF de la circulaire aux fichiers du Projet.</li>
+    <li>Pour travailler avec la circulaire, ouvre une conversation dans ce Projet.</li>
+  </ol>
+    <div class="modele">
+      <div class="modele-tete"><span>Instructions du Projet « Circulaire de rentrée »</span><button type="button" class="copier" data-copier="m-projet">Copier</button></div>
+      <pre id="m-projet" data-bloc="projet">Source de référence : la circulaire n° 9759 du 07/07/2026 (pôles territoriaux, rentrée 2026-2027), jointe à ce Projet. Pour toute question sur le cadre des pôles (AR, IPT, PIA, missions, partenaires), consulte-la et cite la page imprimée ; si tu ne trouves pas la réponse, écris « non trouvé dans la circulaire ». La circulaire parle d'ARU là où le Pôle dit AU : ne présume pas qu'ils recouvrent la même chose, signale l'écart. Cette circulaire vaut pour 2026-2027 : si je t'en joins une autre, c'est elle qui prévaut.</pre>
+      <p class="avertissement" data-avertissement-pour="m-projet" role="status" hidden></p>
+    </div>
+  <div class="encadre">
+    <strong>Ce qui a été vérifié, et ce qui ne l'a pas été.</strong>
+    Les étapes 1 et 2 ont été observées le 2026-10-16 sur claude.ai (le projet n'a pas été créé). Les étapes 3 et 4 ne l'ont pas été : les intitulés des écrans peuvent différer. La taille de fichier acceptée (la circulaire fait 120 pages, 8,8 Mo) et le forfait nécessaire n'ont pas été vérifiés. Si le PDF est refusé, préviens le référent numérique du PLAI.
+  </div>
+  <p>La circulaire dit « ARU » là où le Pôle dit « AU ». Le texte du Projet demande à Claude de signaler l'écart plutôt que de les confondre. La circulaire ne traite pas de l'usage d'outils d'IA : « codes, jamais de noms » et « strict nécessaire » sont de la prudence, pas une autorisation.</p>
+</section>
+
 <section id="limites">
   <h2>Ce que ce réglage ne fait pas</h2>
   <ul>
@@ -347,6 +370,7 @@ Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou ensei
     <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.</li>
     <li>Ce canevas a été essayé dans six conversations privées (une seule exécution chacune). Il n'a pas encore été testé avec des agents. Le module PIA a reçu l'exigence SMART après le test : cette version n'a pas été essayée.</li>
     <li>Si tu utilises l'application de bureau avec Cowork : une fois, le contenu du fichier Cowork s'est ajouté tout seul au champ « Instructions pour Claude », sous la mention « [Imported from Cowork] ». Après avoir enregistré, relis ton champ.</li>
+    <li>À revoir chaque année : la circulaire citée vaut pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date dans ses instructions, puis relis le socle et ton module.</li>
     <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
   </ul>
   <p>Tu enseignes dans une classe ? Va au <a href="guide-parametrer-claude-primaire.html">guide primaire</a> ou au <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>

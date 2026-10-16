@@ -24,6 +24,10 @@ const MODULES = [
   { id: 'outils', titre: 'Création d\'outils', court: 'Outils', docx: 'modele-agents-outils.docx', texte: blocs[5] },
 ]
 const SOCLE = blocs[0]
+const BS = String.fromCharCode(92)
+const projetM = new RegExp('```projet' + BS + 'n([' + BS + 's' + BS + 'S]*?)```').exec(canevas)
+if (!projetM) throw new Error('canevas : bloc projet absent')
+const PROJET = projetM[1].trim()
 
 const resultats = lire('docs/agents-pole/resultats-test-canevas.md')
 function reponse(num) {
@@ -70,6 +74,12 @@ const copierBloc = (id, titre, texte) => `    <div class="modele">
       <p class="avertissement" data-avertissement-pour="m-${id}" role="status" hidden></p>
     </div>`
 
+const blocProjet = `    <div class="modele">
+      <div class="modele-tete"><span>Instructions du Projet « Circulaire de rentrée »</span><button type="button" class="copier" data-copier="m-projet">Copier</button></div>
+      <pre id="m-projet" data-bloc="projet">${esc(PROJET)}</pre>
+      <p class="avertissement" data-avertissement-pour="m-projet" role="status" hidden></p>
+    </div>`
+
 const boutonsWord = MODULES.map((m) => `    <li><a class="bouton" href="modeles-parametrer/${m.docx}" download>${esc(m.titre)}</a></li>`).join('\n')
 
 const page = `${entete}
@@ -81,6 +91,7 @@ const page = `${entete}
     <a href="#avant">Avant de commencer</a>
     <a href="#exemple">Exemple</a>
     <a href="#etapes">Les étapes</a>
+    <a href="#projet">Circulaire</a>
     <a href="#limites">Limites</a>
     <a href="guide-parametrer-claude-primaire.html">Guide primaire</a>
   </div>
@@ -197,6 +208,24 @@ ${MODULES.map((m) => copierBloc(m.id, `Module : ${m.titre}`, m.texte)).join('\n'
   <p>Si une réponse échoue, relis le texte installé : une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente.</p>
 </section>
 
+<section id="projet">
+  <h2>Pour le cadre légal : un Projet avec la circulaire</h2>
+  <p>Les instructions restent courtes (350 mots). Le détail du cadre des pôles (AR, IPT, PIA, missions) n'y figure pas : il se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
+  <ol>
+    <li>Dans claude.ai, ouvre « Projets » puis clique sur « Nouveau projet ». Donne-lui un nom, par exemple « Circulaire de rentrée ».</li>
+    <li>Clique sur « Créer un projet ».</li>
+    <li>Ajoute les instructions du Projet : copie le texte ci-dessous.</li>
+    <li>Joins le PDF de la circulaire aux fichiers du Projet.</li>
+    <li>Pour travailler avec la circulaire, ouvre une conversation dans ce Projet.</li>
+  </ol>
+${blocProjet}
+  <div class="encadre">
+    <strong>Ce qui a été vérifié, et ce qui ne l'a pas été.</strong>
+    Les étapes 1 et 2 ont été observées le 2026-10-16 sur claude.ai (le projet n'a pas été créé). Les étapes 3 et 4 ne l'ont pas été : les intitulés des écrans peuvent différer. La taille de fichier acceptée (la circulaire fait 120 pages, 8,8 Mo) et le forfait nécessaire n'ont pas été vérifiés. Si le PDF est refusé, préviens le référent numérique du PLAI.
+  </div>
+  <p>La circulaire dit « ARU » là où le Pôle dit « AU ». Le texte du Projet demande à Claude de signaler l'écart plutôt que de les confondre. La circulaire ne traite pas de l'usage d'outils d'IA : « codes, jamais de noms » et « strict nécessaire » sont de la prudence, pas une autorisation.</p>
+</section>
+
 <section id="limites">
   <h2>Ce que ce réglage ne fait pas</h2>
   <ul>
@@ -205,6 +234,7 @@ ${MODULES.map((m) => copierBloc(m.id, `Module : ${m.titre}`, m.texte)).join('\n'
     <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.</li>
     <li>Ce canevas a été essayé dans six conversations privées (une seule exécution chacune). Il n'a pas encore été testé avec des agents. Le module PIA a reçu l'exigence SMART après le test : cette version n'a pas été essayée.</li>
     <li>Si tu utilises l'application de bureau avec Cowork : une fois, le contenu du fichier Cowork s'est ajouté tout seul au champ « Instructions pour Claude », sous la mention « [Imported from Cowork] ». Après avoir enregistré, relis ton champ.</li>
+    <li>À revoir chaque année : la circulaire citée vaut pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date dans ses instructions, puis relis le socle et ton module.</li>
     <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
   </ul>
   <p>Tu enseignes dans une classe ? Va au <a href="guide-parametrer-claude-primaire.html">guide primaire</a> ou au <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>

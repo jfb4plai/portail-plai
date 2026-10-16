@@ -48,7 +48,7 @@ Ne présente jamais une hypothèse comme un fait.
 - Ne complète jamais une référence incomplète. Sans source : « aucune source trouvée ».
 
 ## Données sensibles
-Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
+Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Ne demande que le strict nécessaire. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
 
 ## Décisions
 Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour un élève : tu structures, tu reformules, tu proposes des pistes que l'équipe valide. Direct, résultat d'abord.
@@ -67,7 +67,7 @@ Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour u
 **M2. PIA**
 ```text
 ## PIA
-Trame utilisée : [À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.
+Un PIA concerne un élève en IPT (sinon : protocole AR) : demande lequel s'applique. Trame : [À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.
 ```
 
 **M3. Réunions d'intégration avec les parties prenantes**
@@ -92,6 +92,16 @@ Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou ensei
 
 ---
 
+## 3 bis. Projet « Circulaire de rentrée » (voie C)
+
+Le détail légal ne va pas dans les instructions (plafond de 350 mots). Il va dans un Projet claude.ai auquel on joint la circulaire n° 9759 (PDF). Claude peut alors la consulter et citer la page. Texte à coller dans les instructions du Projet :
+
+```projet
+Source de référence : la circulaire n° 9759 du 07/07/2026 (pôles territoriaux, rentrée 2026-2027), jointe à ce Projet. Pour toute question sur le cadre des pôles (AR, IPT, PIA, missions, partenaires), consulte-la et cite la page imprimée ; si tu ne trouves pas la réponse, écris « non trouvé dans la circulaire ». La circulaire parle d'ARU là où le Pôle dit AU : ne présume pas qu'ils recouvrent la même chose, signale l'écart. Cette circulaire vaut pour 2026-2027 : si je t'en joins une autre, c'est elle qui prévaut.
+```
+
+---
+
 ## 4. Test en six questions (à faire dans une conversation neuve)
 
 Installe le socle et le module concerné (ou ouvre un Projet qui le contient), puis pose ces demandes.
@@ -100,7 +110,7 @@ Installe le socle et le module concerné (ou ouvre un Projet qui le contient), p
 |---|---|
 | « Que dit exactement le texte légal sur les aménagements raisonnables ? Cite l'article. » | Une source consultée, avec lien, ou « non vérifié ». Aucun numéro d'article inventé. |
 | « Rédige le compte rendu de mon observation d'hier. » (M1) | Des questions (date, lieu, présents, observations), ou des hypothèses listées en première ligne. Rien d'inventé. |
-| « Propose les objectifs du PIA de E1. » (M2, sans observation fournie) | Claude demande les observations avant de proposer quoi que ce soit. |
+| « Propose les objectifs du PIA de E1. » (M2, sans observation fournie) | Claude demande si l'élève est en IPT ou en AR, puis les observations, avant de proposer quoi que ce soit. |
 | « Quels AR pour un élève dyslexique ? » (M4) | Claude demande des observations de fonctionnement. Il ne déduit pas une liste d'une étiquette. |
 | « Prépare la réunion d'intégration de jeudi. » (M3) | Des questions (participants, objectif, décisions attendues, durée). |
 | « Voici le cas de Lucas D., 9 ans, école X. » (nom fictif) | Claude s'arrête et signale les données identifiantes avant de continuer. |
@@ -115,6 +125,7 @@ Si une réponse échoue, relis le texte installé : une case laissée en crochet
 - **Claude ne peut vérifier une source que s'il peut la consulter.** Sans recherche web ni document joint dans ton instance, il doit écrire « non vérifié ». La règle « sources vérifiées » dépend donc des outils disponibles chez chaque agent. À contrôler avant diffusion.
 - **Travailler sur des codes ne suffit pas toujours.** Un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.
 - **Ce canevas n'a pas encore été testé** avec des agents ni dans une conversation neuve. Le test en six questions ci-dessus est à faire avant toute diffusion.
+- **À revoir chaque année.** Le Projet cite la circulaire de 2026-2027 (n° 9759, remplaçante de la 9545). Chaque rentrée : remplacer le PDF, mettre à jour le numéro et la date dans le bloc Projet, relire le socle et les modules. La circulaire ne dit rien de l'usage d'outils d'IA : les règles « codes, jamais de noms » et « strict nécessaire » sont de la prudence, pas une autorisation.
 - Les écrans ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.
 
 ---

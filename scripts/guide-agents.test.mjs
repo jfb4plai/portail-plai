@@ -30,6 +30,17 @@ test('canevas versionné : socle + 5 modules, SMART dans le module PIA', () => {
   for (const b of blocs) assert.ok(!/\[[^\]]*\[/.test(b), 'balise imbriquée')
 })
 
+test('canevas : P3 (strict nécessaire), P4 (PIA = IPT) et bloc Projet', () => {
+  assert.ok(blocs[0].includes('Ne demande que le strict nécessaire.'))
+  assert.ok(blocs[2].includes("Un PIA concerne un élève en IPT (sinon : protocole AR) : demande lequel s'applique."))
+  const projet = /```projet\n([\s\S]*?)```/.exec(canevas)
+  assert.ok(projet, 'bloc projet absent')
+  for (const s of ['circulaire n° 9759 du 07/07/2026', 'cite la page imprimée', 'non trouvé dans la circulaire', 'ARU', 'AU', 'qui prévaut']) {
+    assert.ok(projet[1].includes(s), `bloc projet : absent « ${s} »`)
+  }
+  assert.ok(canevas.toLowerCase().includes('à revoir chaque année'), 'revue annuelle absente du canevas')
+})
+
 test('page agents : fichier présent', () => {
   assert.ok(existsSync(join(PUBLIC, PAGE)), 'page absente')
 })
@@ -78,6 +89,15 @@ if (existsSync(join(PUBLIC, PAGE))) {
       for (const l of lignes) assert.ok(texte.includes(norm(l)), `réponse ${num} : ligne absente : ${l.slice(0, 60)}`)
     }
     for (const s of ['Sonnet 5.5', '2026-10-16', 'une seule exécution', 'ne prouve pas']) assert.ok(texte.includes(s), `absent : ${s}`)
+  })
+
+  test('page agents : Projet avec la circulaire, bloc copiable, revue annuelle', () => {
+    const m = /<pre[^>]*data-bloc="projet"[^>]*>([\s\S]*?)<\/pre>/.exec(html)
+    assert.ok(m, 'bloc projet absent de la page')
+    const proj = /```projet\n([\s\S]*?)```/.exec(canevas)[1].trim()
+    assert.equal(norm(decodeCompact(m[1])), norm(proj))
+    assert.ok(!('projet' in pres), 'le bloc projet ne doit pas être un modèle Word')
+    for (const s of ['circulaire n° 9759', 'Nouveau projet', 'à revoir chaque année']) assert.ok(texte.toLowerCase().includes(s.toLowerCase()), `absent : ${s}`)
   })
 
   test('page agents : limites honnêtes affichées', () => {
