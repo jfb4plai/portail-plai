@@ -122,3 +122,7 @@
 - [ ] **Step 2: Remettre à JF le chemin complet des deux fichiers (`C:\Users\jfbeg\OneDrive\claude-workspace\projets\portail-plai\public\guide-parametrer-claude-primaire.html` et `…-secondaire.html`) pour recette** : lecture par un·e collègue, test des trois questions-pièges dans une conversation neuve avec le modèle rempli de données fictives.
 - [ ] **Step 3: Après recette de JF, demander l'accord explicite de JF pour `git push origin main`.** Après push : vérifier les deux URLs sur `https://portail-plai.vercel.app/…`.
 - [ ] **Step 4: Écrire la note mémoire et son entrée d'index.**
+
+## Erratum (2026-10-16)
+
+L adresse de contact des modes d emploi PLAI est jeanfrancois.beguin@ens.ecl.be (bandeau support standard, tous les guides du portail). Les mentions contraires de ce document (adresse outlook, interdiction de ens.ecl.be) sont caduques. L adresse outlook ne vaut que pour les pages grand public de jfb4plai.com.

@@ -73,10 +73,11 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
     }
   })
   test(`${fichier} : termes et donnees interdits absents`, () => {
-    for (const interdit of ['ens.ecl.be', 'collège', 'lycée', 'Éducation nationale', 'jf beguin']) {
+    for (const interdit of ['jf.beguin@outlook.com', 'collège', 'lycée', 'Éducation nationale', 'jf beguin']) {
       assert.ok(!texte.includes(interdit), `present : ${interdit}`)
     }
-    assert.ok(html.includes('jf.beguin@outlook.com'))
+    assert.ok(html.includes('mailto:jeanfrancois.beguin@ens.ecl.be'), 'adresse PLAI absente')
+    assert.ok(html.includes('référent numérique du PLAI'), 'bandeau support standard absent')
   })
   test(`${fichier} : images avec alt et fichier existant`, () => {
     const imgs = [...html.matchAll(/<img\b[^>]*>/g)].map((m) => m[0])
@@ -156,8 +157,8 @@ test('guide existant : chemins corriges, renvois, contact', () => {
   const html = readFileSync(join(PUBLIC, 'guide-parametrer-claude-plai.html'), 'utf8')
   assert.ok(!html.includes('Settings'), 'reste "Settings"')
   assert.ok(!html.includes('Instructions for Claude'), 'reste "Instructions for Claude"')
-  assert.ok(!html.includes('ens.ecl.be'), 'reste ens.ecl.be')
-  assert.ok(html.includes('jf.beguin@outlook.com'))
+  assert.ok(!html.includes('jf.beguin@outlook.com'), 'adresse outlook : les modes d emploi PLAI utilisent ens.ecl.be')
+  assert.ok(html.includes('mailto:jeanfrancois.beguin@ens.ecl.be'))
   assert.ok(html.includes('guide-parametrer-claude-primaire.html'))
   assert.ok(html.includes('guide-parametrer-claude-secondaire.html'))
   assert.ok(html.includes('Paramètres'))

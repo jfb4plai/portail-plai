@@ -170,3 +170,7 @@ Aucune référence n'est ajoutée sans vérification via `mcp__RISS__search_arti
 1. Plafond de 300 à 350 mots pour le modèle (section 6).
 2. Une page par guide ou une seule page avec bascule primaire/secondaire (retenu : deux pages).
 3. Texte exact de la règle anti-devinette, y compris « Hypothèses (non données par moi) ».
+
+## Erratum (2026-10-16)
+
+L adresse de contact des modes d emploi PLAI est jeanfrancois.beguin@ens.ecl.be (bandeau support standard, tous les guides du portail). Les mentions contraires de ce document (adresse outlook, interdiction de ens.ecl.be) sont caduques. L adresse outlook ne vaut que pour les pages grand public de jfb4plai.com.
