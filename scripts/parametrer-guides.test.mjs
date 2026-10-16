@@ -125,6 +125,20 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
     assert.ok(html.includes('Cmd'), 'touche Mac absente')
     assert.ok(!html.includes('« Pro » ou « Gratuit »'), 'affirmation non verifiee sur la pastille')
   })
+  test(`${fichier} : affirmations mesurees ou prudentes`, () => {
+    assert.ok(!html.includes('environ 300 mots une fois rempli'), 'chiffre de mots inexact')
+    assert.ok(html.includes('environ 250 mots'), 'mesure reelle absente')
+    assert.ok(!html.includes('accorde moins de poids'), 'affirmation sans source')
+    assert.ok(!html.includes('Ce guide a été vérifié'), '"verifie" excessif')
+    assert.ok(html.includes("La procédure complète n'a pas encore été testée"), 'limite de test absente')
+    assert.ok(html.includes('Environ quinze minutes'), 'duree non presentee comme estimation')
+    assert.ok(!html.includes("ne s'appliquent pas toujours"), 'comportement non verifie')
+  })
+  test(`${fichier} : pas de cases grises annoncees sans balise facultative`, () => {
+    const annonce = html.includes('cases <strong>grises</strong>') || html.includes('Les cases grises')
+    const existe = modeles(html).some((m) => m.texte.includes('[OPTIONNEL'))
+    assert.ok(!annonce || existe, 'cases grises annoncees mais absentes des modeles')
+  })
   test(`${fichier} : texte a 16 px minimum`, () => {
     for (const m of html.matchAll(/font-size:\s*([\d.]+)(px|rem)/g)) {
       const v = Number(m[1])
