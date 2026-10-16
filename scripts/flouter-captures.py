@@ -9,17 +9,17 @@ Points d'ancrage des numeros (pourcentage largeur, hauteur de l'original),
 reutilises par les guides HTML :
   parametrer-01-menu-parametres  (4.png, 484x933)
     1 = puce profil en bas a gauche   (13, 97)
-    2 = ligne "Parametres"            (14, 61.6)
+    2 = ligne "Parametres"            (36, 61.6)
   parametrer-02-profil           (3.png, 1366x852)
-    1 = "Compte" dans la liste        (7, 18.5)
-    2 = titre "Profil"               (19, 8.8)
-    3 = "Instructions pour Claude"    (25, 45.8)
-    4 = "Instructions enregistrees sur cet ordinateur" (35, 77.5)
+    1 = "Compte" dans la liste        (12, 18.5)
+    2 = titre "Profil"               (23, 8.8)
+    3 = "Instructions pour Claude"    (33, 45.8)
+    4 = "Instructions enregistrees sur cet ordinateur" (43, 77.5)
   parametrer-03-zones-instructions (2.png, 1380x858)
-    1 = "Instructions pour Claude"    (25, 23)
-    2 = "Instructions enregistrees sur cet ordinateur" (35, 54.4)
-    3 = bouton "Ne pas ajouter"       (70.5, 95.9)
-    4 = bouton "Ajouter aux Instructions pour Claude" (86.9, 95.9)
+    1 = "Instructions pour Claude"    (33.5, 23)
+    2 = "Instructions enregistrees sur cet ordinateur" (43.5, 54.4)
+    3 = bouton "Ne pas ajouter"       (70.5, 90.8)
+    4 = bouton "Ajouter aux Instructions pour Claude" (86.9, 90.8)
 """
 import sys
 from pathlib import Path
