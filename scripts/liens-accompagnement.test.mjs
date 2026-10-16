@@ -20,7 +20,7 @@ test('guide existant : liens vers les deux pas à pas visibles dans le menu, le 
     menu: entre(html, '<nav>', '</nav>'),
     'haut de page': entre(html, '<section id="hero">', '<section id="comprendre">'),
     instructions: entre(html, '<section id="instructions">', '<section id="personnalisation">'),
-    récap: entre(html, '<section id="recap">', '<!-- ── FOOTER'),
+    récap: entre(html, '<section id="recap">', '<section id="accompagnement"'),
   }
   for (const [nom, zone] of Object.entries(zones)) {
     for (const lien of LIENS) assert.ok(zone.includes(`href="${lien}"`), `${nom} : lien absent vers ${lien}`)
@@ -28,11 +28,17 @@ test('guide existant : liens vers les deux pas à pas visibles dans le menu, le 
 })
 
 for (const page of ['guide-parametrer-claude-plai.html', ...LIENS]) {
-  test(`${page} : rappel de disponibilité en pied de page`, () => {
+  test(`${page} : encart d'accompagnement visible, avant le pied de page`, () => {
     const html = lire(page)
-    const pied = html.slice(html.indexOf('<div class="footer"'))
-    for (const s of ['Je reste disponible', 'individuellement', 'tâche essentielle', 'mailto:jeanfrancois.beguin@ens.ecl.be']) {
-      assert.ok(pied.includes(s), `pied de page : absent « ${s} »`)
+    const debut = html.indexOf('id="accompagnement"')
+    const pied = html.indexOf('class="footer"')
+    assert.ok(debut > 0 && pied > debut, 'encart absent ou placé après le pied de page')
+    const encart = html.slice(debut, pied)
+    for (const s of ['Je reste disponible', 'individuellement', 'tâche essentielle', 'mailto:jeanfrancois.beguin@ens.ecl.be', 'class="accomp-bouton"']) {
+      assert.ok(encart.includes(s), `encart : absent « ${s} »`)
     }
+    assert.ok(!html.slice(pied).includes('Je reste disponible'), 'rappel dupliqué dans le pied de page')
+    const css = /\.accomp-carte p\s*\{[^}]*font-size:\s*([\d.]+)rem/.exec(html)
+    assert.ok(css && Number(css[1]) >= 1.125, 'texte de l\'encart trop petit')
   })
 }
