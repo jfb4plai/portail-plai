@@ -40,6 +40,15 @@ const PAGES = {
   'guide-parametrer-claude-secondaire.html': ['instructions', 'locale'],
 }
 
+
+const lum = (hex) => {
+  const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+}
+const ratio = (a, b) => {
+  const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p)
+  return (x + 0.05) / (y + 0.05)
+}
 const motsDe = (t) => t.trim().split(/\s+/).filter(Boolean).length
 const decode = (h) => h.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"').replace(/&nbsp;/g, ' ')
 const modeles = (html) =>
@@ -87,6 +96,20 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
     const logo = /<img\b[^>]*plai-logo[^>]*>/.exec(html)[0]
     const w = /\bwidth="(\d+)"/.exec(logo), h = /\bheight="(\d+)"/.exec(logo)
     assert.ok(!(w && h && w[1] === h[1]), 'logo deforme')
+  })
+  test(`${fichier} : zone locale : non modifiable prevue, avertissement fidele, bouton sans promesse`, () => {
+    assert.ok(html.includes("Si le curseur n'apparaît pas dans la zone"), 'cas zone non modifiable absent')
+    assert.ok(html.includes('à la suite de « Instructions pour Claude »'), 'repli absent')
+    assert.ok(html.includes('ou sous une autre organisation sur celui-ci'), "citation de l'avertissement absente")
+    assert.ok(!html.includes('En cas de doute, clique sur'), 'promesse sur Ne pas ajouter')
+    assert.ok(html.includes('ne clique sur aucun'), 'conseil de prudence absent')
+  })
+  test(`${fichier} : pastilles contrastees (4,5:1) et premiere capture non agrandie`, () => {
+    const v = /--pastille:\s*(#[0-9a-fA-F]{6})/.exec(html)
+    assert.ok(v, 'variable --pastille absente')
+    assert.ok(ratio('#ffffff', v[1]) >= 4.5, `contraste ${ratio('#ffffff', v[1]).toFixed(2)}`)
+    assert.ok(/\.pt\s*\{[^}]*var\(--pastille\)/.test(html) && /\.pt-l\s*\{[^}]*var\(--pastille\)/.test(html), 'pastilles pas sur --pastille')
+    assert.ok(/class="cadre etroit"/.test(html) && /\.cadre\.etroit\s*\{[^}]*max-width:\s*484px/.test(html), 'capture 01 non limitee')
   })
   test(`${fichier} : texte a 16 px minimum`, () => {
     for (const m of html.matchAll(/font-size:\s*([\d.]+)(px|rem)/g)) {

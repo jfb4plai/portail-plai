@@ -12,7 +12,7 @@
     --border: #e8e4dd; --border2: #d4cfc6;
     --text: #1a1814; --text2: #4a463f;
     --teal: #0f6e56; --teal-bg: #e1f5ee; --teal-border: #1d9e75;
-    --orange: #f97316; --orange-bg: #fff1e6; --orange-text: #9a3f00;
+    --orange: #f97316; --pastille: #c2410c; --orange-bg: #fff1e6; --orange-text: #9a3f00;
     --radius: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,12 +39,13 @@
   .encadre.attention { border-left-color: var(--orange); background: var(--orange-bg); }
   .encadre strong:first-child { display: block; }
   .cadre { position: relative; margin: 0; border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .cadre.etroit { max-width: 484px; }
   .cadre img { display: block; width: 100%; height: auto; }
-  .cadre .pt { position: absolute; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+  .cadre .pt { position: absolute; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--pastille); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
   figcaption { font-size: 1rem; color: var(--text2); margin: 8px 0 16px; }
   .legende { list-style: none; padding: 0; }
   .legende li { display: flex; gap: 10px; align-items: flex-start; }
-  .legende .pt-l { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .legende .pt-l { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--pastille); color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
   .modele { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); margin: 16px 0; overflow: hidden; }
   .modele-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 16px; background: var(--surface2); border-bottom: 1px solid var(--border2); font-weight: 700; }
   .modele pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; }
@@ -113,7 +114,7 @@
   </ol>
   <p>Raccourci : appuie ensemble sur les touches <strong>Ctrl</strong> et <strong>,</strong> (virgule).</p>
   <figure style="margin:0">
-    <div class="cadre">
+    <div class="cadre etroit">
       <img src="/captures-parametrer/parametrer-01-menu-parametres.png" alt="Menu qui s'ouvre au clic sur la pastille de profil, en bas à gauche : Paramètres (avec le raccourci Ctrl virgule), Utilisation, Langue, Obtenir de l'aide, puis d'autres lignes. Le nom, l'adresse e-mail et la liste de conversations sont floutés.">
       <span class="pt" style="left:13%;top:97%" aria-hidden="true">1</span>
       <span class="pt" style="left:36%;top:61.6%" aria-hidden="true">2</span>
@@ -266,14 +267,14 @@ Ne présente jamais une hypothèse comme un fait.</pre>
   <ol class="legende">
     <li><span class="pt-l" aria-hidden="true">1</span>« Instructions pour Claude » : valable partout, toujours.</li>
     <li><span class="pt-l" aria-hidden="true">2</span>« Instructions enregistrées sur cet ordinateur » : propres à cet ordinateur, écrites par Cowork.</li>
-    <li><span class="pt-l" aria-hidden="true">3</span>« Ne pas ajouter » : tu gardes les deux zones séparées.</li>
-    <li><span class="pt-l" aria-hidden="true">4</span>« Ajouter aux Instructions pour Claude » : tu fusionnes la zone locale dans la zone principale.</li>
+    <li><span class="pt-l" aria-hidden="true">3</span>« Ne pas ajouter » : tu n'ajoutes pas ces instructions à la zone principale. L'écran ne dit pas ce qu'il advient ensuite du texte local.</li>
+    <li><span class="pt-l" aria-hidden="true">4</span>« Ajouter aux Instructions pour Claude » : tu ajoutes la zone locale à la zone principale.</li>
   </ol>
   <div class="encadre attention">
     <strong>Attention avant de cliquer sur « Ajouter ».</strong>
-    Une fois ajoutées, ces instructions s'appliquent à toutes tes conversations. Les instructions qui n'existent que sur un autre ordinateur seront effacées au prochain démarrage de Cowork sur celui-ci. Lis d'abord le texte avant de les ajouter. En cas de doute, clique sur « Ne pas ajouter ».
+    L'écran dit : « Si vous les ajoutez, les instructions enregistrées uniquement sur un autre ordinateur, ou sous une autre organisation sur celui-ci, seront effacées la prochaine fois que Cowork y démarrera une session. » En clair : en cliquant sur « Ajouter », tu risques de perdre des instructions qui ne sont pas sur cet ordinateur. Celles que tu ajoutes s'appliquent ensuite à toutes tes conversations. Lis d'abord le texte de la zone. En cas de doute, ne clique sur aucun des deux boutons et écris au référent numérique du PLAI.
   </div>
-  <p>Si tu utilises Cowork, tu peux compléter cette zone avec ce modèle court. Il parle de ton ordinateur, pas de ta pédagogie.</p>
+  <p>Si tu utilises Cowork, voici un modèle court. Il parle de ton ordinateur, pas de ta pédagogie. <strong>Cette zone n'est peut-être pas modifiable.</strong> Si le curseur n'apparaît pas dans la zone « Instructions enregistrées sur cet ordinateur », colle le modèle à la suite de « Instructions pour Claude » et retire les lignes qui ne te concernent pas : ton texte total doit rester sous 350 mots.</p>
   <div class="modele">
     <div class="modele-tete"><span>Modèle pour la zone de l'ordinateur</span><button type="button" class="copier" data-copier="m-locale">Copier le modèle</button></div>
     <pre id="m-locale" data-modele="locale"># Mes dossiers
