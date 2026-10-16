@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramétrer Claude, pas à pas (secondaire) · PLAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7; --surface: #ffffff; --surface2: #f4f2ee;
+    --border: #e8e4dd; --border2: #d4cfc6;
+    --text: #1a1814; --text2: #4a463f;
+    --teal: #0f6e56; --teal-bg: #e1f5ee; --teal-border: #1d9e75;
+    --orange: #f97316; --orange-bg: #fff1e6; --orange-text: #9a3f00;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 1.125rem; line-height: 1.7; }
+  a { color: var(--teal); }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.95); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.125rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .nav-logo img { height: 32px; width: auto; }
+  .nav-liens { display: flex; gap: 12px; flex-wrap: wrap; font-size: 1rem; }
+  .banner { background: var(--teal-bg); border-bottom: 1px solid var(--teal-border); padding: 10px 16px; text-align: center; font-size: 1rem; color: var(--teal); }
+  .hero { padding: 48px 0 24px; }
+  .eyebrow { display: inline-block; font-size: 1rem; font-weight: 700; color: var(--teal); border: 1px solid var(--teal-border); border-radius: 20px; padding: 2px 14px; margin-bottom: 16px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin-bottom: 12px; }
+  .sous-titre { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.25rem; color: var(--text2); }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.75rem; line-height: 1.25; margin: 0 0 12px; }
+  h3 { font-size: 1.25rem; margin: 20px 0 8px; }
+  section { padding: 32px 0; border-top: 1px solid var(--border); }
+  p, li { margin-bottom: 12px; }
+  ul, ol { padding-left: 1.4rem; }
+  .etape-n { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; margin-right: 10px; vertical-align: middle; }
+  .encadre { border-left: 4px solid var(--teal-border); background: var(--teal-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 16px 0; }
+  .encadre.attention { border-left-color: var(--orange); background: var(--orange-bg); }
+  .encadre strong:first-child { display: block; }
+  .cadre { position: relative; margin: 0; border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .cadre img { display: block; width: 100%; height: auto; }
+  .cadre .pt { position: absolute; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+  figcaption { font-size: 1rem; color: var(--text2); margin: 8px 0 16px; }
+  .legende { list-style: none; padding: 0; }
+  .legende li { display: flex; gap: 10px; align-items: flex-start; }
+  .legende .pt-l { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--orange); color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .modele { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); margin: 16px 0; overflow: hidden; }
+  .modele-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 16px; background: var(--surface2); border-bottom: 1px solid var(--border2); font-weight: 700; }
+  .modele pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; }
+  .balise { background: var(--orange-bg); color: var(--orange-text); border: 1px solid var(--orange); border-radius: 4px; padding: 0 4px; font-weight: 500; }
+  .balise.facultative { background: var(--surface2); color: var(--text2); border-color: var(--border2); }
+  button.copier { font: inherit; font-size: 1rem; font-weight: 700; background: var(--teal); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; min-height: 44px; cursor: pointer; }
+  button.copier:hover { background: #0b5844; }
+  .avertissement { margin: 0; padding: 10px 16px; background: var(--orange-bg); border-top: 1px solid var(--orange); color: var(--orange-text); font-size: 1rem; }
+  .avertissement[hidden] { display: none; }
+  details { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
+  summary { cursor: pointer; font-weight: 700; padding: 12px 0; }
+  .footer { text-align: center; padding: 40px 16px; color: var(--text2); font-size: 1rem; border-top: 1px solid var(--border); }
+  .footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
+  @media (max-width: 600px) { .nav-liens { display: none; } }
+</style>
+</head>
+<body>
+
+<nav aria-label="Navigation principale">
+  <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;">Paramétrer Claude · secondaire</a>
+  <div class="nav-liens">
+    <a href="#avant">Avant de commencer</a>
+    <a href="#etapes">Les étapes</a>
+    <a href="#bureau">Option ordinateur</a>
+    <a href="/guide-parametrer-claude-primaire.html">Version primaire</a>
+  </div>
+</nav>
+<div class="banner">Une question, un blocage ? Écris au référent numérique du PLAI : <a href="mailto:jf.beguin@outlook.com"><strong>jf.beguin@outlook.com</strong></a></div>
+
+<main class="container">
+
+<header class="hero">
+  <span class="eyebrow">Secondaire · écoles communales FWB</span>
+  <h1>Apprendre à Claude qui tu es, une seule fois</h1>
+  <p class="sous-titre">Quinze minutes pour que Claude parle de tes classes, de ta discipline et de ta façon d'enseigner, et qu'il cesse de deviner.</p>
+</header>
+
+<section id="avant">
+  <h2>Avant de commencer</h2>
+  <p>Tu vas remplir un seul réglage, <strong>« Instructions pour Claude »</strong>. Claude le relit au début de chaque conversation, sans que tu aies à te répéter.</p>
+  <p>Prépare, sur une feuille ou dans ta tête :</p>
+  <ul>
+    <li>ta ou tes disciplines, tes degrés (S1 à S6) et la filière ;</li>
+    <li>ce qui rend ton école particulière ;</li>
+    <li>les outils numériques de ta classe et tes manuels ;</li>
+    <li>ta façon d'enseigner, en deux ou trois phrases.</li>
+  </ul>
+  <div class="encadre attention">
+    <strong>Règle d'or : aucun nom d'élève.</strong>
+    Écris « un élève », « deux élèves en décrochage », ou un code. Jamais un prénom, un nom, un diagnostic rattaché à une personne reconnaissable.
+  </div>
+  <div class="encadre">
+    <strong>L'IA propose, tu décides.</strong>
+    Claude te donne un brouillon. Tu le relis, tu le corriges, tu y mets ta voix. C'est toi qui connais tes élèves.
+  </div>
+  <p>Ce guide a été vérifié le 2026-10-16 sur Windows, avec l'application Claude de bureau. L'écran du site claude.ai est le même pour ces réglages. Si ton écran est différent, passe par la recherche des Paramètres (voir « Si ça ne marche pas »).</p>
+</section>
+
+<section id="etapes">
+  <h2>Les cinq étapes</h2>
+
+  <h3 id="e1"><span class="etape-n">1</span>Ouvrir les Paramètres</h3>
+  <ol>
+    <li>En bas à gauche, clique sur ta pastille (ton nom, avec « Pro » ou « Gratuit »).</li>
+    <li>Dans le menu qui s'ouvre, clique sur <strong>Paramètres</strong>.</li>
+  </ol>
+  <p>Raccourci : appuie ensemble sur les touches <strong>Ctrl</strong> et <strong>,</strong> (virgule).</p>
+  <figure style="margin:0">
+    <div class="cadre">
+      <img src="/captures-parametrer/parametrer-01-menu-parametres.png" alt="Menu qui s'ouvre au clic sur la pastille de profil, en bas à gauche : Paramètres (avec le raccourci Ctrl virgule), Utilisation, Langue, Obtenir de l'aide, puis d'autres lignes. Le nom, l'adresse e-mail et la liste de conversations sont floutés.">
+      <span class="pt" style="left:13%;top:97%" aria-hidden="true">1</span>
+      <span class="pt" style="left:36%;top:61.6%" aria-hidden="true">2</span>
+    </div>
+    <figcaption>Capture du 2026-10-16, Windows, application de bureau. Les informations personnelles sont floutées.</figcaption>
+  </figure>
+  <ol class="legende">
+    <li><span class="pt-l" aria-hidden="true">1</span>Ta pastille, en bas à gauche.</li>
+    <li><span class="pt-l" aria-hidden="true">2</span>La ligne « Paramètres ».</li>
+  </ol>
+
+  <h3 id="e2"><span class="etape-n">2</span>Trouver « Profil »</h3>
+  <ol>
+    <li>Dans la liste de gauche, clique sur <strong>Compte</strong>.</li>
+    <li>À droite, la page s'appelle <strong>Profil</strong>. Descends avec la molette de la souris.</li>
+    <li>Repère la zone <strong>« Instructions pour Claude »</strong>. C'est là que tu vas coller ton texte.</li>
+  </ol>
+  <figure style="margin:0">
+    <div class="cadre">
+      <img src="/captures-parametrer/parametrer-02-profil.png" alt="Page Profil des Paramètres, rubrique Compte sélectionnée à gauche. On voit la photo de profil, le nom complet, le type de travail, puis la zone Instructions pour Claude, puis la zone Instructions enregistrées sur cet ordinateur. Le contenu des champs est flouté.">
+      <span class="pt" style="left:12%;top:18.5%" aria-hidden="true">1</span>
+      <span class="pt" style="left:23%;top:8.8%" aria-hidden="true">2</span>
+      <span class="pt" style="left:33%;top:45.8%" aria-hidden="true">3</span>
+      <span class="pt" style="left:43%;top:77.5%" aria-hidden="true">4</span>
+    </div>
+    <figcaption>Capture du 2026-10-16, Windows, application de bureau. Le contenu des champs est flouté.</figcaption>
+  </figure>
+  <ol class="legende">
+    <li><span class="pt-l" aria-hidden="true">1</span>« Compte », dans la liste de gauche.</li>
+    <li><span class="pt-l" aria-hidden="true">2</span>Le titre « Profil ».</li>
+    <li><span class="pt-l" aria-hidden="true">3</span>La zone « Instructions pour Claude » : c'est elle que tu remplis.</li>
+    <li><span class="pt-l" aria-hidden="true">4</span>La zone « Instructions enregistrées sur cet ordinateur » : tu n'en as pas besoin pour commencer (voir l'option plus bas).</li>
+  </ol>
+
+  <h3 id="e3"><span class="etape-n">3</span>Écrire « Instructions pour Claude »</h3>
+  <p>Voici un modèle complet. Les cases <span class="balise">[À COMPLÉTER : …]</span> sont obligatoires : remplace-les par ta réalité. Les cases <span class="balise facultative">[OPTIONNEL : …]</span> sont à garder ou à effacer.</p>
+  <ol>
+    <li>Clique sur <strong>Copier le modèle</strong>.</li>
+    <li>Colle-le dans un document (Word ou Bloc-notes) et remplace chaque case orange par ta réponse. Efface les crochets.</li>
+    <li>Copie ton texte terminé, puis colle-le dans la zone « Instructions pour Claude ».</li>
+  </ol>
+  <div class="modele">
+    <div class="modele-tete"><span>Modèle secondaire</span><button type="button" class="copier" data-copier="m-instructions">Copier le modèle</button></div>
+    <pre id="m-instructions" data-modele="instructions"># Qui je suis
+Je suis <span class="balise">[À COMPLÉTER : prénom]</span>, enseignant·e de <span class="balise">[À COMPLÉTER : discipline(s), par exemple français et histoire]</span> en <span class="balise">[À COMPLÉTER : degré(s), par exemple S2 et S3]</span> à l'école communale de <span class="balise">[À COMPLÉTER : commune]</span>, en Fédération Wallonie-Bruxelles.
+Filière : <span class="balise">[À COMPLÉTER : générale, technique de transition, qualifiante ou autre]</span>.
+
+# Mes classes et mes élèves (anonymisé)
+Classes : <span class="balise">[À COMPLÉTER : par exemple S2 A avec 22 élèves, S4 qualifiante avec 14 élèves]</span>.
+Profil : <span class="balise">[À COMPLÉTER : exemple : 6 élèves lisent à un niveau de fin de primaire, 3 élèves allophones, 2 élèves avec un PIA pour dyslexie, plusieurs élèves proches du décrochage]</span>.
+Je ne donne jamais de noms : je parle d'« un élève » ou d'un code.
+
+# Mon cadre
+Référentiels de la FWB : <span class="balise">[À COMPLÉTER : par exemple compétences terminales, programme de la discipline, CE1D, CESS ou certificat de qualification selon la classe]</span>.
+Vocabulaire et exemples belges uniquement.
+
+# Mon école
+<span class="balise">[À COMPLÉTER : ce qui rend ton école singulière. Exemple : option, internat, public d'origine, contraintes du pouvoir organisateur, projet d'établissement]</span>
+
+# Mes outils et mes manuels
+Outils numériques à disposition : <span class="balise">[À COMPLÉTER : exemple : plateforme de l'école, salle informatique, TBI, pas d'ordinateur par élève]</span>.
+Manuels par discipline : <span class="balise">[À COMPLÉTER : titres, ou « aucun »]</span>.
+
+# Ma pédagogie
+<span class="balise">[À COMPLÉTER : deux ou trois phrases. Exemple : j'enseigne par tâches complexes, je pars de documents réels, je fais verbaliser avant d'écrire, mes consignes tiennent en trois actions]</span>
+
+# Règle absolue : ne rien deviner
+Si une information utile ne figure ni ici ni dans ma demande, ne la devine pas.
+Soit tu me poses la question avant de répondre. Soit tu écris en première ligne « Hypothèses (non données par moi) : » et tu les listes, une par ligne.
+Ne présente jamais une hypothèse comme un fait.</pre>
+    <p class="avertissement" data-avertissement-pour="m-instructions" role="status" hidden></p>
+  </div>
+
+  <div class="encadre attention">
+    <strong>Ton texte doit rester court.</strong>
+    Ce modèle fait déjà environ 300 mots une fois rempli. C'est le maximum : au-delà de 350 mots, Claude accorde moins de poids à chaque phrase. Écris des faits précis, pas des formules générales comme « sois bienveillant ».
+  </div>
+
+  <h3 id="e4"><span class="etape-n">4</span>Enregistrer et vérifier</h3>
+  <ol>
+    <li>Colle ton texte dans la zone « Instructions pour Claude ».</li>
+    <li>Clique à côté de la zone, sur un espace vide de la page.</li>
+    <li>Ferme les Paramètres avec la croix en haut à droite, puis rouvre-les.</li>
+    <li>Vérifie que ton texte est toujours là.</li>
+  </ol>
+  <div class="encadre attention">
+    <strong>À vérifier sur ton écran.</strong>
+    Sur la capture, la zone « Instructions pour Claude » n'a pas de bouton « Enregistrer » : l'enregistrement se fait quand tu quittes la zone. Si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
+  </div>
+
+  <h3 id="e5"><span class="etape-n">5</span>Tester avec trois questions</h3>
+  <p>Ouvre une nouvelle conversation. Pose ces trois demandes, une par conversation. Chaque fois, Claude doit te poser des questions ou écrire en première ligne « Hypothèses (non données par moi) : ».</p>
+  <ol>
+    <li>« Prépare-moi une interrogation sur les équations. » Attendu : il demande ou liste le degré, la durée, les notions déjà vues.</li>
+    <li>« Écris un mot aux parents pour la réunion. » Attendu : il demande ou liste la date, le lieu, l'objet.</li>
+    <li>« Propose un exercice pour mon élève le plus faible. » Attendu : il refuse de deviner le profil, ou énonce ses hypothèses.</li>
+  </ol>
+  <p>Si Claude répond sans poser de question ni écrire d'hypothèses, va à « Si ça ne marche pas ».</p>
+</section>
+
+<section id="bureau">
+  <h2>Option : l'application de bureau avec Cowork</h2>
+  <p>Cette partie ne concerne que les enseignants qui utilisent <strong>Cowork</strong> (la fonction de l'application de bureau qui travaille sur les fichiers de ton ordinateur). Si tu n'en as jamais entendu parler, <strong>passe cette partie</strong> : tu n'as rien à faire.</p>
+  <p>Dans la page Profil, sous « Instructions pour Claude », une deuxième zone peut apparaître : <strong>« Instructions enregistrées sur cet ordinateur »</strong>. Cowork y écrit lui-même des consignes, dans un fichier de ton ordinateur.</p>
+  <figure style="margin:0">
+    <div class="cadre">
+      <img src="/captures-parametrer/parametrer-03-zones-instructions.png" alt="Page Profil défilée vers le bas. La zone Instructions pour Claude, puis la zone Instructions enregistrées sur cet ordinateur avec son texte d'explication sur Cowork, puis en bas deux boutons : Ne pas ajouter, et Ajouter aux Instructions pour Claude. Le contenu des zones est flouté.">
+      <span class="pt" style="left:33.5%;top:23%" aria-hidden="true">1</span>
+      <span class="pt" style="left:43.5%;top:54.4%" aria-hidden="true">2</span>
+      <span class="pt" style="left:70.5%;top:90.8%" aria-hidden="true">3</span>
+      <span class="pt" style="left:86.9%;top:90.8%" aria-hidden="true">4</span>
+    </div>
+    <figcaption>Capture du 2026-10-16, Windows, application de bureau. Le contenu des zones est flouté.</figcaption>
+  </figure>
+  <ol class="legende">
+    <li><span class="pt-l" aria-hidden="true">1</span>« Instructions pour Claude » : valable partout, toujours.</li>
+    <li><span class="pt-l" aria-hidden="true">2</span>« Instructions enregistrées sur cet ordinateur » : propres à cet ordinateur, écrites par Cowork.</li>
+    <li><span class="pt-l" aria-hidden="true">3</span>« Ne pas ajouter » : tu gardes les deux zones séparées.</li>
+    <li><span class="pt-l" aria-hidden="true">4</span>« Ajouter aux Instructions pour Claude » : tu fusionnes la zone locale dans la zone principale.</li>
+  </ol>
+  <div class="encadre attention">
+    <strong>Attention avant de cliquer sur « Ajouter ».</strong>
+    Une fois ajoutées, ces instructions s'appliquent à toutes tes conversations. Les instructions qui n'existent que sur un autre ordinateur seront effacées au prochain démarrage de Cowork sur celui-ci. Lis d'abord le texte avant de les ajouter. En cas de doute, clique sur « Ne pas ajouter ».
+  </div>
+  <p>Si tu utilises Cowork, tu peux compléter cette zone avec ce modèle court. Il parle de ton ordinateur, pas de ta pédagogie.</p>
+  <div class="modele">
+    <div class="modele-tete"><span>Modèle pour la zone de l'ordinateur</span><button type="button" class="copier" data-copier="m-locale">Copier le modèle</button></div>
+    <pre id="m-locale" data-modele="locale"># Mes dossiers
+Mes documents de cours sont dans <span class="balise">[À COMPLÉTER : chemin complet du dossier, par exemple C:\Users\Prénom\Documents\Cours]</span>.
+Sous-dossiers : <span class="balise">[À COMPLÉTER : par discipline puis par classe, par exemple français\S2A, histoire\S3B]</span>.
+
+# Mes manuels sur cet ordinateur
+<span class="balise">[À COMPLÉTER : par exemple PDF des manuels par discipline dans le dossier Manuels, ou « aucun »]</span>
+
+# Avant de modifier un fichier
+Ne modifie, ne déplace et ne supprime aucun fichier sans me demander.
+Travaille sur une copie nommée « nom_v2 ».
+
+# Données d'élèves
+Ne produis aucun fichier contenant un nom d'élève. Si un document en contient, arrête-toi et dis-le-moi.
+
+# Règle absolue : ne rien deviner
+Même règle que dans mes Instructions pour Claude : une question, ou « Hypothèses (non données par moi) : » en première ligne.</pre>
+    <p class="avertissement" data-avertissement-pour="m-locale" role="status" hidden></p>
+  </div>
+</section>
+
+<section id="problemes">
+  <h2>Si ça ne marche pas</h2>
+  <details>
+    <summary>Je ne trouve pas la zone « Instructions pour Claude »</summary>
+    <p>Dans les Paramètres, clique sur la loupe « Rechercher » en haut à gauche et tape « instructions ». Clique sur le résultat « Compte ».</p>
+  </details>
+  <details>
+    <summary>Claude n'a pas tenu compte de mes instructions</summary>
+    <p>Ouvre une <strong>nouvelle</strong> conversation : les instructions ne s'appliquent pas toujours aux conversations déjà commencées. Rouvre ensuite les Paramètres et vérifie que ton texte est bien là.</p>
+  </details>
+  <details>
+    <summary>Mon texte est trop long</summary>
+    <p>Garde les faits que Claude ne peut pas deviner : ta classe, tes élèves, ton école, tes outils, ta pédagogie. Supprime les phrases générales.</p>
+  </details>
+  <details>
+    <summary>Je veux tout effacer et recommencer</summary>
+    <p>Clique dans la zone, appuie sur <strong>Ctrl</strong> et <strong>A</strong> pour tout sélectionner, puis sur la touche <strong>Retour arrière</strong>. Colle ensuite un nouveau texte.</p>
+  </details>
+</section>
+
+<section id="limites">
+  <h2>Ce que ce réglage ne fait pas</h2>
+  <ul>
+    <li>Il ne remplace pas ton jugement : Claude propose, tu corriges.</li>
+    <li>Il réduit le risque d'invention, il ne le supprime pas. Relis toujours.</li>
+    <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
+  </ul>
+  <p>Tu enseignes dans le primaire ? Va au <a href="/guide-parametrer-claude-primaire.html">guide primaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="/guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>
+</section>
+
+</main>
+
+<div class="footer">
+  <img src="/plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;">
+  <p><strong>Paramétrer Claude, secondaire · Écoles coopérantes du PLAI</strong></p>
+  <p>Pôle Liégeois d'Accompagnement vers une École Inclusive</p>
+</div>
+
+<script src="/parametrer-copier.js"></script>
+</body>
+</html>
