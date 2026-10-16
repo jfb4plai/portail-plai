@@ -1,0 +1,26 @@
+{
+  "contexte": "Conversation privée claude.ai (navigateur), Sonnet 5.5, réglage Moyen, Instructions pour Claude vides, 2026-10-16",
+  "demande": "Objectif : faire comprendre que 1/2 et 2/4 représentent la même quantité.\nDurée : une séance de 50 minutes.\nÀ produire : le déroulement de la séance avec le minutage, la consigne que je lirai aux élèves, et une trace écrite de trois lignes.\nContrainte : une seule feuille, imprimable en noir et blanc.",
+  "blocs": [
+    { "t": "p", "x": "Hypothèse : je suis parti d’une classe de P3-P4 (3e-4e primaire). Si c’est un autre niveau, dites-le-moi et j’ajuste." },
+    { "t": "p", "x": "Matériel : 3 bandes de papier identiques par élève (même longueur, ex. 20 cm), un crayon, des ciseaux en secours. Tout se travaille au crayon par hachures, donc aucun problème en noir et blanc." },
+    { "t": "h3", "x": "Déroulement (50 min)" },
+    { "t": "table", "rows": [
+      ["Min", "Phase", "Ce que font les élèves", "Ce que fait l’enseignant"],
+      ["0-5", "Situation-problème", "Prédisent : « Léa mange 1/2 d’une barre, Noah mange 2/4 de la même barre. Qui a le plus mangé ? » Vote à main levée", "Dessine une barre au tableau, note les votes sans valider"],
+      ["5-10", "Consigne", "Écoutent, reçoivent le matériel", "Lit la consigne (ci-dessous)"],
+      ["10-25", "Manipulation", "Bande 1 : pliée en 2, 1 part hachurée. Bande 2 : pliée en 4, 2 parts hachurées. Bande 3 : pliée en 8, 4 parts hachurées", "Circule, relance : « Que remarques-tu quand tu poses les bandes l’une sur l’autre ? »"],
+      ["25-35", "Mise en commun", "Superposent, comparent, reformulent oralement", "Fait venir 2 élèves au tableau, fait dire : « la longueur hachurée est la même »"],
+      ["35-45", "Entraînement", "Au dos de la feuille : compléter 1/2 = ?/4, 1/2 = ?/6, 1/2 = ?/8 sur des barres dessinées. Question piège : « 2/4 est plus grand car 4 > 2 : vrai ou faux ? »", "Repère l’erreur « plus grand dénominateur = plus grand » et la fait discuter"],
+      ["45-50", "Trace écrite", "Recopient, puis reviennent sur leur vote du début", "Dicte la trace, demande qui avait changé d’avis"]
+    ] },
+    { "t": "h3", "x": "Consigne à lire aux élèves" },
+    { "t": "blockquote", "x": "« Vous avez trois bandes de papier exactement de la même longueur. Sur la première, pliez en 2 parts égales et hachurez 1 part. Sur la deuxième, pliez en 4 parts égales et hachurez 2 parts. Sur la troisième, pliez en 8 parts égales et hachurez 4 parts. Ensuite, posez vos bandes l’une sur l’autre, bord contre bord. Regardez la partie hachurée de chaque bande : qu’est-ce que vous remarquez ? Écrivez votre réponse en une phrase. »" },
+    { "t": "h3", "x": "Trace écrite (3 lignes)" },
+    { "t": "p", "x": "Une même quantité peut s’écrire avec des fractions différentes." },
+    { "t": "p", "x": "1/2 = 2/4 = 4/8 : le tout est coupé en parts plus petites, mais on en prend davantage." },
+    { "t": "p", "x": "Pour comparer des fractions, on regarde la part hachurée, pas seulement les chiffres." },
+    { "t": "p", "x": "Conseil de mise en page : une feuille A4 recto, avec le tableau en haut et la consigne et la trace écrite en bas, tient sans problème en police 11. Je peux vous la mettre en forme dans un document prêt à imprimer si vous voulez." }
+  ],
+  "empreinte_texte_normalise_sha256": "5aa58d22968c258cbd4c9cd38e72258e78efddb6cf7dc33d42db067edfe6a5a6"
+}

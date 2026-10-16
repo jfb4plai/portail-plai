@@ -59,6 +59,26 @@
   .avertissement[hidden] { display: none; }
   details { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
   summary { cursor: pointer; font-weight: 700; padding: 12px 0; }
+  /* EXEMPLE-CSS */
+  section[id] { scroll-margin-top: 110px; }
+  .rep { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
+  .rep > div { padding: 4px 0 16px; }
+  .rep h4 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin: 16px 0 8px; }
+  .rep h5 { font-size: 1.125rem; margin: 16px 0 8px; }
+  .rep table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 1rem; }
+  .rep th, .rep td { border: 1px solid var(--border2); padding: 8px; text-align: left; vertical-align: top; }
+  .rep th { background: var(--surface2); }
+  .rep blockquote { border-left: 4px solid var(--border2); background: var(--surface2); padding: 4px 16px; margin: 12px 0; }
+  .rep hr { border: 0; border-top: 1px solid var(--border2); margin: 16px 0; }
+  pre.instr { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); }
+  @media (max-width: 600px) {
+    .rep table, .rep thead, .rep tbody, .rep tr, .rep td { display: block; }
+    .rep thead { position: absolute; left: -9999px; }
+    .rep tr { border: 1px solid var(--border2); margin-bottom: 12px; }
+    .rep td { border: 0; border-bottom: 1px solid var(--border); }
+    .rep td::before { content: attr(data-label); display: block; font-weight: 700; color: var(--text2); }
+  }
+  /* FIN EXEMPLE-CSS */
   .footer { text-align: center; padding: 40px 16px; color: var(--text2); font-size: 1rem; border-top: 1px solid var(--border); }
   .footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
   @media (max-width: 600px) { .nav-liens { display: none; } }
@@ -70,6 +90,7 @@
   <a class="nav-logo" href="/"><img src="/plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;">Paramétrer Claude · secondaire</a>
   <div class="nav-liens">
     <a href="#avant">Avant de commencer</a>
+    <a href="#exemple">Exemple</a>
     <a href="#etapes">Les étapes</a>
     <a href="#bureau">Option ordinateur</a>
     <a href="/guide-parametrer-claude-primaire.html">Version primaire</a>
@@ -80,7 +101,7 @@
 <main class="container">
 
 <header class="hero">
-  <span class="eyebrow">Secondaire · écoles communales FWB</span>
+  <span class="eyebrow">Secondaire · Écoles coopérantes du PLAI</span>
   <h1>Apprendre à Claude qui tu es, une seule fois</h1>
   <p class="sous-titre">Environ quinze minutes pour que Claude parle de tes classes, de ta discipline et de ta façon d'enseigner, et qu'il cesse de deviner.</p>
 </header>
@@ -109,6 +130,104 @@
   </div>
   <p>Les écrans de ce guide ont été capturés le 2026-10-16 sur Windows, dans l'application Claude de bureau. La procédure complète n'a pas encore été testée avec des enseignants. Sur Mac, la touche Cmd remplace Ctrl ; les écrans Mac, tablette et téléphone n'ont pas été vérifiés. L'écran du site claude.ai est le même pour ces réglages. Si ton écran est différent, passe par la recherche des Paramètres (voir « Si ça ne marche pas »).</p>
 </section>
+
+<!-- EXEMPLE:DEBUT -->
+<section id="exemple">
+  <h2>La même demande, deux réponses</h2>
+  <p>Voici ce que change le modèle de ce guide. La même demande a été posée deux fois à Claude, dans une conversation privée de claude.ai : d'abord sans aucune instruction, puis avec le modèle primaire rempli avec des données fictives (Camille, titulaire de P3 à Herstal).</p>
+  <p>L'exemple est pris en P3 pour montrer le mécanisme. Avec ton modèle secondaire rempli, Claude s'appuie de la même façon sur tes classes, ta discipline et tes outils.</p>
+  <div class="encadre">
+    <strong>La demande, identique dans les deux cas</strong>
+    Objectif : faire comprendre que 1/2 et 2/4 représentent la même quantité.<br>Durée : une séance de 50 minutes.<br>À produire : le déroulement de la séance avec le minutage, la consigne que je lirai aux élèves, et une trace écrite de trois lignes.<br>Contrainte : une seule feuille, imprimable en noir et blanc.
+  </div>
+  <details>
+    <summary>Voir les instructions utilisées pour le cas « avec »</summary>
+    <pre class="instr"># Qui je suis
+Je suis Camille, titulaire de P3 à l'école communale de Herstal, en Fédération Wallonie-Bruxelles.
+
+# Mes élèves (anonymisé)
+21 élèves. Profil : 4 élèves lisent en dessous du niveau P2, 3 élèves allophones arrivés cette année, 1 élève avec un PIA pour dyslexie, 2 élèves rapides qui s'ennuient.
+Je ne donne jamais de noms : je parle d'« un élève » ou d'un code.
+
+# Mon école
+école de quartier, peu de familles parlent français à la maison, une seule classe de P3 pour toute l'école, peu de budget pour le matériel
+
+# Mes outils et mes manuels
+Outils numériques à disposition : un TBI dans la classe, 8 tablettes partagées entre 3 classes, pas d'ordinateur par élève.
+Manuels : les fiches de la méthode de maths de l'école ; pas de manuel de lecture.
+
+# Ma pédagogie
+j'enseigne par ateliers autonomes selon les besoins, la manipulation avant l'abstraction, l'oral avant l'écrit ; mes consignes tiennent en trois actions au maximum
+
+# Cadre
+Socles de compétences et référentiels de la FWB. Vocabulaire et exemples belges uniquement.
+
+# Règle absolue : ne rien deviner
+Si une information utile ne figure ni ici ni dans ma demande, ne la devine pas.
+Soit tu me poses la question avant de répondre. Soit tu écris en première ligne « Hypothèses (non données par moi) : » et tu les listes, une par ligne.
+Ne présente jamais une hypothèse comme un fait.</pre>
+  </details>
+  <h3>Ce qui change</h3>
+  <ul>
+    <li><strong>Les hypothèses.</strong> Sans instructions, Claude suppose un seul point (le niveau, « P3-P4 »). Avec, il liste cinq hypothèses étiquetées « (non données par moi) » que tu corriges d'un coup d'œil.</li>
+    <li><strong>Ta classe.</strong> Avec, la séance prévoit trois ateliers (élèves sous le niveau P2 et allophones, reste de la classe, deux élèves rapides) et une consigne lue à voix haute pour l'élève avec PIA. Sans, une seule séquence identique pour tous.</li>
+    <li><strong>Tes outils.</strong> Avec, le TBI sert à la mise en commun et le matériel reste en papier. Sans, aucun outil numérique n'est utilisé.</li>
+    <li><strong>Ta pédagogie.</strong> Avec, la consigne tient en trois actions courtes, comme demandé dans les instructions. Sans, c'est un bloc de sept phrases.</li>
+    <li><strong>Le ton.</strong> Avec, Claude te tutoie, comme dans tes instructions. Sans, il te vouvoie.</li>
+  </ul>
+  <div class="encadre attention">
+    <strong>Ce qu'il te reste à faire : les 20 %.</strong>
+    Relis les hypothèses : « Tu es seule adulte dans la classe » n'était écrit nulle part. Relis aussi les affirmations : la réponse écrit « budget nul » alors que les instructions disaient « peu de budget ». Puis adapte le minutage et les ateliers à tes élèves réels, et mets tes mots.
+  </div>
+  <details class="rep">
+    <summary>Réponse sans instructions, texte intégral</summary>
+    <div>
+<p>Hypothèse : je suis parti d’une classe de P3-P4 (3e-4e primaire). Si c’est un autre niveau, dites-le-moi et j’ajuste.</p>
+<p>Matériel : 3 bandes de papier identiques par élève (même longueur, ex. 20 cm), un crayon, des ciseaux en secours. Tout se travaille au crayon par hachures, donc aucun problème en noir et blanc.</p>
+<h5>Déroulement (50 min)</h5>
+<table><thead><tr><th scope="col">Min</th><th scope="col">Phase</th><th scope="col">Ce que font les élèves</th><th scope="col">Ce que fait l’enseignant</th></tr></thead><tbody><tr><td data-label="Min">0-5</td><td data-label="Phase">Situation-problème</td><td data-label="Ce que font les élèves">Prédisent : « Léa mange 1/2 d’une barre, Noah mange 2/4 de la même barre. Qui a le plus mangé ? » Vote à main levée</td><td data-label="Ce que fait l’enseignant">Dessine une barre au tableau, note les votes sans valider</td></tr><tr><td data-label="Min">5-10</td><td data-label="Phase">Consigne</td><td data-label="Ce que font les élèves">Écoutent, reçoivent le matériel</td><td data-label="Ce que fait l’enseignant">Lit la consigne (ci-dessous)</td></tr><tr><td data-label="Min">10-25</td><td data-label="Phase">Manipulation</td><td data-label="Ce que font les élèves">Bande 1 : pliée en 2, 1 part hachurée. Bande 2 : pliée en 4, 2 parts hachurées. Bande 3 : pliée en 8, 4 parts hachurées</td><td data-label="Ce que fait l’enseignant">Circule, relance : « Que remarques-tu quand tu poses les bandes l’une sur l’autre ? »</td></tr><tr><td data-label="Min">25-35</td><td data-label="Phase">Mise en commun</td><td data-label="Ce que font les élèves">Superposent, comparent, reformulent oralement</td><td data-label="Ce que fait l’enseignant">Fait venir 2 élèves au tableau, fait dire : « la longueur hachurée est la même »</td></tr><tr><td data-label="Min">35-45</td><td data-label="Phase">Entraînement</td><td data-label="Ce que font les élèves">Au dos de la feuille : compléter 1/2 = ?/4, 1/2 = ?/6, 1/2 = ?/8 sur des barres dessinées. Question piège : « 2/4 est plus grand car 4 &gt; 2 : vrai ou faux ? »</td><td data-label="Ce que fait l’enseignant">Repère l’erreur « plus grand dénominateur = plus grand » et la fait discuter</td></tr><tr><td data-label="Min">45-50</td><td data-label="Phase">Trace écrite</td><td data-label="Ce que font les élèves">Recopient, puis reviennent sur leur vote du début</td><td data-label="Ce que fait l’enseignant">Dicte la trace, demande qui avait changé d’avis</td></tr></tbody></table>
+<h5>Consigne à lire aux élèves</h5>
+<blockquote>« Vous avez trois bandes de papier exactement de la même longueur. Sur la première, pliez en 2 parts égales et hachurez 1 part. Sur la deuxième, pliez en 4 parts égales et hachurez 2 parts. Sur la troisième, pliez en 8 parts égales et hachurez 4 parts. Ensuite, posez vos bandes l’une sur l’autre, bord contre bord. Regardez la partie hachurée de chaque bande : qu’est-ce que vous remarquez ? Écrivez votre réponse en une phrase. »</blockquote>
+<h5>Trace écrite (3 lignes)</h5>
+<p>Une même quantité peut s’écrire avec des fractions différentes.</p>
+<p>1/2 = 2/4 = 4/8 : le tout est coupé en parts plus petites, mais on en prend davantage.</p>
+<p>Pour comparer des fractions, on regarde la part hachurée, pas seulement les chiffres.</p>
+<p>Conseil de mise en page : une feuille A4 recto, avec le tableau en haut et la consigne et la trace écrite en bas, tient sans problème en police 11. Je peux vous la mettre en forme dans un document prêt à imprimer si vous voulez.</p>
+    </div>
+  </details>
+  <details class="rep">
+    <summary>Réponse avec instructions, texte intégral</summary>
+    <div>
+<p>Hypothèses (non données par moi) :<br>Les élèves connaissent déjà « partager en parts égales » et le mot « moitié ».<br>Tu disposes de feuilles A4 de brouillon et de crayons de couleur ou de feutres.<br>Tu es seule adulte dans la classe pendant la séance.<br>La feuille est pour toi (déroulement, consigne, trace), pas une fiche à distribuer aux élèves.<br>Tu n’as pas encore utilisé la fiche de la méthode sur ce sujet.</p>
+<hr>
+<h4>1/2 = 2/4 : même quantité (P3, 50 min)</h4>
+<p>Matériel (budget nul) : 3 bandes de papier par élève (A4 coupée dans la longueur, même longueur pour tous), crayons de couleur en noir et blanc ou gris, TBI pour la mise en commun.</p>
+<h5>Déroulement</h5>
+<table><thead><tr><th scope="col">Min</th><th scope="col">Phase</th><th scope="col">Ce que font les élèves</th><th scope="col">Ce que tu fais</th></tr></thead><tbody><tr><td data-label="Min">0-5</td><td data-label="Phase">Oral</td><td data-label="Ce que font les élèves">Partagent une « tarte » (dessinée au TBI) entre 2 puis entre 4. Disent « un demi », « un quart ».</td><td data-label="Ce que tu fais">Fais répéter en chœur, puis en duo. Mots écrits au TBI avec dessin.</td></tr><tr><td data-label="Min">5-15</td><td data-label="Phase">Manipulation</td><td data-label="Ce que font les élèves">Suivent la consigne ci-dessous avec les bandes A et B. Comparent.</td><td data-label="Ce que tu fais">Circule, ne dis pas la réponse : « Que vois-tu ? Dis-le à ton voisin. »</td></tr><tr><td data-label="Min">15-35</td><td data-label="Phase">Ateliers autonomes (3 groupes)</td><td data-label="Ce que font les élèves">Voir ci-dessous.</td><td data-label="Ce que tu fais">Reste d’abord 10 min à l’atelier 1, puis passe aux autres.</td></tr><tr><td data-label="Min">35-43</td><td data-label="Phase">Mise en commun (TBI)</td><td data-label="Ce que font les élèves">Un élève superpose ses bandes devant la classe. Tous disent « 1/2 égale 2/4 ».</td><td data-label="Ce que tu fais">Fais verbaliser : « Pourquoi c’est pareil ? »</td></tr><tr><td data-label="Min">43-48</td><td data-label="Phase">Trace écrite</td><td data-label="Ce que font les élèves">Recopient ou collent les 3 lignes.</td><td data-label="Ce que tu fais">Lis les lignes à voix haute avant qu’ils écrivent.</td></tr><tr><td data-label="Min">48-50</td><td data-label="Phase">Bilan oral</td><td data-label="Ce que font les élèves">Pouce levé, à plat ou baissé : « Je peux l’expliquer à un camarade. »</td><td data-label="Ce que tu fais">Note les pouces baissés pour la prochaine séance.</td></tr></tbody></table>
+<h5>Ateliers (15-35)</h5>
+<ul><li>Atelier 1 (accompagné) : élèves lisant sous le niveau P2 et élèves allophones. Bandes déjà pliées, pictogrammes des consignes. Ils superposent et disent la phrase modèle : « Un demi, c’est comme deux quarts. »</li><li>Atelier 2 (autonome) : le reste de la classe. Plier une bande en 2, une bande en 4, et colorier pour montrer 1/2 et 2/4. Dessiner ensuite leur preuve dans le cahier.</li><li>Atelier 3 (défi) : les 2 élèves rapides. Plier une bande en 8 et chercher d’autres écritures de la même quantité (1/2 = ?/8). Ils préparent une preuve à montrer à la classe.</li></ul>
+<p>L’élève avec PIA (dyslexie) peut rejoindre n’importe quel atelier. Dans tous les cas, la consigne lui est lue à voix haute et il présente sa preuve à l’oral plutôt que par écrit.</p>
+<h5>Consigne lue aux élèves (3 actions)</h5>
+<blockquote>« 1. Plie la bande A en deux. Colorie une partie.<br>2. Plie la bande B en quatre. Colorie deux parties.<br>3. Pose les deux bandes l’une sur l’autre. Regarde. Que vois-tu ? »</blockquote>
+<p>Relis lentement, une action à la fois, et fais-la mimer avec une bande en main.</p>
+<h5>Trace écrite (3 lignes)</h5>
+<ol><li>1/2 se lit « un demi ».</li><li>2/4 se lit « deux quarts ».</li><li>1/2 = 2/4 : c’est la même quantité, les deux parties coloriées ont la même longueur.</li></ol>
+<p>(Dessiner dessous les deux bandes superposées.)</p>
+<hr>
+<p>Si tu veux, je peux aussi préparer une version à distribuer aux élèves (bandes à découper, pictogrammes, phrase modèle pour l’atelier 1).</p>
+    </div>
+  </details>
+  <h3>Ce que cet exemple ne prouve pas</h3>
+  <ul>
+    <li>Il s'agit d'une seule exécution par cas : une autre exécution donnerait une autre réponse.</li>
+    <li>Claude répond déjà correctement sans instructions : il a même signalé une hypothèse. Les instructions changent l'ancrage dans ta classe, pas la compétence de Claude.</li>
+    <li>Il ne prouve pas que la différenciation s'améliore chez les élèves : il montre seulement que les propositions partent de la classe décrite. Voir l'encadré « Ce que dit la recherche ».</li>
+    <li>Les instructions de l'exemple sont fictives. Les tiennes seront différentes, et les réponses aussi.</li>
+  </ul>
+  <p>Conversations du 2026-10-16 sur claude.ai (navigateur, conversation privée), Sonnet 5.5, réglage Moyen. Les réponses sont reproduites telles quelles, titres et tableaux compris.</p>
+</section>
+<!-- EXEMPLE:FIN -->
+
 
 <section id="etapes">
   <h2>Les cinq étapes</h2>
@@ -217,9 +336,9 @@ Ne présente jamais une hypothèse comme un fait.</pre>
     <li>Ferme les Paramètres avec la croix en haut à droite, puis rouvre-les.</li>
     <li>Vérifie que ton texte est toujours là.</li>
   </ol>
-  <div class="encadre attention">
-    <strong>À vérifier sur ton écran.</strong>
-    Sur la capture, la zone « Instructions pour Claude » n'a pas de bouton « Enregistrer » : l'enregistrement se fait quand tu quittes la zone. Si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
+  <div class="encadre">
+    <strong>Ce qui a été constaté.</strong>
+    Il n'y a pas de bouton « Enregistrer » : quand tu quittes la zone, une notification « Enregistré » apparaît en bas à droite. Constaté le 2026-10-16 sur claude.ai, dans Chrome : le texte était toujours là après rechargement de la page. Ce comportement n'a pas été constaté dans l'application de bureau. Si tu ne vois pas « Enregistré », ou si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
   </div>
 
   <h3 id="e5"><span class="etape-n">5</span>Tester avec trois questions</h3>

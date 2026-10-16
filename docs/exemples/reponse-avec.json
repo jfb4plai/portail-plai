@@ -1,0 +1,40 @@
+{
+  "contexte": "Conversation privée claude.ai (navigateur), Sonnet 5.5, réglage Moyen, modèle primaire rempli (données fictives) collé dans Instructions pour Claude, 2026-10-16",
+  "demande": "Objectif : faire comprendre que 1/2 et 2/4 représentent la même quantité.\nDurée : une séance de 50 minutes.\nÀ produire : le déroulement de la séance avec le minutage, la consigne que je lirai aux élèves, et une trace écrite de trois lignes.\nContrainte : une seule feuille, imprimable en noir et blanc.",
+  "blocs": [
+    { "t": "p", "x": "Hypothèses (non données par moi) :\nLes élèves connaissent déjà « partager en parts égales » et le mot « moitié ».\nTu disposes de feuilles A4 de brouillon et de crayons de couleur ou de feutres.\nTu es seule adulte dans la classe pendant la séance.\nLa feuille est pour toi (déroulement, consigne, trace), pas une fiche à distribuer aux élèves.\nTu n’as pas encore utilisé la fiche de la méthode sur ce sujet." },
+    { "t": "hr" },
+    { "t": "h2", "x": "1/2 = 2/4 : même quantité (P3, 50 min)" },
+    { "t": "p", "x": "Matériel (budget nul) : 3 bandes de papier par élève (A4 coupée dans la longueur, même longueur pour tous), crayons de couleur en noir et blanc ou gris, TBI pour la mise en commun." },
+    { "t": "h3", "x": "Déroulement" },
+    { "t": "table", "rows": [
+      ["Min", "Phase", "Ce que font les élèves", "Ce que tu fais"],
+      ["0-5", "Oral", "Partagent une « tarte » (dessinée au TBI) entre 2 puis entre 4. Disent « un demi », « un quart ».", "Fais répéter en chœur, puis en duo. Mots écrits au TBI avec dessin."],
+      ["5-15", "Manipulation", "Suivent la consigne ci-dessous avec les bandes A et B. Comparent.", "Circule, ne dis pas la réponse : « Que vois-tu ? Dis-le à ton voisin. »"],
+      ["15-35", "Ateliers autonomes (3 groupes)", "Voir ci-dessous.", "Reste d’abord 10 min à l’atelier 1, puis passe aux autres."],
+      ["35-43", "Mise en commun (TBI)", "Un élève superpose ses bandes devant la classe. Tous disent « 1/2 égale 2/4 ».", "Fais verbaliser : « Pourquoi c’est pareil ? »"],
+      ["43-48", "Trace écrite", "Recopient ou collent les 3 lignes.", "Lis les lignes à voix haute avant qu’ils écrivent."],
+      ["48-50", "Bilan oral", "Pouce levé, à plat ou baissé : « Je peux l’expliquer à un camarade. »", "Note les pouces baissés pour la prochaine séance."]
+    ] },
+    { "t": "h3", "x": "Ateliers (15-35)" },
+    { "t": "ul", "items": [
+      "Atelier 1 (accompagné) : élèves lisant sous le niveau P2 et élèves allophones. Bandes déjà pliées, pictogrammes des consignes. Ils superposent et disent la phrase modèle : « Un demi, c’est comme deux quarts. »",
+      "Atelier 2 (autonome) : le reste de la classe. Plier une bande en 2, une bande en 4, et colorier pour montrer 1/2 et 2/4. Dessiner ensuite leur preuve dans le cahier.",
+      "Atelier 3 (défi) : les 2 élèves rapides. Plier une bande en 8 et chercher d’autres écritures de la même quantité (1/2 = ?/8). Ils préparent une preuve à montrer à la classe."
+    ] },
+    { "t": "p", "x": "L’élève avec PIA (dyslexie) peut rejoindre n’importe quel atelier. Dans tous les cas, la consigne lui est lue à voix haute et il présente sa preuve à l’oral plutôt que par écrit." },
+    { "t": "h3", "x": "Consigne lue aux élèves (3 actions)" },
+    { "t": "blockquote", "x": "« 1. Plie la bande A en deux. Colorie une partie.\n2. Plie la bande B en quatre. Colorie deux parties.\n3. Pose les deux bandes l’une sur l’autre. Regarde. Que vois-tu ? »" },
+    { "t": "p", "x": "Relis lentement, une action à la fois, et fais-la mimer avec une bande en main." },
+    { "t": "h3", "x": "Trace écrite (3 lignes)" },
+    { "t": "ol", "items": [
+      "1/2 se lit « un demi ».",
+      "2/4 se lit « deux quarts ».",
+      "1/2 = 2/4 : c’est la même quantité, les deux parties coloriées ont la même longueur."
+    ] },
+    { "t": "p", "x": "(Dessiner dessous les deux bandes superposées.)" },
+    { "t": "hr" },
+    { "t": "p", "x": "Si tu veux, je peux aussi préparer une version à distribuer aux élèves (bandes à découper, pictogrammes, phrase modèle pour l’atelier 1)." }
+  ],
+  "empreinte_texte_normalise_sha256": "506326a36ba5b03c85bc4638709d05610989a6618f79751dde9143cfffcdd4f9"
+}
