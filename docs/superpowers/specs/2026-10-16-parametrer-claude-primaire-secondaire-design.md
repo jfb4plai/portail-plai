@@ -33,7 +33,7 @@ Chaque guide fournit des instructions à copier et adapter, avec balises. Captur
 |---|---|
 | `public/guide-parametrer-claude-primaire.html` | Guide primaire |
 | `public/guide-parametrer-claude-secondaire.html` | Guide secondaire |
-| `public/captures-parametrer/*.png` | Captures floutées (4 à 6) |
+| `public/captures-parametrer/*.png` | Captures floutées (3) |
 | `public/guide-parametrer-claude-plai.html` | Modifié : le chapitre Instructions renvoie vers les deux guides, chemin « Settings → … » corrigé en « Paramètres → Compte → Profil », e-mail de contact remplacé par `jf.beguin@outlook.com` |
 | `src/data/apps.ts` | Deux vignettes (ou vignette `claude-parametrer` mise à jour) |
 
@@ -131,7 +131,7 @@ Si Claude répond sans question ni hypothèse : renvoi vers « Si ça ne marche 
 
 ## 9. Captures
 
-À partir des captures de JF (écrans 2, 3 et 4 reçus le 2026-10-16) et de captures claude.ai prises dans Chrome. Elles sont stockées dans `public/captures-parametrer/` après traitement.
+À partir des trois captures de JF (reçues le 2026-10-16). Aucune capture claude.ai séparée : la fenêtre de réglages est identique sur le site. Elles sont stockées dans `public/captures-parametrer/` après traitement.
 
 - **Floutage par script (PIL)** : nom complet, « comment vous appeler », e-mail, contenu des deux zones de texte, titres de sessions.
 - **Annotations en HTML/CSS** (cercles numérotés positionnés en pourcentage), pas incrustées dans l'image : modifiables, lisibles par lecteur d'écran.
