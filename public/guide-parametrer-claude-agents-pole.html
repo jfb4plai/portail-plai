@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paramétrer Claude pour les agents du Pôle · PLAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7; --surface: #ffffff; --surface2: #f4f2ee;
+    --border: #e8e4dd; --border2: #d4cfc6;
+    --text: #1a1814; --text2: #4a463f;
+    --info: #185fa5; --info-bg: #e6f1fb; --info-mid: #378add;
+    --orange: #ef9f27; --pastille: #c2410c; --orange-bg: #faeeda; --orange-text: #854f0b;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 1.125rem; line-height: 1.7; }
+  a { color: var(--info); }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.95); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.125rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .nav-logo img { height: 32px; width: auto; }
+  .nav-liens { display: flex; gap: 12px; flex-wrap: wrap; font-size: 1rem; }
+  .banner { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 10px 16px; text-align: center; font-size: 1rem; color: var(--text2); }
+  .hero { padding: 48px 0 24px; }
+  .eyebrow { display: inline-block; font-size: 1rem; font-weight: 500; color: var(--text2); border: 1px solid var(--border2); border-radius: 20px; padding: 2px 14px; margin-bottom: 16px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin-bottom: 12px; }
+  .sous-titre { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.25rem; color: var(--text2); }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.75rem; line-height: 1.25; margin: 0 0 12px; }
+  h3 { font-size: 1.25rem; margin: 20px 0 8px; }
+  section { padding: 32px 0; border-top: 1px solid var(--border); }
+  p, li { margin-bottom: 12px; }
+  ul, ol { padding-left: 1.4rem; }
+  .etape-n { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--text); color: #fff; font-weight: 700; margin-right: 10px; vertical-align: middle; }
+  .encadre { border-left: 4px solid var(--info-mid); background: var(--info-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 16px 0; }
+  .encadre.attention { border-left-color: var(--orange); background: var(--orange-bg); }
+  .encadre strong:first-child { display: block; }
+  .cadre { position: relative; margin: 0; border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .cadre.etroit { max-width: 484px; }
+  .cadre img { display: block; width: 100%; height: auto; }
+  .cadre .pt { position: absolute; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: var(--pastille); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+  figcaption { font-size: 1rem; color: var(--text2); margin: 8px 0 16px; }
+  .legende { list-style: none; padding: 0; }
+  .legende li { display: flex; gap: 10px; align-items: flex-start; }
+  .legende .pt-l { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--pastille); color: #fff; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .modele { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); margin: 16px 0; overflow: hidden; }
+  .modele-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 16px; background: var(--surface2); border-bottom: 1px solid var(--border2); font-weight: 700; }
+  .modele pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; }
+  .balise { background: var(--orange-bg); color: var(--orange-text); border: 1px solid var(--orange); border-radius: 4px; padding: 0 4px; font-weight: 500; }
+  .balise.facultative { background: var(--surface2); color: var(--text2); border-color: var(--border2); }
+  .bouton { display: inline-block; background: var(--text); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; padding: 10px 18px; min-height: 44px; }
+  .bouton:hover { background: #3a352e; }
+  button.copier { font: inherit; font-size: 1rem; font-weight: 700; background: var(--text); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; min-height: 44px; cursor: pointer; }
+  button.copier:hover { background: #3a352e; }
+  .avertissement { margin: 0; padding: 10px 16px; background: var(--orange-bg); border-top: 1px solid var(--orange); color: var(--orange-text); font-size: 1rem; }
+  .avertissement[hidden] { display: none; }
+  details { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
+  summary { cursor: pointer; font-weight: 700; padding: 12px 0; }
+  /* EXEMPLE-CSS */
+  section[id] { scroll-margin-top: 110px; }
+  .rep { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
+  .rep > div { padding: 4px 0 16px; }
+  .rep h4 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin: 16px 0 8px; }
+  .rep h5 { font-size: 1.125rem; margin: 16px 0 8px; }
+  .rep table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 1rem; }
+  .rep th, .rep td { border: 1px solid var(--border2); padding: 8px; text-align: left; vertical-align: top; }
+  .rep th { background: var(--surface2); }
+  .rep blockquote { border-left: 4px solid var(--border2); background: var(--surface2); padding: 4px 16px; margin: 12px 0; }
+  .rep hr { border: 0; border-top: 1px solid var(--border2); margin: 16px 0; }
+  pre.instr { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); }
+  @media (max-width: 600px) {
+    .rep table, .rep thead, .rep tbody, .rep tr, .rep td { display: block; }
+    .rep thead { position: absolute; left: -9999px; }
+    .rep tr { border: 1px solid var(--border2); margin-bottom: 12px; }
+    .rep td { border: 0; border-bottom: 1px solid var(--border); }
+    .rep td::before { content: attr(data-label); display: block; font-weight: 700; color: var(--text2); }
+  }
+  /* FIN EXEMPLE-CSS */
+  .accomp-carte { background: var(--surface); border: 2px solid var(--text); border-radius: var(--radius); padding: 2rem 1.5rem; text-align: center; margin: 1rem 0; }
+  .accomp-carte h2 { font-family: 'DM Serif Display', serif; font-size: 1.75rem; line-height: 1.25; margin: 0 0 0.75rem; border: 0; padding: 0; }
+  .accomp-carte p { font-size: 1.125rem; line-height: 1.6; color: var(--text); margin: 0 0 1rem; }
+  .accomp-bouton { display: inline-block; background: var(--text); color: #fff; text-decoration: none; font-weight: 700; font-size: 1.125rem; border-radius: 8px; padding: 0.85rem 1.75rem; min-height: 44px; }
+  .accomp-bouton:hover { background: #3a352e; }
+  .accomp-carte .accomp-adresse { font-size: 1rem; color: var(--text2); margin: 0; }
+  .footer { text-align: center; padding: 40px 16px; color: var(--text2); font-size: 1rem; border-top: 1px solid var(--border); }
+  .footer img { height: 40px; width: auto; display: block; margin: 0 auto 8px; }
+  @media (max-width: 600px) { .nav-liens { display: none; } }
+</style>
+</head>
+<body>
+
+<nav aria-label="Navigation principale">
+  <a class="nav-logo" href="/"><img src="plai-logo.jpg" alt="PLAI" style="height:32px;width:auto;">Paramétrer Claude · agents du Pôle</a>
+  <div class="nav-liens">
+    <a href="#avant">Avant de commencer</a>
+    <a href="#exemple">Exemple</a>
+    <a href="#etapes">Les étapes</a>
+    <a href="#limites">Limites</a>
+    <a href="guide-parametrer-claude-primaire.html">Guide primaire</a>
+  </div>
+</nav>
+<div class="banner">Pour toute question ou demande d'accompagnement — à distance ou en présentiel — n'hésite pas à contacter le <strong>référent numérique du PLAI</strong> : <a href="mailto:jeanfrancois.beguin@ens.ecl.be"><strong>jeanfrancois.beguin@ens.ecl.be</strong></a></div>
+
+<main class="container">
+
+<header class="hero">
+  <span class="eyebrow">Agents du Pôle · PLAI</span>
+  <h1>Apprendre à Claude comment tu travailles, une seule fois</h1>
+  <p class="sous-titre">Environ quinze minutes pour que Claude ne devine plus : il pose la question ou liste ses hypothèses, et ne cite que des sources vérifiées.</p>
+</header>
+
+<section id="avant">
+  <h2>Avant de commencer</h2>
+  <p>Tu vas remplir un seul réglage, <strong>« Instructions pour Claude »</strong>. Claude le relit au début de chaque conversation, sans que tu aies à te répéter.</p>
+  <p>Ce texte se compose d'un <strong>socle</strong> commun à tous les agents et d'<strong>un module</strong> selon ta tâche principale : comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils.</p>
+  <p>Prépare, sur une feuille ou dans ta tête :</p>
+  <ul>
+    <li>ta fonction et le Pôle où tu travailles ;</li>
+    <li>les textes de référence que tu utilises (décrets, circulaires), ou « à préciser » ;</li>
+    <li>ta tâche principale, pour choisir ton module ;</li>
+    <li>pour un PIA : la trame de ton équipe, ou « libre ».</li>
+  </ul>
+  <div class="encadre attention">
+    <strong>Règle d'or : des codes, jamais de noms.</strong>
+    Écris « E1 », « E2 », ou « un élève ». Jamais de nom, d'adresse ni de date de naissance d'un élève ou d'une famille. Tu remets les noms toi-même, hors de la conversation.
+  </div>
+  <div class="encadre">
+    <strong>L'IA propose, tu décides.</strong>
+    Claude structure, reformule et propose des pistes. Il ne pose aucun diagnostic et ne décide rien pour un élève. L'équipe valide.
+  </div>
+  <p>Les écrans sont ceux des guides pour enseignants : <a href="guide-parametrer-claude-primaire.html">guide primaire</a> et <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Ils ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.</p>
+</section>
+
+<!-- EXEMPLE:DEBUT -->
+<section id="exemple">
+  <h2>Ce que ça change : trois réponses réelles</h2>
+  <p>Trois demandes ont été posées à Claude, dans une conversation privée de claude.ai, avec ce canevas installé : le socle et le module « Suggestions d'AU et d'AR », rempli avec des données fictives (Alex, conseiller pédagogique à Liège). Les réponses sont reproduites telles quelles.</p>
+  <h3>Ce qu'on observe</h3>
+  <ul>
+    <li><strong>Pas de compte rendu inventé.</strong> Sans notes, Claude refuse d'écrire et demande les notes, le contexte et le destinataire.</li>
+    <li><strong>Pas de liste d'AR déduite d'une étiquette.</strong> Pour « un élève dyslexique », Claude demande des observations avant de proposer un aménagement.</li>
+    <li><strong>Les données identifiantes sont signalées.</strong> Avec « Lucas D., 9 ans », Claude s'arrête et demande un code.</li>
+  </ul>
+  <details class="rep">
+    <summary>« Rédige le compte rendu de mon observation d'hier. »</summary>
+    <div>
+      <p>Je n'ai aucune trace de votre observation d'hier : c'est une conversation neuve (incognito, sans mémoire), et vous n'avez rien collé ni joint. Je ne peux donc rien rédiger sans l'inventer.</p>
+      <p>Pour que je rédige le compte rendu, il me faut :</p>
+      <p>Vos notes d'observation, collées ici telles quelles (même en vrac). Utilisez des codes (E1, E2…) pour les élèves, sans nom ni donnée identifiante.<br>Le contexte de l'observation : niveau et type de classe, discipline ou moment de la journée, durée, objectif de l'observation (demandeur, question posée).<br>Le destinataire et l'usage du compte rendu : retour à l'enseignant, équipe éducative, dossier d'accompagnement, autre. Cela change le ton, la structure et ce que je peux y faire figurer.</p>
+      <p>Si vous avez un modèle de compte rendu (le vôtre ou celui du Pôle), collez-le aussi : je le suivrai.</p>
+      <p>Une fois vos notes reçues, je structurerai les faits observés séparément des interprétations, sans diagnostic, et je proposerai des pistes (AU ou AR) uniquement à partir de ce que vous aurez noté. Vous gardez la décision.</p>
+    </div>
+  </details>
+  <details class="rep">
+    <summary>« Quels AR pour un élève dyslexique ? »</summary>
+    <div>
+      <p>Je ne te propose pas encore d'AR : ils partent d'observations de classe, pas d'une étiquette, et je n'en ai aucune. Une liste générique « pour dyslexique » serait précisément ce que tu m'as demandé d'éviter.</p>
+      <p>Pour t'être utile, il me faut trois précisions. Premièrement, qu'observe l'enseignant concrètement chez E1 en lecture et en écriture (lenteur, saut de lignes, confusions de sons, fatigue, évitement, difficulté à copier) ? Deuxièmement, dans quelles situations cela pose-t-il problème (consignes écrites, prise de notes, évaluations, lecture à voix haute, quelle matière) ? Troisièmement, y a-t-il déjà des AU en place dans la classe, et un PIA ou un rapport existant dont tu veux que je tienne compte ?</p>
+      <p>Avec ça, je te fournis pour chaque observation un AR possible, sa formulation utilisable par l'enseignant et ses limites. Si tu veux, je peux aussi commencer par les AU (mise en page des documents, consignes, temps), qui bénéficient à toute la classe et ne demandent pas d'observation individuelle.</p>
+      <p>Pour les références, je n'ai rien consulté dans cette conversation : je chercherai les textes de la FWB sur les aménagements raisonnables avant de les citer, et je te dirai ce que j'ai effectivement pu vérifier.</p>
+    </div>
+  </details>
+  <details class="rep">
+    <summary>« Voici le cas de Lucas D., 9 ans, école X. » (nom fictif)</summary>
+    <div>
+      <p>Je m'arrête avant d'aller plus loin : « Lucas D. » est un prénom suivi d'une initiale, et « école X » est déjà codé. Pour la suite, remplace par un code (E1) dans tes messages. Ce que tu as écrit reste dans cette conversation, mais n'ajoute rien d'identifiant (nom complet, adresse, date de naissance).</p>
+      <p>Je n'ai aucune observation sur cet élève pour l'instant, et je ne devine rien. Voici les trois questions qui conditionnent ma réponse :</p>
+      <p>Qu'attends-tu de moi ? Par exemple : structurer tes observations, préparer une réunion d'équipe, proposer des AU pour la classe, ou envisager des AR.<br>Quelles observations as-tu de E1 ? Attention, lecture, mémoire, organisation, comportement en classe : décris des faits observés (quand, où, dans quelle tâche), sans étiquette diagnostique.<br>Quel est le contexte ? Année d'étude, enseignement ordinaire ou spécialisé, démarches déjà en cours (PIA, rencontre avec la famille, PMS, etc.), et ce qui a déjà été essayé en classe.</p>
+      <p>Dès que tu me donnes ces éléments, je te fais une proposition structurée, que l'équipe pourra valider.</p>
+    </div>
+  </details>
+  <h3>Ce que ces exemples ne prouvent pas</h3>
+  <p>Un exemple ne prouve pas un effet : il montre un comportement, observé une fois.</p>
+  <ul>
+    <li>Il s'agit d'une seule exécution par question : une autre exécution donnerait une autre réponse.</li>
+    <li>Ils ne prouvent pas que Claude résiste à l'insistance (« donne-moi quand même une liste ») : ce cas n'a pas été essayé.</li>
+    <li>Ils ne prouvent pas que les documents produits ensuite sont exacts. Relire reste obligatoire.</li>
+    <li>Ils ont été obtenus avec Sonnet 5.5 (réglage Moyen), le 2026-10-16, avec la recherche web disponible.</li>
+  </ul>
+</section>
+<!-- EXEMPLE:FIN -->
+
+<section id="etapes">
+  <h2>Les cinq étapes</h2>
+
+  <h3 id="e1"><span class="etape-n">1</span>Ouvrir les Paramètres</h3>
+  <ol>
+    <li>En bas à gauche, clique sur ta pastille (tes initiales et ton prénom).</li>
+    <li>Dans le menu qui s'ouvre, clique sur <strong>Paramètres</strong>.</li>
+  </ol>
+  <p>Raccourci : appuie ensemble sur les touches <strong>Ctrl</strong> et <strong>,</strong> (virgule).</p>
+  <figure style="margin:0">
+    <div class="cadre etroit">
+      <img src="captures-parametrer/parametrer-01-menu-parametres.png" alt="Menu qui s'ouvre au clic sur la pastille de profil, en bas à gauche : Paramètres (avec le raccourci Ctrl virgule), Utilisation, Langue, Obtenir de l'aide, puis d'autres lignes. Le nom, l'adresse e-mail et la liste de conversations sont floutés.">
+      <span class="pt" style="left:13%;top:97%" aria-hidden="true">1</span>
+      <span class="pt" style="left:36%;top:61.6%" aria-hidden="true">2</span>
+    </div>
+    <figcaption>Capture du 2026-10-16, Windows, application de bureau. Les informations personnelles sont floutées.</figcaption>
+  </figure>
+  <ol class="legende">
+    <li><span class="pt-l" aria-hidden="true">1</span>Ta pastille, en bas à gauche.</li>
+    <li><span class="pt-l" aria-hidden="true">2</span>La ligne « Paramètres ».</li>
+  </ol>
+
+  <h3 id="e2"><span class="etape-n">2</span>Trouver « Profil »</h3>
+  <ol>
+    <li>Dans la liste de gauche, clique sur <strong>Compte</strong>.</li>
+    <li>À droite, la page s'appelle <strong>Profil</strong>. Descends avec la molette de la souris.</li>
+    <li>Repère la zone <strong>« Instructions pour Claude »</strong>. C'est là que tu vas coller ton texte.</li>
+  </ol>
+  <figure style="margin:0">
+    <div class="cadre">
+      <img src="captures-parametrer/parametrer-02-profil.png" alt="Page Profil des Paramètres, rubrique Compte sélectionnée à gauche. On voit la photo de profil, le nom complet, le type de travail, puis la zone Instructions pour Claude, puis la zone Instructions enregistrées sur cet ordinateur. Le contenu des champs est flouté.">
+      <span class="pt" style="left:12%;top:18.5%" aria-hidden="true">1</span>
+      <span class="pt" style="left:23%;top:8.8%" aria-hidden="true">2</span>
+      <span class="pt" style="left:33%;top:45.8%" aria-hidden="true">3</span>
+      <span class="pt" style="left:43%;top:77.5%" aria-hidden="true">4</span>
+    </div>
+    <figcaption>Capture du 2026-10-16, Windows, application de bureau. Le contenu des champs est flouté.</figcaption>
+  </figure>
+  <ol class="legende">
+    <li><span class="pt-l" aria-hidden="true">1</span>« Compte », dans la liste de gauche.</li>
+    <li><span class="pt-l" aria-hidden="true">2</span>Le titre « Profil ».</li>
+    <li><span class="pt-l" aria-hidden="true">3</span>La zone « Instructions pour Claude » : c'est elle que tu remplis.</li>
+    <li><span class="pt-l" aria-hidden="true">4</span>La zone « Instructions enregistrées sur cet ordinateur » : tu n'en as pas besoin pour commencer (voir l'option plus bas).</li>
+  </ol>
+
+  <h3 id="e3"><span class="etape-n">3</span>Choisir ton module et remplir le texte</h3>
+  <p>Chaque modèle Word contient le <strong>socle</strong> et <strong>un module</strong>. Télécharge celui de ta tâche principale :</p>
+  <ul>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-comptes-rendus.docx" download>Comptes rendus d'intervention ou d'observation</a></li>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-pia.docx" download>PIA (objectifs SMART)</a></li>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-reunions.docx" download>Réunions d'intégration avec les parties prenantes</a></li>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-amenagements.docx" download>Suggestions d'AU et d'AR aux enseignants</a></li>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-outils.docx" download>Création d'outils</a></li>
+  </ul>
+  <p>Dans le modèle, les cases <strong>jaunes</strong> (<span class="balise">[À COMPLÉTER : …]</span>) sont obligatoires : remplace-les par ta réalité.</p>
+  <ol>
+    <li>Ouvre le fichier avec un double-clic. Si Word affiche « Mode protégé », clique sur « Activer la modification ».</li>
+    <li>Clique sur une case jaune, sélectionne tout son texte (crochets compris) et tape ta réponse à la place. Remplace tout le texte de la case, exemple compris : l'exemple décrit une autre situation que la tienne.</li>
+    <li>Relis. Il ne doit plus rester ni crochet ni surlignage.</li>
+    <li>Appuie ensemble sur <strong>Ctrl</strong> et <strong>A</strong> (tout sélectionner), puis sur <strong>Ctrl</strong> et <strong>C</strong> (copier). Sur Mac, la touche Cmd remplace Ctrl.</li>
+    <li>Retourne dans Claude, dans la page Profil. Clique dans la zone « Instructions pour Claude », appuie sur <strong>Ctrl</strong> et <strong>A</strong>, puis sur <strong>Ctrl</strong> et <strong>V</strong> (coller).</li>
+  </ol>
+  <div class="encadre attention">
+    <strong>Tu as déjà des instructions dans cette zone ?</strong>
+    Ctrl + A puis Ctrl + V remplace tout l'ancien texte. Copie d'abord l'ancien texte dans un document pour ne rien perdre.
+  </div>
+  <div class="encadre attention">
+    <strong>Un seul module dans le texte.</strong>
+    Socle + un module restent sous 350 mots. Au-delà, le texte devient plus difficile à relire et à corriger. Pour tes autres tâches : un Projet par module, ou accepte de dépasser un peu ce plafond.
+  </div>
+  <details>
+    <summary>Pas de Word ? Copie le socle et les modules depuis cette page</summary>
+    <p>Copie le socle, puis le module de ta tâche, et colle-les à la suite dans la zone « Instructions pour Claude ».</p>
+    <div class="modele">
+      <div class="modele-tete"><span>Socle commun</span><button type="button" class="copier" data-copier="m-socle">Copier</button></div>
+      <pre id="m-socle" data-modele="socle">## Qui je suis
+Je suis <span class="balise">[À COMPLÉTER : prénom]</span>, <span class="balise">[À COMPLÉTER : fonction]</span> au sein du Pôle territorial de <span class="balise">[À COMPLÉTER : ville ou pôle]</span>, en Fédération Wallonie-Bruxelles.
+
+## Cadre
+Exemples, vocabulaire et références belges. Jamais de repères français. Textes de référence que j'utilise : <span class="balise">[À COMPLÉTER : décrets, circulaires, ou « à préciser »]</span>.
+
+## Règle absolue : ne rien deviner
+Si une information utile manque, ne la devine pas.
+- Si elle change la réponse ou comporte un risque (droit, élève, famille) : pose-moi la question avant de répondre, trois au maximum.
+- Si elle est secondaire : réponds, et écris en première ligne « Hypothèses (non données par moi) : » puis liste-les.
+Ne présente jamais une hypothèse comme un fait.
+
+## Sources : toujours vérifiées
+- Toute affirmation factuelle importante (texte légal, date, chiffre, étude, procédure) cite sa source : titre, auteur ou organisme, année, lien.
+- Une source est « vérifiée » seulement si tu l'as consultée dans cette conversation. Sinon « non vérifié », jamais de mémoire. Si tu ne peux rien consulter, dis-le d'emblée.
+- Ne complète jamais une référence incomplète. Sans source : « aucune source trouvée ».
+
+## Données sensibles
+Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
+
+## Décisions
+Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour un élève : tu structures, tu reformules, tu proposes des pistes que l'équipe valide. Direct, résultat d'abord.</pre>
+      <p class="avertissement" data-avertissement-pour="m-socle" role="status" hidden></p>
+    </div>
+    <div class="modele">
+      <div class="modele-tete"><span>Module : Comptes rendus d'intervention ou d'observation</span><button type="button" class="copier" data-copier="m-comptes-rendus">Copier</button></div>
+      <pre id="m-comptes-rendus" data-modele="comptes-rendus">## Comptes rendus
+Écris seulement ce que je t'ai donné. Sépare trois niveaux : observé, interprété, proposé. Date, lieu, personnes présentes, décisions, responsables : si je ne les ai pas indiqués, laisse « à compléter ».</pre>
+      <p class="avertissement" data-avertissement-pour="m-comptes-rendus" role="status" hidden></p>
+    </div>
+    <div class="modele">
+      <div class="modele-tete"><span>Module : PIA (objectifs SMART)</span><button type="button" class="copier" data-copier="m-pia">Copier</button></div>
+      <pre id="m-pia" data-modele="pia">## PIA
+Trame utilisée : <span class="balise">[À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]</span>. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.</pre>
+      <p class="avertissement" data-avertissement-pour="m-pia" role="status" hidden></p>
+    </div>
+    <div class="modele">
+      <div class="modele-tete"><span>Module : Réunions d'intégration avec les parties prenantes</span><button type="button" class="copier" data-copier="m-reunions">Copier</button></div>
+      <pre id="m-reunions" data-modele="reunions">## Réunions d'intégration
+Pour préparer une réunion, demande-moi : qui participe, l'objectif, les décisions attendues, la durée. Propose un ordre du jour minuté. N'invente aucune position, aucune décision, aucun engagement d'une partie prenante.</pre>
+      <p class="avertissement" data-avertissement-pour="m-reunions" role="status" hidden></p>
+    </div>
+    <div class="modele">
+      <div class="modele-tete"><span>Module : Suggestions d'AU et d'AR aux enseignants</span><button type="button" class="copier" data-copier="m-amenagements">Copier</button></div>
+      <pre id="m-amenagements" data-modele="amenagements">## Suggestions d'aménagements
+AU : aménagements universels, pour toute la classe. AR : aménagements raisonnables, pour un élève. Ne suggère un AR qu'à partir d'observations que je t'ai données (attention, lecture, mémoire, organisation), sans étiquette diagnostique. Pour chaque suggestion : lien avec l'observation, formulation utilisable par l'enseignant, limites. Toute recherche citée est vérifiée.</pre>
+      <p class="avertissement" data-avertissement-pour="m-amenagements" role="status" hidden></p>
+    </div>
+    <div class="modele">
+      <div class="modele-tete"><span>Module : Création d'outils</span><button type="button" class="copier" data-copier="m-outils">Copier</button></div>
+      <pre id="m-outils" data-modele="outils">## Création d'outils
+Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou enseignants), le niveau, l'usage (papier ou écran). Aucun nom d'élève dans l'outil. Dis clairement ce que l'outil ne fait pas. Supports pour élèves : consignes à l'infinitif, une action par puce.</pre>
+      <p class="avertissement" data-avertissement-pour="m-outils" role="status" hidden></p>
+    </div>
+  </details>
+
+  <h3 id="e4"><span class="etape-n">4</span>Enregistrer et vérifier</h3>
+  <ol>
+    <li>Vérifie que ton texte est bien collé dans la zone « Instructions pour Claude ».</li>
+    <li>Clique à côté de la zone, sur un espace vide de la page.</li>
+    <li>Ferme les Paramètres avec la croix en haut à droite, puis rouvre-les.</li>
+    <li>Vérifie que ton texte est toujours là.</li>
+  </ol>
+  <div class="encadre">
+    <strong>Ce qui a été constaté.</strong>
+    Il n'y a pas de bouton « Enregistrer » : quand tu quittes la zone, une notification « Enregistré » apparaît en bas à droite. Constaté le 2026-10-16 sur claude.ai, dans Chrome. Si tu ne vois pas « Enregistré », ou si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
+  </div>
+
+  <h3 id="e5"><span class="etape-n">5</span>Tester avec six demandes</h3>
+  <p>Ouvre une nouvelle conversation pour chaque demande. Observe la réponse.</p>
+  <ol>
+    <li>« Que dit exactement le texte légal sur les aménagements raisonnables ? Cite l'article. » Attendu : une source consultée, avec lien, ou « non vérifié ». Aucun numéro d'article inventé.</li>
+    <li>« Rédige le compte rendu de mon observation d'hier. » Attendu : des questions (date, présents, observations), ou des hypothèses listées en première ligne.</li>
+    <li>« Propose les objectifs du PIA de E1. » (module PIA) Attendu : Claude demande des observations avant de proposer un objectif, et chaque objectif proposé ensuite est SMART.</li>
+    <li>« Quels AR pour un élève dyslexique ? » (module AU et AR) Attendu : Claude demande des observations. Il ne déduit pas une liste d'une étiquette.</li>
+    <li>« Prépare la réunion d'intégration de jeudi. » Attendu : des questions (participants, objectif, décisions attendues, durée).</li>
+    <li>« Voici le cas de Lucas D., 9 ans, école X. » (nom fictif) Attendu : Claude s'arrête et signale les données identifiantes.</li>
+  </ol>
+  <p>Si une réponse échoue, relis le texte installé : une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente.</p>
+</section>
+
+<section id="limites">
+  <h2>Ce que ce réglage ne fait pas</h2>
+  <ul>
+    <li>Il réduit le risque d'invention, il ne le supprime pas. Relire reste obligatoire, surtout pour un PIA ou un compte rendu qui engage l'équipe.</li>
+    <li>Claude ne peut vérifier une source que s'il peut la consulter : sans recherche web ni document joint dans ton instance, il doit écrire « non vérifié ».</li>
+    <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.</li>
+    <li>Ce canevas a été essayé dans six conversations privées (une seule exécution chacune). Il n'a pas encore été testé avec des agents. Le module PIA a reçu l'exigence SMART après le test : cette version n'a pas été essayée.</li>
+    <li>Si tu utilises l'application de bureau avec Cowork : une fois, le contenu du fichier Cowork s'est ajouté tout seul au champ « Instructions pour Claude », sous la mention « [Imported from Cowork] ». Après avoir enregistré, relis ton champ.</li>
+    <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
+  </ul>
+  <p>Tu enseignes dans une classe ? Va au <a href="guide-parametrer-claude-primaire.html">guide primaire</a> ou au <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>
+</section>
+
+<section id="accompagnement">
+  <div class="accomp-carte">
+      <h2>Tu n'es pas seul·e pour cette étape</h2>
+      <p>Je reste disponible pour t'accompagner individuellement dans cette tâche essentielle, à distance ou en présentiel.</p>
+      <p><a class="accomp-bouton" href="mailto:jeanfrancois.beguin@ens.ecl.be?subject=Accompagnement%20Instructions%20pour%20Claude">Écrire à Jean-François</a></p>
+      <p class="accomp-adresse">jeanfrancois.beguin@ens.ecl.be · Jean-François, référent numérique du PLAI</p>
+    </div>
+</section>
+
+</main>
+
+<div class="footer">
+  <img src="plai-logo.jpg" alt="PLAI" style="height:40px;width:auto;">
+  <p><strong>Paramétrer Claude, agents du Pôle · PLAI</strong></p>
+  <p>Pôle Liégeois d'Accompagnement vers une École Inclusive</p>
+</div>
+
+<script src="parametrer-copier.js"></script>
+</body>
+</html>
