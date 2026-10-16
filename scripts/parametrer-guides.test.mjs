@@ -91,7 +91,9 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
     }
   })
   test(`${fichier} : ressources, chemin et avertissement`, () => {
-    for (const s of ['/parametrer-copier.js', '/plai-logo.jpg', 'name="viewport"', 'Paramètres', 'Compte', 'Profil', 'effacées']) {
+    const racine = [...html.matchAll(/\b(?:src|href)="(\/[^"]+)"/g)].map((m) => m[1])
+    assert.deepEqual(racine, [], `chemins absolus (cassés hors du site) : ${racine.join(' ')}`)
+    for (const s of ['src="parametrer-copier.js"', 'src="plai-logo.jpg"', 'name="viewport"', 'Paramètres', 'Compte', 'Profil', 'effacées']) {
       assert.ok(html.includes(s), `absent : ${s}`)
     }
     const logo = /<img\b[^>]*plai-logo[^>]*>/.exec(html)[0]
