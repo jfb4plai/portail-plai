@@ -116,6 +116,15 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
       assert.ok(!html.includes(interdit), `present : ${interdit}`)
     }
   })
+  test(`${fichier} : recherche citee avec ses limites, sans promesse; accessibilite des gestes`, () => {
+    assert.ok(html.includes('dumas-05106961'), 'reference RISS absente')
+    assert.ok(html.includes('Les limites'), 'limites de la recherche absentes')
+    assert.ok(html.includes('ne promet donc pas un effet'), 'mise en garde absente')
+    assert.ok(!/garanti|assuré|systématiquement meilleur/i.test(texte), 'promesse excessive')
+    assert.ok(html.includes('exemple compris'), "consigne de remplacer l'exemple absente")
+    assert.ok(html.includes('Cmd'), 'touche Mac absente')
+    assert.ok(!html.includes('« Pro » ou « Gratuit »'), 'affirmation non verifiee sur la pastille')
+  })
   test(`${fichier} : texte a 16 px minimum`, () => {
     for (const m of html.matchAll(/font-size:\s*([\d.]+)(px|rem)/g)) {
       const v = Number(m[1])
