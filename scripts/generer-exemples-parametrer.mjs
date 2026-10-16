@@ -14,7 +14,7 @@ if (!cle) {
     cle = (/^ANTHROPIC_API_KEY\s*=\s*(.+)$/m.exec(readFileSync(join(RACINE, '.env.local'), 'utf8')) || [])[1]?.trim().replace(/^["']|["']$/g, '')
   } catch {}
 }
-if (!cle) throw new Error('ANTHROPIC_API_KEY absente (variable d'environnement) ou vide dans .env.local')
+if (!cle) throw new Error("ANTHROPIC_API_KEY absente (variable environnement) ou vide dans .env.local")
 
 const decoder = (h) => h.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;|&apos;/g, "'").replace(/&quot;/g, '"')
 
