@@ -1810,7 +1810,7 @@ const apps: AppItem[] = [
   {
     id: 'claude-parametrer-agents',
     name: 'Paramétrer Claude pour les agents du Pôle',
-    description: "Pas à pas pour renseigner « Instructions pour Claude » : Claude ne devine rien (il pose la question ou liste ses hypothèses) et ne cite que des sources vérifiées. Socle commun et modules : comptes rendus, PIA, réunions d'intégration, AU/AR, outils.",
+    description: "Pas à pas pour renseigner « Instructions pour Claude » : Claude ne devine rien (il pose la question ou liste ses hypothèses) et ne cite que des sources vérifiées. Un socle permanent et un skill par tâche : comptes rendus, PIA, réunions d'intégration, AU/AR, outils.",
     url: '/guide-parametrer-claude-agents-pole.html',
     emoji: '🧭',
     category: 'Guide',

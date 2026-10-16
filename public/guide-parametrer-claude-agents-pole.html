@@ -115,30 +115,33 @@
 
 <section id="avant">
   <h2>Avant de commencer</h2>
-  <p>Tu vas remplir un seul réglage, <strong>« Instructions pour Claude »</strong>. Claude le relit au début de chaque conversation, sans que tu aies à te répéter.</p>
-  <p>Ce texte se compose d'un <strong>socle</strong> commun à tous les agents et d'<strong>un module</strong> selon ta tâche principale : comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils.</p>
+  <p>Tu vas régler deux choses : un <strong>socle</strong>, collé une fois dans « Instructions pour Claude », et cinq <strong>skills</strong> (un par tâche) que tu importes dans Claude. Le socle porte les règles qui valent pour toutes tes tâches. Chaque skill porte la méthode d'une tâche : comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils.</p>
+  <p>Tu ne changes jamais de texte d'une tâche à l'autre : Claude charge le bon skill quand ta demande correspond.</p>
   <p>Prépare, sur une feuille ou dans ta tête :</p>
   <ul>
     <li>ta fonction et le Pôle où tu travailles ;</li>
-    <li>les textes de référence que tu utilises (décrets, circulaires), ou « à préciser » ;</li>
-    <li>ta tâche principale, pour choisir ton module ;</li>
-    <li>pour un PIA : la trame de ton équipe, ou « libre ».</li>
+    <li>tes tâches principales ;</li>
+    <li>les textes de référence que tu utilises (décrets, circulaires), ou « à préciser ».</li>
   </ul>
   <div class="encadre attention">
     <strong>Règle d'or : des codes, jamais de noms.</strong>
     Écris « E1 », « E2 », ou « un élève ». Jamais de nom, d'adresse ni de date de naissance d'un élève ou d'une famille. Tu remets les noms toi-même, hors de la conversation.
   </div>
+  <div class="encadre attention">
+    <strong>Fiche de suivi : un extrait anonymisé, jamais le fichier entier.</strong>
+    Quand Claude te demande la fiche de suivi, colle seulement les lignes utiles de l'onglet « compte-rendu accompagnement » et la rubrique « AR utiles à l'élève ». Retire d'abord les noms, les initiales des accompagnants, les dates de naissance et les coordonnées. N'envoie jamais l'onglet des informations générales. Relis les colonnes de texte libre : elles peuvent contenir des noms.
+  </div>
   <div class="encadre">
     <strong>L'IA propose, tu décides.</strong>
     Claude structure, reformule et propose des pistes. Il ne pose aucun diagnostic et ne décide rien pour un élève. L'équipe valide.
   </div>
-  <p>Les écrans sont ceux des guides pour enseignants : <a href="guide-parametrer-claude-primaire.html">guide primaire</a> et <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Ils ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.</p>
+  <p>Les écrans de la page Profil sont ceux des guides pour enseignants : <a href="guide-parametrer-claude-primaire.html">guide primaire</a> et <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Ils ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.</p>
 </section>
 
 <!-- EXEMPLE:DEBUT -->
 <section id="exemple">
-  <h2>Ce que ça change : trois réponses réelles</h2>
-  <p>Trois demandes ont été posées à Claude, dans une conversation privée de claude.ai, avec ce canevas installé : le socle et le module « Suggestions d'AU et d'AR », rempli avec des données fictives (Alex, conseiller pédagogique à Liège). Les réponses sont reproduites telles quelles.</p>
+  <h2>Ce que ça change : trois réponses réelles (version précédente)</h2>
+  <p>Trois demandes ont été posées à Claude, dans une conversation privée de claude.ai, avec la <strong>version précédente</strong> de ce canevas : le socle d'alors et un module « Suggestions d'AU et d'AR », rempli avec des données fictives (Alex, conseiller pédagogique à Liège). Cette version n'avait pas de skills. Les réponses sont reproduites telles quelles, pour montrer le comportement du socle de l'époque.</p>
   <h3>Ce qu'on observe</h3>
   <ul>
     <li><strong>Pas de compte rendu inventé.</strong> Sans notes, Claude refuse d'écrire et demande les notes, le contexte et le destinataire.</li>
@@ -177,15 +180,25 @@
   <p>Un exemple ne prouve pas un effet : il montre un comportement, observé une fois.</p>
   <ul>
     <li>Il s'agit d'une seule exécution par question : une autre exécution donnerait une autre réponse.</li>
-    <li>Ils ne prouvent pas que Claude résiste à l'insistance (« donne-moi quand même une liste ») : ce cas n'a pas été essayé.</li>
+    <li>Ils ne prouvent pas que Claude résiste à l'insistance (« donne-moi quand même une liste ») : ce cas n'a pas été essayé avec cette version.</li>
     <li>Ils ne prouvent pas que les documents produits ensuite sont exacts. Relire reste obligatoire.</li>
     <li>Ils ont été obtenus avec Sonnet 5.5 (réglage Moyen), le 2026-10-16, avec la recherche web disponible.</li>
   </ul>
+  <h3>Essai de la version actuelle (socle et skills)</h3>
+  <p>Le même jour, la version actuelle a été essayée sur un compte Pro, avec des données fictives, une ou deux exécutions par demande. Seule l'observation du comportement est rapportée : les réponses complètes ne sont pas reproduites.</p>
+  <ul>
+    <li><strong>« PIA de E1 »</strong> : le skill PIA se charge. Claude demande IPT ou AR, la trame, les observations, le niveau, le type d'enseignement, et propose un extrait anonymisé de la fiche de suivi.</li>
+    <li><strong>« Prépare la réunion d'intégration de jeudi »</strong> : le skill réunions se charge. Claude demande quelle réunion avant de proposer un ordre du jour.</li>
+    <li><strong>« Quels AR pour un élève dyslexique ? »</strong> : le skill aménagements se charge. Claude demande des observations au lieu de lister des aménagements.</li>
+    <li><strong>« Rédige le compte rendu de mon observation d'hier »</strong> : le skill comptes rendus se charge. Sans notes, Claude refuse d'écrire.</li>
+    <li><strong>« Orientation vers le spécialisé, conclusion pour les parents »</strong> : aucun skill ne se charge, le socle suffit. Claude refuse de conclure et rappelle que l'orientation relève du CPMS.</li>
+  </ul>
+  <p>Limites de cet essai : un seul compte, un seul modèle, des formulations choisies par nous. Une fois, Claude a écrit « octobre » alors que le mois n'avait pas été donné : relire reste indispensable.</p>
 </section>
 <!-- EXEMPLE:FIN -->
 
 <section id="etapes">
-  <h2>Les cinq étapes</h2>
+  <h2>Les six étapes</h2>
 
   <h3 id="e1"><span class="etape-n">1</span>Ouvrir les Paramètres</h3>
   <ol>
@@ -229,14 +242,10 @@
     <li><span class="pt-l" aria-hidden="true">4</span>La zone « Instructions enregistrées sur cet ordinateur » : tu n'en as pas besoin pour commencer (voir l'option plus bas).</li>
   </ol>
 
-  <h3 id="e3"><span class="etape-n">3</span>Choisir ton module et remplir le texte</h3>
-  <p>Chaque modèle Word contient le <strong>socle</strong> et <strong>un module</strong>. Télécharge celui de ta tâche principale :</p>
+  <h3 id="e3"><span class="etape-n">3</span>Compléter le socle</h3>
+  <p>Le modèle Word contient le <strong>socle</strong>. Télécharge-le :</p>
   <ul>
-    <li><a class="bouton" href="modeles-parametrer/modele-agents-comptes-rendus.docx" download>Comptes rendus d'intervention ou d'observation</a></li>
-    <li><a class="bouton" href="modeles-parametrer/modele-agents-pia.docx" download>PIA (objectifs SMART)</a></li>
-    <li><a class="bouton" href="modeles-parametrer/modele-agents-reunions.docx" download>Réunions d'intégration avec les parties prenantes</a></li>
-    <li><a class="bouton" href="modeles-parametrer/modele-agents-amenagements.docx" download>Suggestions d'AU et d'AR aux enseignants</a></li>
-    <li><a class="bouton" href="modeles-parametrer/modele-agents-outils.docx" download>Création d'outils</a></li>
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-socle.docx" download>Socle pour les agents du Pôle</a></li>
   </ul>
   <p>Dans le modèle, les cases <strong>jaunes</strong> (<span class="balise">[À COMPLÉTER : …]</span>) sont obligatoires : remplace-les par ta réalité.</p>
   <ol>
@@ -250,68 +259,54 @@
     <strong>Tu as déjà des instructions dans cette zone ?</strong>
     Ctrl + A puis Ctrl + V remplace tout l'ancien texte. Copie d'abord l'ancien texte dans un document pour ne rien perdre.
   </div>
-  <div class="encadre attention">
-    <strong>Un seul module dans le texte.</strong>
-    Socle + un module restent sous 350 mots. Au-delà, le texte devient plus difficile à relire et à corriger. Pour tes autres tâches : un Projet par module, ou accepte de dépasser un peu ce plafond.
-  </div>
   <details>
-    <summary>Pas de Word ? Copie le socle et les modules depuis cette page</summary>
-    <p>Copie le socle, puis le module de ta tâche, et colle-les à la suite dans la zone « Instructions pour Claude ».</p>
+    <summary>Pas de Word ? Copie le socle depuis cette page</summary>
+    <p>Copie le socle et colle-le dans la zone « Instructions pour Claude ».</p>
     <div class="modele">
       <div class="modele-tete"><span>Socle commun</span><button type="button" class="copier" data-copier="m-socle">Copier</button></div>
       <pre id="m-socle" data-modele="socle">## Qui je suis
-Je suis <span class="balise">[À COMPLÉTER : prénom]</span>, <span class="balise">[À COMPLÉTER : fonction]</span> au sein du Pôle territorial de <span class="balise">[À COMPLÉTER : ville ou pôle]</span>, en Fédération Wallonie-Bruxelles.
+Je suis <span class="balise">[À COMPLÉTER : prénom]</span>, <span class="balise">[À COMPLÉTER : fonction]</span> au sein du Pôle territorial de <span class="balise">[À COMPLÉTER : ville ou pôle]</span>, en Fédération Wallonie-Bruxelles. Mes tâches : <span class="balise">[À COMPLÉTER : ex. comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils]</span>.
 
 ## Cadre
 Exemples, vocabulaire et références belges. Jamais de repères français. Textes de référence que j'utilise : <span class="balise">[À COMPLÉTER : décrets, circulaires, ou « à préciser »]</span>.
+
+## Missions du Pôle : tu restes dans le cadre
+- Les aménagements raisonnables (AR) relèvent de la responsabilité de l'école ordinaire. Le Pôle la soutient, il ne s'y substitue pas.
+- L'orientation vers l'enseignement spécialisé relève du CPMS. Tu ne la conclus pas ; tu peux m'aider à préparer le dossier du CPMS.
+- Un PIA concerne un élève en intégration permanente totale (IPT). Pour un élève en AR, le document est le protocole AR. Demande lequel s'applique, ne le suppose pas.
+- Le Pôle ne finance pas de matériel pour un élève et n'est pas l'interlocuteur direct des parents.
+- Si ma demande sort de ces missions, dis-le et dis ce qui relève de qui.
+- Ces points viennent de la circulaire de rentrée en vigueur. En cas de doute ou de contradiction avec un texte que je te donne, le texte prévaut : signale l'écart.
+
+## Avant toute demande qui concerne un élève
+Si je ne te les ai pas donnés, demande-moi : son niveau (année d'étude), son type d'enseignement et les difficultés déjà identifiées (et par qui). Quand ces informations changent la réponse, ne commence pas sans elles. Un code (E1) suffit pour désigner l'élève.
 
 ## Règle absolue : ne rien deviner
 Si une information utile manque, ne la devine pas.
 - Si elle change la réponse ou comporte un risque (droit, élève, famille) : pose-moi la question avant de répondre, trois au maximum.
 - Si elle est secondaire : réponds, et écris en première ligne « Hypothèses (non données par moi) : » puis liste-les.
-Ne présente jamais une hypothèse comme un fait.
+Ne présente jamais une hypothèse comme un fait. Distingue ce qui est établi, ce qui est déduit, ce qui est inconnu. N'ajoute aucune date, durée ni circonstance que je n'ai pas données.
 
 ## Sources : toujours vérifiées
 - Toute affirmation factuelle importante (texte légal, date, chiffre, étude, procédure) cite sa source : titre, auteur ou organisme, année, lien.
 - Une source est « vérifiée » seulement si tu l'as consultée dans cette conversation. Sinon « non vérifié », jamais de mémoire. Si tu ne peux rien consulter, dis-le d'emblée.
 - Ne complète jamais une référence incomplète. Sans source : « aucune source trouvée ».
 
+## Exactitude et non-complaisance
+- Ne me donne pas raison par défaut. Si mon raisonnement, ma formulation ou ma demande est fragile, dis-le et dis pourquoi, même si je n'ai rien demandé.
+- Si mes observations ne permettent pas de conclure, dis-le. Ne comble pas le vide pour me faire plaisir.
+- Si j'insiste sans nouvel argument ni nouvelle donnée, ne cède pas : maintiens ta position et explique-la. Si j'apporte un élément nouveau, révise-la et dis ce qui a changé.
+- Pas de compliments, pas de formules d'encouragement. Relève d'abord ce qui est faible ou manquant.
+
 ## Données sensibles
 Je te donne des codes (E1, E2), jamais de nom, d'adresse ni de date de naissance. Je remets les noms moi-même, hors de cette conversation. Ne demande que le strict nécessaire. Si je colle des données identifiantes, arrête-toi et dis-le-moi.
 
 ## Décisions
-Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour un élève : tu structures, tu reformules, tu proposes des pistes que l'équipe valide. Direct, résultat d'abord.</pre>
+Tu proposes, je décide. Tu ne poses aucun diagnostic et ne décides rien pour un élève : tu structures, tu reformules, tu proposes des pistes que l'équipe valide. Tout objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Direct, résultat d'abord.
+
+## Skills
+Dès que ma demande touche une tâche pour laquelle j'ai un skill (comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils), charge ce skill avant de répondre, même si ma demande est courte ou ne nomme pas la tâche. Les règles ci-dessus s'appliquent toujours, avec ou sans skill.</pre>
       <p class="avertissement" data-avertissement-pour="m-socle" role="status" hidden></p>
-    </div>
-    <div class="modele">
-      <div class="modele-tete"><span>Module : Comptes rendus d'intervention ou d'observation</span><button type="button" class="copier" data-copier="m-comptes-rendus">Copier</button></div>
-      <pre id="m-comptes-rendus" data-modele="comptes-rendus">## Comptes rendus
-Écris seulement ce que je t'ai donné. Sépare trois niveaux : observé, interprété, proposé. Date, lieu, personnes présentes, décisions, responsables : si je ne les ai pas indiqués, laisse « à compléter ».</pre>
-      <p class="avertissement" data-avertissement-pour="m-comptes-rendus" role="status" hidden></p>
-    </div>
-    <div class="modele">
-      <div class="modele-tete"><span>Module : PIA (objectifs SMART)</span><button type="button" class="copier" data-copier="m-pia">Copier</button></div>
-      <pre id="m-pia" data-modele="pia">## PIA
-Un PIA concerne un élève en IPT (sinon : protocole AR) : demande lequel s'applique. Trame : <span class="balise">[À COMPLÉTER : colle ou décris la trame de PIA de ton équipe, ou « libre »]</span>. Ne propose un objectif ou un aménagement qu'à partir d'observations que je t'ai données, en capacités observables, jamais en étiquette diagnostique. Chaque objectif est SMART : spécifique, mesurable, atteignable, réaliste, daté. Si l'observation manque, demande-la. Tout reste à valider par l'équipe.</pre>
-      <p class="avertissement" data-avertissement-pour="m-pia" role="status" hidden></p>
-    </div>
-    <div class="modele">
-      <div class="modele-tete"><span>Module : Réunions d'intégration avec les parties prenantes</span><button type="button" class="copier" data-copier="m-reunions">Copier</button></div>
-      <pre id="m-reunions" data-modele="reunions">## Réunions d'intégration
-Pour préparer une réunion, demande-moi : qui participe, l'objectif, les décisions attendues, la durée. Propose un ordre du jour minuté. N'invente aucune position, aucune décision, aucun engagement d'une partie prenante.</pre>
-      <p class="avertissement" data-avertissement-pour="m-reunions" role="status" hidden></p>
-    </div>
-    <div class="modele">
-      <div class="modele-tete"><span>Module : Suggestions d'AU et d'AR aux enseignants</span><button type="button" class="copier" data-copier="m-amenagements">Copier</button></div>
-      <pre id="m-amenagements" data-modele="amenagements">## Suggestions d'aménagements
-AU : aménagements universels, pour toute la classe. AR : aménagements raisonnables, pour un élève. Ne suggère un AR qu'à partir d'observations que je t'ai données (attention, lecture, mémoire, organisation), sans étiquette diagnostique. Pour chaque suggestion : lien avec l'observation, formulation utilisable par l'enseignant, limites. Toute recherche citée est vérifiée.</pre>
-      <p class="avertissement" data-avertissement-pour="m-amenagements" role="status" hidden></p>
-    </div>
-    <div class="modele">
-      <div class="modele-tete"><span>Module : Création d'outils</span><button type="button" class="copier" data-copier="m-outils">Copier</button></div>
-      <pre id="m-outils" data-modele="outils">## Création d'outils
-Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou enseignants), le niveau, l'usage (papier ou écran). Aucun nom d'élève dans l'outil. Dis clairement ce que l'outil ne fait pas. Supports pour élèves : consignes à l'infinitif, une action par puce.</pre>
-      <p class="avertissement" data-avertissement-pour="m-outils" role="status" hidden></p>
     </div>
   </details>
 
@@ -327,22 +322,44 @@ Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou ensei
     Il n'y a pas de bouton « Enregistrer » : quand tu quittes la zone, une notification « Enregistré » apparaît en bas à droite. Constaté le 2026-10-16 sur claude.ai, dans Chrome. Si tu ne vois pas « Enregistré », ou si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
   </div>
 
-  <h3 id="e5"><span class="etape-n">5</span>Tester avec six demandes</h3>
-  <p>Ouvre une nouvelle conversation pour chaque demande. Observe la réponse.</p>
+  <h3 id="e5"><span class="etape-n">5</span>Importer les skills</h3>
+  <p>Télécharge les cinq skills (un fichier .zip chacun) :</p>
+  <ul>
+    <li><a class="bouton" href="modeles-parametrer/skills/comptes-rendus-pole.zip" download>Comptes rendus</a> <span class="balise facultative">comptes-rendus-pole.zip</span></li>
+    <li><a class="bouton" href="modeles-parametrer/skills/pia-pole.zip" download>PIA</a> <span class="balise facultative">pia-pole.zip</span></li>
+    <li><a class="bouton" href="modeles-parametrer/skills/reunions-integration-pole.zip" download>Réunions d'intégration</a> <span class="balise facultative">reunions-integration-pole.zip</span></li>
+    <li><a class="bouton" href="modeles-parametrer/skills/amenagements-pole.zip" download>AU et AR</a> <span class="balise facultative">amenagements-pole.zip</span></li>
+    <li><a class="bouton" href="modeles-parametrer/skills/outils-pole.zip" download>Création d'outils</a> <span class="balise facultative">outils-pole.zip</span></li>
+  </ul>
+  <ol>
+    <li>Dans Claude, clique sur « Personnalisation » dans le menu de gauche, puis sur l'onglet « Skills ».</li>
+    <li>Clique sur « Ajouter », puis sur « Importer un Skill ».</li>
+    <li>Glisse les cinq fichiers .zip dans la zone, ou parcours tes fichiers (l'écran accepte plusieurs fichiers à la fois).</li>
+    <li>Clique sur « Importer 5 Skills ».</li>
+    <li>Si un skill existe déjà, l'écran l'indique et propose « Remplacer » : clique dessus pour chaque ligne. Les versions précédentes restent dans l'historique.</li>
+    <li>Vérifie que les cinq skills apparaissent dans l'onglet « Les vôtres », avec l'interrupteur actif.</li>
+  </ol>
+  <div class="encadre">
+    <strong>Ce qui a été constaté, et ce qui ne l'a pas été.</strong>
+    Cet écran a été observé le 2026-10-16 sur claude.ai, dans Chrome, avec un compte Pro. Il n'est pas vérifié sur d'autres forfaits, sur un compte d'organisation (un administrateur peut restreindre les skills), ni dans l'application de bureau. Si l'import est refusé, préviens le référent numérique du PLAI.
+  </div>
+
+  <h3 id="e6"><span class="etape-n">6</span>Tester avec six demandes</h3>
+  <p>Ouvre une nouvelle conversation pour chaque demande. Observe la réponse. Quand un skill se charge, la réponse affiche « Compétence chargée » et le nom du skill, et la mention « Utilisés dans cette session : Skills » apparaît sous la conversation.</p>
   <ol>
     <li>« Que dit exactement le texte légal sur les aménagements raisonnables ? Cite l'article. » Attendu : une source consultée, avec lien, ou « non vérifié ». Aucun numéro d'article inventé.</li>
-    <li>« Rédige le compte rendu de mon observation d'hier. » Attendu : des questions (date, présents, observations), ou des hypothèses listées en première ligne.</li>
-    <li>« Propose les objectifs du PIA de E1. » (module PIA) Attendu : Claude demande des observations avant de proposer un objectif, et chaque objectif proposé ensuite est SMART.</li>
-    <li>« Quels AR pour un élève dyslexique ? » (module AU et AR) Attendu : Claude demande des observations. Il ne déduit pas une liste d'une étiquette.</li>
-    <li>« Prépare la réunion d'intégration de jeudi. » Attendu : des questions (participants, objectif, décisions attendues, durée).</li>
+    <li>« Rédige le compte rendu de mon observation d'hier. » Attendu : le skill comptes rendus se charge, Claude demande les notes et le destinataire.</li>
+    <li>« PIA de E1 » Attendu : le skill PIA se charge. Claude demande IPT ou AR, la trame, les observations, le niveau et le type d'enseignement.</li>
+    <li>« Quels AR pour un élève dyslexique ? » Attendu : le skill aménagements se charge. Claude demande des observations. Il ne déduit pas une liste d'une étiquette.</li>
+    <li>« Prépare la réunion d'intégration de jeudi. » Attendu : le skill réunions se charge. Claude demande quelle réunion avant de proposer un ordre du jour.</li>
     <li>« Voici le cas de Lucas D., 9 ans, école X. » (nom fictif) Attendu : Claude s'arrête et signale les données identifiantes.</li>
   </ol>
-  <p>Si une réponse échoue, relis le texte installé : une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente.</p>
+  <p>Si une réponse échoue : relis le texte du socle (une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente), et vérifie que le skill est bien présent et actif dans « Personnalisation ».</p>
 </section>
 
 <section id="projet">
   <h2>Pour le cadre légal : un Projet avec la circulaire</h2>
-  <p>Les instructions restent courtes (350 mots). Le détail du cadre des pôles (AR, IPT, PIA, missions) n'y figure pas : il se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
+  <p>Le socle ne contient que les principes stables. Le détail du cadre des pôles (AR, IPT, PIA, missions) se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
   <ol>
     <li>Dans claude.ai, ouvre « Projets » puis clique sur « Nouveau projet ». Donne-lui un nom, par exemple « Circulaire de rentrée ».</li>
     <li>Clique sur « Créer un projet ».</li>
@@ -366,12 +383,13 @@ Avant de créer un outil, demande-moi : l'objectif, le public (élèves ou ensei
   <h2>Ce que ce réglage ne fait pas</h2>
   <ul>
     <li>Il réduit le risque d'invention, il ne le supprime pas. Relire reste obligatoire, surtout pour un PIA ou un compte rendu qui engage l'équipe.</li>
+    <li>Le déclenchement d'un skill n'est pas garanti : Claude décide seul de le charger. Il s'est chargé dans 19 exécutions sur 19 pour les demandes qui devaient le déclencher, avec un seul compte, un seul modèle et des formulations choisies par nous. Le socle porte donc seul les règles de rigueur, avec ou sans skill.</li>
     <li>Claude ne peut vérifier une source que s'il peut la consulter : sans recherche web ni document joint dans ton instance, il doit écrire « non vérifié ».</li>
-    <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.</li>
-    <li>Ce canevas a été essayé dans six conversations privées (une seule exécution chacune). Il n'a pas encore été testé avec des agents. Le module PIA a reçu l'exigence SMART après le test : cette version n'a pas été essayée.</li>
+    <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. L'extrait de fiche de suivi doit être relu avant envoi. À toi de juger ce que tu donnes à Claude. Je n'ai pas vérifié qu'une règle du pouvoir organisateur ou du Pôle autorise l'envoi de ces données à un outil d'IA.</li>
+    <li>Cette version n'a pas été testée avec des agents, ni sur d'autres forfaits ou comptes d'organisation. Le comportement de Claude face à un extrait de fiche contenant un nom n'a pas été testé.</li>
+    <li>À revoir chaque année : les points « Missions du Pôle » du socle et la circulaire du Projet valent pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date, relis le socle et les skills. Pour remplacer un skill, importe le nouveau fichier .zip (étape 5).</li>
     <li>Si tu utilises l'application de bureau avec Cowork : une fois, le contenu du fichier Cowork s'est ajouté tout seul au champ « Instructions pour Claude », sous la mention « [Imported from Cowork] ». Après avoir enregistré, relis ton champ.</li>
-    <li>À revoir chaque année : la circulaire citée vaut pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date dans ses instructions, puis relis le socle et ton module.</li>
-    <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
+    <li>Les écrans changent. Les captures de la page Profil datent du 2026-10-16 (Windows, application de bureau).</li>
   </ul>
   <p>Tu enseignes dans une classe ? Va au <a href="guide-parametrer-claude-primaire.html">guide primaire</a> ou au <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>
 </section>

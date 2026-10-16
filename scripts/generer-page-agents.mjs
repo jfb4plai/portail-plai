@@ -1,10 +1,10 @@
-// Genere la page « agents du Pole » et ses cinq modeles Word (socle + un module chacun).
+// Genere la page « agents du Pole » et ses cinq modeles Word (le socle) et copie les cinq skills.
 // Sources : docs/agents-pole/canevas-instructions.md (socle + 5 modules) et docs/agents-pole/resultats-test-canevas.md.
 // Base de style : l'en-tete et le CSS de guide-parametrer-claude-secondaire.html (generer d'abord ce guide).
 // Usage : node scripts/generer-page-agents.mjs   (prerequis Word : npm i -g docx)
 import { createRequire } from 'node:module'
 import { execSync } from 'node:child_process'
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -15,13 +15,13 @@ const esc = (t) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, 
 // ---------- sources
 const canevas = lire('docs/agents-pole/canevas-instructions.md')
 const blocs = [...canevas.matchAll(/```text\n([\s\S]*?)```/g)].map((m) => m[1].replace(/\n+$/, ''))
-if (blocs.length !== 6) throw new Error(`canevas : ${blocs.length} blocs au lieu de 6`)
-const MODULES = [
-  { id: 'comptes-rendus', titre: 'Comptes rendus d\'intervention ou d\'observation', court: 'Comptes rendus', docx: 'modele-agents-comptes-rendus.docx', texte: blocs[1] },
-  { id: 'pia', titre: 'PIA (objectifs SMART)', court: 'PIA', docx: 'modele-agents-pia.docx', texte: blocs[2] },
-  { id: 'reunions', titre: 'Réunions d\'intégration avec les parties prenantes', court: 'Réunions', docx: 'modele-agents-reunions.docx', texte: blocs[3] },
-  { id: 'amenagements', titre: 'Suggestions d\'AU et d\'AR aux enseignants', court: 'AU et AR', docx: 'modele-agents-amenagements.docx', texte: blocs[4] },
-  { id: 'outils', titre: 'Création d\'outils', court: 'Outils', docx: 'modele-agents-outils.docx', texte: blocs[5] },
+if (blocs.length !== 1) throw new Error(`canevas : ${blocs.length} blocs text au lieu de 1 (le socle)`)
+const SKILLS = [
+  { id: 'comptes-rendus-pole', titre: 'Comptes rendus' },
+  { id: 'pia-pole', titre: 'PIA' },
+  { id: 'reunions-integration-pole', titre: "Réunions d'intégration" },
+  { id: 'amenagements-pole', titre: 'AU et AR' },
+  { id: 'outils-pole', titre: "Création d'outils" },
 ]
 const SOCLE = blocs[0]
 const BS = String.fromCharCode(92)
@@ -80,7 +80,7 @@ const blocProjet = `    <div class="modele">
       <p class="avertissement" data-avertissement-pour="m-projet" role="status" hidden></p>
     </div>`
 
-const boutonsWord = MODULES.map((m) => `    <li><a class="bouton" href="modeles-parametrer/${m.docx}" download>${esc(m.titre)}</a></li>`).join('\n')
+const boutonsSkills = SKILLS.map((k) => `    <li><a class="bouton" href="modeles-parametrer/skills/${k.id}.zip" download>${esc(k.titre)}</a> <span class="balise facultative">${k.id}.zip</span></li>`).join('\n')
 
 const page = `${entete}
 <body>
@@ -108,30 +108,33 @@ const page = `${entete}
 
 <section id="avant">
   <h2>Avant de commencer</h2>
-  <p>Tu vas remplir un seul réglage, <strong>« Instructions pour Claude »</strong>. Claude le relit au début de chaque conversation, sans que tu aies à te répéter.</p>
-  <p>Ce texte se compose d'un <strong>socle</strong> commun à tous les agents et d'<strong>un module</strong> selon ta tâche principale : comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils.</p>
+  <p>Tu vas régler deux choses : un <strong>socle</strong>, collé une fois dans « Instructions pour Claude », et cinq <strong>skills</strong> (un par tâche) que tu importes dans Claude. Le socle porte les règles qui valent pour toutes tes tâches. Chaque skill porte la méthode d'une tâche : comptes rendus, PIA, réunions d'intégration, suggestions d'AU et d'AR, création d'outils.</p>
+  <p>Tu ne changes jamais de texte d'une tâche à l'autre : Claude charge le bon skill quand ta demande correspond.</p>
   <p>Prépare, sur une feuille ou dans ta tête :</p>
   <ul>
     <li>ta fonction et le Pôle où tu travailles ;</li>
-    <li>les textes de référence que tu utilises (décrets, circulaires), ou « à préciser » ;</li>
-    <li>ta tâche principale, pour choisir ton module ;</li>
-    <li>pour un PIA : la trame de ton équipe, ou « libre ».</li>
+    <li>tes tâches principales ;</li>
+    <li>les textes de référence que tu utilises (décrets, circulaires), ou « à préciser ».</li>
   </ul>
   <div class="encadre attention">
     <strong>Règle d'or : des codes, jamais de noms.</strong>
     Écris « E1 », « E2 », ou « un élève ». Jamais de nom, d'adresse ni de date de naissance d'un élève ou d'une famille. Tu remets les noms toi-même, hors de la conversation.
   </div>
+  <div class="encadre attention">
+    <strong>Fiche de suivi : un extrait anonymisé, jamais le fichier entier.</strong>
+    Quand Claude te demande la fiche de suivi, colle seulement les lignes utiles de l'onglet « compte-rendu accompagnement » et la rubrique « AR utiles à l'élève ». Retire d'abord les noms, les initiales des accompagnants, les dates de naissance et les coordonnées. N'envoie jamais l'onglet des informations générales. Relis les colonnes de texte libre : elles peuvent contenir des noms.
+  </div>
   <div class="encadre">
     <strong>L'IA propose, tu décides.</strong>
     Claude structure, reformule et propose des pistes. Il ne pose aucun diagnostic et ne décide rien pour un élève. L'équipe valide.
   </div>
-  <p>Les écrans sont ceux des guides pour enseignants : <a href="guide-parametrer-claude-primaire.html">guide primaire</a> et <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Ils ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.</p>
+  <p>Les écrans de la page Profil sont ceux des guides pour enseignants : <a href="guide-parametrer-claude-primaire.html">guide primaire</a> et <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Ils ont été capturés le 2026-10-16 sur Windows, dans l'application de bureau. Les écrans Mac, tablette et téléphone n'ont pas été vérifiés.</p>
 </section>
 
 <!-- EXEMPLE:DEBUT -->
 <section id="exemple">
-  <h2>Ce que ça change : trois réponses réelles</h2>
-  <p>Trois demandes ont été posées à Claude, dans une conversation privée de claude.ai, avec ce canevas installé : le socle et le module « Suggestions d'AU et d'AR », rempli avec des données fictives (Alex, conseiller pédagogique à Liège). Les réponses sont reproduites telles quelles.</p>
+  <h2>Ce que ça change : trois réponses réelles (version précédente)</h2>
+  <p>Trois demandes ont été posées à Claude, dans une conversation privée de claude.ai, avec la <strong>version précédente</strong> de ce canevas : le socle d'alors et un module « Suggestions d'AU et d'AR », rempli avec des données fictives (Alex, conseiller pédagogique à Liège). Cette version n'avait pas de skills. Les réponses sont reproduites telles quelles, pour montrer le comportement du socle de l'époque.</p>
   <h3>Ce qu'on observe</h3>
   <ul>
     <li><strong>Pas de compte rendu inventé.</strong> Sans notes, Claude refuse d'écrire et demande les notes, le contexte et le destinataire.</li>
@@ -143,22 +146,32 @@ ${exemplesHtml}
   <p>Un exemple ne prouve pas un effet : il montre un comportement, observé une fois.</p>
   <ul>
     <li>Il s'agit d'une seule exécution par question : une autre exécution donnerait une autre réponse.</li>
-    <li>Ils ne prouvent pas que Claude résiste à l'insistance (« donne-moi quand même une liste ») : ce cas n'a pas été essayé.</li>
+    <li>Ils ne prouvent pas que Claude résiste à l'insistance (« donne-moi quand même une liste ») : ce cas n'a pas été essayé avec cette version.</li>
     <li>Ils ne prouvent pas que les documents produits ensuite sont exacts. Relire reste obligatoire.</li>
     <li>Ils ont été obtenus avec Sonnet 5.5 (réglage Moyen), le 2026-10-16, avec la recherche web disponible.</li>
   </ul>
+  <h3>Essai de la version actuelle (socle et skills)</h3>
+  <p>Le même jour, la version actuelle a été essayée sur un compte Pro, avec des données fictives, une ou deux exécutions par demande. Seule l'observation du comportement est rapportée : les réponses complètes ne sont pas reproduites.</p>
+  <ul>
+    <li><strong>« PIA de E1 »</strong> : le skill PIA se charge. Claude demande IPT ou AR, la trame, les observations, le niveau, le type d'enseignement, et propose un extrait anonymisé de la fiche de suivi.</li>
+    <li><strong>« Prépare la réunion d'intégration de jeudi »</strong> : le skill réunions se charge. Claude demande quelle réunion avant de proposer un ordre du jour.</li>
+    <li><strong>« Quels AR pour un élève dyslexique ? »</strong> : le skill aménagements se charge. Claude demande des observations au lieu de lister des aménagements.</li>
+    <li><strong>« Rédige le compte rendu de mon observation d'hier »</strong> : le skill comptes rendus se charge. Sans notes, Claude refuse d'écrire.</li>
+    <li><strong>« Orientation vers le spécialisé, conclusion pour les parents »</strong> : aucun skill ne se charge, le socle suffit. Claude refuse de conclure et rappelle que l'orientation relève du CPMS.</li>
+  </ul>
+  <p>Limites de cet essai : un seul compte, un seul modèle, des formulations choisies par nous. Une fois, Claude a écrit « octobre » alors que le mois n'avait pas été donné : relire reste indispensable.</p>
 </section>
 <!-- EXEMPLE:FIN -->
 
 <section id="etapes">
-  <h2>Les cinq étapes</h2>
+  <h2>Les six étapes</h2>
 
   ${etapes12.trim()}
 
-  <h3 id="e3"><span class="etape-n">3</span>Choisir ton module et remplir le texte</h3>
-  <p>Chaque modèle Word contient le <strong>socle</strong> et <strong>un module</strong>. Télécharge celui de ta tâche principale :</p>
+  <h3 id="e3"><span class="etape-n">3</span>Compléter le socle</h3>
+  <p>Le modèle Word contient le <strong>socle</strong>. Télécharge-le :</p>
   <ul>
-${boutonsWord}
+    <li><a class="bouton" href="modeles-parametrer/modele-agents-socle.docx" download>Socle pour les agents du Pôle</a></li>
   </ul>
   <p>Dans le modèle, les cases <strong>jaunes</strong> (<span class="balise">[À COMPLÉTER : …]</span>) sont obligatoires : remplace-les par ta réalité.</p>
   <ol>
@@ -172,15 +185,10 @@ ${boutonsWord}
     <strong>Tu as déjà des instructions dans cette zone ?</strong>
     Ctrl + A puis Ctrl + V remplace tout l'ancien texte. Copie d'abord l'ancien texte dans un document pour ne rien perdre.
   </div>
-  <div class="encadre attention">
-    <strong>Un seul module dans le texte.</strong>
-    Socle + un module restent sous 350 mots. Au-delà, le texte devient plus difficile à relire et à corriger. Pour tes autres tâches : un Projet par module, ou accepte de dépasser un peu ce plafond.
-  </div>
   <details>
-    <summary>Pas de Word ? Copie le socle et les modules depuis cette page</summary>
-    <p>Copie le socle, puis le module de ta tâche, et colle-les à la suite dans la zone « Instructions pour Claude ».</p>
+    <summary>Pas de Word ? Copie le socle depuis cette page</summary>
+    <p>Copie le socle et colle-le dans la zone « Instructions pour Claude ».</p>
 ${copierBloc('socle', 'Socle commun', SOCLE)}
-${MODULES.map((m) => copierBloc(m.id, `Module : ${m.titre}`, m.texte)).join('\n')}
   </details>
 
   <h3 id="e4"><span class="etape-n">4</span>Enregistrer et vérifier</h3>
@@ -195,22 +203,40 @@ ${MODULES.map((m) => copierBloc(m.id, `Module : ${m.titre}`, m.texte)).join('\n'
     Il n'y a pas de bouton « Enregistrer » : quand tu quittes la zone, une notification « Enregistré » apparaît en bas à droite. Constaté le 2026-10-16 sur claude.ai, dans Chrome. Si tu ne vois pas « Enregistré », ou si ton texte a disparu après la réouverture, recommence et préviens le référent numérique du PLAI.
   </div>
 
-  <h3 id="e5"><span class="etape-n">5</span>Tester avec six demandes</h3>
-  <p>Ouvre une nouvelle conversation pour chaque demande. Observe la réponse.</p>
+  <h3 id="e5"><span class="etape-n">5</span>Importer les skills</h3>
+  <p>Télécharge les cinq skills (un fichier .zip chacun) :</p>
+  <ul>
+${boutonsSkills}
+  </ul>
+  <ol>
+    <li>Dans Claude, clique sur « Personnalisation » dans le menu de gauche, puis sur l'onglet « Skills ».</li>
+    <li>Clique sur « Ajouter », puis sur « Importer un Skill ».</li>
+    <li>Glisse les cinq fichiers .zip dans la zone, ou parcours tes fichiers (l'écran accepte plusieurs fichiers à la fois).</li>
+    <li>Clique sur « Importer 5 Skills ».</li>
+    <li>Si un skill existe déjà, l'écran l'indique et propose « Remplacer » : clique dessus pour chaque ligne. Les versions précédentes restent dans l'historique.</li>
+    <li>Vérifie que les cinq skills apparaissent dans l'onglet « Les vôtres », avec l'interrupteur actif.</li>
+  </ol>
+  <div class="encadre">
+    <strong>Ce qui a été constaté, et ce qui ne l'a pas été.</strong>
+    Cet écran a été observé le 2026-10-16 sur claude.ai, dans Chrome, avec un compte Pro. Il n'est pas vérifié sur d'autres forfaits, sur un compte d'organisation (un administrateur peut restreindre les skills), ni dans l'application de bureau. Si l'import est refusé, préviens le référent numérique du PLAI.
+  </div>
+
+  <h3 id="e6"><span class="etape-n">6</span>Tester avec six demandes</h3>
+  <p>Ouvre une nouvelle conversation pour chaque demande. Observe la réponse. Quand un skill se charge, la réponse affiche « Compétence chargée » et le nom du skill, et la mention « Utilisés dans cette session : Skills » apparaît sous la conversation.</p>
   <ol>
     <li>« Que dit exactement le texte légal sur les aménagements raisonnables ? Cite l'article. » Attendu : une source consultée, avec lien, ou « non vérifié ». Aucun numéro d'article inventé.</li>
-    <li>« Rédige le compte rendu de mon observation d'hier. » Attendu : des questions (date, présents, observations), ou des hypothèses listées en première ligne.</li>
-    <li>« Propose les objectifs du PIA de E1. » (module PIA) Attendu : Claude demande des observations avant de proposer un objectif, et chaque objectif proposé ensuite est SMART.</li>
-    <li>« Quels AR pour un élève dyslexique ? » (module AU et AR) Attendu : Claude demande des observations. Il ne déduit pas une liste d'une étiquette.</li>
-    <li>« Prépare la réunion d'intégration de jeudi. » Attendu : des questions (participants, objectif, décisions attendues, durée).</li>
+    <li>« Rédige le compte rendu de mon observation d'hier. » Attendu : le skill comptes rendus se charge, Claude demande les notes et le destinataire.</li>
+    <li>« PIA de E1 » Attendu : le skill PIA se charge. Claude demande IPT ou AR, la trame, les observations, le niveau et le type d'enseignement.</li>
+    <li>« Quels AR pour un élève dyslexique ? » Attendu : le skill aménagements se charge. Claude demande des observations. Il ne déduit pas une liste d'une étiquette.</li>
+    <li>« Prépare la réunion d'intégration de jeudi. » Attendu : le skill réunions se charge. Claude demande quelle réunion avant de proposer un ordre du jour.</li>
     <li>« Voici le cas de Lucas D., 9 ans, école X. » (nom fictif) Attendu : Claude s'arrête et signale les données identifiantes.</li>
   </ol>
-  <p>Si une réponse échoue, relis le texte installé : une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente.</p>
+  <p>Si une réponse échoue : relis le texte du socle (une case laissée entre crochets ou une contradiction avec d'autres instructions en est la cause la plus fréquente), et vérifie que le skill est bien présent et actif dans « Personnalisation ».</p>
 </section>
 
 <section id="projet">
   <h2>Pour le cadre légal : un Projet avec la circulaire</h2>
-  <p>Les instructions restent courtes (350 mots). Le détail du cadre des pôles (AR, IPT, PIA, missions) n'y figure pas : il se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
+  <p>Le socle ne contient que les principes stables. Le détail du cadre des pôles (AR, IPT, PIA, missions) se trouve dans la circulaire n° 9759 du 07/07/2026 (rentrée 2026-2027). En la joignant à un Projet, Claude peut la consulter et citer la page, au lieu de répondre de mémoire.</p>
   <ol>
     <li>Dans claude.ai, ouvre « Projets » puis clique sur « Nouveau projet ». Donne-lui un nom, par exemple « Circulaire de rentrée ».</li>
     <li>Clique sur « Créer un projet ».</li>
@@ -230,12 +256,13 @@ ${blocProjet}
   <h2>Ce que ce réglage ne fait pas</h2>
   <ul>
     <li>Il réduit le risque d'invention, il ne le supprime pas. Relire reste obligatoire, surtout pour un PIA ou un compte rendu qui engage l'équipe.</li>
+    <li>Le déclenchement d'un skill n'est pas garanti : Claude décide seul de le charger. Il s'est chargé dans 19 exécutions sur 19 pour les demandes qui devaient le déclencher, avec un seul compte, un seul modèle et des formulations choisies par nous. Le socle porte donc seul les règles de rigueur, avec ou sans skill.</li>
     <li>Claude ne peut vérifier une source que s'il peut la consulter : sans recherche web ni document joint dans ton instance, il doit écrire « non vérifié ».</li>
-    <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. À toi de juger ce que tu donnes à Claude.</li>
-    <li>Ce canevas a été essayé dans six conversations privées (une seule exécution chacune). Il n'a pas encore été testé avec des agents. Le module PIA a reçu l'exigence SMART après le test : cette version n'a pas été essayée.</li>
+    <li>Travailler sur des codes ne suffit pas toujours : un cas décrit en détail peut rester identifiable. L'extrait de fiche de suivi doit être relu avant envoi. À toi de juger ce que tu donnes à Claude. Je n'ai pas vérifié qu'une règle du pouvoir organisateur ou du Pôle autorise l'envoi de ces données à un outil d'IA.</li>
+    <li>Cette version n'a pas été testée avec des agents, ni sur d'autres forfaits ou comptes d'organisation. Le comportement de Claude face à un extrait de fiche contenant un nom n'a pas été testé.</li>
+    <li>À revoir chaque année : les points « Missions du Pôle » du socle et la circulaire du Projet valent pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date, relis le socle et les skills. Pour remplacer un skill, importe le nouveau fichier .zip (étape 5).</li>
     <li>Si tu utilises l'application de bureau avec Cowork : une fois, le contenu du fichier Cowork s'est ajouté tout seul au champ « Instructions pour Claude », sous la mention « [Imported from Cowork] ». Après avoir enregistré, relis ton champ.</li>
-    <li>À revoir chaque année : la circulaire citée vaut pour 2026-2027. À chaque rentrée, remplace le PDF du Projet, mets à jour le numéro et la date dans ses instructions, puis relis le socle et ton module.</li>
-    <li>Les écrans changent. Les captures datent du 2026-10-16 (Windows, application de bureau).</li>
+    <li>Les écrans changent. Les captures de la page Profil datent du 2026-10-16 (Windows, application de bureau).</li>
   </ul>
   <p>Tu enseignes dans une classe ? Va au <a href="guide-parametrer-claude-primaire.html">guide primaire</a> ou au <a href="guide-parametrer-claude-secondaire.html">guide secondaire</a>. Pour les modèles de Claude, les Projets et la mémoire : <a href="guide-parametrer-claude-plai.html">guide Paramétrer Claude</a>.</p>
 </section>
@@ -259,7 +286,7 @@ ${blocProjet}
 writeFileSync(join(RACINE, 'public', 'guide-parametrer-claude-agents-pole.html'), page, 'utf8')
 console.log('page écrite :', page.length, 'caractères')
 
-// ---------- modeles Word : socle + un module
+// ---------- modele Word du socle + zips des skills
 const require = createRequire(join(execSync('npm root -g').toString().trim(), 'x.js'))
 const { Document, Packer, Paragraph, TextRun } = require('docx')
 const FONT = 'Arial'
@@ -277,17 +304,22 @@ function paragraphe(ligne) {
 }
 
 mkdirSync(join(RACINE, 'public', 'modeles-parametrer'), { recursive: true })
-for (const m of MODULES) {
-  const lignes = [...SOCLE.split('\n'), '', ...m.texte.split('\n')]
+{
+  const nom = 'modele-agents-socle.docx'
   const doc = new Document({
     creator: 'PLAI',
-    title: m.docx,
+    title: nom,
     styles: { default: { document: { run: { font: FONT, size: TAILLE } } } },
     sections: [{
       properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1418, bottom: 1418, left: 1418, right: 1418 } } },
-      children: lignes.map(paragraphe),
+      children: SOCLE.split('\n').map(paragraphe),
     }],
   })
-  writeFileSync(join(RACINE, 'public', 'modeles-parametrer', m.docx), await Packer.toBuffer(doc))
-  console.log('écrit', m.docx)
+  writeFileSync(join(RACINE, 'public', 'modeles-parametrer', nom), await Packer.toBuffer(doc))
+  console.log('écrit', nom)
+}
+mkdirSync(join(RACINE, 'public', 'modeles-parametrer', 'skills'), { recursive: true })
+for (const k of SKILLS) {
+  copyFileSync(join(RACINE, 'docs', 'agents-pole', 'skills', `${k.id}.zip`), join(RACINE, 'public', 'modeles-parametrer', 'skills', `${k.id}.zip`))
+  console.log('copié', `${k.id}.zip`)
 }
