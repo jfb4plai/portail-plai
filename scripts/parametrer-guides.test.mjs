@@ -99,3 +99,24 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
 test('au moins la page primaire existe', () => {
   assert.ok(existsSync(join(PUBLIC, 'guide-parametrer-claude-primaire.html')))
 })
+
+// ---- Guide existant et vignettes ----
+test('guide existant : chemins corriges, renvois, contact', () => {
+  const html = readFileSync(join(PUBLIC, 'guide-parametrer-claude-plai.html'), 'utf8')
+  assert.ok(!html.includes('Settings'), 'reste "Settings"')
+  assert.ok(!html.includes('Instructions for Claude'), 'reste "Instructions for Claude"')
+  assert.ok(!html.includes('ens.ecl.be'), 'reste ens.ecl.be')
+  assert.ok(html.includes('jf.beguin@outlook.com'))
+  assert.ok(html.includes('guide-parametrer-claude-primaire.html'))
+  assert.ok(html.includes('guide-parametrer-claude-secondaire.html'))
+  assert.ok(html.includes('Paramètres'))
+})
+
+test('apps.ts : deux vignettes des nouveaux guides', () => {
+  const ts = readFileSync(join(PUBLIC, '..', 'src', 'data', 'apps.ts'), 'utf8')
+  for (const id of ['claude-parametrer-primaire', 'claude-parametrer-secondaire']) {
+    assert.ok(ts.includes(`id: '${id}'`), id)
+  }
+  assert.ok(ts.includes("url: '/guide-parametrer-claude-primaire.html'"))
+  assert.ok(ts.includes("url: '/guide-parametrer-claude-secondaire.html'"))
+})
