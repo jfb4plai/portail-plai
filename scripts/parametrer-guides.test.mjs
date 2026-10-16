@@ -111,6 +111,11 @@ for (const [fichier, attendus] of Object.entries(PAGES)) {
     assert.ok(/\.pt\s*\{[^}]*var\(--pastille\)/.test(html) && /\.pt-l\s*\{[^}]*var\(--pastille\)/.test(html), 'pastilles pas sur --pastille')
     assert.ok(/class="cadre etroit"/.test(html) && /\.cadre\.etroit\s*\{[^}]*max-width:\s*484px/.test(html), 'capture 01 non limitee')
   })
+  test(`${fichier} : pas de ton vert PLAI (style des autres modes d'emploi)`, () => {
+    for (const interdit of ['#0f6e56', '#1d9e75', '#e1f5ee', '#0b5844', '--teal']) {
+      assert.ok(!html.includes(interdit), `present : ${interdit}`)
+    }
+  })
   test(`${fichier} : texte a 16 px minimum`, () => {
     for (const m of html.matchAll(/font-size:\s*([\d.]+)(px|rem)/g)) {
       const v = Number(m[1])
@@ -143,3 +148,24 @@ test('apps.ts : deux vignettes des nouveaux guides', () => {
   assert.ok(ts.includes("url: '/guide-parametrer-claude-primaire.html'"))
   assert.ok(ts.includes("url: '/guide-parametrer-claude-secondaire.html'"))
 })
+
+// ---- Modeles Word : meme contenu que les modeles de la page ----
+import { execFileSync } from 'node:child_process'
+
+const WORD = {
+  'guide-parametrer-claude-primaire.html': { instructions: 'modele-primaire.docx', immersion: 'modele-primaire-immersion.docx', locale: 'modele-ordinateur-primaire.docx' },
+  'guide-parametrer-claude-secondaire.html': { instructions: 'modele-secondaire.docx', locale: 'modele-ordinateur-secondaire.docx' },
+}
+for (const [page, fichiers] of Object.entries(WORD)) {
+  const html = readFileSync(join(PUBLIC, page), 'utf8')
+  for (const m of modeles(html)) {
+    test(`${page} : modele Word ${m.nom} identique au modele de la page`, () => {
+      const chemin = join(PUBLIC, 'modeles-parametrer', fichiers[m.nom])
+      assert.ok(existsSync(chemin), `fichier absent : ${fichiers[m.nom]}`)
+      const texteWord = execFileSync('python', ['-I', join(PUBLIC, '..', 'scripts', 'lire-docx.py'), chemin], { encoding: 'utf8' })
+      const norm = (t) => t.replace(/\s+/g, ' ').trim()
+      assert.equal(norm(texteWord), norm(m.texte))
+      assert.ok(html.includes(`modeles-parametrer/${fichiers[m.nom]}`), 'lien de telechargement absent de la page')
+    })
+  }
+}

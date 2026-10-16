@@ -11,22 +11,22 @@
     --bg: #faf9f7; --surface: #ffffff; --surface2: #f4f2ee;
     --border: #e8e4dd; --border2: #d4cfc6;
     --text: #1a1814; --text2: #4a463f;
-    --teal: #0f6e56; --teal-bg: #e1f5ee; --teal-border: #1d9e75;
-    --orange: #f97316; --pastille: #c2410c; --orange-bg: #fff1e6; --orange-text: #9a3f00;
+    --info: #185fa5; --info-bg: #e6f1fb; --info-mid: #378add;
+    --orange: #ef9f27; --pastille: #c2410c; --orange-bg: #faeeda; --orange-text: #854f0b;
     --radius: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 1.125rem; line-height: 1.7; }
-  a { color: var(--teal); }
+  a { color: var(--info); }
   .container { max-width: 760px; margin: 0 auto; padding: 0 16px; }
   nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.95); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
   .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.125rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
   .nav-logo img { height: 32px; width: auto; }
   .nav-liens { display: flex; gap: 12px; flex-wrap: wrap; font-size: 1rem; }
-  .banner { background: var(--teal-bg); border-bottom: 1px solid var(--teal-border); padding: 10px 16px; text-align: center; font-size: 1rem; color: var(--teal); }
+  .banner { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 10px 16px; text-align: center; font-size: 1rem; color: var(--text2); }
   .hero { padding: 48px 0 24px; }
-  .eyebrow { display: inline-block; font-size: 1rem; font-weight: 700; color: var(--teal); border: 1px solid var(--teal-border); border-radius: 20px; padding: 2px 14px; margin-bottom: 16px; }
+  .eyebrow { display: inline-block; font-size: 1rem; font-weight: 500; color: var(--text2); border: 1px solid var(--border2); border-radius: 20px; padding: 2px 14px; margin-bottom: 16px; }
   h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.15; margin-bottom: 12px; }
   .sous-titre { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.25rem; color: var(--text2); }
   h2 { font-family: 'DM Serif Display', serif; font-size: 1.75rem; line-height: 1.25; margin: 0 0 12px; }
@@ -34,8 +34,8 @@
   section { padding: 32px 0; border-top: 1px solid var(--border); }
   p, li { margin-bottom: 12px; }
   ul, ol { padding-left: 1.4rem; }
-  .etape-n { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 700; margin-right: 10px; vertical-align: middle; }
-  .encadre { border-left: 4px solid var(--teal-border); background: var(--teal-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 16px 0; }
+  .etape-n { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--text); color: #fff; font-weight: 700; margin-right: 10px; vertical-align: middle; }
+  .encadre { border-left: 4px solid var(--info-mid); background: var(--info-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin: 16px 0; }
   .encadre.attention { border-left-color: var(--orange); background: var(--orange-bg); }
   .encadre strong:first-child { display: block; }
   .cadre { position: relative; margin: 0; border: 1px solid var(--border2); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
@@ -51,8 +51,10 @@
   .modele pre { white-space: pre-wrap; word-wrap: break-word; font-family: 'DM Sans', Arial, sans-serif; font-size: 1rem; line-height: 1.65; padding: 16px; }
   .balise { background: var(--orange-bg); color: var(--orange-text); border: 1px solid var(--orange); border-radius: 4px; padding: 0 4px; font-weight: 500; }
   .balise.facultative { background: var(--surface2); color: var(--text2); border-color: var(--border2); }
-  button.copier { font: inherit; font-size: 1rem; font-weight: 700; background: var(--teal); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; min-height: 44px; cursor: pointer; }
-  button.copier:hover { background: #0b5844; }
+  .bouton { display: inline-block; background: var(--text); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; padding: 10px 18px; min-height: 44px; }
+  .bouton:hover { background: #3a352e; }
+  button.copier { font: inherit; font-size: 1rem; font-weight: 700; background: var(--text); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px; min-height: 44px; cursor: pointer; }
+  button.copier:hover { background: #3a352e; }
   .avertissement { margin: 0; padding: 10px 16px; background: var(--orange-bg); border-top: 1px solid var(--orange); color: var(--orange-text); font-size: 1rem; }
   .avertissement[hidden] { display: none; }
   details { border: 1px solid var(--border2); border-radius: var(--radius); background: var(--surface); margin: 12px 0; padding: 0 16px; }
@@ -150,12 +152,22 @@
   </ol>
 
   <h3 id="e3"><span class="etape-n">3</span>Écrire « Instructions pour Claude »</h3>
-  <p>Voici un modèle complet. Les cases <span class="balise">[À COMPLÉTER : …]</span> sont obligatoires : remplace-les par ta réalité. Les cases <span class="balise facultative">[OPTIONNEL : …]</span> sont à garder ou à effacer.</p>
+  <p>Le plus simple : un modèle <strong>Word</strong> que tu remplis, puis que tu copies dans Claude. Dans le modèle, les cases <strong>jaunes</strong> (<span class="balise">[À COMPLÉTER : …]</span>) sont obligatoires : remplace-les par ta réalité. Les cases <strong>grises</strong> (<span class="balise facultative">[OPTIONNEL : …]</span>) sont à garder ou à effacer.</p>
+  <p><a class="bouton" href="/modeles-parametrer/modele-secondaire.docx" download>Télécharger le modèle Word (secondaire)</a></p>
   <ol>
-    <li>Clique sur <strong>Copier le modèle</strong>.</li>
-    <li>Colle-le dans un document (Word ou Bloc-notes) et remplace chaque case orange par ta réponse. Efface les crochets.</li>
-    <li>Copie ton texte terminé, puis colle-le dans la zone « Instructions pour Claude ».</li>
+    <li>Clique sur le bouton ci-dessus. Le fichier arrive dans le dossier « Téléchargements » de ton ordinateur.</li>
+    <li>Ouvre-le avec un double-clic. Si Word affiche « Mode protégé », clique sur « Activer la modification ».</li>
+    <li>Clique sur une case jaune, sélectionne tout son texte (crochets compris) et tape ta réponse à la place. Fais de même pour chaque case jaune. Les cases grises : remplis-les ou efface-les.</li>
+    <li>Relis. Il ne doit plus rester ni crochet ni surlignage.</li>
+    <li>Appuie ensemble sur <strong>Ctrl</strong> et <strong>A</strong> (tout sélectionner), puis sur <strong>Ctrl</strong> et <strong>C</strong> (copier).</li>
+    <li>Retourne dans Claude, dans la page Profil. Clique dans la zone « Instructions pour Claude », appuie sur <strong>Ctrl</strong> et <strong>A</strong>, puis sur <strong>Ctrl</strong> et <strong>V</strong> (coller).</li>
   </ol>
+  <div class="encadre attention">
+    <strong>Tu as déjà des instructions dans cette zone ?</strong>
+    Ctrl + A puis Ctrl + V remplace tout l'ancien texte. Copie d'abord l'ancien texte dans un document pour ne rien perdre.
+  </div>
+  <details>
+    <summary>Pas de Word ? Copie le modèle depuis cette page</summary>
   <div class="modele">
     <div class="modele-tete"><span>Modèle secondaire</span><button type="button" class="copier" data-copier="m-instructions">Copier le modèle</button></div>
     <pre id="m-instructions" data-modele="instructions"># Qui je suis
@@ -187,6 +199,7 @@ Soit tu me poses la question avant de répondre. Soit tu écris en première lig
 Ne présente jamais une hypothèse comme un fait.</pre>
     <p class="avertissement" data-avertissement-pour="m-instructions" role="status" hidden></p>
   </div>
+  </details>
 
   <div class="encadre attention">
     <strong>Ton texte doit rester court.</strong>
@@ -195,7 +208,7 @@ Ne présente jamais une hypothèse comme un fait.</pre>
 
   <h3 id="e4"><span class="etape-n">4</span>Enregistrer et vérifier</h3>
   <ol>
-    <li>Colle ton texte dans la zone « Instructions pour Claude ».</li>
+    <li>Vérifie que ton texte est bien collé dans la zone « Instructions pour Claude ».</li>
     <li>Clique à côté de la zone, sur un espace vide de la page.</li>
     <li>Ferme les Paramètres avec la croix en haut à droite, puis rouvre-les.</li>
     <li>Vérifie que ton texte est toujours là.</li>
@@ -239,7 +252,10 @@ Ne présente jamais une hypothèse comme un fait.</pre>
     <strong>Attention avant de cliquer sur « Ajouter ».</strong>
     L'écran dit : « Si vous les ajoutez, les instructions enregistrées uniquement sur un autre ordinateur, ou sous une autre organisation sur celui-ci, seront effacées la prochaine fois que Cowork y démarrera une session. » En clair : en cliquant sur « Ajouter », tu risques de perdre des instructions qui ne sont pas sur cet ordinateur. Celles que tu ajoutes s'appliquent ensuite à toutes tes conversations. Lis d'abord le texte de la zone. En cas de doute, ne clique sur aucun des deux boutons et écris au référent numérique du PLAI.
   </div>
+  <p><a class="bouton" href="/modeles-parametrer/modele-ordinateur-secondaire.docx" download>Télécharger le modèle Word (ordinateur)</a></p>
   <p>Si tu utilises Cowork, voici un modèle court. Il parle de ton ordinateur, pas de ta pédagogie. <strong>Cette zone n'est peut-être pas modifiable.</strong> Si le curseur n'apparaît pas dans la zone « Instructions enregistrées sur cet ordinateur », colle le modèle à la suite de « Instructions pour Claude » et retire les lignes qui ne te concernent pas : ton texte total doit rester sous 350 mots.</p>
+  <details>
+    <summary>Pas de Word ? Copie le modèle depuis cette page</summary>
   <div class="modele">
     <div class="modele-tete"><span>Modèle pour la zone de l'ordinateur</span><button type="button" class="copier" data-copier="m-locale">Copier le modèle</button></div>
     <pre id="m-locale" data-modele="locale"># Mes dossiers
@@ -260,6 +276,7 @@ Ne produis aucun fichier contenant un nom d'élève. Si un document en contient,
 Même règle que dans mes Instructions pour Claude : une question, ou « Hypothèses (non données par moi) : » en première ligne.</pre>
     <p class="avertissement" data-avertissement-pour="m-locale" role="status" hidden></p>
   </div>
+  </details>
 </section>
 
 <section id="problemes">
