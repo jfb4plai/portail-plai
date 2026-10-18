@@ -273,7 +273,7 @@
       <span style="font-size:20px;">🧠</span>
       <div>
         <div style="font-size:14px;font-weight:500;color:var(--purple);">Quel modèle Claude utiliser ?</div>
-        <div style="font-size:12px;color:var(--purple-mid);margin-top:1px;">Sonnet pour le quotidien · Opus 4.7 pour les tâches complexes uniquement</div>
+        <div style="font-size:12px;color:var(--purple-mid);margin-top:1px;">Sonnet suffit pour la très grande majorité des tâches d'enseignement</div>
       </div>
     </div>
     <div style="padding:1rem 1.1rem;">
@@ -283,36 +283,37 @@
           <div style="font-size:13px;color:var(--text2);line-height:1.55;">Rédiger une fiche, reformuler une consigne, préparer un exercice, écrire une lettre aux parents, créer une grille. <strong>À utiliser par défaut.</strong> Rapide et économe en tokens.</div>
         </div>
         <div style="background:var(--purple-bg);border:1px solid #c5c0f5;border-radius:var(--radius);padding:0.85rem 1rem;">
-          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:var(--purple);margin-bottom:4px;">⚡ Claude Opus 4.7 — tâches complexes</div>
-          <div style="font-size:13px;color:var(--text2);line-height:1.55;">Analyser une situation d'élève difficile, concevoir une séquence complète, raisonner sur un cas complexe. <strong>Réserver aux vrais besoins.</strong> Consomme beaucoup plus de tokens.</div>
+          <div style="font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:var(--purple);margin-bottom:4px;">⚡ Claude Sonnet — tâches complexes aussi</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.55;">Analyser une situation d'élève difficile, concevoir une séquence complète, raisonner sur un cas complexe. <strong>Sonnet suffit.</strong> Pour ces tâches, donne-lui plus de contexte plutôt que de changer de modèle.</div>
         </div>
       </div>
       <div class="warn" style="margin:0;">
         <div class="warn-label">⚠️ Tokens = quota mensuel</div>
-        <p>Chaque message consomme des "tokens" (unités de traitement). Opus 4.7 en consomme 5 à 10 fois plus que Sonnet pour un résultat souvent identique sur les tâches simples. Utiliser Opus 4.7 pour tout, c'est épuiser son quota rapidement. <strong>Règle pratique : commence toujours par Sonnet. Passe à Opus 4.7 seulement si la réponse est insuffisante.</strong></p>
+        <p>Chaque message consomme des "tokens" (unités de traitement). Un modèle plus puissant en consomme davantage, pour un résultat souvent identique sur les tâches simples. <strong>Règle pratique : reste sur Sonnet. Si la réponse est insuffisante, ajoute du contexte à ta demande (niveau, profil des élèves, format) avant de changer de modèle.</strong></p>
       </div>
+      <p style="font-size:12px;color:var(--text2);line-height:1.55;margin:0.75rem 0 0;"><strong>Les versions changent.</strong> En octobre 2026, la page officielle d'Anthropic liste Fable 5.1, Opus 5.5, Sonnet 5.5 et Haiku 5.5. Ce guide recommande Sonnet, et ce principe ne change pas d'une version à l'autre. Vérifie la liste en cours dans le menu de choix du modèle de Claude.</p>
     </div>
   </div>
 
-  <!-- ENCART SKILL /opus-47 -->
+  <!-- ENCART SKILL /sonnet -->
   <div style="border:1px solid #c5c0f5;border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem;">
     <div style="background:linear-gradient(to right,var(--purple-bg),#f0eff9);padding:0.8rem 1rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #c5c0f5;">
       <span style="font-size:20px;">⚡</span>
       <div>
-        <div style="font-size:14px;font-weight:500;color:var(--purple);">Le skill <code style="background:var(--purple-bg);padding:1px 6px;border-radius:4px;font-size:13px;">/opus-47</code> — ton co-pilote pour Opus 4.7</div>
+        <div style="font-size:14px;font-weight:500;color:var(--purple);">Le skill <code style="background:var(--purple-bg);padding:1px 6px;border-radius:4px;font-size:13px;">/sonnet</code> — ton co-pilote pour Sonnet</div>
         <div style="font-size:12px;color:var(--purple-mid);margin-top:1px;">Il transforme ta demande approximative en prompt optimisé, prêt à envoyer</div>
       </div>
     </div>
     <div style="padding:1rem 1.1rem;">
       <div class="prose" style="margin-bottom:1rem;">
-        <p>Opus 4.7 est puissant — mais il est aussi plus exigeant sur la qualité de ce qu'on lui écrit. Plus le prompt est précis et bien structuré, meilleure est la réponse. C'est là qu'intervient le skill <strong>/opus-47</strong> : il prend ta demande brute et la réécrit en un prompt taillé pour Opus 4.7.</p>
+        <p>Plus le prompt est précis et bien structuré, meilleure est la réponse de Sonnet. C'est là qu'intervient le skill <strong>/sonnet</strong> : il prend ta demande brute et la réécrit en un prompt clair, avec le contexte, la tâche et le format attendu.</p>
       </div>
       <div class="steps" style="margin-bottom:1rem;">
         <div class="step">
           <div class="step-n">1</div>
           <div>
             <div class="step-t">Active le skill une fois pour toutes</div>
-            <div class="step-d">Va dans <strong>Customize → Skills → +</strong> et uploade le fichier du skill. C'est une manipulation unique. Ensuite, le skill est disponible dans toutes tes conversations.</div>
+            <div class="step-d"><a href="/modeles-parametrer/skills/optimiser-sonnet.zip" download>Télécharge le fichier du skill</a>, puis va dans <strong>Personnalisation → Skills → Ajouter → Importer un Skill</strong>. C'est une manipulation unique. Ensuite, le skill est disponible dans toutes tes conversations.</div>
           </div>
         </div>
         <div class="step">
@@ -325,15 +326,15 @@
         <div class="step">
           <div class="step-n">3</div>
           <div>
-            <div class="step-t">Tape <code style="background:var(--surface2);padding:1px 6px;border-radius:4px;font-size:12px;">/opus-47</code> suivi de ta demande</div>
-            <div class="step-d">Le skill analyse ta demande, comble les manques, structure le prompt et te renvoie un bloc de texte prêt à copier-coller — avec la bonne formule finale pour déclencher le raisonnement maximal d'Opus 4.7.</div>
+            <div class="step-t">Tape <code style="background:var(--surface2);padding:1px 6px;border-radius:4px;font-size:12px;">/sonnet</code> suivi de ta demande</div>
+            <div class="step-d">Le skill analyse ta demande, comble les manques, structure le prompt et te renvoie un bloc de texte prêt à copier-coller.</div>
           </div>
         </div>
         <div class="step">
           <div class="step-n">4</div>
           <div>
-            <div class="step-t">Copie le prompt généré — colle-le dans une nouvelle conversation avec Opus 4.7</div>
-            <div class="step-d">Ne réponds pas dans la même conversation : ouvre une nouvelle conversation, sélectionne Opus 4.7, et colle. Le skill a fait son travail ; laisse Opus faire le sien.</div>
+            <div class="step-t">Copie le prompt généré — colle-le dans une nouvelle conversation</div>
+            <div class="step-d">Ne réponds pas dans la même conversation : ouvres-en une nouvelle et colle le prompt. Le skill a fait son travail ; laisse Sonnet faire le sien.</div>
           </div>
         </div>
       </div>
@@ -341,17 +342,17 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:0.75rem;">
         <div class="c-bad" style="border-radius:var(--radius);">
           <div class="c-label">❌ Ta demande brute</div>
-          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">/<span style="font-weight:500">opus-47</span> corriger les rédactions de mes élèves de 3e secondaire</div>
+          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">/<span style="font-weight:500">sonnet</span> corriger les rédactions de mes élèves de 3e secondaire</div>
         </div>
         <div class="c-good" style="border-radius:var(--radius);">
           <div class="c-label">✅ Ce que le skill produit</div>
-          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">Un prompt complet, structuré, ancré dans le contexte FWB, avec les critères de correction détaillés — prêt à coller dans Opus 4.7.</div>
+          <div class="c-text" style="font-family:'DM Sans',sans-serif;font-size:12px;">Un prompt complet, structuré, ancré dans le contexte FWB, avec les critères de correction détaillés — prêt à coller dans Sonnet.</div>
         </div>
       </div>
 
       <div class="purple-box" style="margin:0;">
-        <div class="purple-label">💡 Le skill sait aussi te freiner</div>
-        <p>Si ta demande est trop simple pour justifier Opus 4.7 (une devinette, une reformulation rapide), le skill te le signale avant de produire le prompt — pour que tu ne gaspilles pas ton quota inutilement. C'est lui le garde-fou intelligent entre Sonnet et Opus.</p>
+        <div class="purple-label">💡 Le skill sait aussi te dire quand il n'est pas utile</div>
+        <p>Si ta demande est déjà simple (une devinette, une reformulation rapide), le skill te le signale : tu peux l'envoyer directement. Si elle est très exigeante, il te suggère d'augmenter le réglage « Effort » dans le menu du modèle, plutôt que d'allonger le prompt.</p>
       </div>
     </div>
   </div>
