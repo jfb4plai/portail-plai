@@ -3595,6 +3595,95 @@ const apps: AppItem[] = [
     },
   },
   {
+    id: 'dicteeaccessible',
+    audience: 'enseignant + élève',
+    name: 'DictéeAccessible',
+    description: "Dictées de mots et de phrases sur tablette ou ordinateur : l'élève place des lettres ou des mots au lieu d'écrire à la main, une voix belge lit la dictée, et chaque réponse est enregistrée mot par mot. Pour l'élève dont l'écriture manuscrite est lente ou fatigante, et pour les dictées en classe sans surveillance individuelle. L'IA propose des phrases, vous les relisez et les validez une par une.",
+    url: 'https://dicteeaccessible.vercel.app',
+    emoji: '✏️',
+    category: 'Dictée et orthographe',
+    status: 'en-développement',
+    devBanner: true,
+    color: 'teal',
+    section: 'applications',
+    browserNote: "Essayée sur ordinateur (Chrome). Pas encore testée sur tablette : essayez-la sur la tablette de l'élève avant la première dictée réelle. Mode d'emploi pas à pas : https://dicteeaccessible.vercel.app/mode-emploi.html",
+    guide: {
+      scientific: {
+        summary:
+          "DictéeAccessible est un outil de compensation : il retire l'obstacle du geste manuscrit (lenteur, lisibilité) pour que l'élève montre ce qu'il sait de l'orthographe. Deux sources du corpus RISS vont dans ce sens sans valider l'outil lui-même : un travail sur l'outil informatique comme compensation pour des élèves de 8 à 14 ans avec un trouble spécifique du langage écrit, et une étude sur l'écriture au clavier et l'orthographe de ces élèves. Le choix des tuiles de lettres et de mots (au lieu d'un clavier) est un choix de conception de PLAI : il n'est pas démontré par ces sources. Aucune étude n'a mesuré l'effet de cette application sur les apprentissages. L'autodictée en autonomie n'a pas été retrouvée dans le corpus RISS. Les résultats sont une information pour l'enseignant(e), jamais une note : c'est son interprétation qui compte.",
+        references: [
+          {
+            id: 'dumas-05497857',
+            citation:
+              "Davodeau, C. (2023). Apports et limites de l'outil informatique comme moyen de compensation pour les élèves de 8 à 14 ans (CM1-3e) présentant un trouble spécifique du langage écrit.",
+            content:
+              "Chez des enfants avec un trouble spécifique du langage écrit, l'ordinateur permet de remédier au défaut de lisibilité de la production manuscrite et de réduire la lenteur d'écriture. Le travail examine aussi les limites de cet outil.",
+          },
+          {
+            id: 'hal-04759778',
+            citation:
+              "Broc, L., & Caillet, M. (2024). Est-ce qu'écrire sur un clavier aide les élèves présentant un Trouble Spécifique d'Apprentissage du Langage Écrit à améliorer leur orthographe ? DOI 10.61989/epzt0p92.",
+            content:
+              "L'étude interroge l'intérêt du clavier pour l'orthographe de ces élèves. Elle avance que l'écriture manuscrite serait plus économique pour l'attention visuelle, car le clavier impose des allers-retours entre clavier et écran, coûteux pour le dactylographe débutant. Dans DictéeAccessible, l'élève touche des tuiles plutôt que de taper au clavier (choix de conception PLAI).",
+          },
+        ],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Préparer',
+            items: [
+              "Ouvrez « Espace enseignant(e) », puis « Créer un compte » avec votre adresse professionnelle",
+              "Dans « Mes élèves », créez des codes anonymes (E1, E2…) et indiquez la classe (par exemple P3) : l'application ne connaît aucun prénom",
+              "Notez sur papier, chez vous, quel code correspond à quel élève : c'est le seul endroit où cette correspondance existe",
+            ],
+          },
+          {
+            title: 'Créer la dictée',
+            items: [
+              "« Créer une dictée » : choisissez le contenu (des mots, des mots et des phrases, ou des phrases seulement), le titre, le niveau (P1 à P6) et collez vos mots (40 au maximum)",
+              "Choisissez le type : « Préparation en autonomie » (la bonne orthographe reste disponible) ou « Dictée en classe » (résultats enregistrés, sans aide)",
+              "Choisissez la voix : Adrien (voix belge), Jean-François ou la voix de l'appareil. Les nombres sont lus à la belge (septante, nonante, quatre-vingts)",
+              "Cochez les élèves, ou « Toute la classe » : chaque élève recevra un lien et un QR code personnels",
+            ],
+          },
+          {
+            title: 'Ajouter des phrases avec l\'IA (facultatif)',
+            items: [
+              "L'IA propose des phrases à partir de vos mots, de la règle travaillée et du contexte de votre classe : plus ce contexte est précis, plus les phrases vous ressemblent",
+              "Rien n'est publié sans votre accord : modifiez les phrases, vérifiez les mots parasites, puis cochez « Je valide cette phrase » pour chacune",
+              "Ne mettez jamais un prénom d'élève dans ces champs : le texte est envoyé à un service d'IA",
+            ],
+          },
+          {
+            title: "Donner accès aux élèves",
+            items: [
+              "Donnez à chaque élève son lien ou son QR code, ou le code de la dictée (6 caractères) et son code personnel à saisir dans « Espace élève »",
+              "L'élève écoute, puis place les lettres (ou les mots) dans l'ordre et touche « Valider ». En dictée en classe, une phrase n'est essayée qu'une fois et l'élève ne voit pas si elle était juste",
+            ],
+          },
+          {
+            title: 'Lire les résultats',
+            items: [
+              "« Voir les résultats » : une ligne par élève (« n sur N réussis du premier coup · m à revoir »), puis le détail mot par mot avec ce que l'élève a écrit au premier essai",
+              "Ces chiffres sont une information, pas une note. Ajoutez votre commentaire : vous seul(e) interprétez",
+              "Pastilles : vert = réussi du premier coup ; orange = en cours ou repris ; rouge = non maîtrisé au dernier tour",
+            ],
+          },
+          {
+            title: "Inviter l'ergothérapeute ou un parent",
+            items: [
+              "Dans « Mes élèves », « Inviter une personne à suivre un élève » : un lien secret pour un seul élève, en lecture seule, sans compte, avec une date de fin",
+              "L'application n'envoie rien : vous copiez le lien ou ouvrez un e-mail prérempli, sans prénom ni code d'élève dans le message",
+              "« Retirer l'accès » coupe le lien immédiatement. Vérifiez d'abord l'accord des parents : l'application ne le vérifie pas",
+            ],
+          },
+        ],
+        tip: "Essayez d'abord la dictée vous-même, sur la tablette que l'élève utilisera, avant de la donner : toucher, son, lien ou QR code. Le mode d'emploi pas à pas est ici : https://dicteeaccessible.vercel.app/mode-emploi.html",
+      },
+    },
+  },
+  {
     id: 'imagactif',
     audience: 'enseignant',
     name: 'ImagActif',
