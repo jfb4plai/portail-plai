@@ -3601,10 +3601,10 @@ const apps: AppItem[] = [
     description: "Dictées de mots et de phrases sur tablette ou ordinateur : l'élève place des lettres ou des mots au lieu d'écrire à la main, une voix belge lit la dictée, et chaque réponse est enregistrée mot par mot. Pour l'élève dont l'écriture manuscrite est lente ou fatigante, et pour les dictées en classe sans surveillance individuelle. L'IA propose des phrases, vous les relisez et les validez une par une.",
     url: 'https://dicteeaccessible.vercel.app',
     emoji: '✏️',
-    category: 'Dictée et orthographe',
+    category: 'Orthographe',
     status: 'en-développement',
     devBanner: true,
-    color: 'teal',
+    color: 'purple',
     section: 'applications',
     browserNote: "Essayée sur ordinateur (Chrome). Pas encore testée sur tablette : essayez-la sur la tablette de l'élève avant la première dictée réelle. Mode d'emploi pas à pas : https://dicteeaccessible.vercel.app/mode-emploi.html",
     guide: {
