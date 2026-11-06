@@ -3599,7 +3599,7 @@ const apps: AppItem[] = [
     audience: 'enseignant + élève',
     name: 'GameActif',
     description:
-      "Choisissez le niveau, la matière et les compétences du programme FWB, tapez vos propres éléments, et obtenez des jeux sur écran (trier, associer, remettre en ordre) avec, en regard de chacun, un jeu de classe sans écran : matériel listé, déroulement calme, cartes à imprimer et lien avec le programme. Mathématiques de la 1re à la 6e primaire pour l'instant. Brouillon de travail : les phrases de lien avec le programme sont à compléter hors de l'exemple fourni.",
+      "Choisissez le niveau, la matière et 1 à 3 attendus du programme FWB, tapez vos propres éléments, et obtenez des jeux sur écran (trier, associer, remettre en ordre, comparer, mémo, QCM, placer dans une scène) avec, en regard de chacun, un jeu de classe sans écran : matériel listé, déroulement calme, cartes à imprimer et lien avec le programme. Des jeux d'arcade peuvent aussi être générés dans votre propre outil d'IA à partir d'un texte à coller, à relire avant de les proposer aux élèves. Une activité s'exporte en fichier pour la partager avec un collègue. Mathématiques de la 1re à la 6e primaire pour l'instant. Brouillon de travail : les phrases de lien avec le programme sont à compléter hors de l'exemple fourni.",
     url: 'https://gameactif.jfb4plai.com',
     emoji: '🎲',
     category: 'Mathématiques',
@@ -3608,7 +3608,7 @@ const apps: AppItem[] = [
     color: 'blue',
     section: 'applications',
     browserNote:
-      "Essayée sur ordinateur (Chrome). Pas encore testée sur tablette ni à l'impression : essayez-la avant de l'utiliser en classe. Rien n'est envoyé ni enregistré hors de votre navigateur.",
+      "Essayée sur ordinateur (Chrome). Pas encore testée sur tablette, à l'impression ni avec des élèves : essayez-la avant de l'utiliser en classe. Rien n'est enregistré en ligne : tout reste dans votre navigateur, ce qui veut dire qu'un autre appareil ne retrouve pas votre saisie sans le fichier exporté.",
   },
   {
     id: 'dicteeaccessible',
