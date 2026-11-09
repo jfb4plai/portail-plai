@@ -2776,6 +2776,7 @@ const apps: AppItem[] = [
               "Placer le curseur là où le texte doit s'écrire (Word, formulaire, mail...).",
               "Appuyer sur le raccourci, parler, appuyer à nouveau : le texte s'insère (ou maintenir la touche enfoncée si ce mode est activé dans les réglages).",
               "Dicter la ponctuation : « virgule » → , · « point » → . · « point d'interrogation » → ? · « point d'exclamation » → ! · « deux points » → : · « point-virgule » → ; · « à la ligne » → saut de ligne · « nouveau paragraphe » → double saut de ligne · « ouvrez/fermez les guillemets » → « ». Fonctionne même en mode examen, sans IA.",
+              "Exemple réel, dicté à voix haute puis inséré dans Word : « La vérité n'est pas toujours simple à trouver, point, à la ligne, je suis certain que nous pouvons encore améliorer l'application, point, nouveau paragraphe, à demain, point. » Résultat : une première phrase, la deuxième phrase sur la ligne suivante, puis une ligne vide avant « À demain. ». « À la ligne » et « nouveau paragraphe » sont bien pris en compte à partir de la version 1.8.4, y compris en mode Amélioré.",
               "Après chaque dictée, le bouton « Corriger » reste 10 secondes : l'élève relit et garde la main sur son texte.",
               "Enregistrement limité à 5 minutes en continu (coupure automatique) : c'est un outil de dictée courte, pas un enregistreur de réunion. Aucune reconnaissance des différents locuteurs : une seule voix à la fois.",
             ],
