@@ -2760,6 +2760,7 @@ const apps: AppItem[] = [
               "Télécharger l'installateur depuis la page GitHub (bouton Ouvrir) : fichier .exe (Windows) ou .dmg (Mac Apple Silicon).",
               "Windows bloquera l'application non signée : « Conserver quand même », puis « Informations complémentaires » → « Exécuter quand même ».",
               "Sur un parc scolaire géré, demander l'installation au technicien (droits administrateur requis).",
+              "Mises à jour : l'application les cherche au lancement puis toutes les 4 heures. Pour ne pas attendre, relancer l'application ou cliquer sur « Rechercher une mise à jour » dans la page À propos (à partir de la version 1.8.3).",
             ],
           },
           {
