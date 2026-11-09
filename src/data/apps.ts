@@ -2777,7 +2777,7 @@ const apps: AppItem[] = [
               "Placer le curseur là où le texte doit s'écrire (Word, formulaire, mail...).",
               "Appuyer sur le raccourci, parler, appuyer à nouveau : le texte s'insère (ou maintenir la touche enfoncée si ce mode est activé dans les réglages).",
               "Dicter la ponctuation : « virgule » → , · « point » → . · « point d'interrogation » → ? · « point d'exclamation » → ! · « deux points » → : · « point-virgule » → ; · « à la ligne » → saut de ligne · « nouveau paragraphe » → double saut de ligne · « ouvrez/fermez les guillemets » → « ». Fonctionne même en mode examen, sans IA.",
-              "Exemple réel, dicté à voix haute puis inséré dans Word : « La vérité n'est pas toujours simple à trouver, point, à la ligne, je suis certain que nous pouvons encore améliorer l'application, point, nouveau paragraphe, à demain, point. » Résultat : une première phrase, la deuxième phrase sur la ligne suivante, puis une ligne vide avant « À demain. ». « À la ligne » et « nouveau paragraphe » sont bien pris en compte à partir de la version 1.8.4, y compris en mode Amélioré.",
+              "Exemple réel, dicté à voix haute puis inséré dans Word : « La vérité n'est pas toujours simple à trouver, point, à la ligne, je suis certain que nous pouvons encore améliorer l'application, point, nouveau paragraphe, à demain, point. » Résultat : une première phrase, la deuxième phrase sur la ligne suivante, puis une ligne vide avant « À demain. ». « À la ligne » et « nouveau paragraphe » sont pris en compte dans tous les modes (Simple, Amélioré et examen) à partir de la version 1.8.5.",
               "Après chaque dictée, le bouton « Corriger » reste 10 secondes : l'élève relit et garde la main sur son texte.",
               "Enregistrement limité à 5 minutes en continu (coupure automatique) : c'est un outil de dictée courte, pas un enregistreur de réunion. Aucune reconnaissance des différents locuteurs : une seule voix à la fois.",
             ],
@@ -2795,7 +2795,7 @@ const apps: AppItem[] = [
             title: 'Réglages pour la classe',
             items: [
               "Mode privé : sur un ordinateur partagé, aucune dictée n'est conservée sur la machine.",
-              "Mode examen : transcription brute sans passage par un modèle d'IA — l'outil compense le geste d'écriture, pas la rédaction.",
+              "Mode examen : transcription brute sans passage par un modèle d'IA — l'outil compense le geste d'écriture, pas la rédaction. La ponctuation dictée (« à la ligne », « nouveau paragraphe »…) reste active ; en revanche rien n'est ajouté automatiquement : ni ponctuation, ni retour en arrière (« en fait non »), ni correction d'homophones.",
               "Prénom ou code personnel : utiliser un code (EL07) sur machine partagée.",
             ],
           },
