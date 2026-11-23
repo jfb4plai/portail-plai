@@ -145,7 +145,7 @@ const apps: AppItem[] = [
     id: 'flashfwb',
     audience: 'enseignant + élève',
     name: 'FlashPLAI',
-    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte, avec un code de classe ou un QR code. Nouvel accueil : deux entrées claires (« Je suis enseignant·e » / « Je suis élève »).",
+    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte, avec un code de classe ou un QR code. Accueil à deux entrées (« Je suis enseignant·e » / « Je suis élève »).",
     url: 'https://flashfwb.vercel.app',
     emoji: '🃏',
     category: 'Mémorisation',
