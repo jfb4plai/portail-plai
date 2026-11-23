@@ -145,7 +145,7 @@ const apps: AppItem[] = [
     id: 'flashfwb',
     audience: 'enseignant + élève',
     name: 'FlashPLAI',
-    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte, avec un code de classe ou un QR code. Accueil à deux entrées (« Je suis enseignant·e » / « Je suis élève »).",
+    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio, brouillon IA à relire), révision par système Leitner (3 boîtes, espacement optionnel) pour les élèves — sans compte, avec un code de classe ou un QR code, un prénom ou un code élève anonyme. Mode « Lecture facilitée » (Arial, interligne agrandi). Suivi par élève : cartes à revoir et « presque ». Accueil à deux entrées (« Je suis enseignant·e » / « Je suis élève »).",
     url: 'https://flashfwb.vercel.app',
     emoji: '🃏',
     category: 'Mémorisation',
@@ -154,12 +154,12 @@ const apps: AppItem[] = [
     section: 'applications',
     guide: {
       scientific: {
-        summary: "FlashPLAI s'appuie sur deux principes validés par les sciences cognitives : le rappel actif (l'élève cherche la réponse avant de retourner la carte) et l'auto-évaluation immédiate (À revoir / Presque / Je sais). Sa réponse range la carte dans l'une des 3 boîtes de Leitner ; par défaut, une session présente d'abord les cartes à revoir. L'application ne planifie pas les révisions dans le temps : pour profiter de l'effet d'espacement, c'est l'enseignant qui répartit les sessions sur plusieurs jours.",
+        summary: "FlashPLAI s'appuie sur deux principes validés par les sciences cognitives : le rappel actif (l'élève cherche la réponse avant de retourner la carte) et l'auto-évaluation immédiate (À revoir / Presque / Je sais). Sa réponse range la carte dans l'une des 3 boîtes de Leitner ; par défaut, une session présente d'abord les cartes à revoir. Par défaut, l'application ne planifie pas les révisions dans le temps. Une option par paquet les espace (« Presque » après 1 jour, « Maîtrisé » après 3 jours, « A revoir » toujours proposée) : ces délais sont des repères simples, pas des valeurs issues d'une étude. Sans l'option, c'est l'enseignant qui répartit les sessions sur plusieurs jours.",
         references: [
           {
             id: 'tel-03216648',
             citation: "Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage pour l'optimisation de la maîtrise à long terme de composantes de connaissance.",
-            content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect). Les algorithmes adaptatifs ajustent l'intervalle de révision selon les performances de l'apprenant. FlashPLAI n'en reprend que le rangement en boîtes de Leitner, pas le calendrier de révision.",
+            content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect). Les algorithmes adaptatifs ajustent l'intervalle de révision selon les performances de l'apprenant. FlashPLAI reprend le rangement en boîtes de Leitner ; son option d'espacement n'est qu'une approximation simple de ce principe, sans algorithme adaptatif.",
           },
           {
             id: 'dumas-03775591',
@@ -182,20 +182,22 @@ const apps: AppItem[] = [
               "Donnez un nom (ex. : Tables de multiplication — 7×)",
               "Ajoutez vos cartes : recto (question/terme) + verso (réponse/définition)",
               "Enrichissez chaque face avec une image (upload ou recherche ARASAAC) ou un enregistrement audio",
+              "Onglet « Claude » : indiquez le niveau et ce que vous avez vu en classe, collez le prompt dans votre IA, puis relisez et adaptez chaque carte avant de sauvegarder",
             ],
           },
           {
             title: 'Partager avec les élèves',
             items: [
               "Publiez le deck → un code de classe et un QR code sont générés",
-              "Les élèves choisissent « Je suis élève » (ou scannent le QR code), entrent leur prénom et le code — aucun compte nécessaire",
+              "Les élèves choisissent « Je suis élève » (ou scannent le QR code), entrent leur prénom (ou un code élève) et le code de classe — aucun compte nécessaire",
+              "Pour ne stocker aucun prénom : dans la fenêtre du code de classe, « Utiliser des codes élèves » imprime une liste E01, E02… à distribuer ; vous seul gardez la correspondance",
               "Ils pratiquent en mode auto-évaluation (Je sais / Pas encore) — le système Leitner répartit les cartes en 3 boîtes",
             ],
           },
           {
             title: 'Suivi',
             items: [
-              "Le tableau de bord montre la répartition Leitner (À revoir / Presque / Maîtrisé) par élève",
+              "Le tableau de bord montre la répartition Leitner (À revoir / Presque / Maîtrisé) par élève, avec la liste des cartes concernées (« Voir quelles cartes »)",
               "Réactivez un deck en fin de séquence pour ancrer les apprentissages",
             ],
           },
