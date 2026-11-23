@@ -145,7 +145,7 @@ const apps: AppItem[] = [
     id: 'flashfwb',
     audience: 'enseignant + élève',
     name: 'FlashPLAI',
-    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (texte, image, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte.",
+    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio), révision par système Leitner (3 boîtes) pour les élèves — sans compte, avec un code de classe ou un QR code. Nouvel accueil : deux entrées claires (« Je suis enseignant·e » / « Je suis élève »).",
     url: 'https://flashfwb.vercel.app',
     emoji: '🃏',
     category: 'Mémorisation',
@@ -178,7 +178,7 @@ const apps: AppItem[] = [
           {
             title: 'Créer un deck',
             items: [
-              'Connectez-vous → "Nouveau deck"',
+              "Sur l'accueil, choisissez « Je suis enseignant·e », puis connectez-vous ou créez un compte → \"Nouveau deck\"",
               "Donnez un nom (ex. : Tables de multiplication — 7×)",
               "Ajoutez vos cartes : recto (question/terme) + verso (réponse/définition)",
               "Enrichissez chaque face avec une image (upload ou recherche ARASAAC) ou un enregistrement audio",
@@ -188,7 +188,7 @@ const apps: AppItem[] = [
             title: 'Partager avec les élèves',
             items: [
               "Publiez le deck → un code de classe et un QR code sont générés",
-              "Les élèves entrent le code sur leur appareil — aucun compte nécessaire",
+              "Les élèves choisissent « Je suis élève » (ou scannent le QR code), entrent leur prénom et le code — aucun compte nécessaire",
               "Ils pratiquent en mode auto-évaluation (Je sais / Pas encore) — le système Leitner répartit les cartes en 3 boîtes",
             ],
           },
