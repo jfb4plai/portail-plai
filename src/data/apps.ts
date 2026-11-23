@@ -145,7 +145,7 @@ const apps: AppItem[] = [
     id: 'flashfwb',
     audience: 'enseignant + élève',
     name: 'FlashPLAI',
-    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio, brouillon IA à relire), révision par système Leitner (3 boîtes, espacement optionnel) pour les élèves — sans compte, avec un code de classe ou un QR code, un prénom ou un code élève anonyme. Mode « Lecture facilitée » (Arial, interligne agrandi). Formules mathématiques saisies visuellement, sans syntaxe à apprendre. Impression recto-verso (8 cartes par page), code de classe à durée de validité réglable, installation sur l'appareil. Suivi par élève : cartes à revoir et « presque ». Accueil à deux entrées (« Je suis enseignant·e » / « Je suis élève »).",
+    description: "Flashcards interactives pour la mémorisation. Création de decks par l'enseignant (saisie, import Markdown ou CSV, image, pictogrammes ARASAAC, audio, brouillon IA à relire), révision par système Leitner (3 boîtes, espacement optionnel) pour les élèves — sans compte, avec un code de classe ou un QR code, un prénom ou un code élève anonyme. Mode « Lecture facilitée » (Arial, interligne agrandi). Formules mathématiques saisies visuellement, sans syntaxe à apprendre. Impression recto-verso (8 cartes par page), code de classe à durée de validité réglable, installation sur l'appareil. Éditeur de paquet en onglets (Cartes, Réglages, Importer, Partager). Suivi en deux onglets : une ligne par élève, dépliable pour voir les cartes à revoir et « presque », et la liste des cartes difficiles. Accueil à deux entrées (« Je suis enseignant·e » / « Je suis élève »).",
     url: 'https://flashfwb.vercel.app',
     emoji: '🃏',
     category: 'Mémorisation',
@@ -180,17 +180,18 @@ const apps: AppItem[] = [
             items: [
               "Sur l'accueil, choisissez « Je suis enseignant·e », puis connectez-vous ou créez un compte → \"Nouveau deck\"",
               "Donnez un nom (ex. : Tables de multiplication — 7×)",
-              "Ajoutez vos cartes : recto (question/terme) + verso (réponse/définition)",
+              "L'éditeur a quatre onglets : « Cartes » (saisie), « Réglages » (langues, voix, ordre Leitner, espacement ; un résumé reste visible sous le nom), « Importer » et « Partager ». La barre « Sauvegarder / Réviser » reste en bas de l'écran",
+              "Onglet « Cartes » : recto (question/terme) + verso (réponse/définition)",
               "Enrichissez chaque face avec une image (upload ou recherche ARASAAC) ou un enregistrement audio",
               "Pour une formule (fraction, exposant, racine), cliquez « ∑ Formule » sur la carte : l'éditeur visuel et son clavier mathématique évitent d'apprendre une syntaxe. Le signe $ est réservé aux formules : écrivez les prix avec €",
-              "« Imprimer les cartes » produit des feuilles A4 recto-verso, 8 cartes par page, pour les élèves sans écran",
-              "Onglet « Claude » : indiquez le niveau et ce que vous avez vu en classe, collez le prompt dans votre IA, puis relisez et adaptez chaque carte avant de sauvegarder",
+              "Onglet « Partager » → « Imprimer les cartes » : feuilles A4 recto-verso, 8 cartes par page, pour les élèves sans écran",
+              "Onglet « Importer » → « Claude » (ou Markdown, CSV) : indiquez le niveau et ce que vous avez vu en classe, collez le prompt dans votre IA, puis relisez et adaptez chaque carte avant de sauvegarder",
             ],
           },
           {
             title: 'Partager avec les élèves',
             items: [
-              "Publiez le deck → un code de classe et un QR code sont générés",
+              "Onglet « Partager » → « Code de classe et QR code » : le paquet est sauvegardé s'il est nouveau, puis un code et un QR code sont générés",
               "Les élèves choisissent « Je suis élève » (ou scannent le QR code), entrent leur prénom (ou un code élève) et le code de classe — aucun compte nécessaire",
               "Pour ne stocker aucun prénom : dans la fenêtre du code de classe, « Utiliser des codes élèves » imprime une liste E01, E02… à distribuer ; vous seul gardez la correspondance",
               "Dans la même fenêtre, « Durée de validité du code » permet de fixer une fin (1 semaine, 1 mois, fin d'année scolaire) et de prolonger le même code ensuite",
@@ -201,7 +202,8 @@ const apps: AppItem[] = [
           {
             title: 'Suivi',
             items: [
-              "Le tableau de bord montre la répartition Leitner (À revoir / Presque / Maîtrisé) par élève, avec la liste des cartes concernées (« Voir quelles cartes »)",
+              "« Voir les résultats » (onglet « Partager » de l'éditeur, ou « Résultats » sur l'accueil) : onglet « Élèves », une ligne par élève avec la répartition Leitner (À revoir / Presque / Maîtrisé) ; un clic sur la ligne affiche les cartes concernées",
+              "Onglet « Cartes difficiles » : les cartes qu'au moins la moitié des élèves laissent en boîte « À revoir », un bon point de départ pour une remédiation en classe",
               "Réactivez un deck en fin de séquence pour ancrer les apprentissages",
             ],
           },
