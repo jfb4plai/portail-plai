@@ -154,12 +154,12 @@ const apps: AppItem[] = [
     section: 'applications',
     guide: {
       scientific: {
-        summary: "FlashPLAI repose sur trois piliers validés par les sciences cognitives : le rappel actif, la répétition espacée et l'auto-évaluation immédiate. Le système Leitner (3 boîtes : À revoir / Presque / Maîtrisé) implémente la répétition espacée adaptive : les cartes moins bien connues reviennent plus fréquemment.",
+        summary: "FlashPLAI s'appuie sur deux principes validés par les sciences cognitives : le rappel actif (l'élève cherche la réponse avant de retourner la carte) et l'auto-évaluation immédiate (À revoir / Presque / Je sais). Sa réponse range la carte dans l'une des 3 boîtes de Leitner ; par défaut, une session présente d'abord les cartes à revoir. L'application ne planifie pas les révisions dans le temps : pour profiter de l'effet d'espacement, c'est l'enseignant qui répartit les sessions sur plusieurs jours.",
         references: [
           {
             id: 'tel-03216648',
             citation: "Choffin, B. (2021). Algorithmes d'espacement adaptatif de l'apprentissage pour l'optimisation de la maîtrise à long terme de composantes de connaissance.",
-            content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect). Les algorithmes adaptatifs comme Leitner ajustent l'intervalle de révision selon les performances de l'apprenant.",
+            content: "La répétition espacée améliore significativement la mémorisation à long terme par rapport à une révision « massée » en une seule session — c'est l'effet d'espacement (spacing effect). Les algorithmes adaptatifs ajustent l'intervalle de révision selon les performances de l'apprenant. FlashPLAI n'en reprend que le rangement en boîtes de Leitner, pas le calendrier de révision.",
           },
           {
             id: 'dumas-03775591',
