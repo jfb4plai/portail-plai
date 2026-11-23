@@ -164,12 +164,12 @@ const apps: AppItem[] = [
           {
             id: 'dumas-03775591',
             citation: 'Gayraud-Simon, N. (2022). Les apports des sciences cognitives à la mémorisation en classe de collège.',
-            content: "La relecture passive (stratégie préférée des élèves) est bien moins efficace que le rappel actif : se forcer à retrouver une information sans la relire consolide davantage la trace mnésique.",
+            content: "La relecture est la stratégie de mémorisation préférée des élèves, mais ce mémoire la range parmi les méthodes chronophages et peu efficaces. Il s'appuie sur l'effet test (Roediger et Karpicke) : se forcer à retrouver l'information consolide mieux la mémoire à long terme que la relire.",
           },
           {
             id: 'dumas-04842736',
             citation: 'Lacombe, A. (2024). Utilisation de flashcard sous forme de schéma fonctionnel en situation d\'apprentissage : étude d\'une approche combinée dans le processus de mémorisation à long terme.',
-            content: "L'approche combinée (flashcard + représentation schématique ou image) optimise la rétention à long terme par double encodage verbal et visuel.",
+            content: "L'étude associe flashcards et schéma fonctionnel et y voit un double effet de test : rappel par les flashcards, puis vérification du schéma construit. Dans FlashPLAI, chaque face d'une carte peut recevoir une image.",
           },
         ],
       },
