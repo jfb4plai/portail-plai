@@ -418,7 +418,7 @@ const apps: AppItem[] = [
               'Un élève sur son appareil : il place la pièce (glisser, cliquer sur la droite ou flèches du clavier) puis valide ; « Mode enseignant » demande une confirmation.',
               'Sur une droite très serrée (pas imposé à 1 sur 0→1000, par exemple), les traits et les numéros sont espacés automatiquement ; la droite l\'écrit (« 1 numéro sur 5 »).',
               'Le bouton « Aa Lecture facilitée » (en bas à droite) passe l\'écran en Arial, agrandit le texte de 12,5 % et aère les lignes. Il se retient sur l\'appareil et disparaît pendant l\'activité élève.',
-              'La page d\'accueil de l\'application présente les trois activités et renvoie vers ce mode d\'emploi.',
+              'La page d\'accueil de l\'application présente les trois activités et renvoie vers ce mode d\'emploi. Une fois connecté, le bouton « Accueil » de l\'en-tête la rouvre ; « Retour à la configuration » ramène aux réglages. Ce bouton est caché pendant l\'activité élève.',
               'Variez les plages d\'une séance à l\'autre.',
             ],
           },
