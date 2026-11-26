@@ -3821,12 +3821,22 @@ const apps: AppItem[] = [
       howto: {
         steps: [
           {
-            title: 'Préparer et installer',
+            title: 'Installer l\'application',
+            items: [
+              "Sans rien installer, l'application fonctionne dans le navigateur (adresse : cahieractif.jfb4plai.com). L'installer ajoute une icône et ouvre l'application dans sa propre fenêtre. Ouvrez d'abord l'adresse une fois avec une connexion internet",
+              "Windows, ou Mac avec Chrome ou Edge : cliquez sur l'icône « Installer » à droite de la barre d'adresse, ou ouvrez le menu du navigateur et choisissez « Installer CahierActif » (Chrome) ou « Installer ce site en tant qu'application » (Edge). Mac avec Safari (macOS Sonoma ou plus récent) : menu « Fichier », puis « Ajouter au Dock »",
+              "Chromebook : même démarche dans Chrome, l'icône se trouve ensuite dans le lanceur d'applications. Sur un Chromebook géré par l'établissement, l'administrateur peut avoir bloqué l'installation",
+              "Tablette Android (Chrome) : menu du navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil »",
+              "iPad (Safari) : touchez Partager, puis « Sur l'écran d'accueil », puis Ajouter, et ouvrez ensuite l'application par son icône. Sans cette installation, l'iPad peut effacer les documents après quelques jours sans utilisation",
+              "Ces étapes décrivent l'usage habituel des navigateurs : elles n'ont pas été essayées sur chaque appareil et les libellés changent selon la version. Le pas à pas est dans le mode d'emploi : https://cahieractif.jfb4plai.com/mode-emploi.html#installation",
+            ],
+          },
+          {
+            title: 'Préparer',
             items: [
               "Envoyez la fiche en PDF à l'élève (Teams, Smartschool, mail) : il l'ouvre avec « Ouvrir un PDF ». Une feuille papier se photographie : une photo devient une page",
               "Au premier lancement, six cours (Français, Mathématiques, Sciences, Histoire, Géographie, Langues) et un cours « Exemple » sont créés. « Exemple » contient un document annoté : devant chaque annotation, la commande utilisée est écrite en bleu. Vous pouvez supprimer les cours et le document : ils ne reviennent pas",
               "Dans « Réglages », choisissez le niveau (P1-P2, P3-P6 ou secondaire), l'appareil (tablette avec stylet ou doigt) et le côté de la colonne d'outils (à droite pour un élève gaucher)",
-              "Sur iPad, touchez Partager puis « Sur l'écran d'accueil » : sans cela, l'iPad peut effacer les documents après quelques jours sans utilisation. Sur Android, utilisez « Installer l'application » ou « Ajouter à l'écran d'accueil » dans le menu du navigateur",
             ],
           },
           {
