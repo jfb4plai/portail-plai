@@ -378,22 +378,22 @@ const apps: AppItem[] = [
     section: 'applications',
     guide: {
       scientific: {
-        summary: "Droite Graduée traduit directement les recommandations de la recherche en neurosciences de l'éducation : faire manipuler la droite graduée de façon active et répétée, avec feedback immédiat.",
+        summary: "Droite Graduée propose le placement de nombres sur une droite graduée. La recherche francophone du corpus RISS à ce sujet est nuancée : des textes distinguent la ligne numérique mentale, la droite numérique et la droite graduée, un texte critique la place donnée au placement des nombres, et un mémoire d'orthophonie étudie un jeu sur la ligne numérique. Aucun de ces textes ne démontre l'efficacité de cette application elle-même.",
         references: [
           {
             id: 'hal-05519479',
             citation: 'Fanjat, J. & Roditi, E. (2025). Interrogations didactiques à propos de la ligne numérique mentale.',
-            content: "Les auteurs distinguent la ligne numérique mentale (représentation cognitive innée), la droite numérique (objet mathématique) et la droite graduée (outil didactique). C'est sur cette dernière que l'enseignant agit.",
+            content: "Les auteurs distinguent trois objets : la ligne numérique mentale (objet de la psychologie cognitive), la droite numérique (objet mathématique) et la droite graduée (représentation utilisée dans les activités mathématiques et l'enseignement). Ils se demandent si la ligne numérique mentale doit devenir un objet d'enseignement. Ils relèvent aussi que la tâche d'évaluation nationale française de 2022, sur une droite graduée d'unité en unité de 0 à 10, peut se résoudre en comptant les graduations.",
           },
           {
             id: 'hal-05188689',
             citation: 'Hirsch, M. & Roditi, E. (2023). Quand les neurosciences analysent les apprentissages et en tirent des conséquences pour l\'enseignement.',
-            content: "Le placement des nombres sur la droite numérique est fondamental et déterminant pour leur apprentissage — conclusion validée par le Conseil scientifique de l'Éducation nationale française (2022).",
+            content: "Analyse critique de deux recherches de neurosciences cognitives, dont celle du Conseil scientifique de l'Éducation nationale (2022) qui vise à montrer l'importance du placement des nombres sur la droite. Du point de vue didactique, les auteurs écrivent que placer un nombre sur la droite est un critère parmi d'autres de la connaissance des nombres, mais pas davantage, et ils discutent la validité de plusieurs questions du test.",
           },
           {
             id: 'dumas-04098715',
             citation: 'Vignali, J. (2022). Effets du jeu sur le développement de la ligne numérique mentale.',
-            content: "Les activités ludiques de placement et d'estimation sur droite graduée accélèrent le développement de la représentation spatiale des nombres, avec des effets mesurables.",
+            content: "Mémoire d'orthophonie : l'autrice crée un jeu mathématique et étudie ses effets sur la représentation de la ligne numérique mentale dans des classes de CP, en le comparant à un jeu phonologique, sur six semaines. Les résultats sont à consulter dans le mémoire.",
           },
         ],
       },
@@ -403,16 +403,18 @@ const apps: AppItem[] = [
             title: 'Configurer une activité',
             items: [
               'Connectez-vous → configurez vos paramètres (plage numérique, graduation, affichage)',
-              'Définissez la plage numérique (ex. : 0–100, 0–1000, nombres décimaux)',
+              'Définissez la plage numérique (ex. : 0–10, 0–100)',
               'Choisissez le type d\'activité : ① Estimation, ② Apprentissage multi-droites, ③ Mix',
+              'Activité ① : choisissez le « Mode de la droite ». « Compter » numérote toutes les graduations (l\'élève peut compter les traits) ; « Estimer » n\'affiche que le début et la fin, ou le début, le milieu et la fin.',
             ],
           },
           {
             title: 'Utiliser en classe',
             items: [
-              'Basculez en Mode élève → projetez sur TBI ou partagez l\'URL',
-              'L\'élève place le nombre sur la droite → feedback visuel immédiat',
-              'Variez les plages pour travailler différentes compétences',
+              'Cliquez sur « Lancer pour l\'élève » (ou sur « Mode élève »), puis projetez sur TBI ou partagez votre écran. L\'adresse de l\'application n\'ouvre pas d\'accès élève : elle ouvre la connexion enseignant.',
+              'L\'élève place la pièce (glisser, cliquer sur la droite ou flèches du clavier), puis valide : la bonne position s\'affiche.',
+              'Le bouton « Mode enseignant » demande une confirmation, pour éviter qu\'un élève quitte l\'activité par erreur.',
+              'Variez les plages d\'une séance à l\'autre.',
             ],
           },
           {
@@ -423,7 +425,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Commencez par des plages connues (0–10, 0–100) avant d'étendre. L'estimation est plus formatrice que le placement exact guidé.",
+        tip: "Toutes les graduations numérotées permettent de compter les traits ; seules les extrémités (ou un repère au milieu) obligent à estimer. Le mode se choisit selon l'objectif de la séance.",
       },
     },
   },
