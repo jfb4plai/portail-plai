@@ -3837,14 +3837,14 @@ const apps: AppItem[] = [
             title: 'Préparer',
             items: [
               "Envoyez la fiche en PDF à l'élève (Teams, Smartschool, mail) : il l'ouvre avec « Ouvrir un PDF ». Une feuille papier se photographie : une photo devient une page",
-              "Au premier lancement, six cours (Français, Mathématiques, Sciences, Histoire, Géographie, Langues) et un cours « Exemple » sont créés. « Exemple » contient un document annoté : devant chaque annotation, la commande utilisée est écrite en bleu. Vous pouvez supprimer les cours et le document : ils ne reviennent pas",
+              "Au premier lancement, six cours (Français, Mathématiques, Sciences, Histoire, Géographie, Langues) et un cours « Exemple » (en jaune pâle) sont créés, chacun avec sa couleur. « Exemple » contient un document annoté : devant chaque annotation, la commande utilisée est écrite en bleu. Vous pouvez supprimer les cours et le document : ils ne reviennent pas",
               "Dans « Réglages », choisissez le niveau (P1-P2, P3-P6 ou secondaire), l'appareil (tablette avec stylet ou doigt) et le côté de la colonne d'outils (à droite pour un élève gaucher)",
             ],
           },
           {
             title: 'Ce que l\'élève peut faire',
             items: [
-              "Sur la première page, toucher un cours affiche d'abord ses documents. Chaque document a un bouton « Ouvrir », et aussi « Renommer », « Ranger dans » (choisir un cours) et « Supprimer »",
+              "Sur la première page, toucher un cours affiche d'abord ses documents. Chaque document a un bouton « Ouvrir », et aussi « Renommer », « Ranger dans » (choisir un cours) et « Supprimer ». La couleur du cours colore son cartouche et le bord gauche de ses documents ; elle aide à le reconnaître, son nom reste toujours écrit. Elle se change avec « Renommer » sur le cours",
               "Écrire au stylo (3 épaisseurs, 6 couleurs), au clavier avec « Texte », gommer, surligner, annuler",
               "Poser une opération en colonnes avec un pavé numérique : l'application ne calcule rien. La page grossit pendant la saisie puis revient à sa taille",
               "À partir de P3 : règle, équerre, rapporteur et compas. Un trait commencé près d'un bord de l'instrument reste droit et sa longueur s'affiche. La loupe agrandit ce qu'elle recouvre ; le cache-ligne ne laisse voir que 1 à 3 lignes",
