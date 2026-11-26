@@ -3769,6 +3769,59 @@ const apps: AppItem[] = [
       },
     },
   },
+  {
+    id: 'cahieractif',
+    audience: 'enseignant + élève',
+    name: 'CahierActif',
+    description:
+      "Annoter à l'écran une fiche PDF ou une photo de feuille comme sur un cahier : écrire, dessiner, poser une opération en colonnes, tracer avec une règle, une équerre, un rapporteur ou un compas simulés, agrandir avec une loupe, lire ligne par ligne avec un cache-ligne. Pour l'élève dont le geste écrit ou graphique est difficile. L'outil compense le geste : il ne corrige rien et ne calcule rien. Sans compte, tout reste sur l'appareil. S'installe sur tablette ou ordinateur.",
+    url: 'https://cahieractif.jfb4plai.com',
+    emoji: '📓',
+    category: 'Annotation de fiches',
+    status: 'en-développement',
+    isNew: true,
+    devBanner: true,
+    color: 'teal',
+    section: 'applications',
+    browserNote:
+      "Essayée à la souris dans un navigateur sur ordinateur (instruments et rotation à deux doigts avec des gestes simulés). Pas encore essayée sur une vraie tablette avec un stylet, ni par un élève : essayez-la sur l'appareil de l'élève avant de la proposer. Mode d'emploi : https://cahieractif.jfb4plai.com/mode-emploi.html",
+    guide: {
+      scientific: {
+        summary:
+          "CahierActif est un outil de compensation du geste : il retire l'obstacle de l'écriture et du tracé à la main (lenteur, précision, instruments) pour que l'élève montre ce qu'il comprend. Aucune référence scientifique n'est mobilisée ici et aucune étude n'a mesuré l'effet de cette application. Ses choix de conception sont ceux de PLAI : colonne d'outils à emplacements fixes, outil actif très visible, instruments de géométrie simulés, lissage du trait et aimantation à la grille proposés en option. Ils n'ont pas été validés par une source du corpus RISS. Ce que l'outil ne fait pas : il ne corrige pas, ne calcule pas, ne reconnaît pas l'écriture à la main, ne lit pas le document à voix haute et ne lit pas le texte d'une photo ou d'un PDF scanné. Tout reste dans le navigateur de l'appareil : aucun document n'est envoyé à un serveur.",
+        references: [],
+      },
+      howto: {
+        steps: [
+          {
+            title: 'Préparer et installer',
+            items: [
+              "Envoyez la fiche en PDF à l'élève (Teams, Smartschool, mail) : il l'ouvre avec « Ouvrir un PDF ». Une feuille papier se photographie : une photo devient une page",
+              "Dans « Réglages », choisissez le niveau (P1-P2, P3-P6 ou secondaire), l'appareil (tablette avec stylet ou doigt) et le côté de la colonne d'outils (à droite pour un élève gaucher)",
+              "Sur iPad, touchez Partager puis « Sur l'écran d'accueil » : sans cela, l'iPad peut effacer les documents après quelques jours sans utilisation. Sur Android, utilisez « Installer l'application » ou « Ajouter à l'écran d'accueil » dans le menu du navigateur",
+            ],
+          },
+          {
+            title: 'Ce que l\'élève peut faire',
+            items: [
+              "Écrire au stylo (3 épaisseurs, 6 couleurs), au clavier avec « Texte », gommer, surligner, annuler",
+              "Poser une opération en colonnes avec un pavé numérique : l'application ne calcule rien. La page grossit pendant la saisie puis revient à sa taille",
+              "À partir de P3 : règle, équerre, rapporteur et compas. Un trait commencé près d'un bord de l'instrument reste droit et sa longueur s'affiche. La loupe agrandit ce qu'elle recouvre ; le cache-ligne ne laisse voir que 1 à 3 lignes",
+              "Exporter en PDF pour rendre le travail, ou en fichier .cahier pour le reprendre sur un autre appareil",
+            ],
+          },
+          {
+            title: 'Régler et verrouiller',
+            items: [
+              "Lissage du trait (aucun, léger, fort) et aimantation à la grille (quadrillé, Seyes, pointé) sont désactivés par défaut : essayez-les avec l'élève et gardez ce qui l'aide",
+              "Le mode verrouillé protège les réglages et la suppression des documents par un code à 4 chiffres. Il évite les erreurs et les jeux ; il ne protège pas contre quelqu'un qui efface les données du site",
+            ],
+          },
+        ],
+        tip: "Essayez l'application vous-même sur la tablette de l'élève avant de la proposer : stylet, doigt, rotation des instruments. Le mode d'emploi pas à pas est ici : https://cahieractif.jfb4plai.com/mode-emploi.html",
+      },
+    },
+  },
 ];
 
 export default apps;
