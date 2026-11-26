@@ -3776,7 +3776,7 @@ const apps: AppItem[] = [
     audience: 'enseignant + élève',
     name: 'CahierActif',
     description:
-      "Annoter à l'écran une fiche PDF ou une photo de feuille comme sur un cahier : écrire, dessiner, poser une opération en colonnes, tracer avec une règle, une équerre, un rapporteur ou un compas simulés, agrandir avec une loupe, lire ligne par ligne avec un cache-ligne. Pour l'élève dont le geste écrit ou graphique est difficile. L'outil compense le geste : il ne corrige rien et ne calcule rien. Sans compte, tout reste sur l'appareil. S'installe sur tablette ou ordinateur.",
+      "Annoter à l'écran une fiche PDF ou une photo de feuille comme sur un cahier : écrire, dessiner, poser une opération en colonnes, tracer avec une règle, une équerre, un rapporteur ou un compas simulés, agrandir avec une loupe, lire ligne par ligne avec un cache-ligne. Pour l'élève dont le geste écrit ou graphique est difficile. Un cours « Exemple » contient un document déjà annoté, où chaque annotation est précédée de la commande utilisée. L'outil compense le geste : il ne corrige rien et ne calcule rien. Sans compte, tout reste sur l'appareil. S'installe sur tablette ou ordinateur.",
     url: 'https://cahieractif.jfb4plai.com',
     emoji: '📓',
     category: 'Annotation de fiches',
@@ -3821,6 +3821,7 @@ const apps: AppItem[] = [
             title: 'Préparer et installer',
             items: [
               "Envoyez la fiche en PDF à l'élève (Teams, Smartschool, mail) : il l'ouvre avec « Ouvrir un PDF ». Une feuille papier se photographie : une photo devient une page",
+              "Au premier lancement, six cours (Français, Mathématiques, Sciences, Histoire, Géographie, Langues) et un cours « Exemple » sont créés. « Exemple » contient un document annoté : devant chaque annotation, la commande utilisée est écrite en bleu. Vous pouvez supprimer les cours et le document : ils ne reviennent pas",
               "Dans « Réglages », choisissez le niveau (P1-P2, P3-P6 ou secondaire), l'appareil (tablette avec stylet ou doigt) et le côté de la colonne d'outils (à droite pour un élève gaucher)",
               "Sur iPad, touchez Partager puis « Sur l'écran d'accueil » : sans cela, l'iPad peut effacer les documents après quelques jours sans utilisation. Sur Android, utilisez « Installer l'application » ou « Ajouter à l'écran d'accueil » dans le menu du navigateur",
             ],
@@ -3828,6 +3829,7 @@ const apps: AppItem[] = [
           {
             title: 'Ce que l\'élève peut faire',
             items: [
+              "Sur la première page, toucher un cours affiche d'abord ses documents. Chaque document a un bouton « Ouvrir », et aussi « Renommer », « Ranger dans » (choisir un cours) et « Supprimer »",
               "Écrire au stylo (3 épaisseurs, 6 couleurs), au clavier avec « Texte », gommer, surligner, annuler",
               "Poser une opération en colonnes avec un pavé numérique : l'application ne calcule rien. La page grossit pendant la saisie puis revient à sa taille",
               "À partir de P3 : règle, équerre, rapporteur et compas. Un trait commencé près d'un bord de l'instrument reste droit et sa longueur s'affiche. La loupe agrandit ce qu'elle recouvre ; le cache-ligne ne laisse voir que 1 à 3 lignes",
