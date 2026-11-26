@@ -3790,8 +3790,30 @@ const apps: AppItem[] = [
     guide: {
       scientific: {
         summary:
-          "CahierActif est un outil de compensation du geste : il retire l'obstacle de l'écriture et du tracé à la main (lenteur, précision, instruments) pour que l'élève montre ce qu'il comprend. Aucune référence scientifique n'est mobilisée ici et aucune étude n'a mesuré l'effet de cette application. Ses choix de conception sont ceux de PLAI : colonne d'outils à emplacements fixes, outil actif très visible, instruments de géométrie simulés, lissage du trait et aimantation à la grille proposés en option. Ils n'ont pas été validés par une source du corpus RISS. Ce que l'outil ne fait pas : il ne corrige pas, ne calcule pas, ne reconnaît pas l'écriture à la main, ne lit pas le document à voix haute et ne lit pas le texte d'une photo ou d'un PDF scanné. Tout reste dans le navigateur de l'appareil : aucun document n'est envoyé à un serveur.",
-        references: [],
+          "CahierActif est un outil de compensation du geste : il retire l'obstacle de l'écriture et du tracé à la main (lenteur, précision, instruments) pour que l'élève montre ce qu'il comprend. Les sources du corpus RISS ci-dessous vont dans ce sens sans valider l'outil lui-même. Un travail d'expertise collective sur le trouble développemental de la coordination (dyspraxie) recommande de développer et d'évaluer des outils de compensation en milieu scolaire, pour l'écriture manuscrite mais aussi pour d'autres domaines dont la géométrie. Deux travaux invitent à la prudence : des outils numériques sont attribués aux élèves sans qu'on sache s'ils répondent à leurs besoins, et l'idée partagée que le numérique compense le handicap se heurte à la difficulté des enseignants à le déployer en classe. Aucune étude n'a mesuré l'effet de CahierActif. Ses choix de conception (colonne d'outils à emplacements fixes, outil actif très visible, instruments de géométrie simulés, lissage du trait et aimantation à la grille en option) sont ceux de PLAI : ils n'ont pas été validés par une source du corpus RISS. Ce que l'outil ne fait pas : il ne corrige pas, ne calcule pas, ne reconnaît pas l'écriture à la main, ne lit pas le document à voix haute et ne lit pas le texte d'une photo ou d'un PDF scanné. Tout reste dans le navigateur de l'appareil : aucun document n'est envoyé à un serveur.",
+        references: [
+          {
+            id: 'hal-02408788',
+            citation:
+              "Albaret, J.-M., Arnaud, C., Assaiante, C., Gonzalez-Monge, S., Huron, C., Jolly, C., Kaiser, M.-L., Liotard, P., Mazeau, M., Tallet, J., Vaivre-Douret, L. & Woollven, M. (2019). Trouble développemental de la coordination ou dyspraxie. Expertise collective Inserm.",
+            content:
+              "Le groupe d'experts recommande de développer et d'évaluer des méthodes et outils de compensation en milieu scolaire pour compenser les difficultés d'écriture manuscrite, mais aussi celles induites par le trouble dans d'autres domaines (lecture, géométrie, etc.). CahierActif se place dans cette famille d'outils ; il n'a pas été évalué.",
+          },
+          {
+            id: 'dumas-01804552',
+            citation:
+              "Foucras Lewandowski, C. (2017). Travail multi-professionnel et aménagements pédagogiques : l'accompagnement des enfants dyspraxiques. Mémoire.",
+            content:
+              "Pour la majorité des enfants dyspraxiques, des moyens de compensation ont été attribués : plutôt humains au primaire, plutôt matériels (ordinateur, scanner, logiciels spécifiques) dans le secondaire. Le travail pose la question de leur adaptation réelle aux besoins de l'élève : d'où l'essai de l'outil avec l'élève avant de le proposer.",
+          },
+          {
+            id: 'tel-03887749',
+            citation:
+              "Booms, A. (2022). Les pratiques enseignantes auprès d'un élève présentant des troubles de l'acquisition des coordinations et équipé de matériel pédagogique adapté. Thèse.",
+            content:
+              "La thèse part d'un décalage entre l'idée partagée, notamment chez les enseignants, qu'un outil numérique pallie le handicap des élèves présentant des troubles de l'acquisition des coordinations, et les difficultés de déploiement de ces outils. Un outil numérique ne suffit pas : l'accompagnement et l'appropriation par l'enseignant comptent.",
+          },
+        ],
       },
       howto: {
         steps: [
