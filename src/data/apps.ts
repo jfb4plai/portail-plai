@@ -3782,7 +3782,7 @@ const apps: AppItem[] = [
     name: 'CahierActif',
     description:
       "Annoter à l'écran une fiche PDF ou une photo de feuille comme sur un cahier : écrire, dessiner, poser une opération en colonnes, tracer avec une règle, une équerre, un rapporteur ou un compas simulés, agrandir avec une loupe, lire ligne par ligne avec un cache-ligne. Pour l'élève dont le geste écrit ou graphique est difficile. Un cours « Exemple » contient un document déjà annoté, où chaque annotation est précédée de la commande utilisée. L'outil compense le geste : il ne corrige rien et ne calcule rien. Sans compte, tout reste sur l'appareil. S'installe sur tablette ou ordinateur.",
-    url: 'https://cahieractif.jfb4plai.com',
+    url: 'https://cahieractif.vercel.app',
     emoji: '📓',
     category: 'Annotation de fiches',
     status: 'en-développement',
@@ -3791,7 +3791,7 @@ const apps: AppItem[] = [
     color: 'teal',
     section: 'applications',
     browserNote:
-      "Essayée à la souris dans un navigateur sur ordinateur (instruments et rotation à deux doigts avec des gestes simulés). Pas encore essayée sur une vraie tablette avec un stylet, ni par un élève : essayez-la sur l'appareil de l'élève avant de la proposer. Mode d'emploi : https://cahieractif.jfb4plai.com/mode-emploi.html",
+      "Essayée à la souris dans un navigateur sur ordinateur (instruments et rotation à deux doigts avec des gestes simulés). Pas encore essayée sur une vraie tablette avec un stylet, ni par un élève : essayez-la sur l'appareil de l'élève avant de la proposer. Mode d'emploi : https://cahieractif.vercel.app/mode-emploi.html",
     guide: {
       scientific: {
         summary:
@@ -3825,12 +3825,12 @@ const apps: AppItem[] = [
           {
             title: 'Installer l\'application',
             items: [
-              "Sans rien installer, l'application fonctionne dans le navigateur (adresse : cahieractif.jfb4plai.com). L'installer ajoute une icône et ouvre l'application dans sa propre fenêtre. Ouvrez d'abord l'adresse une fois avec une connexion internet",
+              "Sans rien installer, l'application fonctionne dans le navigateur (adresse : cahieractif.vercel.app). L'installer ajoute une icône et ouvre l'application dans sa propre fenêtre. Ouvrez d'abord l'adresse une fois avec une connexion internet",
               "Windows, ou Mac avec Chrome ou Edge : cliquez sur l'icône « Installer » à droite de la barre d'adresse, ou ouvrez le menu du navigateur et choisissez « Installer CahierActif » (Chrome) ou « Installer ce site en tant qu'application » (Edge). Mac avec Safari (macOS Sonoma ou plus récent) : menu « Fichier », puis « Ajouter au Dock »",
               "Chromebook : même démarche dans Chrome, l'icône se trouve ensuite dans le lanceur d'applications. Sur un Chromebook géré par l'établissement, l'administrateur peut avoir bloqué l'installation",
               "Tablette Android (Chrome) : menu du navigateur, puis « Installer l'application » ou « Ajouter à l'écran d'accueil »",
               "iPad (Safari) : touchez Partager, puis « Sur l'écran d'accueil », puis Ajouter, et ouvrez ensuite l'application par son icône. Sans cette installation, l'iPad peut effacer les documents après quelques jours sans utilisation",
-              "Ces étapes décrivent l'usage habituel des navigateurs : elles n'ont pas été essayées sur chaque appareil et les libellés changent selon la version. Le pas à pas est dans le mode d'emploi : https://cahieractif.jfb4plai.com/mode-emploi.html#installation",
+              "Ces étapes décrivent l'usage habituel des navigateurs : elles n'ont pas été essayées sur chaque appareil et les libellés changent selon la version. Le pas à pas est dans le mode d'emploi : https://cahieractif.vercel.app/mode-emploi.html#installation",
             ],
           },
           {
@@ -3859,7 +3859,7 @@ const apps: AppItem[] = [
             ],
           },
         ],
-        tip: "Essayez l'application vous-même sur la tablette de l'élève avant de la proposer : stylet, doigt, rotation des instruments. Le mode d'emploi pas à pas est ici : https://cahieractif.jfb4plai.com/mode-emploi.html",
+        tip: "Essayez l'application vous-même sur la tablette de l'élève avant de la proposer : stylet, doigt, rotation des instruments. Le mode d'emploi pas à pas est ici : https://cahieractif.vercel.app/mode-emploi.html",
       },
     },
   },
